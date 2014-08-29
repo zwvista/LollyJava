@@ -8,17 +8,17 @@
     <session-factory>
 
         <!-- Database connection settings -->
-        <property name="connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
-        <property name="connection.url">jdbc:sqlserver://ZHAOWEI-PC\SQLEXPRESS;integratedSecurity=true;databaseName=Lolly</property>
-        <property name="connection.username">ZHAOWEI-PC\zhaowei</property>
+<!--         <property name="connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property> -->
+<!--         <property name="connection.url">jdbc:sqlserver://ZHAOWEI-PC\SQLEXPRESS;integratedSecurity=true;databaseName=Lolly</property> -->
+<!--         <property name="connection.username">ZHAOWEI-PC\zhaowei</property> -->
+<!--         <property name="connection.password"></property> -->
+        <property name="connection.driver_class">org.sqlite.JDBC</property>
+        <property name="connection.url">jdbc:sqlite:C:\zw\backup\Lolly.db</property>
+        <property name="connection.username"></property>
         <property name="connection.password"></property>
-
-        <property name="connection.initialSize">10</property>
-        <property name="connection.maxActive">20</property>
-        <property name="connection.maxIdle">30</property>
-
         <!-- SQL dialect -->
-        <property name="dialect">org.hibernate.dialect.SQLServerDialect</property>
+<!--         <property name="dialect">org.hibernate.dialect.SQLServerDialect</property> -->
+        <property name="dialect">com.applerao.hibernatesqlite.dialect.SQLiteDialect</property>
         <!-- Echo all executed SQL to stdout -->
         <property name="show_sql">true</property>
 

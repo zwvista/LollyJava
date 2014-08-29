@@ -3,7 +3,7 @@
 *.sdf
 *.opensdf
 *.aps
-/LollyCSOld/
+/target/
 
 Debug
 Release
