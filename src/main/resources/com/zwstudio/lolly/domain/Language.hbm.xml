@@ -8,6 +8,6 @@
     	<id name="id" column="LANGID">
     		<generator class="assigned"></generator>
     	</id>
-        <property name="name" column="ENGNAME"/>
+        <property name="name" column="LANGNAME"/>
     </class>
 </hibernate-mapping>

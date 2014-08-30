@@ -5,7 +5,9 @@
 
 <hibernate-mapping package="com.zwstudio.lolly.domain">
     <class name="DictAll" table="DICTALL">
-    	<id name="id"></id>
+    	<id name="id">
+    		<generator class="assigned"></generator>
+    	</id>
         <property name="title"/>
     </class>
 </hibernate-mapping>

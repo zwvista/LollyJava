@@ -13,10 +13,6 @@
         <property name="connection.username">ZHAOWEI-PC\zhaowei</property>
         <property name="connection.password"></property>
 
-        <property name="connection.initialSize">10</property>
-        <property name="connection.maxActive">20</property>
-        <property name="connection.maxIdle">30</property>
-
         <!-- SQL dialect -->
         <property name="dialect">org.hibernate.dialect.SQLServerDialect</property>
         <!-- Echo all executed SQL to stdout -->
