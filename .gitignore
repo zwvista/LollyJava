@@ -3,8 +3,8 @@
 *.sdf
 *.opensdf
 *.aps
-
 /target/
+
 Debug
 Release
 x64
