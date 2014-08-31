@@ -3,10 +3,11 @@
 *.sdf
 *.opensdf
 *.aps
-/target/
 
 Debug
 Release
 x64
 packages
 ipch
+/target
+/target

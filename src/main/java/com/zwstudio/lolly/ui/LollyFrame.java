@@ -1,14 +1,19 @@
 package com.zwstudio.lolly.ui;
 
 import javax.swing.JFrame;
+
 import java.awt.BorderLayout;
+
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+
 import java.awt.FlowLayout;
+
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 
 public class LollyFrame extends JFrame {
 	private JTextField textField;
@@ -16,17 +21,15 @@ public class LollyFrame extends JFrame {
 		getContentPane().setLayout(new BorderLayout(0, 0));
 		
 		JPanel pnlTop = new JPanel();
-		FlowLayout fl_pnlTop = (FlowLayout) pnlTop.getLayout();
-		fl_pnlTop.setAlignment(FlowLayout.LEFT);
 		getContentPane().add(pnlTop, BorderLayout.NORTH);
+		pnlTop.setLayout(new BorderLayout(0, 0));
 		
 		textField = new JTextField();
-		pnlTop.add(textField);
+		pnlTop.add(textField, BorderLayout.CENTER);
 		textField.setColumns(10);
 		
 		JButton btnGo = new JButton("Go");
-		btnGo.setHorizontalAlignment(SwingConstants.LEADING);
-		pnlTop.add(btnGo);
+		pnlTop.add(btnGo, BorderLayout.EAST);
 		
 		JPanel pnlBottom = new JPanel();
 		getContentPane().add(pnlBottom, BorderLayout.SOUTH);
@@ -47,4 +50,14 @@ public class LollyFrame extends JFrame {
 		pnlBottom.add(cmbDictionary);
 	}
 
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(new Runnable() {
+
+            public void run() {
+            	LollyFrame browser = new LollyFrame();
+                browser.setVisible(true);
+            }
+        });
+    }
 }

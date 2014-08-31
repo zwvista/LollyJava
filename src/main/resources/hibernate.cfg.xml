@@ -13,7 +13,7 @@
 <!--         <property name="connection.username">ZHAOWEI-PC\zhaowei</property> -->
 <!--         <property name="connection.password"></property> -->
         <property name="connection.driver_class">org.sqlite.JDBC</property>
-        <property name="connection.url">jdbc:sqlite:C:\zw\backup\Lolly.db</property>
+        <property name="connection.url">jdbc:sqlite:E:\Education\Lolly\Lolly.db</property>
         <property name="connection.username"></property>
         <property name="connection.password"></property>
         <!-- SQL dialect -->

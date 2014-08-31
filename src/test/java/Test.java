@@ -11,7 +11,7 @@ public class Test {
 	public static void main(String[] args) {
 		Session ss = HibernateUtil.getSessionFactory().openSession();
 		@SuppressWarnings("unchecked")
-		List<Language> result = (List<Language>)ss.createCriteria(Language.class).list();
+		List<Language> result = ss.createCriteria(Language.class).list();
 		for(Language lang : result) {
 			System.out.println(lang.getName());
 		}

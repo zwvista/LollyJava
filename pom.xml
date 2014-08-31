@@ -4,6 +4,11 @@
   <artifactId>LollySwing</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <dependencies>
+	<dependency>
+		<groupId>com.miglayout</groupId>
+		<artifactId>miglayout-swing</artifactId>
+		<version>4.2</version>
+	</dependency>
     <dependency>
     	<groupId>org.hibernate</groupId>
         <artifactId>hibernate-core</artifactId>
