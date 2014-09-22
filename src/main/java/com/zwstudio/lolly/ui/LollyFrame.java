@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 
 import java.awt.FlowLayout;
+import java.util.List;
 
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
@@ -15,8 +16,18 @@ import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import com.zwstudio.lolly.dao.LanguageDao;
+import com.zwstudio.lolly.domain.Language;
+import org.jdesktop.swingbinding.JComboBoxBinding;
+import org.jdesktop.swingbinding.SwingBindings;
+import org.jdesktop.beansbinding.AutoBinding.UpdateStrategy;
+
 public class LollyFrame extends JFrame {
-	private JTextField textField;
+	static List<Language> result;
+	private JComboBox cmbLanguage;
+	
 	public LollyFrame() {
 		getContentPane().setLayout(new BorderLayout(0, 0));
 		
@@ -24,7 +35,7 @@ public class LollyFrame extends JFrame {
 		getContentPane().add(pnlTop, BorderLayout.NORTH);
 		pnlTop.setLayout(new BorderLayout(0, 0));
 		
-		textField = new JTextField();
+		JTextField textField = new JTextField();
 		pnlTop.add(textField, BorderLayout.CENTER);
 		textField.setColumns(10);
 		
@@ -38,7 +49,7 @@ public class LollyFrame extends JFrame {
 		JLabel lblLanguage = new JLabel("Language");
 		pnlBottom.add(lblLanguage);
 		
-		JComboBox cmbLanguage = new JComboBox();
+		cmbLanguage = new JComboBox();
 		lblLanguage.setLabelFor(cmbLanguage);
 		pnlBottom.add(cmbLanguage);
 		
@@ -48,16 +59,21 @@ public class LollyFrame extends JFrame {
 		JComboBox cmbDictionary = new JComboBox();
 		lblDictionary.setLabelFor(cmbDictionary);
 		pnlBottom.add(cmbDictionary);
+		initDataBindings();
 	}
 
-
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
+        SwingUtilities.invokeLater(() -> {
+    		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring_context.xml");
+    		LanguageDao langdao = context.getBean(LanguageDao.class);
+    		result = langdao.list();
 
-            public void run() {
-            	LollyFrame browser = new LollyFrame();
-                browser.setVisible(true);
-            }
+    		LollyFrame frame = new LollyFrame();
+        	frame.setVisible(true);
         });
     }
+	protected void initDataBindings() {
+		JComboBoxBinding<Language, List<Language>, JComboBox> jComboBinding = SwingBindings.createJComboBoxBinding(UpdateStrategy.READ, result, cmbLanguage);
+		jComboBinding.bind();
+	}
 }
