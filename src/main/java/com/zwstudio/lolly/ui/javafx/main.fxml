@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.web.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
+
+<BorderPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <AnchorPane>
+         <children>
+            <TextField fx:id="tfWord" prefHeight="23.0" prefWidth="726.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="74.0" />
+            <Button fx:id="btnSearch" layoutX="746.0" mnemonicParsing="false" text="Search" AnchorPane.rightAnchor="0.0" />
+         </children>
+      </AnchorPane>
+   </top>
+   <center>
+      <WebView prefHeight="523.0" prefWidth="770.0" BorderPane.alignment="CENTER" />
+   </center>
+   <bottom>
+      <FlowPane hgap="3.0">
+         <children>
+            <Label layoutX="8.0" layoutY="3.0" text="Language:">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </Label>
+            <ComboBox layoutX="89.0" layoutY="1.0" prefWidth="150.0">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </ComboBox>
+            <Label layoutX="246.0" layoutY="3.0" text="Dictionary:">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </Label>
+            <ComboBox layoutX="333.0" prefWidth="150.0">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </ComboBox>
+         </children>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+      </FlowPane>
+   </bottom>
+</BorderPane>

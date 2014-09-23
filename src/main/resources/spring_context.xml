@@ -12,8 +12,8 @@
 <!-- 		<property name="username" value="ZHAOWEI-PC\zhaowei" /> -->
 <!-- 		<property name="password" value="" /> -->
 		<property name="driverClassName" value="org.sqlite.JDBC" />
-<!-- 		<property name="url" value="jdbc:sqlite:E:\Education\Lolly\Lolly.db" /> -->
-		<property name="url" value="jdbc:sqlite:C:\zw\backup\Lolly.db" />
+		<property name="url" value="jdbc:sqlite:E:\Education\Lolly\Lolly.db" />
+<!-- 		<property name="url" value="jdbc:sqlite:C:\zw\backup\Lolly.db" /> -->
 		<property name="username" value="" />
 		<property name="password" value="" />
 	</bean>
