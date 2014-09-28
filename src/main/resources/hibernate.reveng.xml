@@ -14,9 +14,11 @@
 	<table-filter match-name="WEBTEXT"></table-filter>
 	<table-filter match-name="WORDSBOOK"></table-filter>
 	<table-filter match-name="WORDSLANG"></table-filter>
-	<table name="AUTOCORRECT" class="com.zwstudio.lolly.domain.AutoCorrect" />
+	<table name="AUTOCORRECT"
+		class="com.zwstudio.lolly.domain.AutoCorrect" />
 	<table name="BOOKS" class="com.zwstudio.lolly.domain.Book" />
-	<table name="DICTIONARIES" class="com.zwstudio.lolly.domain.Dictionary" />
+	<table name="DICTIONARIES"
+		class="com.zwstudio.lolly.domain.Dictionary" />
 	<table name="DICTTYPES" class="com.zwstudio.lolly.domain.DictType" />
 	<table name="LANGUAGES" class="com.zwstudio.lolly.domain.Language" />
 	<table name="PHRASES" class="com.zwstudio.lolly.domain.Phrase" />

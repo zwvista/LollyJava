@@ -11,7 +11,7 @@ public class Test {
 	public static void main(String[] args) {
 		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring_context.xml");
 		LanguageDao langdao = context.getBean(LanguageDao.class);
-		List<Language> result = langdao.list();
+		List<Language> result = langdao.getData();
 		for(Language lang : result) {
 			System.out.println(lang.getLangname());
 		}

@@ -26,6 +26,7 @@
         <property name="mappingResources">
             <list>
                 <value>com/zwstudio/lolly/domain/Language.hbm.xml</value>
+                <value>com/zwstudio/lolly/domain/Dictionary.hbm.xml</value>
                 <value>com/zwstudio/lolly/domain/AutoCorrect.hbm.xml</value>
             </list>
         </property>
@@ -44,6 +45,9 @@
     </bean>
 
 	<bean id="languageDao" class="com.zwstudio.lolly.dao.LanguageDao">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="DictionaryDao" class="com.zwstudio.lolly.dao.DictionaryDao">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 </beans>

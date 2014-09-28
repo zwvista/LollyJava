@@ -2,15 +2,13 @@ package com.zwstudio.lolly.dao;
 
 import java.util.List;
 
-import org.hibernate.Criteria;
-import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.springframework.jdbc.object.SqlQuery;
 
+import com.zwstudio.lolly.domain.Dictionary;
 import com.zwstudio.lolly.domain.Language;
 
-public class LanguageDao {
+public class DictionaryDao {
 
 	private SessionFactory sessionFactory;
 
@@ -18,12 +16,13 @@ public class LanguageDao {
         this.sessionFactory = sessionFactory;
     }
     
-	public List<Language> getData() {
+	public List<Dictionary> getDataByLang(int langid) {
 		Session session = sessionFactory.openSession();
 		@SuppressWarnings("unchecked")
-		List<Language> lst = session
-			.createSQLQuery("SELECT * FROM LANGUAGES WHERE LANGID > 0")
-			.addEntity(Language.class)
+		List<Dictionary> lst = session
+			.createSQLQuery("SELECT * FROM DICTIONARIES WHERE LANGID = :langid")
+			.addEntity(Dictionary.class)
+			.setParameter("langid", langid)
 			.list();
 		session.close();
 		return lst;
