@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd" >
+
+<hibernate-reverse-engineering>
+	<table-filter match-name="AUTOCORRECT"></table-filter>
+	<table-filter match-name="BOOKS"></table-filter>
+	<table-filter match-name="DICTIONARIES"></table-filter>
+	<table-filter match-name="DICTTYPES"></table-filter>
+	<table-filter match-name="LANGUAGES"></table-filter>
+	<table-filter match-name="PHRASES"></table-filter>
+	<table-filter match-name="PICBOOKS"></table-filter>
+	<table-filter match-name="USERS"></table-filter>
+	<table-filter match-name="WEBEXTRACT"></table-filter>
+	<table-filter match-name="WEBTEXT"></table-filter>
+	<table-filter match-name="WORDSBOOK"></table-filter>
+	<table-filter match-name="WORDSLANG"></table-filter>
+	<table name="AUTOCORRECT" class="com.zwstudio.lolly.domain.AutoCorrect" />
+	<table name="BOOKS" class="com.zwstudio.lolly.domain.Book" />
+	<table name="DICTIONARIES" class="com.zwstudio.lolly.domain.Dictionary" />
+	<table name="DICTTYPES" class="com.zwstudio.lolly.domain.DictType" />
+	<table name="LANGUAGES" class="com.zwstudio.lolly.domain.Language" />
+	<table name="PHRASES" class="com.zwstudio.lolly.domain.Phrase" />
+	<table name="PICBOOKS" class="com.zwstudio.lolly.domain.Pickbook" />
+</hibernate-reverse-engineering>

@@ -9,8 +9,11 @@ import javax.swing.JLabel;
 
 import java.awt.FlowLayout;
 import java.util.List;
+import java.util.Map;
 
+import javax.swing.DefaultListCellRenderer;
 import javax.swing.JComboBox;
+import javax.swing.JList;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
@@ -24,7 +27,9 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.awt.Rectangle;
 import java.awt.Font;
+
 import org.eclipse.wb.swing.FocusTraversalOnArray;
+
 import java.awt.Component;
 
 public class LollyFrame extends JFrame {
@@ -66,6 +71,16 @@ public class LollyFrame extends JFrame {
 		pnlBottom.add(cmbDictionary);
 		setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{pnlBottom, getContentPane(), pnlTop, textField, btnSearch, lblLanguage, cmbLanguage, lblDictionary, cmbDictionary}));
 
+		cmbLanguage.setRenderer(new DefaultListCellRenderer() {
+            @Override
+            public Component getListCellRendererComponent(JList list, Object value, int index,
+                                                          boolean isSelected, boolean cellHasFocus) {
+                if (value instanceof Language) {
+                    value = ((Language)value).getLangname();
+                }
+                return super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+            }
+        });
 		initContext();
 		initDataBindings();
 		setVisible(true);

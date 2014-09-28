@@ -13,7 +13,7 @@ public class Test {
 		LanguageDao langdao = context.getBean(LanguageDao.class);
 		List<Language> result = langdao.list();
 		for(Language lang : result) {
-			System.out.println(lang.getName());
+			System.out.println(lang.getLangname());
 		}
 	}
 

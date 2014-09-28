@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2014-9-28 14:08:58 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.zwstudio.lolly.domain.Wordslang" table="WORDSLANG" optimistic-lock="version">
+        <composite-id name="id" class="com.zwstudio.lolly.domain.WordslangId">
+            <key-property name="langid" type="int">
+                <column name="LANGID" />
+            </key-property>
+            <key-property name="word" type="string">
+                <column name="WORD" length="2000000000" />
+            </key-property>
+        </composite-id>
+        <property name="level" type="int">
+            <column name="LEVEL" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

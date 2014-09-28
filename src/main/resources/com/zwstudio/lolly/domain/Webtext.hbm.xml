@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2014-9-28 14:08:58 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.zwstudio.lolly.domain.Webtext" table="WEBTEXT" optimistic-lock="version">
+        <id name="sitename" type="string">
+            <column name="SITENAME" length="2000000000" />
+            <generator class="assigned" />
+        </id>
+        <property name="url" type="string">
+            <column name="URL" length="2000000000" />
+        </property>
+        <property name="template" type="string">
+            <column name="TEMPLATE" length="2000000000" />
+        </property>
+        <property name="folder" type="string">
+            <column name="FOLDER" length="2000000000" />
+        </property>
+    </class>
+</hibernate-mapping>

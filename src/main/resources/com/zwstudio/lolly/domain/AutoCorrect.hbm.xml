@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2014-9-28 14:08:58 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.zwstudio.lolly.domain.AutoCorrect" table="AUTOCORRECT" optimistic-lock="version">
+        <id name="id" type="int">
+            <column name="ID" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="language" class="com.zwstudio.lolly.domain.Language" fetch="select">
+            <column name="LANGID" not-null="true" />
+        </many-to-one>
+        <property name="index" type="int">
+            <column name="INDEX" not-null="true" />
+        </property>
+        <property name="input" type="string">
+            <column name="INPUT" length="2000000000" not-null="true" />
+        </property>
+        <property name="extended" type="string">
+            <column name="EXTENDED" length="2000000000" not-null="true" />
+        </property>
+        <property name="basic" type="string">
+            <column name="BASIC" length="2000000000" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

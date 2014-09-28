@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2014-9-28 14:08:58 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.zwstudio.lolly.domain.Phrase" table="PHRASES" optimistic-lock="version">
+        <id name="id" type="int">
+            <column name="ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="bookid" type="int">
+            <column name="BOOKID" not-null="true" />
+        </property>
+        <property name="lesson" type="int">
+            <column name="LESSON" not-null="true" />
+        </property>
+        <property name="part" type="int">
+            <column name="PART" not-null="true" />
+        </property>
+        <property name="index" type="int">
+            <column name="INDEX" not-null="true" />
+        </property>
+        <property name="phrase" type="string">
+            <column name="PHRASE" length="2000000000" not-null="true" />
+        </property>
+        <property name="translation" type="string">
+            <column name="TRANSLATION" length="2000000000" />
+        </property>
+    </class>
+</hibernate-mapping>
