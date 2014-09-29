@@ -22,13 +22,14 @@ import com.zwstudio.lolly.dao.DictionaryDao;
 import com.zwstudio.lolly.dao.LanguageDao;
 import com.zwstudio.lolly.domain.Dictionary;
 import com.zwstudio.lolly.domain.Language;
+import com.zwstudio.lolly.util.LollyConfig;
 
 import org.jdesktop.observablecollections.ObservableCollections;
 import org.jdesktop.observablecollections.ObservableList;
 import org.jdesktop.swingbinding.JComboBoxBinding;
 import org.jdesktop.swingbinding.SwingBindings;
 import org.jdesktop.beansbinding.AutoBinding.UpdateStrategy;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.awt.Rectangle;
 import java.awt.Font;
@@ -42,7 +43,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 public class LollyFrame extends JFrame {
-	private ClassPathXmlApplicationContext context;
+	private AnnotationConfigApplicationContext context;
 	private LanguageDao langDao;
 	private DictionaryDao dictDao;
 	
@@ -128,7 +129,7 @@ public class LollyFrame extends JFrame {
 	}
 
 	private void initContext() {
-		context = new ClassPathXmlApplicationContext("spring_context.xml");
+		context = new AnnotationConfigApplicationContext(LollyConfig.class);
 		langDao = context.getBean(LanguageDao.class);
 		langList = langDao.getData();
 		dictDao = context.getBean(DictionaryDao.class);

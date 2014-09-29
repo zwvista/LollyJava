@@ -3,11 +3,12 @@ package com.zwstudio.lolly.ui.javafx;
 import java.io.IOException;
 import java.util.List;
 
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import com.zwstudio.lolly.dao.DictionaryDao;
 import com.zwstudio.lolly.dao.LanguageDao;
 import com.zwstudio.lolly.domain.Language;
+import com.zwstudio.lolly.util.LollyConfig;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -16,7 +17,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class LollyApp extends Application {
-	private ClassPathXmlApplicationContext context;
+	private AnnotationConfigApplicationContext context;
 	private LanguageDao langDao;
 	private DictionaryDao dictDao;
 
@@ -32,7 +33,7 @@ public class LollyApp extends Application {
 	}
 
 	private void initContext() {
-		context = new ClassPathXmlApplicationContext("spring_context.xml");
+		context = new AnnotationConfigApplicationContext(LollyConfig.class);
 		langDao = context.getBean(LanguageDao.class);
 		langList = langDao.getData();
 		dictDao = context.getBean(DictionaryDao.class);
