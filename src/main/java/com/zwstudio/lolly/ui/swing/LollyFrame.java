@@ -29,6 +29,8 @@ import org.jdesktop.observablecollections.ObservableList;
 import org.jdesktop.swingbinding.JComboBoxBinding;
 import org.jdesktop.swingbinding.SwingBindings;
 import org.jdesktop.beansbinding.AutoBinding.UpdateStrategy;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.awt.Rectangle;
