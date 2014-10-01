@@ -51,8 +51,8 @@ public class LollyFrame extends JFrame {
 	
 	private List<Language> langList;
 	private ObservableList<Dictionary> dictList = ObservableCollections.observableList(new ArrayList<Dictionary>());
-	private JComboBox cmbLanguage;
-	private JComboBox cmbDictionary;
+	private JComboBox cmbLang;
+	private JComboBox cmbDict;
 	
 	public LollyFrame() {
 		addWindowListener(new WindowAdapter() {
@@ -84,27 +84,27 @@ public class LollyFrame extends JFrame {
 		JLabel lblLanguage = new JLabel("Language:");
 		pnlBottom.add(lblLanguage);
 		
-		cmbLanguage = new JComboBox();
-		cmbLanguage.addActionListener(new ActionListener() {
+		cmbLang = new JComboBox();
+		cmbLang.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Language lang = (Language)cmbLanguage.getSelectedItem();
+				Language lang = (Language)cmbLang.getSelectedItem();
 				if (lang == null) return;
 				dictList.clear();
 				dictList.addAll(dictDao.getDataByLang(lang.getLangid()));
 			}
 		});
-		lblLanguage.setLabelFor(cmbLanguage);
-		pnlBottom.add(cmbLanguage);
+		lblLanguage.setLabelFor(cmbLang);
+		pnlBottom.add(cmbLang);
 		
 		JLabel lblDictionary = new JLabel("Dictionary:");
 		pnlBottom.add(lblDictionary);
 		
-		cmbDictionary = new JComboBox();
-		lblDictionary.setLabelFor(cmbDictionary);
-		pnlBottom.add(cmbDictionary);
-		setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{pnlBottom, getContentPane(), pnlTop, textField, btnSearch, lblLanguage, cmbLanguage, lblDictionary, cmbDictionary}));
+		cmbDict = new JComboBox();
+		lblDictionary.setLabelFor(cmbDict);
+		pnlBottom.add(cmbDict);
+		setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{pnlBottom, getContentPane(), pnlTop, textField, btnSearch, lblLanguage, cmbLang, lblDictionary, cmbDict}));
 
-		cmbLanguage.setRenderer(new DefaultListCellRenderer() {
+		cmbLang.setRenderer(new DefaultListCellRenderer() {
             @Override
             public Component getListCellRendererComponent(JList list, Object value, int index,
                                                           boolean isSelected, boolean cellHasFocus) {
@@ -114,7 +114,7 @@ public class LollyFrame extends JFrame {
                 return super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
             }
         });
-		cmbDictionary.setRenderer(new DefaultListCellRenderer() {
+		cmbDict.setRenderer(new DefaultListCellRenderer() {
             @Override
             public Component getListCellRendererComponent(JList list, Object value, int index,
                                                           boolean isSelected, boolean cellHasFocus) {
@@ -142,10 +142,10 @@ public class LollyFrame extends JFrame {
         });
     }
 	protected void initDataBindings() {
-		JComboBoxBinding<Language, List<Language>, JComboBox> jComboBinding = SwingBindings.createJComboBoxBinding(UpdateStrategy.READ, langList, cmbLanguage);
+		JComboBoxBinding<Language, List<Language>, JComboBox> jComboBinding = SwingBindings.createJComboBoxBinding(UpdateStrategy.READ, langList, cmbLang);
 		jComboBinding.bind();
 		//
-		JComboBoxBinding<Dictionary, List<Dictionary>, JComboBox> jComboBinding_1 = SwingBindings.createJComboBoxBinding(UpdateStrategy.READ, dictList, cmbDictionary);
+		JComboBoxBinding<Dictionary, List<Dictionary>, JComboBox> jComboBinding_1 = SwingBindings.createJComboBoxBinding(UpdateStrategy.READ, dictList, cmbDict);
 		jComboBinding_1.bind();
 	}
 }

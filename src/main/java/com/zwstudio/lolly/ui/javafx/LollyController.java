@@ -20,6 +20,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.util.StringConverter;
 
 public class LollyController implements Initializable {
     @FXML
@@ -51,11 +52,37 @@ public class LollyController implements Initializable {
 	public void windowShowing() {
 		langList = FXCollections.observableArrayList(langDao.getData());
 		cmbLang.setItems(langList);
+		cmbLang.setConverter(new StringConverter<Language>() {
+            @Override
+            public String toString(Language lang) {
+            	return lang == null ? null : lang.getLangname();
+            }
+
+			@Override
+			public Language fromString(String arg0) {
+				return null;
+			}
+		});
+		cmbDict.setItems(dictList);
+		cmbDict.setConverter(new StringConverter<Dictionary>() {
+            @Override
+            public String toString(Dictionary dict) {
+            	return dict == null ? null : dict.getId().getDictname();
+            }
+
+			@Override
+			public Dictionary fromString(String arg0) {
+				return null;
+			}
+		});
 	}
 	
     @FXML
     public void langOnAction(ActionEvent event) {
-    	
+		Language lang = (Language)cmbLang.getValue();
+		if (lang == null) return;
+		dictList.clear();
+		dictList.addAll(dictDao.getDataByLang(lang.getLangid()));
     }
 
 }
