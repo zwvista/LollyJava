@@ -8,7 +8,6 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 
 import java.awt.FlowLayout;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.DefaultListCellRenderer;
@@ -16,24 +15,15 @@ import javax.swing.JComboBox;
 import javax.swing.JList;
 import javax.swing.JTextField;
 import javax.swing.JButton;
-import javax.swing.SwingUtilities;
+import javax.swing.border.EmptyBorder;
 
-import com.zwstudio.lolly.dao.DictionaryDao;
-import com.zwstudio.lolly.dao.LanguageDao;
 import com.zwstudio.lolly.domain.Dictionary;
 import com.zwstudio.lolly.domain.Language;
-import com.zwstudio.lolly.util.LollyConfig;
 
-import org.jdesktop.observablecollections.ObservableCollections;
-import org.jdesktop.observablecollections.ObservableList;
 import org.jdesktop.swingbinding.JComboBoxBinding;
 import org.jdesktop.swingbinding.SwingBindings;
 import org.jdesktop.beansbinding.AutoBinding.UpdateStrategy;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Configurable;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import java.awt.Rectangle;
 import java.awt.Font;
 
 import org.eclipse.wb.swing.FocusTraversalOnArray;
@@ -45,26 +35,24 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 public class LollyFrame extends JFrame {
-	private AnnotationConfigApplicationContext context;
-	private LanguageDao langDao;
-	private DictionaryDao dictDao;
+
+	LollyController controller;
 	
-	private List<Language> langList;
-	private ObservableList<Dictionary> dictList = ObservableCollections.observableList(new ArrayList<Dictionary>());
-	private JComboBox cmbLang;
-	private JComboBox cmbDict;
-	
-	public LollyFrame() {
-		addWindowListener(new WindowAdapter() {
-			@Override
-			public void windowClosing(WindowEvent arg0) {
-				context.close();
-				System.exit(0);
-			}
-		});
-		setFont(new Font("Dialog", Font.PLAIN, 12));
-		setBounds(new Rectangle(0, 0, 800, 600));
-		getContentPane().setLayout(new BorderLayout(0, 0));
+	private JPanel contentPane;
+	JComboBox cmbLang;
+	JComboBox cmbDict;
+
+	/**
+	 * Create the frame.
+	 */
+	public LollyFrame(LollyController controller) {
+		
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 800, 600);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setLayout(new BorderLayout(0, 0));
+		setContentPane(contentPane);
 		
 		JPanel pnlTop = new JPanel();
 		getContentPane().add(pnlTop, BorderLayout.NORTH);
@@ -87,10 +75,7 @@ public class LollyFrame extends JFrame {
 		cmbLang = new JComboBox();
 		cmbLang.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Language lang = (Language)cmbLang.getSelectedItem();
-				if (lang == null) return;
-				dictList.clear();
-				dictList.addAll(dictDao.getDataByLang(lang.getLangid()));
+				controller.cmbLang_actionPerformed();
 			}
 		});
 		lblLanguage.setLabelFor(cmbLang);
@@ -103,49 +88,17 @@ public class LollyFrame extends JFrame {
 		lblDictionary.setLabelFor(cmbDict);
 		pnlBottom.add(cmbDict);
 		setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{pnlBottom, getContentPane(), pnlTop, textField, btnSearch, lblLanguage, cmbLang, lblDictionary, cmbDict}));
-
-		cmbLang.setRenderer(new DefaultListCellRenderer() {
-            @Override
-            public Component getListCellRendererComponent(JList list, Object value, int index,
-                                                          boolean isSelected, boolean cellHasFocus) {
-                if (value instanceof Language) {
-                    value = ((Language)value).getLangname();
-                }
-                return super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
-            }
-        });
-		cmbDict.setRenderer(new DefaultListCellRenderer() {
-            @Override
-            public Component getListCellRendererComponent(JList list, Object value, int index,
-                                                          boolean isSelected, boolean cellHasFocus) {
-                if (value instanceof Dictionary) {
-                    value = ((Dictionary)value).getId().getDictname();
-                }
-                return super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
-            }
-        });
-		
-		initContext();
+	
+		this.controller = controller;
+		controller.init(this);
 		initDataBindings();
-		setVisible(true);
 	}
 
-	private void initContext() {
-		context = new AnnotationConfigApplicationContext(LollyConfig.class);
-		langDao = context.getBean(LanguageDao.class);
-		langList = langDao.getData();
-		dictDao = context.getBean(DictionaryDao.class);
-	}
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-    		LollyFrame frame = new LollyFrame();
-        });
-    }
 	protected void initDataBindings() {
-		JComboBoxBinding<Language, List<Language>, JComboBox> jComboBinding = SwingBindings.createJComboBoxBinding(UpdateStrategy.READ, langList, cmbLang);
+		JComboBoxBinding<Language, List<Language>, JComboBox> jComboBinding = SwingBindings.createJComboBoxBinding(UpdateStrategy.READ, controller.langList, cmbLang);
 		jComboBinding.bind();
 		//
-		JComboBoxBinding<Dictionary, List<Dictionary>, JComboBox> jComboBinding_1 = SwingBindings.createJComboBoxBinding(UpdateStrategy.READ, dictList, cmbDict);
+		JComboBoxBinding<Dictionary, List<Dictionary>, JComboBox> jComboBinding_1 = SwingBindings.createJComboBoxBinding(UpdateStrategy.READ, controller.dictList, cmbDict);
 		jComboBinding_1.bind();
 	}
 }

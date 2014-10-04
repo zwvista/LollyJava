@@ -16,7 +16,7 @@ import com.zwstudio.lolly.ui.javafx.LollyController;
 public class LollyConfigJavaFX {
 	
 	@Bean
-    public LollyController mainController() throws IOException {
+    public LollyController lollyController() throws IOException {
         return (LollyController)loadController(LollyController.class.getResource("main.fxml"));
     }
  
