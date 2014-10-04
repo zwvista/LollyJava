@@ -1,19 +1,21 @@
 import java.util.List;
 
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import com.zwstudio.lolly.dao.DictAllDao;
 import com.zwstudio.lolly.dao.LanguageDao;
+import com.zwstudio.lolly.domain.DictAll;
 import com.zwstudio.lolly.domain.Language;
-
+import com.zwstudio.lolly.util.LollyConfig;
 
 public class Test {
 
 	public static void main(String[] args) {
-		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring_context.xml");
-		LanguageDao langdao = context.getBean(LanguageDao.class);
-		List<Language> result = langdao.getData();
-		for(Language lang : result) {
-			System.out.println(lang.getLangname());
+		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(LollyConfig.class);
+		DictAllDao dictalldao = context.getBean(DictAllDao.class);
+		List<DictAll> result = dictalldao.getData();
+		for(DictAll da : result) {
+			System.out.println(da.getDictname());
 		}
 	}
 

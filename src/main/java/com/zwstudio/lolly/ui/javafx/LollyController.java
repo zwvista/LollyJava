@@ -75,7 +75,15 @@ public class LollyController implements Initializable {
 	}
 	
     @FXML
-    public void langOnAction(ActionEvent event) {
+    public void cmbLangOnAction(ActionEvent event) {
+		Language lang = (Language)cmbLang.getValue();
+		if (lang == null) return;
+		dictList.clear();
+		dictList.addAll(dictDao.getDataByLang(lang.getLangid()));
+    }
+	
+    @FXML
+    public void cmbDictOnAction(ActionEvent event) {
 		Language lang = (Language)cmbLang.getValue();
 		if (lang == null) return;
 		dictList.clear();

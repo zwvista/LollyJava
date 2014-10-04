@@ -1,6 +1,6 @@
 package com.zwstudio.lolly.domain;
 
-// Generated 2014-9-29 23:34:43 by Hibernate Tools 4.3.1
+// Generated 2014-10-4 23:22:52 by Hibernate Tools 4.3.1
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;

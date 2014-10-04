@@ -29,7 +29,7 @@
                   <Insets />
                </opaqueInsets>
             </Label>
-            <ComboBox fx:id="cmbLang" layoutX="89.0" layoutY="1.0" onAction="#langOnAction" prefWidth="150.0">
+            <ComboBox fx:id="cmbLang" layoutX="89.0" layoutY="1.0" onAction="#cmbLangOnAction" prefWidth="150.0">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
@@ -39,7 +39,7 @@
                   <Insets />
                </opaqueInsets>
             </Label>
-            <ComboBox fx:id="cmbDict" layoutX="333.0" prefWidth="150.0">
+            <ComboBox fx:id="cmbDict" layoutX="333.0" onAction="#cmbDictOnAction" prefWidth="150.0">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>

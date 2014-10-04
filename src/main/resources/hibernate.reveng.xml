@@ -4,6 +4,7 @@
 <hibernate-reverse-engineering>
 	<table-filter match-name="AUTOCORRECT"></table-filter>
 	<table-filter match-name="BOOKS"></table-filter>
+	<table-filter match-name="DICTALL"></table-filter>
 	<table-filter match-name="DICTIONARIES"></table-filter>
 	<table-filter match-name="DICTTYPES"></table-filter>
 	<table-filter match-name="LANGUAGES"></table-filter>
@@ -19,6 +20,12 @@
 	<table name="BOOKS" class="com.zwstudio.lolly.domain.Book" />
 	<table name="DICTIONARIES"
 		class="com.zwstudio.lolly.domain.Dictionary" />
+	<table name="DICTALL" class="com.zwstudio.lolly.domain.DictAll">
+		<primary-key>
+            <key-column name="LANGID"/>
+            <key-column name="INDEX"/>
+		</primary-key>
+	</table>
 	<table name="DICTTYPES" class="com.zwstudio.lolly.domain.DictType" />
 	<table name="LANGUAGES" class="com.zwstudio.lolly.domain.Language" />
 	<table name="PHRASES" class="com.zwstudio.lolly.domain.Phrase" />
