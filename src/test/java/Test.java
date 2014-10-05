@@ -15,7 +15,7 @@ public class Test {
 		DictAllDao dictalldao = context.getBean(DictAllDao.class);
 		List<DictAll> result = dictalldao.getData();
 		for(DictAll da : result) {
-			System.out.println(da.getDictname());
+			System.out.println(da.getId().getDictname());
 		}
 	}
 

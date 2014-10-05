@@ -34,13 +34,19 @@ import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+import org.jdesktop.beansbinding.BeanProperty;
+import org.jdesktop.observablecollections.ObservableList;
+import org.jdesktop.beansbinding.AutoBinding;
+import org.jdesktop.beansbinding.Bindings;
+
 public class LollyFrame extends JFrame {
 
 	LollyController controller;
 	
 	private JPanel contentPane;
-	JComboBox cmbLang;
-	JComboBox cmbDict;
+	private JComboBox cmbLang;
+	private JComboBox cmbDict;
+	private JTextField textWord;
 
 	/**
 	 * Create the frame.
@@ -58,11 +64,16 @@ public class LollyFrame extends JFrame {
 		getContentPane().add(pnlTop, BorderLayout.NORTH);
 		pnlTop.setLayout(new BorderLayout(0, 0));
 		
-		JTextField textField = new JTextField();
-		pnlTop.add(textField, BorderLayout.CENTER);
-		textField.setColumns(10);
+		textWord = new JTextField();
+		pnlTop.add(textWord, BorderLayout.CENTER);
+		textWord.setColumns(10);
 		
 		JButton btnSearch = new JButton("Search");
+		btnSearch.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				controller.btnSearch_actionPerformed();
+			}
+		});
 		pnlTop.add(btnSearch, BorderLayout.EAST);
 		
 		JPanel pnlBottom = new JPanel();
@@ -85,20 +96,62 @@ public class LollyFrame extends JFrame {
 		pnlBottom.add(lblDictionary);
 		
 		cmbDict = new JComboBox();
+		cmbDict.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				controller.cmbDict_actionPerformed();
+			}
+		});
 		lblDictionary.setLabelFor(cmbDict);
 		pnlBottom.add(cmbDict);
-		setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{pnlBottom, getContentPane(), pnlTop, textField, btnSearch, lblLanguage, cmbLang, lblDictionary, cmbDict}));
+		setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{pnlBottom, getContentPane(), pnlTop, textWord, btnSearch, lblLanguage, cmbLang, lblDictionary, cmbDict}));
 	
+		cmbLang.setRenderer(new DefaultListCellRenderer() {
+            @Override
+            public Component getListCellRendererComponent(JList list, Object value, int index,
+                                                          boolean isSelected, boolean cellHasFocus) {
+                if (value instanceof Language) {
+                    value = ((Language)value).getLangname();
+                }
+                return super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+            }
+        });
+		cmbDict.setRenderer(new DefaultListCellRenderer() {
+            @Override
+            public Component getListCellRendererComponent(JList list, Object value, int index,
+                                                          boolean isSelected, boolean cellHasFocus) {
+                if (value instanceof Dictionary) {
+                    value = ((Dictionary)value).getId().getDictname();
+                }
+                return super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+            }
+        });
+
 		this.controller = controller;
-		controller.init(this);
+		controller.init();
 		initDataBindings();
 	}
-
 	protected void initDataBindings() {
-		JComboBoxBinding<Language, List<Language>, JComboBox> jComboBinding = SwingBindings.createJComboBoxBinding(UpdateStrategy.READ, controller.langList, cmbLang);
+		BeanProperty<LollyController, List<Language>> lollyControllerBeanProperty = BeanProperty.create("langList");
+		JComboBoxBinding<Language, LollyController, JComboBox> jComboBinding = SwingBindings.createJComboBoxBinding(UpdateStrategy.READ, controller, lollyControllerBeanProperty, cmbLang);
 		jComboBinding.bind();
 		//
-		JComboBoxBinding<Dictionary, List<Dictionary>, JComboBox> jComboBinding_1 = SwingBindings.createJComboBoxBinding(UpdateStrategy.READ, controller.dictList, cmbDict);
+		BeanProperty<LollyController, List<Dictionary>> lollyControllerBeanProperty_1 = BeanProperty.create("dictList");
+		JComboBoxBinding<Dictionary, LollyController, JComboBox> jComboBinding_1 = SwingBindings.createJComboBoxBinding(UpdateStrategy.READ, controller, lollyControllerBeanProperty_1, cmbDict);
 		jComboBinding_1.bind();
+		//
+		BeanProperty<LollyController, Language> lollyControllerBeanProperty_2 = BeanProperty.create("selectedLang");
+		BeanProperty<JComboBox, Language> jComboBoxBeanProperty = BeanProperty.create("selectedItem");
+		AutoBinding<LollyController, Language, JComboBox, Language> autoBinding = Bindings.createAutoBinding(UpdateStrategy.READ_WRITE, controller, lollyControllerBeanProperty_2, cmbLang, jComboBoxBeanProperty);
+		autoBinding.bind();
+		//
+		BeanProperty<LollyController, Dictionary> lollyControllerBeanProperty_3 = BeanProperty.create("selectedDict");
+		BeanProperty<JComboBox, Dictionary> jComboBoxBeanProperty_1 = BeanProperty.create("selectedItem");
+		AutoBinding<LollyController, Dictionary, JComboBox, Dictionary> autoBinding_1 = Bindings.createAutoBinding(UpdateStrategy.READ_WRITE, controller, lollyControllerBeanProperty_3, cmbDict, jComboBoxBeanProperty_1);
+		autoBinding_1.bind();
+		//
+		BeanProperty<LollyController, String> lollyControllerBeanProperty_4 = BeanProperty.create("word");
+		BeanProperty<JTextField, String> jTextFieldBeanProperty = BeanProperty.create("text");
+		AutoBinding<LollyController, String, JTextField, String> autoBinding_2 = Bindings.createAutoBinding(UpdateStrategy.READ_WRITE, controller, lollyControllerBeanProperty_4, textWord, jTextFieldBeanProperty);
+		autoBinding_2.bind();
 	}
 }

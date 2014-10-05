@@ -1,6 +1,6 @@
 package com.zwstudio.lolly.domain;
 
-// Generated 2014-10-4 23:22:52 by Hibernate Tools 4.3.1
+// Generated 2014-10-4 23:56:03 by Hibernate Tools 4.3.1
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
@@ -12,14 +12,14 @@ import javax.persistence.Embeddable;
 public class DictAllId implements java.io.Serializable {
 
 	private Integer langid;
-	private Integer index;
+	private String dictname;
 
 	public DictAllId() {
 	}
 
-	public DictAllId(Integer langid, Integer index) {
+	public DictAllId(Integer langid, String dictname) {
 		this.langid = langid;
-		this.index = index;
+		this.dictname = dictname;
 	}
 
 	@Column(name = "LANGID")
@@ -31,13 +31,13 @@ public class DictAllId implements java.io.Serializable {
 		this.langid = langid;
 	}
 
-	@Column(name = "INDEX")
-	public Integer getIndex() {
-		return this.index;
+	@Column(name = "DICTNAME", length = 2000000000)
+	public String getDictname() {
+		return this.dictname;
 	}
 
-	public void setIndex(Integer index) {
-		this.index = index;
+	public void setDictname(String dictname) {
+		this.dictname = dictname;
 	}
 
 	public boolean equals(Object other) {
@@ -52,9 +52,10 @@ public class DictAllId implements java.io.Serializable {
 		return ((this.getLangid() == castOther.getLangid()) || (this
 				.getLangid() != null && castOther.getLangid() != null && this
 				.getLangid().equals(castOther.getLangid())))
-				&& ((this.getIndex() == castOther.getIndex()) || (this
-						.getIndex() != null && castOther.getIndex() != null && this
-						.getIndex().equals(castOther.getIndex())));
+				&& ((this.getDictname() == castOther.getDictname()) || (this
+						.getDictname() != null
+						&& castOther.getDictname() != null && this
+						.getDictname().equals(castOther.getDictname())));
 	}
 
 	public int hashCode() {
@@ -63,7 +64,7 @@ public class DictAllId implements java.io.Serializable {
 		result = 37 * result
 				+ (getLangid() == null ? 0 : this.getLangid().hashCode());
 		result = 37 * result
-				+ (getIndex() == null ? 0 : this.getIndex().hashCode());
+				+ (getDictname() == null ? 0 : this.getDictname().hashCode());
 		return result;
 	}
 

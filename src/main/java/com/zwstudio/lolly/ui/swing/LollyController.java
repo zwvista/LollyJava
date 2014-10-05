@@ -1,63 +1,81 @@
 package com.zwstudio.lolly.ui.swing;
 
-import java.awt.Component;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.DefaultListCellRenderer;
-import javax.swing.JList;
-
 import org.jdesktop.observablecollections.ObservableCollections;
-import org.jdesktop.observablecollections.ObservableList;
-import org.springframework.beans.factory.annotation.Autowired;
 
-import com.zwstudio.lolly.dao.DictionaryDao;
-import com.zwstudio.lolly.dao.LanguageDao;
+import com.zwstudio.lolly.domain.DictAllId;
 import com.zwstudio.lolly.domain.Dictionary;
+import com.zwstudio.lolly.domain.DictionaryId;
 import com.zwstudio.lolly.domain.Language;
+import com.zwstudio.lolly.ui.viewmodel.LollyViewModel;
 
-public class LollyController {
-	@Autowired
-	private LanguageDao langDao;
-	@Autowired
-	private DictionaryDao dictDao;
+public class LollyController extends LollyViewModel {
 	
-	LollyFrame view;
-	
-	List<Language> langList;
-	ObservableList<Dictionary> dictList = ObservableCollections.observableList(new ArrayList<Dictionary>());
+	public String word;
+	public List<Language> langList;
+	public List<Dictionary> dictList;
+	public Language selectedLang;
+	public Dictionary selectedDict;
 
-	void init(LollyFrame view) {
-		this.view = view;
-		
+	public String getWord() {
+		return word;
+	}
+
+	public void setWord(String word) {
+		this.word = word;
+	}
+
+	public Language getSelectedLang() {
+		return selectedLang;
+	}
+
+	public void setSelectedLang(Language selectedLang) {
+		this.selectedLang = selectedLang;
+	}
+
+	public Dictionary getSelectedDict() {
+		return selectedDict;
+	}
+
+	public void setSelectedDict(Dictionary selectedDict) {
+		this.selectedDict = selectedDict;
+	}
+
+	public List<Language> getLangList() {
+		return langList;
+	}
+
+	public List<Dictionary> getDictList() {
+		return dictList;
+	}
+
+	void init() {
 		langList = langDao.getData();
-		
-		view.cmbLang.setRenderer(new DefaultListCellRenderer() {
-            @Override
-            public Component getListCellRendererComponent(JList list, Object value, int index,
-                                                          boolean isSelected, boolean cellHasFocus) {
-                if (value instanceof Language) {
-                    value = ((Language)value).getLangname();
-                }
-                return super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
-            }
-        });
-		view.cmbDict.setRenderer(new DefaultListCellRenderer() {
-            @Override
-            public Component getListCellRendererComponent(JList list, Object value, int index,
-                                                          boolean isSelected, boolean cellHasFocus) {
-                if (value instanceof Dictionary) {
-                    value = ((Dictionary)value).getId().getDictname();
-                }
-                return super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
-            }
-        });
+		dictList = ObservableCollections.observableList(new ArrayList<Dictionary>());
+		dictAllList = dictallDao.getData();
 	}
 	
-	void cmbLang_actionPerformed() {
-		Language lang = (Language)view.cmbLang.getSelectedItem();
-		if (lang == null) return;
+	public void cmbLang_actionPerformed() {
+		if (selectedLang == null) return;
 		dictList.clear();
-		dictList.addAll(dictDao.getDataByLang(lang.getLangid()));
+		dictList.addAll(dictDao.getDataByLang(selectedLang.getLangid()));
+	}
+	
+	public void cmbDict_actionPerformed() {
+		if (selectedDict == null) return;
+		DictionaryId id2 = selectedDict.getId();
+		dict = dictAllList.stream()
+			.filter(r -> {
+				DictAllId id1 = r.getId();
+				return id1.getLangid() == id2.getLangid() &&
+						id1.getDictname().equals(id2.getDictname());
+			})
+			.findFirst().get();
+	}
+	
+	void btnSearch_actionPerformed() {
 	}
 }

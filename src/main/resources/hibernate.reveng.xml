@@ -23,7 +23,7 @@
 	<table name="DICTALL" class="com.zwstudio.lolly.domain.DictAll">
 		<primary-key>
             <key-column name="LANGID"/>
-            <key-column name="INDEX"/>
+            <key-column name="DICTNAME"/>
 		</primary-key>
 	</table>
 	<table name="DICTTYPES" class="com.zwstudio.lolly.domain.DictType" />

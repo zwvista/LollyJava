@@ -9,17 +9,15 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.FlowPane?>
 
+
 <BorderPane fx:id="view" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.zwstudio.lolly.ui.javafx.LollyController">
-   <top>
-      <AnchorPane>
-         <children>
-            <TextField fx:id="tfWord" prefHeight="23.0" prefWidth="726.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="74.0" />
-            <Button layoutX="746.0" mnemonicParsing="false" text="Search" AnchorPane.rightAnchor="0.0" />
-         </children>
-      </AnchorPane>
-   </top>
    <center>
-      <WebView prefHeight="523.0" prefWidth="770.0" BorderPane.alignment="CENTER" />
+      <StackPane>
+         <children>
+            <WebView fx:id="wvDictOnline" prefHeight="523.0" prefWidth="770.0" BorderPane.alignment="CENTER" />
+            <WebView fx:id="wvDictOffline" prefHeight="200.0" prefWidth="200.0" />
+         </children>
+      </StackPane>
    </center>
    <bottom>
       <FlowPane hgap="3.0">
@@ -29,7 +27,7 @@
                   <Insets />
                </opaqueInsets>
             </Label>
-            <ComboBox fx:id="cmbLang" layoutX="89.0" layoutY="1.0" onAction="#cmbLangOnAction" prefWidth="150.0">
+            <ComboBox fx:id="cmbLang" layoutX="89.0" layoutY="1.0" prefWidth="150.0">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
@@ -39,7 +37,7 @@
                   <Insets />
                </opaqueInsets>
             </Label>
-            <ComboBox fx:id="cmbDict" layoutX="333.0" onAction="#cmbDictOnAction" prefWidth="150.0">
+            <ComboBox fx:id="cmbDict" layoutX="333.0" prefWidth="150.0">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
@@ -50,4 +48,20 @@
          </BorderPane.margin>
       </FlowPane>
    </bottom>
+   <top>
+      <BorderPane prefHeight="31.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+         <center>
+            <TextField fx:id="tfWord" prefHeight="0.0" prefWidth="745.0" BorderPane.alignment="CENTER" />
+         </center>
+         <right>
+            <Button fx:id="btnSearch" mnemonicParsing="false" onAction="#btnSearchOnAction" text="Search" BorderPane.alignment="CENTER" />
+         </right>
+      </BorderPane>
+   </top>
+   <opaqueInsets>
+      <Insets />
+   </opaqueInsets>
+   <padding>
+      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+   </padding>
 </BorderPane>

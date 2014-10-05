@@ -1,6 +1,6 @@
 package com.zwstudio.lolly.domain;
 
-// Generated 2014-10-4 23:22:52 by Hibernate Tools 4.3.1
+// Generated 2014-10-4 23:56:03 by Hibernate Tools 4.3.1
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
@@ -17,9 +17,9 @@ import javax.persistence.Table;
 public class DictAll implements java.io.Serializable {
 
 	private DictAllId id;
+	private Integer index;
 	private Integer langidto;
 	private String dicttypename;
-	private String dictname;
 	private String url;
 	private String chconv;
 	private String automation;
@@ -37,14 +37,14 @@ public class DictAll implements java.io.Serializable {
 		this.id = id;
 	}
 
-	public DictAll(DictAllId id, Integer langidto, String dicttypename,
-			String dictname, String url, String chconv, String automation,
+	public DictAll(DictAllId id, Integer index, Integer langidto,
+			String dicttypename, String url, String chconv, String automation,
 			Integer autojump, String dicttable, String transformWin,
 			String transformMac, Integer wait, String template) {
 		this.id = id;
+		this.index = index;
 		this.langidto = langidto;
 		this.dicttypename = dicttypename;
-		this.dictname = dictname;
 		this.url = url;
 		this.chconv = chconv;
 		this.automation = automation;
@@ -59,13 +59,22 @@ public class DictAll implements java.io.Serializable {
 	@EmbeddedId
 	@AttributeOverrides({
 			@AttributeOverride(name = "langid", column = @Column(name = "LANGID")),
-			@AttributeOverride(name = "index", column = @Column(name = "INDEX")) })
+			@AttributeOverride(name = "dictname", column = @Column(name = "DICTNAME", length = 2000000000)) })
 	public DictAllId getId() {
 		return this.id;
 	}
 
 	public void setId(DictAllId id) {
 		this.id = id;
+	}
+
+	@Column(name = "INDEX")
+	public Integer getIndex() {
+		return this.index;
+	}
+
+	public void setIndex(Integer index) {
+		this.index = index;
 	}
 
 	@Column(name = "LANGIDTO")
@@ -84,15 +93,6 @@ public class DictAll implements java.io.Serializable {
 
 	public void setDicttypename(String dicttypename) {
 		this.dicttypename = dicttypename;
-	}
-
-	@Column(name = "DICTNAME", length = 2000000000)
-	public String getDictname() {
-		return this.dictname;
-	}
-
-	public void setDictname(String dictname) {
-		this.dictname = dictname;
 	}
 
 	@Column(name = "URL", length = 2000000000)
