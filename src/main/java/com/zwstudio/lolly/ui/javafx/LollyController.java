@@ -1,12 +1,7 @@
 package com.zwstudio.lolly.ui.javafx;
-import java.io.UnsupportedEncodingException;
 import java.net.URL;
-import java.net.URLEncoder;
-import java.nio.charset.Charset;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-import com.zwstudio.lolly.domain.DictAllId;
 import com.zwstudio.lolly.domain.Dictionary;
 import com.zwstudio.lolly.domain.DictionaryId;
 import com.zwstudio.lolly.domain.Language;
@@ -65,7 +60,7 @@ public class LollyController extends LollyViewModel implements Initializable {
 			@Override
 			public void changed(ObservableValue<? extends Language> observable,
 					Language oldValue, Language newValue) {
-				cmbLangValueChanged();
+				cmbLang_ValueChanged();
 			}
 		});
 		cmbLang.setConverter(new StringConverter<Language>() {
@@ -86,7 +81,7 @@ public class LollyController extends LollyViewModel implements Initializable {
 			public void changed(
 					ObservableValue<? extends Dictionary> observable,
 					Dictionary oldValue, Dictionary newValue) {
-				cmbDictValueChanged();
+				cmbDict_ValueChanged();
 			}
 		});
 		cmbDict.setConverter(new StringConverter<Dictionary>() {
@@ -110,35 +105,23 @@ public class LollyController extends LollyViewModel implements Initializable {
 		cmbDict.setItems(dictList);
 	}
 	
-	private void cmbLangValueChanged() {
+	private void cmbLang_ValueChanged() {
 		if (selectedLang.get() == null) return;
 		dictList.clear();
 		dictList.addAll(dictDao.getDataByLang(selectedLang.get().getLangid()));
 		selectedDict.set(dictList.get(0));		
 	}
 	
-	private void cmbDictValueChanged() {
+	private void cmbDict_ValueChanged() {
 		if (selectedDict.get() == null) return;
 		DictionaryId id2 = selectedDict.get().getId();
-		dict = dictAllList.stream()
-			.filter(r -> {
-				DictAllId id1 = r.getId();
-				return id1.getLangid() == id2.getLangid() &&
-						id1.getDictname().equals(id2.getDictname());
-			})
-			.findFirst().get();
+		updateDict(id2);
 	}
 	
     @FXML
-    public void btnSearchOnAction(ActionEvent event) {
+    public void btnSearch_tfWord_OnAction(ActionEvent event) {
     	wvDictOffline.setVisible(false);
-		String url = dict.getUrl().replace("{0}", "%s");
-		try {
-			url = String.format(url, URLEncoder.encode(word.get(), "UTF-8"));
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-		}
-		System.out.println(url);
+    	String url = getUrlByWord(word.get());
     	wvDictOnline.getEngine().load(url);
     }
 

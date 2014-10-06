@@ -1,12 +1,11 @@
 package com.zwstudio.lolly.ui.swing;
 
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.jdesktop.beansbinding.BeanProperty;
 import org.jdesktop.observablecollections.ObservableCollections;
 
-import com.zwstudio.lolly.domain.DictAllId;
 import com.zwstudio.lolly.domain.Dictionary;
 import com.zwstudio.lolly.domain.DictionaryId;
 import com.zwstudio.lolly.domain.Language;
@@ -14,9 +13,11 @@ import com.zwstudio.lolly.ui.viewmodel.LollyViewModel;
 
 public class LollyController extends LollyViewModel {
 	
+	public LollyFrame view;
+	
 	public String word;
 	public List<Language> langList;
-	public List<Dictionary> dictList;
+	public List<Dictionary> dictList = ObservableCollections.observableList(new ArrayList<Dictionary>());;
 	public Language selectedLang;
 	public Dictionary selectedDict;
 
@@ -52,10 +53,12 @@ public class LollyController extends LollyViewModel {
 		return dictList;
 	}
 
-	void init() {
-		langList = langDao.getData();
-		dictList = ObservableCollections.observableList(new ArrayList<Dictionary>());
+	public void init(LollyFrame view) {
+		this.view = view;
+		view.controller = this;
+
 		dictAllList = dictallDao.getData();
+		langList = langDao.getData();
 	}
 	
 	public void cmbLang_actionPerformed() {
@@ -67,15 +70,12 @@ public class LollyController extends LollyViewModel {
 	public void cmbDict_actionPerformed() {
 		if (selectedDict == null) return;
 		DictionaryId id2 = selectedDict.getId();
-		dict = dictAllList.stream()
-			.filter(r -> {
-				DictAllId id1 = r.getId();
-				return id1.getLangid() == id2.getLangid() &&
-						id1.getDictname().equals(id2.getDictname());
-			})
-			.findFirst().get();
+		updateDict(id2);
 	}
 	
-	void btnSearch_actionPerformed() {
+	public void btnSearch_tfWord_actionPerformed() {
+    	view.wvDictOffline.setVisible(false);
+    	String url = getUrlByWord(word);
+    	view.wvDictOnline.loadURL(url);
 	}
 }

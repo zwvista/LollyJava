@@ -1,5 +1,7 @@
 package com.zwstudio.lolly.ui.swing;
 
+import javafx.embed.swing.JFXPanel;
+
 import javax.swing.JFrame;
 
 import java.awt.BorderLayout;
@@ -19,6 +21,7 @@ import javax.swing.border.EmptyBorder;
 
 import com.zwstudio.lolly.domain.Dictionary;
 import com.zwstudio.lolly.domain.Language;
+import com.zwstudio.lolly.ui.component.JFXWebView;
 
 import org.jdesktop.swingbinding.JComboBoxBinding;
 import org.jdesktop.swingbinding.SwingBindings;
@@ -47,7 +50,10 @@ public class LollyFrame extends JFrame {
 	private JComboBox cmbLang;
 	private JComboBox cmbDict;
 	private JTextField textWord;
-
+	
+	JFXWebView wvDictOffline;
+	JFXWebView wvDictOnline;
+	
 	/**
 	 * Create the frame.
 	 */
@@ -65,13 +71,18 @@ public class LollyFrame extends JFrame {
 		pnlTop.setLayout(new BorderLayout(0, 0));
 		
 		textWord = new JTextField();
+		textWord.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				controller.btnSearch_tfWord_actionPerformed();
+			}
+		});
 		pnlTop.add(textWord, BorderLayout.CENTER);
 		textWord.setColumns(10);
 		
 		JButton btnSearch = new JButton("Search");
 		btnSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				controller.btnSearch_actionPerformed();
+				controller.btnSearch_tfWord_actionPerformed();
 			}
 		});
 		pnlTop.add(btnSearch, BorderLayout.EAST);
@@ -125,9 +136,13 @@ public class LollyFrame extends JFrame {
                 return super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
             }
         });
+		
+		wvDictOffline = new JFXWebView();
+		getContentPane().add(wvDictOffline, BorderLayout.CENTER);
+		wvDictOnline = new JFXWebView();
+		getContentPane().add(wvDictOnline, BorderLayout.CENTER);
 
-		this.controller = controller;
-		controller.init();
+		controller.init(this);
 		initDataBindings();
 	}
 	protected void initDataBindings() {
