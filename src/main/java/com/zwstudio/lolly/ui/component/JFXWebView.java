@@ -7,21 +7,16 @@ import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 
 public class JFXWebView extends JFXPanel {
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 	private WebEngine engine;
-	public WebEngine getEngine() {
-		return engine;
-	}
 	
 	public JFXWebView() {
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
-		        WebView view = new WebView();
-		        engine = view.getEngine();
+				WebView view = new WebView();
+				engine = view.getEngine();
 		        setScene(new Scene(view));
 			}
 		});
@@ -31,7 +26,7 @@ public class JFXWebView extends JFXPanel {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                engine.load(url);
+            	engine.load(url);
             }
         });
     }}

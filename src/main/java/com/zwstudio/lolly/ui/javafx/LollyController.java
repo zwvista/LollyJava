@@ -99,7 +99,7 @@ public class LollyController extends LollyViewModel implements Initializable {
 		dictAllList = dictallDao.getData();
 		langList = FXCollections.observableArrayList(langDao.getData());
 		selectedLang.set(langList.get(1));
-		word.set("“ª»À");
+		word.set("‰∏Ä‰∫∫");
 		
 		cmbLang.setItems(langList);
 		cmbDict.setItems(dictList);
