@@ -3,7 +3,6 @@ package com.zwstudio.lolly.ui.swing;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.jdesktop.beansbinding.BeanProperty;
 import org.jdesktop.observablecollections.ObservableCollections;
 
 import com.zwstudio.lolly.domain.Dictionary;
@@ -15,35 +14,8 @@ public class LollyController extends LollyViewModel {
 	
 	public LollyFrame view;
 	
-	public String word;
 	public List<Language> langList;
 	public List<Dictionary> dictList = ObservableCollections.observableList(new ArrayList<Dictionary>());;
-	public Language selectedLang;
-	public Dictionary selectedDict;
-
-	public String getWord() {
-		return word;
-	}
-
-	public void setWord(String word) {
-		this.word = word;
-	}
-
-	public Language getSelectedLang() {
-		return selectedLang;
-	}
-
-	public void setSelectedLang(Language selectedLang) {
-		this.selectedLang = selectedLang;
-	}
-
-	public Dictionary getSelectedDict() {
-		return selectedDict;
-	}
-
-	public void setSelectedDict(Dictionary selectedDict) {
-		this.selectedDict = selectedDict;
-	}
 
 	public List<Language> getLangList() {
 		return langList;
@@ -59,12 +31,15 @@ public class LollyController extends LollyViewModel {
 
 		dictAllList = dictallDao.getData();
 		langList = langDao.getData();
+		setSelectedLang(langList.get(1));
+		setWord("一人");
 	}
 	
 	public void cmbLang_actionPerformed() {
 		if (selectedLang == null) return;
 		dictList.clear();
 		dictList.addAll(dictDao.getDataByLang(selectedLang.getLangid()));
+		setSelectedDict(dictList.get(0));
 	}
 	
 	public void cmbDict_actionPerformed() {

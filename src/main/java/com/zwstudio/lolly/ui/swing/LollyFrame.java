@@ -1,6 +1,9 @@
 package com.zwstudio.lolly.ui.swing;
 
+import javafx.application.Platform;
 import javafx.embed.swing.JFXPanel;
+import javafx.scene.Scene;
+import javafx.scene.web.WebView;
 
 import javax.swing.JFrame;
 
