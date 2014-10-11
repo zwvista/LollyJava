@@ -7,10 +7,10 @@ import com.zwstudio.lolly.domain.DictionaryId;
 import com.zwstudio.lolly.domain.Language;
 import com.zwstudio.lolly.ui.viewmodel.LollyViewModel;
 
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import javafx.beans.property.adapter.JavaBeanObjectProperty;
+import javafx.beans.property.adapter.JavaBeanObjectPropertyBuilder;
+import javafx.beans.property.adapter.JavaBeanStringProperty;
+import javafx.beans.property.adapter.JavaBeanStringPropertyBuilder;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -40,9 +40,10 @@ public class LollyController extends LollyViewModel implements Initializable {
     
     private ObservableList<Language> langList;
     private ObservableList<Dictionary> dictList = FXCollections.observableArrayList();
-    private ObjectProperty<Language> selectedLang = new SimpleObjectProperty<Language>();
-    private ObjectProperty<Dictionary> selectedDict = new SimpleObjectProperty<Dictionary>();
-    private StringProperty word = new SimpleStringProperty();
+    
+    private JavaBeanObjectProperty<Language> selectedLangProp;
+    private JavaBeanObjectProperty<Dictionary> selectedDictProp;
+    private JavaBeanStringProperty wordProp;
 
     public Node getView() {
         return view;
@@ -52,10 +53,19 @@ public class LollyController extends LollyViewModel implements Initializable {
 	public void initialize(URL arg0, ResourceBundle arg1) {
 	}
 	
+	@SuppressWarnings("unchecked")
 	public void windowShowing() {
-		tfWord.textProperty().bindBidirectional(word);
+		try {
+			selectedLangProp = JavaBeanObjectPropertyBuilder.create().bean(this).name("selectedLang").build();
+			selectedDictProp = JavaBeanObjectPropertyBuilder.create().bean(this).name("selectedDict").build();
+			wordProp = JavaBeanStringPropertyBuilder.create().bean(this).name("word").build();
+		} catch (NoSuchMethodException e) {
+			e.printStackTrace();
+		}
 
-		cmbLang.valueProperty().bindBidirectional(selectedLang);
+		tfWord.textProperty().bindBidirectional(wordProp);
+
+		cmbLang.valueProperty().bindBidirectional(selectedLangProp);
 		cmbLang.valueProperty().addListener(new ChangeListener<Language>() {
 			@Override
 			public void changed(ObservableValue<? extends Language> observable,
@@ -75,7 +85,7 @@ public class LollyController extends LollyViewModel implements Initializable {
 			}
 		});
 
-		cmbDict.valueProperty().bindBidirectional(selectedDict);
+		cmbDict.valueProperty().bindBidirectional(selectedDictProp);
 		cmbDict.valueProperty().addListener(new ChangeListener<Dictionary>() {
 			@Override
 			public void changed(
@@ -98,30 +108,31 @@ public class LollyController extends LollyViewModel implements Initializable {
 
 		dictAllList = dictallDao.getData();
 		langList = FXCollections.observableArrayList(langDao.getData());
-		selectedLang.set(langList.get(1));
-		word.set("一人");
 		
 		cmbLang.setItems(langList);
 		cmbDict.setItems(dictList);
+		
+		setSelectedLang(langList.get(1));
+		setWord("一人");
 	}
 	
 	private void cmbLang_ValueChanged() {
-		if (selectedLang.get() == null) return;
+		if (selectedLang == null) return;
 		dictList.clear();
-		dictList.addAll(dictDao.getDataByLang(selectedLang.get().getLangid()));
-		selectedDict.set(dictList.get(0));		
+		dictList.addAll(dictDao.getDataByLang(selectedLang.getLangid()));
+		setSelectedDict(dictList.get(0));
 	}
 	
 	private void cmbDict_ValueChanged() {
-		if (selectedDict.get() == null) return;
-		DictionaryId id2 = selectedDict.get().getId();
+		if (selectedDict == null) return;
+		DictionaryId id2 = selectedDict.getId();
 		updateDict(id2);
 	}
 	
     @FXML
     public void btnSearch_tfWord_OnAction(ActionEvent event) {
     	wvDictOffline.setVisible(false);
-    	String url = getUrlByWord(word.get());
+    	String url = getUrlByWord(word);
     	wvDictOnline.getEngine().load(url);
     }
 

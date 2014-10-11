@@ -17,13 +17,11 @@ public class LollyConfigJavaFX {
 	
 	@Bean
     public LollyController lollyController() throws IOException {
-        return (LollyController)loadController(LollyController.class.getResource("main.fxml"));
+        return (LollyController)loadController(LollyController.class.getResourceAsStream("main.fxml"));
     }
  
-    protected Object loadController(URL url) throws IOException {
-        InputStream fxmlStream = null;
+    protected Object loadController(InputStream fxmlStream) throws IOException {
         try {
-            fxmlStream = url.openStream();
             FXMLLoader loader = new FXMLLoader();
             loader.load(fxmlStream);
             return loader.getController();
