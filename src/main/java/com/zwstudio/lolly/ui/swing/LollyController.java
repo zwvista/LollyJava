@@ -1,7 +1,10 @@
 package com.zwstudio.lolly.ui.swing;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import javafx.application.Platform;
 
 import org.jdesktop.observablecollections.ObservableCollections;
 
@@ -49,8 +52,25 @@ public class LollyController extends LollyViewModel {
 	}
 	
 	public void btnSearch_tfWord_actionPerformed() {
-    	view.wvDictOffline.setVisible(false);
+    	view.layoutCenter.show(view.pnlCenter, "Online");
     	String url = getUrlByWord(word);
     	view.wvDictOnline.loadURL(url);
 	}
+	
+	public void wvDictOnline_succeeded(String html) {
+    	if(!dict.getDicttypename().equals("OFFLINE-ONLINE")) return;
+    	try {
+			html = extractFromHtml(html, word);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+    	final String text = html;
+    	Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+		    	view.wvDictOffline.getEngine().loadContent(text);
+		    	view.layoutCenter.show(view.pnlCenter, "Offline");
+			}
+		});
+    }
 }

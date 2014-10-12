@@ -34,8 +34,8 @@ public class LollyApp extends Application {
 	}
 
 	public static void main(String[] args) {
-    	System.setProperty("http.proxyHost", "gw3");
-    	System.setProperty("http.proxyPort", "80");
+//    	System.setProperty("http.proxyHost", "gw3");
+//    	System.setProperty("http.proxyPort", "80");
 		launch(args);
 	}
 }

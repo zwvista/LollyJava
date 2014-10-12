@@ -1,6 +1,6 @@
 package com.zwstudio.lolly.domain;
 
-// Generated 2014-10-4 23:56:03 by Hibernate Tools 4.3.1
+// Generated 2014-10-12 21:44:14 by Hibernate Tools 4.3.1
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
@@ -17,7 +17,7 @@ import javax.persistence.Table;
 public class DictAll implements java.io.Serializable {
 
 	private DictAllId id;
-	private Integer index;
+	private Integer ord;
 	private Integer langidto;
 	private String dicttypename;
 	private String url;
@@ -37,12 +37,12 @@ public class DictAll implements java.io.Serializable {
 		this.id = id;
 	}
 
-	public DictAll(DictAllId id, Integer index, Integer langidto,
+	public DictAll(DictAllId id, Integer ord, Integer langidto,
 			String dicttypename, String url, String chconv, String automation,
 			Integer autojump, String dicttable, String transformWin,
 			String transformMac, Integer wait, String template) {
 		this.id = id;
-		this.index = index;
+		this.ord = ord;
 		this.langidto = langidto;
 		this.dicttypename = dicttypename;
 		this.url = url;
@@ -68,13 +68,13 @@ public class DictAll implements java.io.Serializable {
 		this.id = id;
 	}
 
-	@Column(name = "INDEX")
-	public Integer getIndex() {
-		return this.index;
+	@Column(name = "ORD")
+	public Integer getOrd() {
+		return this.ord;
 	}
 
-	public void setIndex(Integer index) {
-		this.index = index;
+	public void setOrd(Integer ord) {
+		this.ord = ord;
 	}
 
 	@Column(name = "LANGIDTO")

@@ -1,6 +1,10 @@
 package com.zwstudio.lolly.ui.swing;
 
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.concurrent.Worker;
+import javafx.concurrent.Worker.State;
 import javafx.embed.swing.JFXPanel;
 import javafx.scene.Scene;
 import javafx.scene.web.WebView;
@@ -8,6 +12,7 @@ import javafx.scene.web.WebView;
 import javax.swing.JFrame;
 
 import java.awt.BorderLayout;
+import java.awt.EventQueue;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
@@ -44,6 +49,8 @@ import org.jdesktop.beansbinding.BeanProperty;
 import org.jdesktop.observablecollections.ObservableList;
 import org.jdesktop.beansbinding.AutoBinding;
 import org.jdesktop.beansbinding.Bindings;
+import javax.swing.JLayeredPane;
+import java.awt.CardLayout;
 
 public class LollyFrame extends JFrame {
 
@@ -56,6 +63,8 @@ public class LollyFrame extends JFrame {
 	
 	JFXWebView wvDictOffline;
 	JFXWebView wvDictOnline;
+	JPanel pnlCenter;
+	CardLayout layoutCenter;
 	
 	/**
 	 * Create the frame.
@@ -140,10 +149,32 @@ public class LollyFrame extends JFrame {
             }
         });
 		
+		pnlCenter = new JPanel();
+		contentPane.add(pnlCenter, BorderLayout.CENTER);
+		pnlCenter.setLayout(new CardLayout(0, 0));
+		
 		wvDictOffline = new JFXWebView();
-		getContentPane().add(wvDictOffline, BorderLayout.CENTER);
+		pnlCenter.add(wvDictOffline, "Offline");
 		wvDictOnline = new JFXWebView();
-		getContentPane().add(wvDictOnline, BorderLayout.CENTER);
+		pnlCenter.add(wvDictOnline, "Online");
+		layoutCenter = (CardLayout)pnlCenter.getLayout();
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				wvDictOnline.getEngine().getLoadWorker().stateProperty().addListener(new ChangeListener<Worker.State>() {
+					@Override
+					public void changed(ObservableValue<? extends State> observable, State oldValue, State newValue) {
+						if (!newValue.equals(State.SUCCEEDED)) return;
+						String html = (String) wvDictOnline.getEngine().executeScript("document.documentElement.outerHTML");
+						EventQueue.invokeLater(new Runnable() {
+							@Override
+							public void run() {
+								controller.wvDictOnline_succeeded(html);					}
+						});
+					}
+				});
+			}
+		});
 
 		controller.init(this);
 		initDataBindings();

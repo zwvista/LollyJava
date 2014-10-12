@@ -1,4 +1,5 @@
 package com.zwstudio.lolly.ui.javafx;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -15,6 +16,8 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.concurrent.Worker;
+import javafx.concurrent.Worker.State;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -105,6 +108,16 @@ public class LollyController extends LollyViewModel implements Initializable {
 				return null;
 			}
 		});
+		
+		wvDictOnline.getEngine().getLoadWorker().stateProperty().addListener(new ChangeListener<Worker.State>() {
+			@Override
+			public void changed(ObservableValue<? extends State> observable, State oldValue, State newValue) {
+				if (!newValue.equals(State.SUCCEEDED)) return;
+				String html = (String) wvDictOnline.getEngine().executeScript("document.documentElement.outerHTML");
+				System.out.println(html);
+				wvDictOnline_succeeded(html);
+			}
+		});
 
 		dictAllList = dictallDao.getData();
 		langList = FXCollections.observableArrayList(langDao.getData());
@@ -134,6 +147,18 @@ public class LollyController extends LollyViewModel implements Initializable {
     	wvDictOffline.setVisible(false);
     	String url = getUrlByWord(word);
     	wvDictOnline.getEngine().load(url);
+    }
+    
+    private void wvDictOnline_succeeded(String html) {
+    	if(!dict.getDicttypename().equals("OFFLINE-ONLINE")) return;
+    	try {
+			html = extractFromHtml(html, word);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+    	wvDictOffline.getEngine().loadContent(html);
+    	wvDictOnline.setVisible(false);
+    	wvDictOffline.setVisible(true);
     }
 
 }

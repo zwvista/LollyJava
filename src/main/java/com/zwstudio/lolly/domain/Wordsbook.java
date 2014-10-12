@@ -1,6 +1,6 @@
 package com.zwstudio.lolly.domain;
 
-// Generated 2014-10-4 23:22:52 by Hibernate Tools 4.3.1
+// Generated 2014-10-12 21:44:14 by Hibernate Tools 4.3.1
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,30 +18,30 @@ public class Wordsbook implements java.io.Serializable {
 	private int bookid;
 	private int unit;
 	private int part;
-	private int index;
+	private int ord;
 	private String word;
 	private String note;
 
 	public Wordsbook() {
 	}
 
-	public Wordsbook(int id, int bookid, int unit, int part, int index,
+	public Wordsbook(int id, int bookid, int unit, int part, int ord,
 			String word) {
 		this.id = id;
 		this.bookid = bookid;
 		this.unit = unit;
 		this.part = part;
-		this.index = index;
+		this.ord = ord;
 		this.word = word;
 	}
 
-	public Wordsbook(int id, int bookid, int unit, int part, int index,
+	public Wordsbook(int id, int bookid, int unit, int part, int ord,
 			String word, String note) {
 		this.id = id;
 		this.bookid = bookid;
 		this.unit = unit;
 		this.part = part;
-		this.index = index;
+		this.ord = ord;
 		this.word = word;
 		this.note = note;
 	}
@@ -83,13 +83,13 @@ public class Wordsbook implements java.io.Serializable {
 		this.part = part;
 	}
 
-	@Column(name = "INDEX", nullable = false)
-	public int getIndex() {
-		return this.index;
+	@Column(name = "ORD", nullable = false)
+	public int getOrd() {
+		return this.ord;
 	}
 
-	public void setIndex(int index) {
-		this.index = index;
+	public void setOrd(int ord) {
+		this.ord = ord;
 	}
 
 	@Column(name = "WORD", nullable = false, length = 2000000000)

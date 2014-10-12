@@ -1,6 +1,6 @@
 package com.zwstudio.lolly.domain;
 
-// Generated 2014-10-4 23:22:52 by Hibernate Tools 4.3.1
+// Generated 2014-10-12 21:44:14 by Hibernate Tools 4.3.1
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
@@ -17,7 +17,7 @@ import javax.persistence.Table;
 public class Dictionary implements java.io.Serializable {
 
 	private DictionaryId id;
-	private int index;
+	private int ord;
 	private int dicttypeid;
 	private int langidto;
 	private String url;
@@ -30,20 +30,20 @@ public class Dictionary implements java.io.Serializable {
 	public Dictionary() {
 	}
 
-	public Dictionary(DictionaryId id, int index, int dicttypeid, int langidto,
+	public Dictionary(DictionaryId id, int ord, int dicttypeid, int langidto,
 			int autojump) {
 		this.id = id;
-		this.index = index;
+		this.ord = ord;
 		this.dicttypeid = dicttypeid;
 		this.langidto = langidto;
 		this.autojump = autojump;
 	}
 
-	public Dictionary(DictionaryId id, int index, int dicttypeid, int langidto,
+	public Dictionary(DictionaryId id, int ord, int dicttypeid, int langidto,
 			String url, String chconv, String automation, int autojump,
 			String dicttable, String template) {
 		this.id = id;
-		this.index = index;
+		this.ord = ord;
 		this.dicttypeid = dicttypeid;
 		this.langidto = langidto;
 		this.url = url;
@@ -66,13 +66,13 @@ public class Dictionary implements java.io.Serializable {
 		this.id = id;
 	}
 
-	@Column(name = "INDEX", nullable = false)
-	public int getIndex() {
-		return this.index;
+	@Column(name = "ORD", nullable = false)
+	public int getOrd() {
+		return this.ord;
 	}
 
-	public void setIndex(int index) {
-		this.index = index;
+	public void setOrd(int ord) {
+		this.ord = ord;
 	}
 
 	@Column(name = "DICTTYPEID", nullable = false)

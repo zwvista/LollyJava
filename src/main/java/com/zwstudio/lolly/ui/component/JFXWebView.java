@@ -11,6 +11,10 @@ public class JFXWebView extends JFXPanel {
 	private static final long serialVersionUID = 1L;
 	private WebEngine engine;
 	
+	public WebEngine getEngine() {
+		return engine;
+	}
+	
 	public JFXWebView() {
 		Platform.runLater(new Runnable() {
 			@Override

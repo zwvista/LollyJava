@@ -31,6 +31,7 @@
                   <Insets />
                </opaqueInsets>
             </ComboBox>
+            <Separator prefWidth="5.0" />
             <Label layoutX="246.0" layoutY="3.0" text="Dictionary:">
                <opaqueInsets>
                   <Insets />
@@ -48,14 +49,13 @@
       </FlowPane>
    </bottom>
    <top>
-      <BorderPane prefHeight="31.0" prefWidth="800.0" BorderPane.alignment="CENTER">
-         <center>
-            <TextField fx:id="tfWord" onAction="#btnSearch_tfWord_OnAction" prefHeight="0.0" prefWidth="745.0" BorderPane.alignment="CENTER" />
-         </center>
-         <right>
-            <Button fx:id="btnSearch" mnemonicParsing="false" onAction="#btnSearch_tfWord_OnAction" text="Search" BorderPane.alignment="CENTER" />
-         </right>
-      </BorderPane>
+      <HBox>
+         <children>
+            <TextField fx:id="tfWord" onAction="#btnSearch_tfWord_OnAction" prefHeight="0.0" prefWidth="745.0" HBox.hgrow="ALWAYS" />
+            <Separator prefWidth="5.0" />
+            <Button fx:id="btnSearch" minWidth="-Infinity" mnemonicParsing="false" onAction="#btnSearch_tfWord_OnAction" prefHeight="23.0" text="Search" HBox.hgrow="NEVER" />
+         </children>
+      </HBox>
    </top>
    <opaqueInsets>
       <Insets />

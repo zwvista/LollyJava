@@ -1,6 +1,6 @@
 package com.zwstudio.lolly.domain;
 
-// Generated 2014-10-4 23:22:52 by Hibernate Tools 4.3.1
+// Generated 2014-10-12 21:44:14 by Hibernate Tools 4.3.1
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,7 +19,7 @@ public class AutoCorrect implements java.io.Serializable {
 
 	private int id;
 	private Language language;
-	private int index;
+	private int ord;
 	private String input;
 	private String extended;
 	private String basic;
@@ -27,11 +27,11 @@ public class AutoCorrect implements java.io.Serializable {
 	public AutoCorrect() {
 	}
 
-	public AutoCorrect(int id, Language language, int index, String input,
+	public AutoCorrect(int id, Language language, int ord, String input,
 			String extended, String basic) {
 		this.id = id;
 		this.language = language;
-		this.index = index;
+		this.ord = ord;
 		this.input = input;
 		this.extended = extended;
 		this.basic = basic;
@@ -57,13 +57,13 @@ public class AutoCorrect implements java.io.Serializable {
 		this.language = language;
 	}
 
-	@Column(name = "INDEX", nullable = false)
-	public int getIndex() {
-		return this.index;
+	@Column(name = "ORD", nullable = false)
+	public int getOrd() {
+		return this.ord;
 	}
 
-	public void setIndex(int index) {
-		this.index = index;
+	public void setOrd(int ord) {
+		this.ord = ord;
 	}
 
 	@Column(name = "INPUT", nullable = false, length = 2000000000)
