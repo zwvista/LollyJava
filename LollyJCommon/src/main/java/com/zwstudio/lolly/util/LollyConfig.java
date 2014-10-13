@@ -2,14 +2,18 @@ package com.zwstudio.lolly.util;
 
 import java.util.Properties;
 
+import org.hibernate.SessionFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
-import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
+import org.springframework.orm.hibernate4.HibernateTransactionManager;
+import org.springframework.orm.hibernate4.LocalSessionFactoryBuilder;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @ComponentScan("com.zwstudio.lolly.dao")
+@EnableTransactionManagement
 public class LollyConfig {
 	@Bean
 	public DriverManagerDataSource dataSource() {
@@ -27,18 +31,18 @@ public class LollyConfig {
 		
 		return bean;
 	}
-	
 	@Bean
-	public LocalSessionFactoryBean sessionFactory() {
-		LocalSessionFactoryBean bean = new LocalSessionFactoryBean();
-		bean.setDataSource(dataSource());
-		bean.setPackagesToScan(new String[] { "com.zwstudio.lolly.domain" });
-		bean.setHibernateProperties(new Properties() {{
-//			setProperty("hibernate.dialect", "org.hibernate.dialect.SQLServerDialect");
-			setProperty("hibernate.dialect", "com.applerao.hibernatesqlite.dialect.SQLiteDialect");
-			setProperty("hibernate.show_sql", "true");
-		}});
-		
-		return bean;
+	public SessionFactory sessionFactory() {
+		return new LocalSessionFactoryBuilder(dataSource())
+			.scanPackages("com.zwstudio.lolly.domain")
+			.addProperties(new Properties() {{
+//				setProperty("hibernate.dialect", "org.hibernate.dialect.SQLServerDialect");
+				setProperty("hibernate.dialect", "com.applerao.hibernatesqlite.dialect.SQLiteDialect");
+				setProperty("hibernate.show_sql", "true");
+			}}).buildSessionFactory();
+	}
+	@Bean
+	public HibernateTransactionManager transactionManager(){
+		return new HibernateTransactionManager(sessionFactory());
 	}
 }

@@ -2,28 +2,19 @@ package com.zwstudio.lolly.dao;
 
 import java.util.List;
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.zwstudio.lolly.domain.Language;
 
 @Repository
-public class LanguageDao {
-
-	@Autowired
-	private SessionFactory sessionFactory;
-    
+public class LanguageDao extends BaseDao {
+	@Transactional
+	@SuppressWarnings("unchecked")
 	public List<Language> getData() {
-		Session session = sessionFactory.openSession();
-		@SuppressWarnings("unchecked")
-		List<Language> lst = session
+		return getCurrentSession()
 			.createSQLQuery("SELECT * FROM LANGUAGES WHERE LANGID > 0")
 			.addEntity(Language.class)
 			.list();
-		session.close();
-		return lst;
 	}
-
 }

@@ -13,8 +13,6 @@
 	<!-- Spring -->
 	<spring-framework.version>4.0.3.RELEASE</spring-framework.version>
 
-	<!-- Hibernate / JPA -->
-		<hibernate.version>4.3.5.Final</hibernate.version>
 	<!-- Logging -->
 	<logback.version>1.0.13</logback.version>
 	<slf4j.version>1.7.5</slf4j.version>
@@ -22,34 +20,9 @@
 </properties>
   <dependencies>
 	<dependency>
-		<groupId>com.miglayout</groupId>
-		<artifactId>miglayout-swing</artifactId>
-		<version>4.2</version>
-	</dependency>
-    <dependency>
-    	<groupId>org.hibernate</groupId>
-        <artifactId>hibernate-core</artifactId>
-    	<version>4.3.5.Final</version>
-    </dependency>
-	<dependency>
 	   <groupId>org.javassist</groupId>
 	   <artifactId>javassist</artifactId>
 	   <version>3.18.2-GA</version>
-	</dependency>
-<!-- 	<dependency> -->
-<!--         <groupId>com.microsoft.sqlserver</groupId> -->
-<!--         <artifactId>sqljdbc4</artifactId> -->
-<!--         <version>4.0</version> -->
-<!--     </dependency> -->
-	<dependency>
-		<groupId>org.xerial</groupId>
-		<artifactId>sqlite-jdbc</artifactId>
-		<version>3.7.2</version>
-	</dependency>
-	<dependency>
-		<groupId>org.jdesktop</groupId>
-		<artifactId>beansbinding</artifactId>
-		<version>1.2.1</version>
 	</dependency>
 	<dependency>
 		<groupId>org.springframework</groupId>
@@ -67,11 +40,6 @@
 		<groupId>org.springframework</groupId>
 		<artifactId>spring-orm</artifactId>
 		<version>${spring-framework.version}</version>
-	</dependency>
-	<dependency>
-		<groupId>org.swinglabs</groupId>
-		<artifactId>swingx</artifactId>
-		<version>1.6.1</version>
 	</dependency>
 	<dependency>
 		<groupId>jgoodies</groupId>
