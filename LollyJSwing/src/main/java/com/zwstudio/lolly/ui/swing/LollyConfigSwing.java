@@ -1,11 +1,9 @@
-package com.zwstudio.lolly.util;
+package com.zwstudio.lolly.ui.swing;
 
 import java.io.IOException;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-import com.zwstudio.lolly.ui.swing.LollyController;
 
 @Configuration
 public class LollyConfigSwing {

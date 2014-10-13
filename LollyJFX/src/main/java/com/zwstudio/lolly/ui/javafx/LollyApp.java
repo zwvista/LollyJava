@@ -9,7 +9,6 @@ import com.zwstudio.lolly.dao.DictionaryDao;
 import com.zwstudio.lolly.dao.LanguageDao;
 import com.zwstudio.lolly.domain.Language;
 import com.zwstudio.lolly.util.LollyConfig;
-import com.zwstudio.lolly.util.LollyConfigJavaFX;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

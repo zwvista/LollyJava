@@ -1,4 +1,4 @@
-package com.zwstudio.lolly.util;
+package com.zwstudio.lolly.ui.javafx;
 
 import javafx.fxml.FXMLLoader;
 
@@ -8,8 +8,6 @@ import org.springframework.context.annotation.Configuration;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
-
-import com.zwstudio.lolly.ui.javafx.LollyController;
 
 
 @Configuration

@@ -9,7 +9,6 @@ import javax.swing.plaf.FontUIResource;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import com.zwstudio.lolly.util.LollyConfig;
-import com.zwstudio.lolly.util.LollyConfigSwing;
 
 public class LollyMain {
 	
