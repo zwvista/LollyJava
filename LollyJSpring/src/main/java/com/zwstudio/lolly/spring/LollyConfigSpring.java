@@ -9,11 +9,11 @@ import org.springframework.web.servlet.view.UrlBasedViewResolver;
   
 @Configuration
 @ComponentScan("com.zwstudio.lolly.spring")
-@EnableWebMvc   
-public class LollyConfigSpring { 
+@EnableWebMvc
+public class LollyConfigSpring {
     @Bean
-    public UrlBasedViewResolver setupViewResolver() {  
-        UrlBasedViewResolver resolver = new UrlBasedViewResolver();  
+    public UrlBasedViewResolver setupViewResolver() {
+        UrlBasedViewResolver resolver = new UrlBasedViewResolver();
         resolver.setPrefix("/WEB-INF/views/");
         resolver.setSuffix(".jsp");
         resolver.setViewClass(JstlView.class);  
