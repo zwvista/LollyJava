@@ -7,29 +7,40 @@
 <html>
 <head>
 <title>Spring4 MVC -Lolly</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 </head>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/linq.js/2.2.0.2/linq.min.js"></script>
 <script>
-</script>
 $(function(){
-	$('#lang').change(function() {
-	    $.getJSON(
-	        "dictList.html",
-	        {langid: $('#lang').val()},
-	        function(data) {
-				var html = '';
-				var len = data.length;
-				for(var i=0; i<len; i++){
-					html += '<option value="' + data[i].id.langid + '">' + data[i].id.dictname + '</option>';
-				}
-				$('#dict').append(html);
-	        }
-        );
+	var $lang = $('#lang');
+	var $dict = $('#dict');
+	$lang.change(function() {
+	    $.getJSON("dictList", {langid: $('#lang').val()}, function(response) {
+			$("#dict option").remove();
+			var options = '';
+			$.each(response, function(index, item) {
+				var jstring = encodeURIComponent(JSON.stringify(item));
+				// alert(jstring);
+				options += '<option value=' + jstring + '>' + item.id.dictname + '</option>';
+			});
+			// alert(options);
+			$dict.html(options);
+			$dict.change();
+	    });
+	});
+	$lang.change();
+	$('#search').click(function() {
+		var item = JSON.parse(decodeURIComponent($dict.val()));
+		var word = $('#word').val();
+		var url = item.url.replace('{0}', encodeURIComponent(word));
+		// alert(url);
+		$('#dictframe').attr('src', url);
 	});
 });
+</script>
 <body>
-<form:form id="form" method="post" modelAttribute="formBean" action="options">
+<form:form id="form" method="post" modelAttribute="formBean">
 	<table>
 		<tr>
 			<td>Language:</td>
@@ -40,19 +51,20 @@ $(function(){
 			</td>
 			<td>Dictionary:</td>
 			<td>
-				<form:select path="selectDict" id="dict" >
-					<form:options items="${formBean.dictList}" itemValue="dictid" itemLabel="dictname"/>
-				</form:select>
+				<select id="dict">
+				</select>
 			</td>
 		</tr>
 		<tr>
 			<td>Word:</td>
-			<td colspan=2><form:input path="word" /></td>
+			<td colspan=2><form:input path="word" id="word" /></td>
             <td>
-                <input type="submit" value="Search" />
+                <input type="button" value="Search" id='search' />
             </td>
         </tr>
 	</table>
 </form:form>
+<iframe id='dictframe' width='100%' height='500'>
+</iframe>
 </body>
 </html>
