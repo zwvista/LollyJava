@@ -33,7 +33,6 @@ public class LollyViewModel extends Model {
 	@Autowired
 	protected DictAllDao dictallDao;
 	
-	protected List<DictAll> dictAllList;
 	protected DictAll dict;
 	public String word;
 	public Language selectedLang;
@@ -69,13 +68,7 @@ public class LollyViewModel extends Model {
 	}
 
 	protected void updateDict(DictionaryId id2) {
-		dict = dictAllList.stream()
-			.filter(r -> {
-				DictAllId id1 = r.getId();
-				return id1.getLangid() == id2.getLangid() &&
-						id1.getDictname().equals(id2.getDictname());
-			})
-			.findFirst().get();
+		dict = dictallDao.getDataByLangDict(id2.getLangid(), id2.getDictname());
 	}
 	
 	protected String getUrlByWord(String word) {

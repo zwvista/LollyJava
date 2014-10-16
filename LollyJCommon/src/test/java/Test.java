@@ -13,10 +13,6 @@ public class Test {
 	public static void main(String[] args) {
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(LollyConfig.class);
 		DictAllDao dictalldao = context.getBean(DictAllDao.class);
-		List<DictAll> result = dictalldao.getData();
-		for(DictAll da : result) {
-			System.out.println(da.getId().getDictname());
-		}
 	}
 
 }

@@ -32,7 +32,6 @@ public class LollyController extends LollyViewModel {
 		this.view = view;
 		view.controller = this;
 
-		dictAllList = dictallDao.getData();
 		langList = langDao.getData();
 		setSelectedLang(langList.get(1));
 		setWord("一人");

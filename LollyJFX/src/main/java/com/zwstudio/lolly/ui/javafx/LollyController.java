@@ -119,7 +119,6 @@ public class LollyController extends LollyViewModel implements Initializable {
 			}
 		});
 
-		dictAllList = dictallDao.getData();
 		langList = FXCollections.observableArrayList(langDao.getData());
 		
 		cmbLang.setItems(langList);

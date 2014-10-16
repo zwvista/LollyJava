@@ -16,13 +16,11 @@ $(function() {
 	var $lang = $('#lang');
 	var $dict = $('#dict');
 	$lang.change(function() {
-	    $.getJSON("dictList", {langid: $lang.val()}, function(response) {
+	    $.getJSON("dictList2", {langid: $lang.val()}, function(response) {
 			$("#dict option").remove();
 			var options = '';
 			$.each(response, function(index, item) {
-				var jstring = encodeURIComponent(JSON.stringify(item));
-				// alert(jstring);
-				options += '<option value=' + jstring + '>' + item.id.dictname + '</option>';
+				options += '<option value=' + item + '>' + item + '</option>';
 			});
 			// alert(options);
 			$dict.html(options);
@@ -31,11 +29,12 @@ $(function() {
 	});
 	$lang.change();
 	$('#search').click(function() {
-		var item = JSON.parse(decodeURIComponent($dict.val()));
-		var word = $('#word').val();
-		var url = item.url.replace('{0}', encodeURIComponent(word));
-		// alert(url);
-		$('#dictframe').attr('src', url);
+	    $.getJSON("dictall", {langid: $lang.val(), dictname:$dict.val()}, function(response) {
+			var word = $('#word').val();
+			var url = response.url.replace('{0}', encodeURIComponent(word));
+			// alert(url);
+			$('#dictframe').attr('src', url);
+	    });
 	});
 });
 </script>
