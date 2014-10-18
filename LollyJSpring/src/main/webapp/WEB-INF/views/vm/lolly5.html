@@ -1,14 +1,14 @@
 <!DOCTYPE html >
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Spring4 MVC -Lolly</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/linq.js/2.2.0.2/linq.min.js"></script>
-<script>
+#[[<script>
 $(function() {
-	var $lang = $('#lang');
-	var $dict = $('#dict');
+	var $lang = $('#selectedLangID');
+	var $dict = $('#selectedDictName');
 	$lang.change(function() {
  	    $.post("dictList3", $(this).serialize(), function(response) {
 			$("#dict option").remove();
@@ -30,29 +30,22 @@ $(function() {
 	    });
 	});
 });
-</script>
+</script>]]#
 </head>
 <body>
-<form id="form" method="post" th:object="${formBean}">
+<form id="form" method="post"> #springBind("formBean")
 	<table>
 		<tr>
 			<td>Language:</td>
-			<td>
-				<select th:field="*{selectedLangID}" id="lang" >
-					<option th:each="lang : ${formBean.langList}"
-          					th:value="${lang.langid}"
-          					th:text="${lang.langname}"></option>
-				</select>
+			<td>#springFormSingleSelect("formBean.selectedLangID", $formBean.langMap)
 			</td>
 			<td>Dictionary:</td>
-			<td>
-				<select th:field="*{selectedDictName}" id="dict">
-				</select>
+			<td>#springFormSingleSelect("formBean.selectedDictName")
 			</td>
 		</tr>
 		<tr>
 			<td>Word:</td>
-			<td colspan="2"><input type="text" th:field="*{word}" id="word" /></td>
+			<td colspan=2>#springFormInput("formBean.word", "")</td>
             <td>
                 <input type="button" value="Search" id='search' />
             </td>

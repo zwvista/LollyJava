@@ -17,7 +17,7 @@ $(function() {
 	$lang.change(function() {
 	    $.getJSON("dictList2", {langid: $lang.val()}, function(response) {
 			$("#dict option").remove();
-			var options = Enumerable.From(response).Aggregate(
+			var options = Enumerable.From(response).Aggregate("",
 				"acc, item => acc + '<option>' + item + '</option>'"
 			);
 			// alert(options);

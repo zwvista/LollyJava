@@ -1,5 +1,15 @@
 package com.zwstudio.lolly.spring;
 
+import java.beans.XMLEncoder;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.StringReader;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.xml.transform.Source;
+import javax.xml.transform.stream.StreamSource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -13,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 import com.zwstudio.lolly.dao.DictAllDao;
@@ -35,6 +46,7 @@ public class LollyController {
 		LollyFormBean bean = new LollyFormBean();
 		bean.setWord("一人");
 		bean.setLangList(langDao.getData());
+		bean.setLangMap(langDao.getIdNameMap());
 		return bean;
 	}
 	
@@ -109,5 +121,27 @@ public class LollyController {
     public String lolly4() {
         return "thm/lolly4";
     }
-
+    @RequestMapping("/lolly5")
+    public String lolly5() {
+        return "vm/lolly5";
+    }
+    @RequestMapping("/lolly6")
+    public String lolly6() {
+        return "ftl/lolly6";
+    }
+    @RequestMapping("/lolly7")
+    public ModelAndView lolly7(HttpServletRequest request,
+            HttpServletResponse response) throws IOException {
+    	LollyFormBean bean = createFormBean();
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		XMLEncoder xmlEncoder = new XMLEncoder(baos);
+		xmlEncoder.writeObject(bean);
+		xmlEncoder.close();
+    	String xmlStr = baos.toString();
+    	System.out.println(xmlStr);
+    	Source source = new StreamSource(new StringReader(xmlStr));
+    	ModelAndView model = new ModelAndView("xsl/lolly7");
+    	model.addObject("xmlSource", source);
+        return model;
+    }
 }

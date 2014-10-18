@@ -1,6 +1,7 @@
 package com.zwstudio.lolly.spring;
 
 import java.util.List;
+import java.util.Map;
 
 import com.zwstudio.lolly.domain.Language;
 
@@ -9,6 +10,7 @@ public class LollyFormBean {
 	private int selectedLangID;
 	private String selectedDictName;
 	private List<Language> langList;
+	private Map<String, String> langMap;
 	public String getWord() {
 		return word;
 	}
@@ -32,5 +34,11 @@ public class LollyFormBean {
 	}
 	public void setLangList(List<Language> langList) {
 		this.langList = langList;
+	}
+	public Map<String, String> getLangMap() {
+		return langMap;
+	}
+	public void setLangMap(Map<String, String> langMap) {
+		this.langMap = langMap;
 	}
 }

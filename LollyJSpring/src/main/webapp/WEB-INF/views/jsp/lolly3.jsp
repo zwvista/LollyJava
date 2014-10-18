@@ -17,7 +17,7 @@ $(function() {
 	$lang.change(function() {
  	    $.post("dictList3", $(this).serialize(), function(response) {
 			$("#dict option").remove();
-			var options = Enumerable.From(response).Aggregate(
+			var options = Enumerable.From(response).Aggregate("",
 				"acc, item => acc + '<option>' + item + '</option>'"
 			);
 			// alert(options);
