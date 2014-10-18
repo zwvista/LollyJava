@@ -8,7 +8,6 @@
 <head>
 <title>Spring4 MVC -Lolly</title>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-</head>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/linq.js/2.2.0.2/linq.min.js"></script>
 <script>
@@ -18,11 +17,9 @@ $(function() {
 	$lang.change(function() {
 	    $.getJSON("dictList", {langid: $lang.val()}, function(response) {
 			$("#dict option").remove();
-			var options = '';
-			$.each(response, function(index, item) {
+			var options = Enumerable.From(response).Aggregate(function(acc, item) {
 				var jstring = encodeURIComponent(JSON.stringify(item));
-				// alert(jstring);
-				options += '<option value=' + jstring + '>' + item.id.dictname + '</option>';
+				return acc + '<option value=' + jstring + '>' + item.id.dictname + '</option>';
 			});
 			// alert(options);
 			$dict.html(options);
@@ -38,6 +35,7 @@ $(function() {
 	});
 });
 </script>
+</head>
 <body>
 <form:form id="form" method="post" modelAttribute="formBean">
 	<table>
@@ -56,7 +54,7 @@ $(function() {
 		</tr>
 		<tr>
 			<td>Word:</td>
-			<td colspan=2><form:input path="word" id="word" /></td>
+			<td colspan=2><form:input type="text" path="word" id="word" /></td>
             <td>
                 <input type="button" value="Search" id='search' />
             </td>

@@ -20,7 +20,7 @@ import com.zwstudio.lolly.dao.DictionaryDao;
 import com.zwstudio.lolly.dao.LanguageDao;
 
 @Controller
-public class LollyController { 
+public class LollyController {
 	@Autowired
 	protected LanguageDao langDao;
 	@Autowired
@@ -95,15 +95,19 @@ public class LollyController {
 	
     @RequestMapping("/lolly")
     public String lolly() {
-        return "lolly";
+        return "jsp/lolly";
     }
     @RequestMapping("/lolly2")
     public String lolly2() {
-        return "lolly2";
+        return "jsp/lolly2";
     }
     @RequestMapping("/lolly3")
     public String lolly3() {
-        return "lolly3";
+        return "jsp/lolly3";
+    }
+    @RequestMapping("/lolly4")
+    public String lolly4() {
+        return "thm/lolly4";
     }
 
 }
