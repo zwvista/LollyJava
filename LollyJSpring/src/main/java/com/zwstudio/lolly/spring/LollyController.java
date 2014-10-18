@@ -7,6 +7,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -51,19 +52,36 @@ public class LollyController {
 			@RequestParam(value="langid", required=true) int langid,
 			ModelMap modelMap) {
 		return createJsonResponse(
-			dictDao.getDataByLang(langid).stream()
-			.map(r -> r.getId().getDictname())
-			.toArray()
+			dictDao.getNamesByLang(langid)
 		);
 	}
-	@RequestMapping(value="dictall", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody ResponseEntity<String> dictall(
+
+	@RequestMapping(value="dictall2", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody ResponseEntity<String> dictall2(
 			@ModelAttribute("formBean") LollyFormBean bean,
 			@RequestParam(value="langid", required=true) int langid,
 			@RequestParam(value="dictname", required=true) String dictname,
 			ModelMap modelMap) {
 		return createJsonResponse(
 			dictallDao.getDataByLangDict(langid, dictname)
+		);
+	}
+	
+	@RequestMapping(value="dictList3", method=RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody ResponseEntity<String> dictList3(
+			@ModelAttribute("formBean") LollyFormBean bean,
+			BindingResult bindingResult) {
+		return createJsonResponse(
+			dictDao.getNamesByLang(bean.getSelectedLangID())
+		);
+	}
+
+	@RequestMapping(value="dictall3", method=RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody ResponseEntity<String> dictall3(
+			@ModelAttribute("formBean") LollyFormBean bean,
+			BindingResult bindingResult) {
+		return createJsonResponse(
+			dictallDao.getDataByLangDict(bean.getSelectedLangID(), bean.getSelectedDictName())
 		);
 	}
 	
@@ -82,6 +100,10 @@ public class LollyController {
     @RequestMapping("/lolly2")
     public String lolly2() {
         return "lolly2";
+    }
+    @RequestMapping("/lolly3")
+    public String lolly3() {
+        return "lolly3";
     }
 
 }

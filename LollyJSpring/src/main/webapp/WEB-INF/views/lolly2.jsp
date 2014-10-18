@@ -20,16 +20,15 @@ $(function() {
 			$("#dict option").remove();
 			var options = '';
 			$.each(response, function(index, item) {
-				options += '<option value=' + item + '>' + item + '</option>';
+				options += '<option>' + item + '</option>';
 			});
 			// alert(options);
 			$dict.html(options);
-			$dict.change();
 	    });
 	});
 	$lang.change();
 	$('#search').click(function() {
-	    $.getJSON("dictall", {langid: $lang.val(), dictname:$dict.val()}, function(response) {
+	    $.getJSON("dictall2", {langid: $lang.val(), dictname:$dict.val()}, function(response) {
 			var word = $('#word').val();
 			var url = response.url.replace('{0}', encodeURIComponent(word));
 			// alert(url);
@@ -44,14 +43,14 @@ $(function() {
 		<tr>
 			<td>Language:</td>
 			<td>
-				<form:select path="selectLang" id="lang" >
+				<form:select path="selectedLangID" id="lang" >
 					<form:options items="${formBean.langList}" itemValue="langid" itemLabel="langname"/>
 				</form:select>
 			</td>
 			<td>Dictionary:</td>
 			<td>
-				<select id="dict">
-				</select>
+				<form:select path="selectedDictName" id="dict">
+				</form:select>
 			</td>
 		</tr>
 		<tr>

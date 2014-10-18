@@ -16,25 +16,25 @@ $(function() {
 	var $lang = $('#lang');
 	var $dict = $('#dict');
 	$lang.change(function() {
-	    $.getJSON("dictList", {langid: $lang.val()}, function(response) {
+ 	    $.post("dictList3", $(this).serialize(), function(response) {
 			$("#dict option").remove();
 			var options = '';
 			$.each(response, function(index, item) {
-				var jstring = encodeURIComponent(JSON.stringify(item));
-				// alert(jstring);
-				options += '<option value=' + jstring + '>' + item.id.dictname + '</option>';
+				options += '<option>' + item + '</option>';
 			});
 			// alert(options);
 			$dict.html(options);
-	    });
+ 		});
 	});
 	$lang.change();
 	$('#search').click(function() {
-		var item = JSON.parse(decodeURIComponent($dict.val()));
-		var word = $('#word').val();
-		var url = item.url.replace('{0}', encodeURIComponent(word));
-		// alert(url);
-		$('#dictframe').attr('src', url);
+		// cannot use $(this).serialize()
+	    $.post("dictall3", $('#form').serialize(), function(response) {
+			var word = $('#word').val();
+			var url = response.url.replace('{0}', encodeURIComponent(word));
+			// alert(url);
+			$('#dictframe').attr('src', url);
+	    });
 	});
 });
 </script>
