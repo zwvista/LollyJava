@@ -7,8 +7,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/linq.js/2.2.0.2/linq.min.js"></script>
 #[[<script>
 $(function() {
-	var $lang = $('#selectedLangID');
-	var $dict = $('#selectedDictName');
+	var $lang = $('#lang');
+	var $dict = $('#dict');
 	$lang.change(function() {
  	    $.post("dictList3", $(this).serialize(), function(response) {
 			$("#dict option").remove();
@@ -37,10 +37,19 @@ $(function() {
 	<table>
 		<tr>
 			<td>Language:</td>
-			<td>#springFormSingleSelect("formBean.selectedLangID", $formBean.langMap)
+			<td>
+				#springBind("formBean.selectedLangID")
+				<select name="${status.expression}" id="lang">
+					#foreach($lang in $formBean.langList)
+						<option value="${lang.langid}">$lang.langname</option>
+					#end
+				</select>
 			</td>
 			<td>Dictionary:</td>
-			<td>#springFormSingleSelect("formBean.selectedDictName")
+			<td>
+				#springBind("formBean.selectedDictName")
+				<select name="${status.expression}" id="dict">
+				</select>
 			</td>
 		</tr>
 		<tr>

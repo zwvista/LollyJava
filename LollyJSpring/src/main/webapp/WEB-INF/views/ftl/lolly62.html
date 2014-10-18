@@ -1,3 +1,4 @@
+<#import "/spring.ftl" as spring />
 <!DOCTYPE html >
 <html>
 <head>
@@ -5,10 +6,10 @@
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/linq.js/2.2.0.2/linq.min.js"></script>
-#[[<script>
+<script>
 $(function() {
-	var $lang = $('#selectedLangID');
-	var $dict = $('#selectedDictName');
+	var $lang = $('#lang');
+	var $dict = $('#dict');
 	$lang.change(function() {
  	    $.post("dictList3", $(this).serialize(), function(response) {
 			$("#dict option").remove();
@@ -30,22 +31,30 @@ $(function() {
 	    });
 	});
 });
-</script>]]#
+</script>
 </head>
 <body>
-<form id="form" method="post"> #springBind("formBean")
+<form id="form" method="post"> <@spring.bind "formBean" />
 	<table>
 		<tr>
 			<td>Language:</td>
-			<td>#springFormSingleSelect("formBean.selectedLangID", $formBean.langMap)
+			<td>
+				<@spring.bind "formBean.selectedLangID" />
+				<select name="selectedLangID" id="lang">
+					<#list formBean.langList as lang>
+						<option value="${lang.langid}">${lang.langname}</option>
+					</#list>
+				</select>
 			</td>
 			<td>Dictionary:</td>
-			<td>#springFormSingleSelect("formBean.selectedDictName")
+			<td>
+				<select name="selectedDictName" id="dict">
+				</select>
 			</td>
 		</tr>
 		<tr>
 			<td>Word:</td>
-			<td colspan=2>#springFormInput("formBean.word")</td>
+			<td colspan=2><@spring.formInput "formBean.word", "" /></td>
             <td>
                 <input type="button" value="Search" id='search' />
             </td>

@@ -117,6 +117,10 @@ public class LollyController {
     public String lolly3() {
         return "jsp/lolly3";
     }
+    @RequestMapping("/lolly32")
+    public String lolly32() {
+        return "jsp/lolly32";
+    }
     @RequestMapping("/lolly4")
     public String lolly4() {
         return "thm/lolly4";
@@ -125,9 +129,17 @@ public class LollyController {
     public String lolly5() {
         return "vm/lolly5";
     }
+    @RequestMapping("/lolly52")
+    public String lolly52() {
+        return "vm/lolly52";
+    }
     @RequestMapping("/lolly6")
     public String lolly6() {
         return "ftl/lolly6";
+    }
+    @RequestMapping("/lolly62")
+    public String lolly62() {
+        return "ftl/lolly62";
     }
     @RequestMapping("/lolly7")
     public ModelAndView lolly7(HttpServletRequest request,
