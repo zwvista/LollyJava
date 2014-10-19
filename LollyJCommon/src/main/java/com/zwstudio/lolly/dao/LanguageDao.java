@@ -22,7 +22,15 @@ public class LanguageDao extends BaseDao {
 	public Map<String, String> getIdNameMap() {
 		return getData().stream()
 			.collect(Collectors.toMap(
-					(Language r) -> Integer.toString(r.getLangid()),
-					Language::getLangname));
+				(Language r) -> Integer.toString(r.getLangid()),
+				Language::getLangname
+			));
+	}
+	public Map<String, String> getNameIdMap() {
+		return getData().stream()
+			.collect(Collectors.toMap(
+				Language::getLangname,
+				(Language r) -> Integer.toString(r.getLangid())
+			));
 	}
 }
