@@ -1,5 +1,6 @@
 package com.zwstudio.lolly.jfs;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,10 @@ public class LollyFormBo {
 	
 	public Map<String, String> getDictMap(int langid) {
 		return dictDao.getNameIdMap(langid);
+	}
+	
+	public List<String> getNamesByLang(int langid) {
+		return dictDao.getNamesByLang(langid);
 	}
 
 }

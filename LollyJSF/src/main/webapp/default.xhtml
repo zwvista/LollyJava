@@ -2,8 +2,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
     xmlns:f="http://java.sun.com/jsf/core"
-    xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:ui="http://java.sun.com/jsf/facelets">
+    xmlns:h="http://java.sun.com/jsf/html">
 <h:head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>JSF -Lolly</title>
@@ -11,10 +10,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/linq.js/2.2.0.2/linq.min.js"></script>
 <script>
 $(function() {
-	var $lang = $('#lang');
+	var $lang = $('#form\\:lang');
 	var $dict = $('#dict');
 	$lang.change(function() {
- 	    $.post("dictList3", $(this).serialize(), function(response) {
+		jsf.ajax.request(this, "#{formBean.selectedLangChanged}", function(response) {
 			$("#dict option").remove();
 			var options = Enumerable.From(response).Aggregate("",
 				"acc, item => acc + '<option>' + item + '</option>'"
@@ -43,9 +42,9 @@ $(function() {
 			<td>Language:</td>
 			<td>
 				<h:selectOneMenu value="#{formBean.selectedLangID}" id="lang" >
-					<f:selectItems value="#{formBean.getLangMap}" />
-					<f:ajax event="change" listener="formBean.getDictMap"
-					 render=":form:dict" />
+					<f:ajax event="change" listener="#{formBean.selectedLangChanged}"
+					  />
+					<f:selectItems value="#{formBean.getLangMap()}" />
 				</h:selectOneMenu>
 			</td>
 			<td>Dictionary:</td>
