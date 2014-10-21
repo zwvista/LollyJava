@@ -26,11 +26,4 @@ public class LanguageDao extends BaseDao {
 				Language::getLangname
 			));
 	}
-	public Map<String, String> getNameIdMap() {
-		return getData().stream()
-			.collect(Collectors.toMap(
-				Language::getLangname,
-				(Language r) -> Integer.toString(r.getLangid())
-			));
-	}
 }

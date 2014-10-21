@@ -1,7 +1,8 @@
 package com.zwstudio.lolly.jfs;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,6 +10,8 @@ import org.springframework.stereotype.Service;
 import com.zwstudio.lolly.dao.DictAllDao;
 import com.zwstudio.lolly.dao.DictionaryDao;
 import com.zwstudio.lolly.dao.LanguageDao;
+import com.zwstudio.lolly.domain.DictAll;
+import com.zwstudio.lolly.domain.Language;
 
 @Service
 public class LollyFormBo {
@@ -20,16 +23,24 @@ public class LollyFormBo {
 	@Autowired
 	private DictAllDao dictallDao;
 	
-	public Map<String, String> getLangMap() {
-		return langDao.getNameIdMap();
+	public List<Language> getLangList() {
+		return langDao.getData();
 	}
 	
-	public Map<String, String> getDictMap(int langid) {
-		return dictDao.getNameIdMap(langid);
-	}
-	
-	public List<String> getNamesByLang(int langid) {
+	public List<String> getDictList(int langid) {
 		return dictDao.getNamesByLang(langid);
+	}
+	
+	public String getUrl(int langid, String dictname, String word) {
+		DictAll dict = dictallDao.getDataByLangDict(langid, dictname);
+		String url = dict.getUrl().replace("{0}", "%s");
+		try {
+			url = String.format(url, URLEncoder.encode(word, "UTF-8"));
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		System.out.println(url);
+		return url;
 	}
 
 }

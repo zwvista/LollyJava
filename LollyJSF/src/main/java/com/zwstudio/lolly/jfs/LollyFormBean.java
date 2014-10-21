@@ -2,23 +2,22 @@ package com.zwstudio.lolly.jfs;
 
 import java.io.IOException;
 import java.io.Serializable;
-import java.util.Map;
+import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
 import javax.faces.event.AjaxBehaviorEvent;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.jsf.FacesContextUtils;
 
 import com.google.gson.Gson;
+import com.zwstudio.lolly.domain.Language;
 
 @Controller
 @Scope("Application")
@@ -41,6 +40,7 @@ public class LollyFormBean implements Serializable {
 	public String word;
 	private int selectedLangID;
 	private String selectedDictName;
+	private String url;
 	
 	public LollyFormBean() {
 		// If LollyFormBo is a @Component other than a @Service,
@@ -50,15 +50,7 @@ public class LollyFormBean implements Serializable {
 		
 	    setWord("一人");
 	}
-	
-	public Map<String, String> getLangMap() {
-		return formBo.getLangMap();
-	}
 
-	public Map<String, String> getDictMap(AjaxBehaviorEvent event) {
-		return formBo.getDictMap(selectedLangID);
-	}
-	
 	public String getWord() {
 		return word;
 	}
@@ -82,10 +74,25 @@ public class LollyFormBean implements Serializable {
 		this.selectedDictName = selectedDictName;
 	}
 	
-	public void selectedLangChanged(final AjaxBehaviorEvent event) {
-		createJsonResponse(
-			formBo.getNamesByLang(getSelectedLangID())
-		);
+	public List<Language> getLangList() {
+		return formBo.getLangList();
+	}
+
+	public List<String> getDictList() {
+		return formBo.getDictList(selectedLangID);
+	}
+	
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+	
+	public void searchButtonClicked() {
+		url = formBo.getUrl(selectedLangID, selectedDictName, word);
+		System.out.println(url);
 	}
 	
 	private void createJsonResponse(Object o) {
