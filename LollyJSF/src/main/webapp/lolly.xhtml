@@ -1,22 +1,23 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:f="http://java.sun.com/jsf/core"
     xmlns:h="http://java.sun.com/jsf/html">
 <h:head>
+<h:outputScript library="javax.faces" name="jsf.js" target="head" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>JSF -Lolly</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/linq.js/2.2.0.2/linq.min.js"></script>
 <script>
 $(function() {
-	var $lang = $('#form\\:lang');
-	$lang.change();
+	$('#form\\:lang').change();
 });
 </script>
 </h:head>
 <h:body>
-<h:form id="form" method="post">
+<f:view>
+<h:form id="form">
 	<table>
 		<tr>
 			<td>Language:</td>
@@ -29,7 +30,7 @@ $(function() {
 			</td>
 			<td>Dictionary:</td>
 			<td>
-				<h:selectOneMenu name="#{selectedDictName}" id="dict">
+				<h:selectOneMenu value="#{formBean.selectedDictName}" id="dict">
 					<f:selectItems value="#{formBean.getDictList()}" />
 				</h:selectOneMenu>
 			</td>
@@ -40,8 +41,9 @@ $(function() {
 				<h:inputText value="#{formBean.word}" id="word" />
 			</td>
             <td>
-                <h:commandButton value="Search" id='search'>
-                	<f:ajax listener="#{formBean.searchButtonClicked}" execute="@all" render=":iframe-holder" />
+                <h:commandButton value="Search" id="search" action="#{formBean.searchButtonClicked}">
+                	<f:param name="action" value="action" />
+                	<f:ajax excute="@form" render=":iframe-holder"  />
                 </h:commandButton>
             </td>
         </tr>
@@ -51,5 +53,6 @@ $(function() {
 <iframe id='dictframe' width='100%' height='500' src="#{formBean.url}">
 </iframe>
 </h:panelGroup>
+</f:view>
 </h:body>
 </html>
