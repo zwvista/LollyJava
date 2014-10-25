@@ -7,12 +7,8 @@ import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
-import javax.faces.event.ActionEvent;
-import javax.faces.event.AjaxBehaviorEvent;
-import javax.faces.event.PhaseEvent;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -41,7 +37,7 @@ public class LollyFormBean implements Serializable {
 		this.formBo = formBo;
 	}
 	
-	public String word;
+	private String word;
 	private int selectedLangID;
 	private String selectedDictName;
 	private String url;
@@ -90,17 +86,28 @@ public class LollyFormBean implements Serializable {
 		return url;
 	}
 	
+	private String getParamValue(Map<String,String> params, String... paramNames) {
+		String v = null;
+		for(String name: paramNames) {
+			v = params.get(name);
+			if(v != null)
+				break;
+		}
+		return v;
+	}
+	
 	public void searchButtonClicked() {
 		Map<String,String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
-		selectedLangID = Integer.parseInt(params.get("form:lang"));
-		selectedDictName = params.get("form:dict");
+		selectedLangID = Integer.parseInt(getParamValue(params, "form:lang", "form:lang_input"));
+		selectedDictName = getParamValue(params, "form:dict", "form:dict_input");
 		word = params.get("form:word");
 		url = formBo.getUrl(selectedLangID, selectedDictName, word);
+		System.out.println("url=" + url);
 	}
 	
 	@PostConstruct
 	private void init() {
-		System.out.println("init");
+		System.out.printf("word=%s,lang=%d,dict=%s\n", word, selectedLangID, selectedDictName);
 	}
 
 	public void setUrl(String url) {
