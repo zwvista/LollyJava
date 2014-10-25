@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE struts PUBLIC
-    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
-    "http://struts.apache.org/dtds/struts-2.0.dtd">
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
  
 <struts>
 
@@ -27,7 +27,14 @@
 	<action name="lolly" class="com.zwstudio.lolly.struts.LollyAction">
 		<result>/lolly.jsp</result>
 	</action>
+	<action name="lolly2" class="com.zwstudio.lolly.struts.LollyAction">
+		<result type="velocity">/lolly2.jsp</result>
+	</action>
+	<action name="lolly3" class="com.zwstudio.lolly.struts.LollyAction">
+		<result type="freemarker">/lolly3.jsp</result>
+	</action>
 </package>
+
 <package name="default2" namespace="/" extends="json-default">
 
 	<interceptors>
@@ -49,7 +56,18 @@
 	<action name="dictUrl" class="com.zwstudio.lolly.struts.LollyAction" method="writeDictUrl">
 		<result type="json">/lolly.jsp</result>
 	</action>
-
+	<action name="dictList2" class="com.zwstudio.lolly.struts.LollyAction" method="writeDictList">
+		<result type="json">/lolly2.jsp</result>
+	</action>
+	<action name="dictUrl2" class="com.zwstudio.lolly.struts.LollyAction" method="writeDictUrl">
+		<result type="json">/lolly2.jsp</result>
+	</action>
+	<action name="dictList3" class="com.zwstudio.lolly.struts.LollyAction" method="writeDictList">
+		<result type="json">/lolly2.jsp</result>
+	</action>
+	<action name="dictUrl3" class="com.zwstudio.lolly.struts.LollyAction" method="writeDictUrl">
+		<result type="json">/lolly2.jsp</result>
+	</action>
 </package>
  
 </struts>
