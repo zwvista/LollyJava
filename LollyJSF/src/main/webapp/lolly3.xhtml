@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+<h:outputScript library="javax.faces" name="jsf.js" target="head" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>JSF -Lolly</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/linq.js/2.2.0.2/linq.min.js"></script>
+<script>
+$(function() {
+	var $lang = $('#form\\:langInput');
+});
+</script>
+</h:head>
+<h:body>
+<h:form id="form">
+	<table>
+		<tr>
+			<td>Language:</td>
+			<td>
+				<rich:select value="#{formBean.selectedLangID}" id="lang">
+					<f:ajax event="change" render="dict search" />
+					<f:selectItems value="#{formBean.getLangList()}" var="lang"
+					itemValue="#{lang.langid}" itemLabel="#{lang.langname}" />
+				</rich:select>
+			</td>
+			<td>Dictionary:</td>
+			<td>
+				<rich:select value="#{formBean.selectedDictName}" id="dict">
+					<f:selectItems value="#{formBean.getDictList()}" />
+				</rich:select>
+			</td>
+		</tr>
+		<tr>
+			<td>Word:</td>
+			<td colspan="2">
+				<h:inputText value="#{formBean.word}" id="word" />
+			</td>
+            <td>
+                <h:commandButton value="Search" id="search" action="#{formBean.searchButtonClicked}">
+                	<f:ajax excute="@form" render=":iframe-holder" />
+                </h:commandButton>
+            </td>
+        </tr>
+	</table>
+</h:form>
+<h:panelGroup id="iframe-holder" layout="block">
+<iframe id='dictframe' width='100%' height='500' src="#{formBean.url}">
+</iframe>
+</h:panelGroup>
+</h:body>
+</html>

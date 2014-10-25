@@ -128,6 +128,18 @@
 		<artifactId>primefaces</artifactId>
 		<version>5.1</version>
 	</dependency>
+	
+	<dependency>
+		<groupId>org.richfaces.core</groupId>
+		<artifactId>richfaces-core-impl</artifactId>
+		<version>4.3.7.Final</version>
+	</dependency>
+	<dependency>
+		<groupId>org.richfaces.ui</groupId>
+		<artifactId>richfaces-components-ui</artifactId>
+		<version>4.3.7.Final</version>
+	</dependency>
+	
 	<!-- JSON -->
 	<dependency>
 		<groupId>com.google.code.gson</groupId>
