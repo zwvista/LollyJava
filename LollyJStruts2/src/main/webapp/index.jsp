@@ -8,6 +8,8 @@
 <title>Struts 2 Application - Welcome</title>
 </head>
 <body>
-<h1>Welcome To Struts 2!</h1>
+<a href="lolly">lolly</a><br/>
+<a href="lolly2">lolly2</a><br/>
+<a href="lolly3">lolly3</a><br/>
 </body>
 </html>
