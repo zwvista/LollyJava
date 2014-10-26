@@ -2,6 +2,6 @@
 <head>
 </head>
 <body>
-<a href="lolly.do">Hello World!</a>
+<a href="lolly.do">lolly</a>
 </body>
 </html>

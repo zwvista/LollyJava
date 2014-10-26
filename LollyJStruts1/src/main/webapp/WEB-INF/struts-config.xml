@@ -15,9 +15,19 @@
 		name="lollyForm">
  		<forward name="success" path="/lolly.jsp" />
 		</action>
+		<action path="/dictList"
+		type="org.springframework.web.struts.DelegatingActionProxy"
+		name="lollyForm">
+		</action>
+		<action path="/dictUrl"
+		type="org.springframework.web.struts.DelegatingActionProxy"
+		name="lollyForm">
+		</action>
 	</action-mappings>
- 	<controller processorClass="org.springframework.web.struts.DelegatingRequestProcessor"></controller>  
+	<controller>
+	    <set-property property="processorClass" value="org.springframework.web.struts.AutowiringRequestProcessor" />
+	</controller>	
 	<plug-in className="org.springframework.web.struts.ContextLoaderPlugIn">
-    	<set-property property="contextConfigLocation"  value="/WEB-INF/classes/beans.xml"/>
- 	</plug-in>
+	  	<set-property property="contextConfigLocation"  value="/WEB-INF/classes/beans.xml"/>
+	</plug-in>
 </struts-config>

@@ -8,12 +8,12 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script>
 $(function() {
-	var $lang = $('#lang1');
-	var $dict = $('#dict1');
+	var $lang = $('#lang');
+	var $dict = $('#dict');
 	$lang.change(function() {
- 	    $.post("dictList", $(this).serialize(), function(response) {
+ 	    $.post("dictList.do", $(this).serialize(), function(response) {
             $dict.empty();
-            $.each(response.dictList, function(index, dict) {
+            $.each(response, function(index, dict) {
                 $dict.append($('<option/>', {text: dict}));
             });
  		});
@@ -21,9 +21,9 @@ $(function() {
 	$lang.change();
 	$('#search').click(function() {
 		// cannot use $(this).serialize()
-	    $.post("dictUrl", $('#form').serialize(), function(response) {
+	    $.post("dictUrl.do", $('#form').serialize(), function(response) {
 			var word = $('#word').val();
-			var url = response.url.replace('{0}', encodeURIComponent(word));
+			var url = response.replace('{0}', encodeURIComponent(word));
 			// alert(url);
 			$('#dictframe').attr('src', url);
 	    });
@@ -33,28 +33,28 @@ $(function() {
 </script>
 </head>
 <body>
-<html:form>
+<html:form styleId="form">
 	<table>
 		<tr>
 			<td>Language:</td>
 			<td>
-				<html:select property="selectedLangID">
+				<html:select property="selectedLangID" styleId="lang">
 				<html:optionsCollection name="lollyForm" property="langList" label="langname" value="langid"/>
 				</html:select>
 			</td>
 			<td>Dictionary:</td>
 			<td>
-				<html:select property="selectedDictName">
+				<html:select property="selectedDictName" styleId="dict">
 				</html:select>
 			</td>
 		</tr>
 		<tr>
 			<td>Word:</td>
 			<td colspan=2>
-				<html:text property="word" />
+				<html:text property="word" styleId="word" />
 			</td>
             <td>
-                <html:submit property="search" value="Search" />
+                <html:submit property="search" value="Search" styleId="search" />
             </td>
         </tr>
 	</table>

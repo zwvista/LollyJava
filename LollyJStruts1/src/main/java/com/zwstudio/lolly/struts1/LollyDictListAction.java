@@ -8,17 +8,19 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.springframework.stereotype.Controller;
 
-@Controller("/lolly")
-public class LollyAction extends LollyBaseAction {
+@Controller("/dictList")
+public class LollyDictListAction extends LollyBaseAction {
 
 	public ActionForward execute(ActionMapping mapping,ActionForm form,
 		HttpServletRequest request,HttpServletResponse response)
         throws Exception {
  
 		LollyForm lollyForm = (LollyForm) form;
-		lollyForm.langList = langDao.getData();
-		lollyForm.word = "一人";
+		createJsonResponse(request, response,
+				dictDao.getNamesByLang(lollyForm.selectedLangID)
+		);
  
-		return mapping.findForward("success");
+		return null;
 	}
+	
 }
