@@ -10,6 +10,9 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -24,6 +27,8 @@ import com.zwstudio.lolly.domain.Language;
 @ManagedBean(name="formBean")
 public class LollyFormBean implements Serializable {
 	
+	private static final long serialVersionUID = 1L;
+
 	@Autowired
 	protected LollyFormBo formBo;
 	
@@ -36,11 +41,15 @@ public class LollyFormBean implements Serializable {
 	public void setFormBo(LollyFormBo formBo) {
 		this.formBo = formBo;
 	}
-	
-	private String word;
-	private int selectedLangID;
-	private String selectedDictName;
-	private String url;
+
+	@Getter @Setter
+	public String word;
+	@Getter @Setter
+	public int selectedLangID;
+	@Getter @Setter
+	public String selectedDictName;
+	@Getter
+	public String url;
 	
 	public LollyFormBean() {
 		// If LollyFormBo is a @Component other than a @Service,
@@ -48,42 +57,15 @@ public class LollyFormBean implements Serializable {
 		WebApplicationContext ctx =  FacesContextUtils.getWebApplicationContext(FacesContext.getCurrentInstance());
 		formBo = ctx.getBean(LollyFormBo.class);
 		
-	    setWord("一人");
+	    word = "一人";
 	}
 
-	public String getWord() {
-		return word;
-	}
-
-	public void setWord(String word) {
-		this.word = word;
-	}
-	public int getSelectedLangID() {
-		return selectedLangID;
-	}
-
-	public void setSelectedLangID(int selectedLangID) {
-		this.selectedLangID = selectedLangID;
-	}
-
-	public String getSelectedDictName() {
-		return selectedDictName;
-	}
-
-	public void setSelectedDictName(String selectedDictName) {
-		this.selectedDictName = selectedDictName;
-	}
-	
 	public List<Language> getLangList() {
 		return formBo.getLangList();
 	}
 
 	public List<String> getDictList() {
 		return formBo.getDictList(selectedLangID);
-	}
-	
-	public String getUrl() {
-		return url;
 	}
 	
 	private String getParamValue(Map<String,String> params, String... paramNames) {
@@ -114,6 +96,7 @@ public class LollyFormBean implements Serializable {
 		this.url = url;
 	}
 	
+	@SuppressWarnings("unused")
 	private void createJsonResponse(Object o) {
 	    FacesContext facesContext = FacesContext.getCurrentInstance();
 	    ExternalContext externalContext = facesContext.getExternalContext();

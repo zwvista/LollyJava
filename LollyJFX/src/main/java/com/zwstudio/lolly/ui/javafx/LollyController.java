@@ -3,11 +3,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import com.zwstudio.lolly.domain.Dictionary;
-import com.zwstudio.lolly.domain.DictionaryId;
-import com.zwstudio.lolly.domain.Language;
-import com.zwstudio.lolly.ui.viewmodel.LollyViewModel;
-
 import javafx.beans.property.adapter.JavaBeanObjectProperty;
 import javafx.beans.property.adapter.JavaBeanObjectPropertyBuilder;
 import javafx.beans.property.adapter.JavaBeanStringProperty;
@@ -26,9 +21,18 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.web.WebView;
 import javafx.util.StringConverter;
+import lombok.Getter;
+
+import com.zwstudio.lolly.domain.Dictionary;
+import com.zwstudio.lolly.domain.DictionaryId;
+import com.zwstudio.lolly.domain.Language;
+import com.zwstudio.lolly.ui.viewmodel.LollyViewModel;
 
 public class LollyController extends LollyViewModel implements Initializable {
-    @FXML
+
+	private static final long serialVersionUID = 1L;
+	
+	@FXML @Getter
     private Node view;
     @FXML
     private TextField tfWord;
@@ -47,10 +51,6 @@ public class LollyController extends LollyViewModel implements Initializable {
     private JavaBeanObjectProperty<Language> selectedLangProp;
     private JavaBeanObjectProperty<Dictionary> selectedDictProp;
     private JavaBeanStringProperty wordProp;
-
-    public Node getView() {
-        return view;
-    }
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {

@@ -31,6 +31,12 @@
 	   <artifactId>javassist</artifactId>
 	   <version>3.18.2-GA</version>
 	</dependency>
+	<dependency>
+		<groupId>org.projectlombok</groupId>
+		<artifactId>lombok</artifactId>
+		<version>1.14.8</version>
+		<scope>provided</scope>
+	</dependency>
 <!-- 	<dependency> -->
 <!--         <groupId>com.microsoft.sqlserver</groupId> -->
 <!--         <artifactId>sqljdbc4</artifactId> -->

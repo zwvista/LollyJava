@@ -7,11 +7,12 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import lombok.Getter;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -20,12 +21,14 @@ import com.zwstudio.lolly.dao.DictAllDao;
 import com.zwstudio.lolly.dao.DictionaryDao;
 import com.zwstudio.lolly.dao.LanguageDao;
 import com.zwstudio.lolly.domain.DictAll;
-import com.zwstudio.lolly.domain.DictAllId;
 import com.zwstudio.lolly.domain.Dictionary;
 import com.zwstudio.lolly.domain.DictionaryId;
 import com.zwstudio.lolly.domain.Language;
 
 public class LollyViewModel extends Model {
+
+	private static final long serialVersionUID = 1L;
+	
 	@Autowired
 	protected LanguageDao langDao;
 	@Autowired
@@ -34,8 +37,11 @@ public class LollyViewModel extends Model {
 	protected DictAllDao dictallDao;
 	
 	protected DictAll dict;
+	@Getter
 	public String word;
+	@Getter
 	public Language selectedLang;
+	@Getter
 	public Dictionary selectedDict;
 	
 	private Map<String, String> escapes = new HashMap<String, String>() {{
@@ -43,24 +49,12 @@ public class LollyViewModel extends Model {
 		put("\\r", "\r"); put("\\n", "\n");
 	}};
 
-	public String getWord() {
-		return word;
-	}
-
 	public void setWord(String word) {
 		firePropertyChange("word", this.word, this.word = word);
 	}
 
-	public Language getSelectedLang() {
-		return selectedLang;
-	}
-
 	public void setSelectedLang(Language selectedLang) {
 		firePropertyChange("selectedLang", this.selectedLang, this.selectedLang = selectedLang);
-	}
-
-	public Dictionary getSelectedDict() {
-		return selectedDict;
 	}
 
 	public void setSelectedDict(Dictionary selectedDict) {

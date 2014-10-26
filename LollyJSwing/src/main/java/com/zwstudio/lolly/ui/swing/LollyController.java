@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javafx.application.Platform;
+import lombok.Getter;
 
 import org.jdesktop.observablecollections.ObservableCollections;
 
@@ -16,17 +17,11 @@ import com.zwstudio.lolly.ui.viewmodel.LollyViewModel;
 public class LollyController extends LollyViewModel {
 	
 	public LollyFrame view;
-	
+
+	@Getter
 	public List<Language> langList;
+	@Getter
 	public List<Dictionary> dictList = ObservableCollections.observableList(new ArrayList<Dictionary>());;
-
-	public List<Language> getLangList() {
-		return langList;
-	}
-
-	public List<Dictionary> getDictList() {
-		return dictList;
-	}
 
 	public void init(LollyFrame view) {
 		this.view = view;

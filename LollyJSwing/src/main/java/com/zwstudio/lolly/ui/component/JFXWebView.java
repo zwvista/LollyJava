@@ -5,15 +5,13 @@ import javafx.embed.swing.JFXPanel;
 import javafx.scene.Scene;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
+import lombok.Getter;
 
 public class JFXWebView extends JFXPanel {
 	
 	private static final long serialVersionUID = 1L;
+	@Getter
 	private WebEngine engine;
-	
-	public WebEngine getEngine() {
-		return engine;
-	}
 	
 	public JFXWebView() {
 		Platform.runLater(new Runnable() {

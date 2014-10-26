@@ -44,9 +44,9 @@ public class LollyController {
 	@ModelAttribute("formBean")
 	public LollyFormBean createFormBean() {
 		LollyFormBean bean = new LollyFormBean();
-		bean.setWord("一人");
-		bean.setLangList(langDao.getData());
-		bean.setLangMap(langDao.getIdNameMap());
+		bean.word = "一人";
+		bean.langList = langDao.getData();
+		bean.langMap = langDao.getIdNameMap();
 		return bean;
 	}
 	
@@ -84,7 +84,7 @@ public class LollyController {
 			@ModelAttribute("formBean") LollyFormBean bean,
 			BindingResult bindingResult) {
 		return createJsonResponse(
-			dictDao.getNamesByLang(bean.getSelectedLangID())
+			dictDao.getNamesByLang(bean.selectedLangID)
 		);
 	}
 
@@ -93,7 +93,7 @@ public class LollyController {
 			@ModelAttribute("formBean") LollyFormBean bean,
 			BindingResult bindingResult) {
 		return createJsonResponse(
-			dictallDao.getDataByLangDict(bean.getSelectedLangID(), bean.getSelectedDictName())
+			dictallDao.getDataByLangDict(bean.selectedLangID, bean.selectedDictName)
 		);
 	}
 	
