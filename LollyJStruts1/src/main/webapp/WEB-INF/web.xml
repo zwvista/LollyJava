@@ -1,0 +1,32 @@
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+    version="2.5">
+  <display-name>Archetype Created Web Application</display-name>
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:beans.xml</param-value>
+	</context-param>
+	<!-- Bootstrap listener to start up and shut down Spring's root WebApplicationContext. -->
+  	<listener>  
+  		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>  
+	</listener>
+<servlet>
+    <servlet-name>action</servlet-name>
+    <servlet-class>
+        org.apache.struts.action.ActionServlet
+    </servlet-class>
+    <init-param>
+        <param-name>config</param-name>
+        <param-value>
+         /WEB-INF/struts-config.xml
+        </param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+ 
+  <servlet-mapping>
+       <servlet-name>action</servlet-name>
+       <url-pattern>*.do</url-pattern>
+  </servlet-mapping>
+  </web-app>

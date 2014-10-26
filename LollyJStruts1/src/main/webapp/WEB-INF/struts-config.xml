@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC 
+"-//Apache Software Foundation//DTD Struts Configuration 1.3//EN" 
+"http://jakarta.apache.org/struts/dtds/struts-config_1_3.dtd">
+ 
+<struts-config>
+	<form-beans>
+		<form-bean name="lollyForm"   
+		      type="com.zwstudio.lolly.struts1.LollyForm" />
+	</form-beans>
+
+	<action-mappings>
+		<action path="/lolly"
+		type="org.springframework.web.struts.DelegatingActionProxy"
+		name="lollyForm">
+ 		<forward name="success" path="/lolly.jsp" />
+		</action>
+	</action-mappings>
+ 	<controller processorClass="org.springframework.web.struts.DelegatingRequestProcessor"></controller>  
+	<plug-in className="org.springframework.web.struts.ContextLoaderPlugIn">
+    	<set-property property="contextConfigLocation"  value="/WEB-INF/classes/beans.xml"/>
+ 	</plug-in>
+</struts-config>

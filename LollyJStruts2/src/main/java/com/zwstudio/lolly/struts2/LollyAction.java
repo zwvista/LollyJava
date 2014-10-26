@@ -1,4 +1,4 @@
-package com.zwstudio.lolly.struts;
+package com.zwstudio.lolly.struts2;
  
 import java.util.List;
 
