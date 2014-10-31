@@ -121,6 +121,10 @@ public class LollyController {
     public String lolly32() {
         return "jsp/lolly32";
     }
+    @RequestMapping("/lolly33")
+    public String lolly33() {
+        return "jsp/lolly33";
+    }
     @RequestMapping("/lolly4")
     public String lolly4() {
         return "thm/lolly4";
