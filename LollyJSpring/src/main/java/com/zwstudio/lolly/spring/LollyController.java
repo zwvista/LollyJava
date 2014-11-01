@@ -96,7 +96,7 @@ public class LollyController {
 			dictallDao.getDataByLangDict(bean.selectedLangID, bean.selectedDictName)
 		);
 	}
-	
+
 	private ResponseEntity<String> createJsonResponse(Object o) {
 	    HttpHeaders headers = new HttpHeaders();
 	    headers.add("Content-Type", "application/json; charset=utf-8");
