@@ -63,10 +63,10 @@
 		<result type="json">/lolly2.jsp</result>
 	</action>
 	<action name="dictList3" class="com.zwstudio.lolly.struts2.LollyAction" method="writeDictList">
-		<result type="json">/lolly2.jsp</result>
+		<result type="json">/lolly3.jsp</result>
 	</action>
 	<action name="dictUrl3" class="com.zwstudio.lolly.struts2.LollyAction" method="writeDictUrl">
-		<result type="json">/lolly2.jsp</result>
+		<result type="json">/lolly3.jsp</result>
 	</action>
 </package>
  
