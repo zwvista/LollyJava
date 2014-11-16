@@ -3,7 +3,7 @@
 	<name>LollyJSpring</name>
 	<comment></comment>
 	<projects>
-		<project>LollyJCommon</project>
+		<project>LollyJShared</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

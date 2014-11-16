@@ -48,7 +48,7 @@ $(function() {
 			<td>Language:</td>
 			<td>
 				<select name="selectedLangID" id="lang" >
-			    	<xsl:for-each select="void[2]/object/void">
+			    	<xsl:for-each select="void[3]/void/object/void">
 					<option>
 					    <xsl:attribute name="value">
 					    	<xsl:value-of select="string"/>
@@ -68,7 +68,7 @@ $(function() {
 			<td>Word:</td>
 			<td colspan="2"><input type="text" id="word">
 			    <xsl:attribute name="value">
-			    	<xsl:value-of select="void[3]/string"/>
+			    	<xsl:value-of select="void/void/string"/>
     			</xsl:attribute>
 			</input></td>
             <td>
