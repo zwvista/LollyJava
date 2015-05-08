@@ -37,7 +37,6 @@ public class LollyBaseAction extends DispatchActionSupport {
 	        writer.write(json);
 	        writer.flush();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

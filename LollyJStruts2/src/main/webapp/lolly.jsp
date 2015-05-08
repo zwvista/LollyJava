@@ -5,7 +5,7 @@
 <%@ page session="false" %>
 <html>
 <head>
-<title>Strut2 -Lolly</title>
+<title>Struts2 -Lolly</title>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script>
