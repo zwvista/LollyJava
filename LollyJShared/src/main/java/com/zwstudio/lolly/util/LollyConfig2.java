@@ -1,7 +1,9 @@
 package com.zwstudio.lolly.util;
 
+import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
+import org.mybatis.spring.SqlSessionTemplate;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,7 +12,7 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
-@MapperScan("com.zwstudio.lolly.dao")
+@MapperScan("com.zwstudio.lolly.mybatis.mappers")
 @EnableTransactionManagement
 public class LollyConfig2 {
 	@Bean
@@ -30,6 +32,10 @@ public class LollyConfig2 {
 			setDataSource(dataSource());
 			setTypeAliasesPackage("com.zwstudio.lolly.domain");
 		}}.getObject();
+	}
+	@Bean
+	public SqlSession sqlSession() throws Exception {
+		return new SqlSessionTemplate(sqlSessionFactory());
 	}
 	@Bean
 	public DataSourceTransactionManager transactionManager(){
