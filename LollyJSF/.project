@@ -4,8 +4,14 @@
 	<comment></comment>
 	<projects>
 		<project>LollyJShared</project>
+		<project>LollyJSpring</project>
 	</projects>
 	<buildSpec>
+		<buildCommand>
+			<name>tern.eclipse.ide.core.ternBuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
 		<buildCommand>
 			<name>org.eclipse.wst.jsdt.core.javascriptValidator</name>
 			<arguments>

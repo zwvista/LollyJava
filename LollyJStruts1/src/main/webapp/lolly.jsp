@@ -3,7 +3,7 @@
 <%@taglib uri="http://struts.apache.org/tags-bean" prefix="bean"%>
 <html>
 <head>
-<title>Struts1 -Lolly</title>
+<title>Struts1 - Lolly</title>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script>

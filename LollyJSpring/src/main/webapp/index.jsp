@@ -1,4 +1,7 @@
 <html>
+<head>
+<title>Spring4 MVC - Lolly</title>
+</head>
 <body>
 <a href="lolly">lolly</a><br/>
 <a href="lolly2">lolly2</a><br/>

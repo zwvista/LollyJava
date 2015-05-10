@@ -6,7 +6,7 @@
 <%@ page session="false" %>
 <html>
 <head>
-<title>Spring4 MVC -Lolly</title>
+<title>Spring4 MVC jsp - Lolly</title>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/linq.js/2.2.0.2/linq.min.js"></script>

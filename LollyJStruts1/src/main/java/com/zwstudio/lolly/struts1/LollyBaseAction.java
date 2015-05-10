@@ -33,7 +33,6 @@ public class LollyBaseAction extends DispatchActionSupport {
 	    System.out.println(json);
         try {
     	    PrintWriter writer = response.getWriter();
-			writer = response.getWriter();
 	        writer.write(json);
 	        writer.flush();
 		} catch (IOException e) {

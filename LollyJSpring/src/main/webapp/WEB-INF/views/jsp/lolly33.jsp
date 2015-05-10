@@ -6,7 +6,7 @@
 <%@ page session="false" %>
 <html ng-app="app">
 <head>
-<title>Spring4 MVC -Lolly</title>
+<title>Spring4 MVC jsp - Lolly</title>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.0/angular.min.js"></script>

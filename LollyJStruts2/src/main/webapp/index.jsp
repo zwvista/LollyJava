@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Struts 2 Application - Welcome</title>
+<title>Struts2 - Lolly</title>
 </head>
 <body>
 <a href="lolly">lolly</a><br/>

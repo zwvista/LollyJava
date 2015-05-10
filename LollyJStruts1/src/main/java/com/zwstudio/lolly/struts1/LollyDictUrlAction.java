@@ -21,6 +21,6 @@ public class LollyDictUrlAction extends LollyBaseAction {
 			.getUrl()
 		);
  
-		return mapping.findForward("success");
+		return null;
 	}
 }
