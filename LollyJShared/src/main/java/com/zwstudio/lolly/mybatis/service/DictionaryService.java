@@ -1,8 +1,6 @@
 package com.zwstudio.lolly.mybatis.service;
 
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,20 +16,14 @@ public class DictionaryService {
 	@Autowired
 	DictionaryMapper mapper;
 
-	public List<DictionaryId> getIdByLang(int langid) {
-		return mapper.getIdByLang(langid);
-	}
 	public List<Dictionary> getDataByLang(int langid) {
-		return mapper.getDataByLang(langid);
+		List<DictionaryId> ids = mapper.getIdByLang(langid);
+		List<Dictionary> dicts = mapper.getDataByLang(langid);
+		for(int i = 0; i < ids.size(); i++)
+			dicts.get(i).setId(ids.get(i));
+		return dicts;
 	}
 	public List<String> getNamesByLang(int langid) {
 		return mapper.getNamesByLang(langid);
-	}
-	public Map<String, String> getNameIdMap(int langid) {
-		return getDataByLang(langid).stream()
-			.collect(Collectors.toMap(
-				(Dictionary r) -> r.getId().getDictname(),
-				(Dictionary r) -> Integer.toString(r.getId().getLangid())
-			));
 	}
 }

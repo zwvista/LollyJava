@@ -4,7 +4,6 @@ import java.beans.XMLEncoder;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.StringReader;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -27,8 +26,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
-import com.zwstudio.lolly.domain.Dictionary;
-import com.zwstudio.lolly.domain.DictionaryId;
 import com.zwstudio.lolly.mybatis.service.DictAllService;
 import com.zwstudio.lolly.mybatis.service.DictionaryService;
 import com.zwstudio.lolly.mybatis.service.LanguageService;
@@ -58,11 +55,7 @@ public class LollyController {
 			@ModelAttribute("formBean") LollyFormBean bean,
 			@RequestParam(value="langid", required=true) int langid,
 			ModelMap modelMap) {
-		List<DictionaryId> ids = dictService.getIdByLang(langid);
-		List<Dictionary> dicts = dictService.getDataByLang(langid);
-		for(int i = 0; i < ids.size(); i++)
-			dicts.get(i).setId(ids.get(i));
-		return createJsonResponse(dicts);
+		return createJsonResponse(dictService.getDataByLang(langid));
 	}
 	
 	@RequestMapping(value="dictList2", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)

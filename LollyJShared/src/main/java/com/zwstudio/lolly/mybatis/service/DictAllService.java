@@ -19,7 +19,6 @@ public class DictAllService {
 		return mapper.getDataByLang(langid);
 	}
     public DictAll getDataByLangDict(int langid, String dictname) {
-    	List<DictAll> lst = mapper.getDataByLangDict(langid, dictname);
-    	return lst.size() == 0 ? null : lst.get(0);
+    	return mapper.getDataByLangDict(langid, dictname);
 	}
 }

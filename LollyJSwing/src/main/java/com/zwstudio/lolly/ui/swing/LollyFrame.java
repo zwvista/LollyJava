@@ -1,56 +1,41 @@
 package com.zwstudio.lolly.ui.swing;
 
+import java.awt.BorderLayout;
+import java.awt.CardLayout;
+import java.awt.Component;
+import java.awt.EventQueue;
+import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.List;
+
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.concurrent.Worker;
 import javafx.concurrent.Worker.State;
-import javafx.embed.swing.JFXPanel;
-import javafx.scene.Scene;
-import javafx.scene.web.WebView;
-
-import javax.swing.JFrame;
-
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
-import javax.swing.JPanel;
-import javax.swing.JLabel;
-
-import java.awt.FlowLayout;
-import java.util.List;
 
 import javax.swing.DefaultListCellRenderer;
-import javax.swing.JComboBox;
-import javax.swing.JList;
-import javax.swing.JTextField;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+
+import org.eclipse.wb.swing.FocusTraversalOnArray;
+import org.jdesktop.beansbinding.AutoBinding;
+import org.jdesktop.beansbinding.AutoBinding.UpdateStrategy;
+import org.jdesktop.beansbinding.BeanProperty;
+import org.jdesktop.beansbinding.Bindings;
+import org.jdesktop.swingbinding.JComboBoxBinding;
+import org.jdesktop.swingbinding.SwingBindings;
 
 import com.zwstudio.lolly.domain.Dictionary;
 import com.zwstudio.lolly.domain.Language;
 import com.zwstudio.lolly.ui.component.JFXWebView;
-
-import org.jdesktop.swingbinding.JComboBoxBinding;
-import org.jdesktop.swingbinding.SwingBindings;
-import org.jdesktop.beansbinding.AutoBinding.UpdateStrategy;
-
-import java.awt.Font;
-
-import org.eclipse.wb.swing.FocusTraversalOnArray;
-
-import java.awt.Component;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-
-import org.jdesktop.beansbinding.BeanProperty;
-import org.jdesktop.observablecollections.ObservableList;
-import org.jdesktop.beansbinding.AutoBinding;
-import org.jdesktop.beansbinding.Bindings;
-import javax.swing.JLayeredPane;
-import java.awt.CardLayout;
 
 public class LollyFrame extends JFrame {
 
@@ -169,7 +154,8 @@ public class LollyFrame extends JFrame {
 						EventQueue.invokeLater(new Runnable() {
 							@Override
 							public void run() {
-								controller.wvDictOnline_succeeded(html);					}
+								controller.wvDictOnline_succeeded(html);			
+							}
 						});
 					}
 				});
