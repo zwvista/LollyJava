@@ -16,6 +16,8 @@ import com.zwstudio.lolly.ui.viewmodel.LollyViewModel;
 
 public class LollyController extends LollyViewModel {
 	
+	private static final long serialVersionUID = 1L;
+
 	public LollyFrame view;
 
 	@Getter

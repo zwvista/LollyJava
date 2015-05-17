@@ -9,21 +9,15 @@ import org.apache.struts.action.ActionForm;
 
 import com.zwstudio.lolly.domain.Language;
 
+@Getter @Setter
 public class LollyForm extends ActionForm {
 
 	private static final long serialVersionUID = 1L;
-	
-	@Getter @Setter
-	public List<Language> langList;
-	@Getter @Setter
-	public List<String> dictList;
-	@Getter @Setter
-	public int selectedLangID;
-	@Getter @Setter
-	public String selectedDictName;
-	@Getter @Setter
-	public String word;
-	@Getter @Setter
-	public String url;
 
+	public List<Language> langList;
+	public List<String> dictList;
+	public int selectedLangID;
+	public String selectedDictName;
+	public String word;
+	public String url;
 }

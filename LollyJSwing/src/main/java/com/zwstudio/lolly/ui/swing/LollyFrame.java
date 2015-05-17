@@ -39,6 +39,8 @@ import com.zwstudio.lolly.ui.component.JFXWebView;
 
 public class LollyFrame extends JFrame {
 
+	private static final long serialVersionUID = 1L;
+
 	LollyController controller;
 	
 	private JPanel contentPane;

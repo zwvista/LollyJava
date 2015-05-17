@@ -2,6 +2,7 @@ package com.zwstudio.lolly.ui.swing;
 
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.util.Enumeration;
 
 import javax.swing.UIManager;
 import javax.swing.plaf.FontUIResource;
@@ -41,7 +42,7 @@ public class LollyMain {
 	
 	public static void setUIFont(javax.swing.plaf.FontUIResource f)
 	{   
-	    java.util.Enumeration keys = UIManager.getDefaults().keys();
+	    Enumeration<Object> keys = UIManager.getDefaults().keys();
 	    while(keys.hasMoreElements())
 	    {
 	        Object key = keys.nextElement();

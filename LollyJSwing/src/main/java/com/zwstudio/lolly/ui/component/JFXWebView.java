@@ -31,4 +31,5 @@ public class JFXWebView extends JFXPanel {
             	engine.load(url);
             }
         });
-    }}
+    }
+}
