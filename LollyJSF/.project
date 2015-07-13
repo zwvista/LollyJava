@@ -4,7 +4,6 @@
 	<comment></comment>
 	<projects>
 		<project>LollyJShared</project>
-		<project>LollyJSpring</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
