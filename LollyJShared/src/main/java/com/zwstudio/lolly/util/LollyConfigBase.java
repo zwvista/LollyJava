@@ -19,9 +19,9 @@ public class LollyConfigBase {
 //		bean.setPassword("");
 		
 		bean.setDriverClassName("org.sqlite.JDBC");
-//		bean.setUrl("jdbc:sqlite:E:\\Education\\Lolly\\Lolly.db");
+		bean.setUrl("jdbc:sqlite:E:\\Education\\Lolly\\Lolly.db");
 //		bean.setUrl("jdbc:sqlite:C:\\zw\\backup\\Lolly.db");
-		bean.setUrl("jdbc:sqlite:/Users/zwvista/Documents/Programs/Lolly/Lolly.db");
+//		bean.setUrl("jdbc:sqlite:/Users/zwvista/Documents/Programs/Lolly/Lolly.db");
 		bean.setUsername("");
 		bean.setPassword("");
 		
