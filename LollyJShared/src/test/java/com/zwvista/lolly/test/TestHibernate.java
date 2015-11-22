@@ -9,14 +9,14 @@ import com.zwstudio.lolly.domain.DictAll;
 import com.zwstudio.lolly.hibernate.dao.DictAllDao;
 import com.zwstudio.lolly.util.LollyConfigHibernate;
 
-public class DaoTest {
+public class TestHibernate {
 
 	private AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(LollyConfigHibernate.class);
 
 	@Test
 	public void test() {
-		DictAllDao dictalldao = context.getBean(DictAllDao.class);
-		DictAll da = dictalldao.getDataByLangDict(1, "Cambridge");
+		DictAllDao dao = context.getBean(DictAllDao.class);
+		DictAll da = dao.getDataByLangDict(1, "Cambridge");
 		assertEquals("Url", "http://dictionary.cambridge.org/", da.getUrl());
 	}
 

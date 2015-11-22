@@ -9,8 +9,8 @@ import com.zwstudio.lolly.domain.Dictionary;
 import com.zwstudio.lolly.domain.DictionaryId;
 
 public interface DictionaryRepository extends CrudRepository<Dictionary, DictionaryId> {
-	@Query("SELECT * FROM DICTIONARIES WHERE LANGID = ?")
+	@Query(value="SELECT * FROM DICTIONARIES WHERE LANGID = ?",nativeQuery=true)
 	public List<Dictionary> getDataByLang(int langid);
-	@Query("SELECT DICTNAME FROM DICTIONARIES WHERE LANGID = ?")
+	@Query(value="SELECT DICTNAME FROM DICTIONARIES WHERE LANGID = ?",nativeQuery=true)
 	public List<String> getNamesByLang(int langid);
 }

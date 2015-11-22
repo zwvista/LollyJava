@@ -22,7 +22,7 @@ import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
 import org.thymeleaf.templateresolver.TemplateResolver;
 
 @Configuration
-@ComponentScan({"com.zwstudio.lolly.mybatis.service", "com.zwstudio.lolly.spring"})
+@ComponentScan("com.zwstudio.lolly.spring")
 @EnableWebMvc
 public class LollyConfigSpring extends WebMvcConfigurerAdapter {
 	@Override

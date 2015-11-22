@@ -1,46 +1,18 @@
 package com.zwstudio.lolly.util;
 
-import java.util.Properties;
-
 import org.hibernate.SessionFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBuilder;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-@Configuration
 @ComponentScan("com.zwstudio.lolly.hibernate.dao")
-@EnableTransactionManagement
-public class LollyConfigHibernate {
-	@Bean
-	public DriverManagerDataSource dataSource() {
-		DriverManagerDataSource bean = new DriverManagerDataSource();
-//		bean.setDriverClassName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-//		bean.setUrl("jdbc:sqlserver://ZHAOWEI-PC\\SQLEXPRESS;integratedSecurity=true;databaseName=Lolly");
-//		bean.setUsername("ZHAOWEI-PC\\zhaowei");
-//		bean.setPassword("");
-		
-		bean.setDriverClassName("org.sqlite.JDBC");
-//		bean.setUrl("jdbc:sqlite:E:\\Education\\Lolly\\Lolly.db");
-//		bean.setUrl("jdbc:sqlite:C:\\zw\\backup\\Lolly.db");
-		bean.setUrl("jdbc:sqlite:/Users/zwvista/Documents/Programs/Lolly/Lolly.db");
-		bean.setUsername("");
-		bean.setPassword("");
-		
-		return bean;
-	}
+public class LollyConfigHibernate extends LollyConfigBase {
 	@Bean
 	public SessionFactory sessionFactory() {
 		return new LocalSessionFactoryBuilder(dataSource())
 			.scanPackages("com.zwstudio.lolly.domain")
-			.addProperties(new Properties() {{
-//				setProperty("hibernate.dialect", "org.hibernate.dialect.SQLServerDialect");
-				setProperty("hibernate.dialect", "com.applerao.hibernatesqlite.dialect.SQLiteDialect");
-				setProperty("hibernate.show_sql", "true");
-			}}).buildSessionFactory();
+			.addProperties(properties()).buildSessionFactory();
 	}
 	@Bean
 	public HibernateTransactionManager transactionManager(){

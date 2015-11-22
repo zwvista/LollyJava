@@ -8,6 +8,7 @@ import org.springframework.data.repository.CrudRepository;
 import com.zwstudio.lolly.domain.Language;
 
 public interface LanguageRepository extends CrudRepository<Language, Integer>, LanguageRepositoryCustom {
-	@Query("SELECT * FROM LANGUAGES WHERE LANGID > 0")
+	@Query(value="SELECT * FROM LANGUAGES WHERE LANGID > 0",nativeQuery=true)
+//	@Query("SELECT t FROM LANGUAGES t WHERE t.LANGID > 0")
 	public List<Language> getData();
 }

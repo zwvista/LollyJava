@@ -6,27 +6,12 @@ import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-@Configuration
 @MapperScan("com.zwstudio.lolly.mybatis.mappers")
-@EnableTransactionManagement
-public class LollyConfigMyBatis {
-	@Bean
-	public DriverManagerDataSource dataSource() {
-		DriverManagerDataSource bean = new DriverManagerDataSource();
-		bean.setDriverClassName("org.sqlite.JDBC");
-//		bean.setUrl("jdbc:sqlite:E:\\Education\\Lolly\\Lolly.db");
-//		bean.setUrl("jdbc:sqlite:C:\\zw\\backup\\Lolly.db");
-		bean.setUrl("jdbc:sqlite:/Users/zwvista/Documents/Programs/Lolly/Lolly.db");
-		bean.setUsername("");
-		bean.setPassword("");
-		
-		return bean;
-	}
+@ComponentScan("com.zwstudio.lolly.mybatis.service")
+public class LollyConfigMyBatis extends LollyConfigBase {
 	@Bean
 	public SqlSessionFactory sqlSessionFactory() throws Exception {
 		return new SqlSessionFactoryBean() {{

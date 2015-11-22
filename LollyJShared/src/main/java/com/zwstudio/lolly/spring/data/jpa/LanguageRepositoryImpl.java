@@ -9,10 +9,10 @@ import com.zwstudio.lolly.domain.Language;
 
 public class LanguageRepositoryImpl implements LanguageRepositoryCustom {
 	@Autowired
-	LanguageRepository languageRepository;
+	LanguageRepository repository;
 	
 	public Map<String, String> getIdNameMap() {
-		return languageRepository.getData().stream()
+		return repository.getData().stream()
 			.collect(Collectors.toMap(
 				(Language r) -> Integer.toString(r.getLangid()),
 				Language::getLangname
