@@ -7,11 +7,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.zwstudio.lolly.dao.DictAllDao;
-import com.zwstudio.lolly.dao.DictionaryDao;
-import com.zwstudio.lolly.dao.LanguageDao;
 import com.zwstudio.lolly.domain.DictAll;
 import com.zwstudio.lolly.domain.Language;
+import com.zwstudio.lolly.hibernate.dao.DictAllDao;
+import com.zwstudio.lolly.hibernate.dao.DictionaryDao;
+import com.zwstudio.lolly.hibernate.dao.LanguageDao;
 
 @Service
 public class LollyFormBo {

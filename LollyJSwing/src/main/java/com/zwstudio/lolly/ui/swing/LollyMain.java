@@ -9,7 +9,7 @@ import javax.swing.plaf.FontUIResource;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import com.zwstudio.lolly.util.LollyConfig;
+import com.zwstudio.lolly.util.LollyConfigHibernate;
 
 public class LollyMain {
 	
@@ -27,7 +27,7 @@ public class LollyMain {
 			e.printStackTrace();
 		}
 		setUIFont(new FontUIResource("Dialog", Font.PLAIN, 15));
-		context = new AnnotationConfigApplicationContext(LollyConfig.class, LollyConfigSwing.class);
+		context = new AnnotationConfigApplicationContext(LollyConfigHibernate.class, LollyConfigSwing.class);
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {

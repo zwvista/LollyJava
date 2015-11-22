@@ -5,13 +5,13 @@ import javax.servlet.Filter;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
-import com.zwstudio.lolly.util.LollyConfig2;
+import com.zwstudio.lolly.util.LollyConfigMyBatis;
 
 public class AppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
-		return new Class<?>[]{LollyConfig2.class};
+		return new Class<?>[]{LollyConfigMyBatis.class};
 	}
 
 	@Override

@@ -17,13 +17,13 @@ import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.jgoodies.binding.beans.Model;
-import com.zwstudio.lolly.dao.DictAllDao;
-import com.zwstudio.lolly.dao.DictionaryDao;
-import com.zwstudio.lolly.dao.LanguageDao;
 import com.zwstudio.lolly.domain.DictAll;
 import com.zwstudio.lolly.domain.Dictionary;
 import com.zwstudio.lolly.domain.DictionaryId;
 import com.zwstudio.lolly.domain.Language;
+import com.zwstudio.lolly.hibernate.dao.DictAllDao;
+import com.zwstudio.lolly.hibernate.dao.DictionaryDao;
+import com.zwstudio.lolly.hibernate.dao.LanguageDao;
 
 public class LollyViewModel extends Model {
 

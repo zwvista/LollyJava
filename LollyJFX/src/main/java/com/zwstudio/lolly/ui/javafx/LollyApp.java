@@ -14,7 +14,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
-import com.zwstudio.lolly.util.LollyConfig;
+import com.zwstudio.lolly.util.LollyConfigHibernate;
 
 @Configuration
 @ComponentScan
@@ -30,7 +30,7 @@ public class LollyApp extends Application {
 	@Override
 	public void init() throws Exception {
 		super.init();
-		context = new AnnotationConfigApplicationContext(LollyConfig.class, LollyApp.class);
+		context = new AnnotationConfigApplicationContext(LollyConfigHibernate.class, LollyApp.class);
 	}
 
 	@Override

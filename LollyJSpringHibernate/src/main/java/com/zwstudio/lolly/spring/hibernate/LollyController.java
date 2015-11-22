@@ -26,9 +26,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
-import com.zwstudio.lolly.dao.DictAllDao;
-import com.zwstudio.lolly.dao.DictionaryDao;
-import com.zwstudio.lolly.dao.LanguageDao;
+import com.zwstudio.lolly.hibernate.dao.DictAllDao;
+import com.zwstudio.lolly.hibernate.dao.DictionaryDao;
+import com.zwstudio.lolly.hibernate.dao.LanguageDao;
 
 @Controller
 public class LollyController {

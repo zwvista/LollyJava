@@ -1,4 +1,4 @@
-package com.zwstudio.lolly.dao;
+package com.zwstudio.lolly.hibernate.dao;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

@@ -9,12 +9,12 @@ import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;  
 import org.springframework.web.servlet.DispatcherServlet;  
 
-import com.zwstudio.lolly.util.LollyConfig;
+import com.zwstudio.lolly.util.LollyConfigHibernate;
 
 public class WebInitializer implements WebApplicationInitializer {
 	public void onStartup(ServletContext servletContext) throws ServletException {     
         AnnotationConfigWebApplicationContext ctx = new AnnotationConfigWebApplicationContext();
-        ctx.register(LollyConfig.class, LollyConfigSpring.class);
+        ctx.register(LollyConfigHibernate.class, LollyConfigSpring.class);
         ctx.setServletContext(servletContext);
         
         Dynamic servlet = servletContext.addServlet("dispatcher", new DispatcherServlet(ctx));

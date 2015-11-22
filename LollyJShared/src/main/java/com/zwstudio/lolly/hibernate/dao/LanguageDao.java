@@ -1,4 +1,4 @@
-package com.zwstudio.lolly.dao;
+package com.zwstudio.lolly.hibernate.dao;
 
 import java.util.List;
 import java.util.Map;
