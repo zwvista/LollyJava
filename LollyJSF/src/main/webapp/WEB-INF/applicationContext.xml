@@ -8,7 +8,7 @@
  
 	<context:annotation-config/>
 	<!-- Importing java-config class, which are annotated with @Configuration -->
-	<bean class="com.zwstudio.lolly.util.LollyConfig" />
+	<bean class="com.zwstudio.lolly.util.LollyConfigHibernate" />
 
 <!--    	<bean class="com.zwstudio.lolly.jfs.LollyFormBo" /> -->
 

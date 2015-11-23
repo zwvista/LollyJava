@@ -12,20 +12,19 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 public class LollyConfigBase {
 	@Bean
 	public DriverManagerDataSource dataSource() {
-		DriverManagerDataSource bean = new DriverManagerDataSource();
-//		bean.setDriverClassName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-//		bean.setUrl("jdbc:sqlserver://ZHAOWEI-PC\\SQLEXPRESS;integratedSecurity=true;databaseName=Lolly");
-//		bean.setUsername("ZHAOWEI-PC\\zhaowei");
-//		bean.setPassword("");
+		return new DriverManagerDataSource() {{
+//			setDriverClassName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+//			setUrl("jdbc:sqlserver://ZHAOWEI-PC\\SQLEXPRESS;integratedSecurity=true;databaseName=Lolly");
+//			setUsername("ZHAOWEI-PC\\zhaowei");
+//			setPassword("");
 		
-		bean.setDriverClassName("org.sqlite.JDBC");
-		bean.setUrl("jdbc:sqlite:E:\\Education\\Lolly\\Lolly.db");
-//		bean.setUrl("jdbc:sqlite:C:\\zw\\backup\\Lolly.db");
-//		bean.setUrl("jdbc:sqlite:/Users/zwvista/Documents/Programs/Lolly/Lolly.db");
-		bean.setUsername("");
-		bean.setPassword("");
-		
-		return bean;
+			setDriverClassName("org.sqlite.JDBC");
+//			setUrl("jdbc:sqlite:E:\\Education\\Lolly\\Lolly.db");
+//			setUrl("jdbc:sqlite:C:\\zw\\backup\\Lolly.db");
+			setUrl("jdbc:sqlite:/Users/zwvista/Documents/Programs/Lolly/Lolly.db");
+			setUsername("");
+			setPassword("");
+		}};
 	}
 	Properties properties() {
 		return new Properties() {

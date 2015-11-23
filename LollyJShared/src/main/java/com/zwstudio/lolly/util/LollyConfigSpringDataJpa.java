@@ -22,7 +22,7 @@ public class LollyConfigSpringDataJpa extends LollyConfigBase {
 	}
     @Bean
     JpaTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {
-        return new JpaTransactionManager(){
+        return new JpaTransactionManager() {
         	private static final long serialVersionUID = 1L;
 		{
         	setEntityManagerFactory(entityManagerFactory);

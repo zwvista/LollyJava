@@ -15,7 +15,7 @@ public class LollyConfigHibernate extends LollyConfigBase {
 			.addProperties(properties()).buildSessionFactory();
 	}
 	@Bean
-	public HibernateTransactionManager transactionManager(){
+	public HibernateTransactionManager transactionManager() {
 		return new HibernateTransactionManager(sessionFactory());
 	}
 }

@@ -24,7 +24,7 @@ public class LollyConfigMyBatis extends LollyConfigBase {
 		return new SqlSessionTemplate(sqlSessionFactory());
 	}
 	@Bean
-	public DataSourceTransactionManager transactionManager(){
+	public DataSourceTransactionManager transactionManager() {
 		return new DataSourceTransactionManager(dataSource());
 	}
 }
