@@ -9,6 +9,6 @@ import com.zwstudio.lolly.domain.Language;
 
 public interface LanguageRepository extends CrudRepository<Language, Integer>, LanguageRepositoryCustom {
 //	@Query(value="SELECT * FROM LANGUAGES WHERE LANGID > 0",nativeQuery=true)
-	@Query("SELECT t FROM Language t WHERE t.langid > 0")
+	@Query("from Language where langid > 0")
 	public List<Language> getData();
 }

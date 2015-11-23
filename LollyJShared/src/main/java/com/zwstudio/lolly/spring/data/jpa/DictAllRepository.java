@@ -11,12 +11,12 @@ import com.zwstudio.lolly.domain.DictAllId;
 
 public interface DictAllRepository extends CrudRepository<DictAll, DictAllId> {
 //	@Query(value="SELECT * FROM DICTALL WHERE LANGID = ?",nativeQuery=true)
-	@Query("SELECT t FROM DictAll t WHERE t.id.langid = ?")
+	@Query("from DictAll where id.langid = ?")
 	public List<DictAll> getDataByLang(int langid);
 
 	// No need to return a list if the query returns only one row
 	// @Param annotation for more than one parameters
 //	@Query(value="SELECT * FROM DICTALL WHERE LANGID = :langid AND DICTNAME = :dictname",nativeQuery=true)
-	@Query("SELECT t FROM DictAll t WHERE t.id.langid = :langid AND t.id.dictname = :dictname")
+	@Query("from DictAll where id.langid = :langid and id.dictname = :dictname")
     public DictAll getDataByLangDict(@Param("langid") int langid, @Param("dictname") String dictname);
 }

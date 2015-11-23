@@ -15,8 +15,9 @@ public class LanguageDao extends BaseDao {
 	@SuppressWarnings("unchecked")
 	public List<Language> getData() {
 		return getCurrentSession()
-			.createSQLQuery("SELECT * FROM LANGUAGES WHERE LANGID > 0")
-			.addEntity(Language.class)
+//			.createSQLQuery("SELECT * FROM LANGUAGES WHERE LANGID > 0")
+//			.addEntity(Language.class)
+			.createQuery("from Language where langid > 0")
 			.list();
 	}
 	public Map<String, String> getIdNameMap() {

@@ -13,15 +13,17 @@ public class DictAllDao extends BaseDao {
     @SuppressWarnings("unchecked")
 	public List<DictAll> getDataByLang(int langid) {
 		return getCurrentSession()
-			.createSQLQuery("SELECT * FROM DICTALL WHERE LANGID = :langid")
-			.addEntity(DictAll.class)
+//			.createSQLQuery("SELECT * FROM DICTALL WHERE LANGID = :langid")
+//			.addEntity(DictAll.class)
+			.createQuery("from DictAll where id.langid = ?")
 			.setParameter("langid", langid)
 			.list();
 	}
     public DictAll getDataByLangDict(int langid, String dictname) {
     	return (DictAll) getCurrentSession()
-			.createSQLQuery("SELECT * FROM DICTALL WHERE LANGID = :langid AND DICTNAME = :dictname")
-			.addEntity(DictAll.class)
+//			.createSQLQuery("SELECT * FROM DICTALL WHERE LANGID = :langid AND DICTNAME = :dictname")
+// 			.addEntity(DictAll.class)
+			.createQuery("from DictAll where id.langid = :langid and id.dictname = :dictname")
 			.setParameter("langid", langid)
 			.setParameter("dictname", dictname)
 			.uniqueResult();
