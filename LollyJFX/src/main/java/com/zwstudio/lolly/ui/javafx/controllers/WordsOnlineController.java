@@ -1,4 +1,4 @@
-package com.zwstudio.lolly.ui.javafx;
+package com.zwstudio.lolly.ui.javafx.controllers;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -31,7 +31,7 @@ import com.zwstudio.lolly.domain.Language;
 import com.zwstudio.lolly.ui.viewmodel.LollyViewModel;
 
 @Controller
-public class LollyController extends LollyViewModel implements Initializable {
+public class WordsOnlineController extends LollyViewModel implements Initializable {
 
 	private static final long serialVersionUID = 1L;
 	
