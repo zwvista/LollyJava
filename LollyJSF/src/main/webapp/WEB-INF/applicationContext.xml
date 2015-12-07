@@ -12,6 +12,6 @@
 
 <!--    	<bean class="com.zwstudio.lolly.jfs.LollyFormBo" /> -->
 
-	<context:component-scan base-package="com.zwstudio.lolly.jsf" />
+	<context:component-scan base-package="com.zwstudio.lolly.web.jsf" />
  	
 </beans>

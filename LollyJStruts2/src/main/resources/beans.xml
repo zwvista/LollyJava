@@ -10,6 +10,6 @@
 	<!-- Importing java-config class, which are annotated with @Configuration -->
 	<bean class="com.zwstudio.lolly.util.LollyConfigHibernate" />
 
-	<context:component-scan base-package="com.zwstudio.lolly.struts2" />
+	<context:component-scan base-package="com.zwstudio.lolly.web.struts2" />
 	
 </beans>

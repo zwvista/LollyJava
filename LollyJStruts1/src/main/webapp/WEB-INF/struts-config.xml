@@ -6,7 +6,7 @@
 <struts-config>
 	<form-beans>
 		<form-bean name="lollyForm"   
-		      type="com.zwstudio.lolly.struts1.LollyForm" />
+		      type="com.zwstudio.lolly.web.struts1.LollyForm" />
 	</form-beans>
 
 	<action-mappings>

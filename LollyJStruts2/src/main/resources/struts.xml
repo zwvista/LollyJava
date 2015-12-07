@@ -24,13 +24,13 @@
 	<action name="index">
 	    <result>/index.jsp</result>
 	</action>
-	<action name="lolly" class="com.zwstudio.lolly.struts2.LollyAction">
+	<action name="lolly" class="com.zwstudio.lolly.web.struts2.LollyAction">
 		<result>/lolly.jsp</result>
 	</action>
-	<action name="lolly2" class="com.zwstudio.lolly.struts2.LollyAction">
+	<action name="lolly2" class="com.zwstudio.lolly.web.struts2.LollyAction">
 		<result type="velocity">/lolly2.jsp</result>
 	</action>
-	<action name="lolly3" class="com.zwstudio.lolly.struts2.LollyAction">
+	<action name="lolly3" class="com.zwstudio.lolly.web.struts2.LollyAction">
 		<result type="freemarker">/lolly3.jsp</result>
 	</action>
 </package>
@@ -50,22 +50,22 @@
 	</interceptors>
 	<default-interceptor-ref name="jsonStack" />
 
-	<action name="dictList" class="com.zwstudio.lolly.struts2.LollyAction" method="writeDictList">
+	<action name="dictList" class="com.zwstudio.lolly.web.struts2.LollyAction" method="writeDictList">
 		<result type="json">/lolly.jsp</result>
 	</action>
-	<action name="dictUrl" class="com.zwstudio.lolly.struts2.LollyAction" method="writeDictUrl">
+	<action name="dictUrl" class="com.zwstudio.lolly.web.struts2.LollyAction" method="writeDictUrl">
 		<result type="json">/lolly.jsp</result>
 	</action>
-	<action name="dictList2" class="com.zwstudio.lolly.struts2.LollyAction" method="writeDictList">
+	<action name="dictList2" class="com.zwstudio.lolly.web.struts2.LollyAction" method="writeDictList">
 		<result type="json">/lolly2.jsp</result>
 	</action>
-	<action name="dictUrl2" class="com.zwstudio.lolly.struts2.LollyAction" method="writeDictUrl">
+	<action name="dictUrl2" class="com.zwstudio.lolly.web.struts2.LollyAction" method="writeDictUrl">
 		<result type="json">/lolly2.jsp</result>
 	</action>
-	<action name="dictList3" class="com.zwstudio.lolly.struts2.LollyAction" method="writeDictList">
+	<action name="dictList3" class="com.zwstudio.lolly.web.struts2.LollyAction" method="writeDictList">
 		<result type="json">/lolly3.jsp</result>
 	</action>
-	<action name="dictUrl3" class="com.zwstudio.lolly.struts2.LollyAction" method="writeDictUrl">
+	<action name="dictUrl3" class="com.zwstudio.lolly.web.struts2.LollyAction" method="writeDictUrl">
 		<result type="json">/lolly3.jsp</result>
 	</action>
 </package>
