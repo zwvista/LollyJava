@@ -59,7 +59,6 @@ public class LollyApp extends Application {
 	public static void showMain(Stage stage) throws IOException {
 		Parent page = load("views/Main.fxml");
 		Scene scene = new Scene(page);
-		scene.getStylesheets().add(LollyApp.class.getResource("views/Main.css").toExternalForm());
 		stage.setScene(scene);
 		stage.show();
 	}
@@ -68,7 +67,6 @@ public class LollyApp extends Application {
     	WordsOnlineController ctl = context.getBean(WordsOnlineController.class);
 		Parent page = load("views/WordsOnline.fxml");
 		Scene scene = new Scene(page);
-		scene.getStylesheets().add(LollyApp.class.getResource("views/Main.css").toExternalForm());
 		Stage stage = new Stage();
 		stage.setScene(scene);
 		stage.addEventHandler(WindowEvent.WINDOW_SHOWING, w -> ctl.windowShowing());
