@@ -28,7 +28,6 @@ public class MainController implements Initializable {
     	try {
 			LollyApp.showWordsOnline();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
     }
