@@ -23,6 +23,5 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry combineaccessrules="false" kind="src" path="/LollyJShared"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/LollyJDomain"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
