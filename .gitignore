@@ -4,4 +4,8 @@
 .settings/
 target/
 bin/
-/LollyJShared/.gradle
+.sbtserver/
+.gradle/
+LollyJPlay/activator
+LollyJPlay/activator-launch-1.3.7.jar
+LollyJPlay/activator.bat

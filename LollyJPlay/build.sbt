@@ -20,3 +20,5 @@ routesGenerator := InjectedRoutesGenerator
 EclipseKeys.preTasks := Seq(compile in Compile)
 EclipseKeys.projectFlavor := EclipseProjectFlavor.Java           // Java project. Don't expect Scala IDE
 EclipseKeys.createSrc := EclipseCreateSrc.ValueSet(EclipseCreateSrc.ManagedClasses, EclipseCreateSrc.ManagedResources)  // Use .class files instead of generated .scala files for views and routes 
+
+fork in run := true
