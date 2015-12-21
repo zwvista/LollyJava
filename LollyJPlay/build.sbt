@@ -22,5 +22,3 @@ EclipseKeys.projectFlavor := EclipseProjectFlavor.Java           // Java project
 EclipseKeys.createSrc := EclipseCreateSrc.ValueSet(EclipseCreateSrc.ManagedClasses, EclipseCreateSrc.ManagedResources)  // Use .class files instead of generated .scala files for views and routes 
 
 fork in run := true
-
-fork in run := true
