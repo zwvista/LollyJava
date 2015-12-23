@@ -9,7 +9,15 @@ scalaVersion := "2.11.6"
 libraryDependencies ++= Seq(
   javaJdbc,
   cache,
-  javaWs
+  javaWs,
+  "org.hibernate" % "hibernate-core" % "4.3.9.Final",
+  "org.hibernate" % "hibernate-entitymanager" % "4.3.9.Final",
+  "org.springframework.data" % "spring-data-jpa" % "1.9.1.RELEASE",
+	"org.springframework" % "spring-context" % "4.1.6.RELEASE",
+    "org.springframework" % "spring-orm" % "4.1.6.RELEASE",
+    "org.springframework" % "spring-jdbc" % "4.1.6.RELEASE",
+    "org.springframework" % "spring-tx" % "4.1.6.RELEASE",
+  	"org.xerial" % "sqlite-jdbc" % "3.8.11.2"
 )
 
 // Play provides two styles of routers, one expects its actions to be injected, the
