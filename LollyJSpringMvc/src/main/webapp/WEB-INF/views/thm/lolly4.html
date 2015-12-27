@@ -4,19 +4,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Spring4 Mvc thymeleaf - Lolly</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/linq.js/2.2.0.2/linq.min.js"></script>
 <script>
 $(function() {
 	var $lang = $('#lang');
 	var $dict = $('#dict');
 	$lang.change(function() {
  	    $.post("dictList3", $(this).serialize(), function(response) {
-			$("#dict option").remove();
-			var options = Enumerable.From(response).Aggregate("",
-				"acc, item => acc + '<option>' + item + '</option>'"
-			);
-			// alert(options);
-			$dict.html(options);
+            $dict.empty();
+            $.each(response, function(index, dict) {
+                $dict.append($('<option/>', {text: dict}));
+            });
  		});
 	});
 	$lang.change();
