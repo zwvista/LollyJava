@@ -13,7 +13,7 @@ $(function() {
 	var $lang = $('#lang');
 	var $dict = $('#dict');
 	$lang.change(function() {
- 	    $.post("dictList", $(this).serialize(), function(response) {
+ 	    $.post("dictList", $('#form').serialize(), function(response) {
             $dict.empty();
             $.each(response.dictList, function(index, dict) {
                 $dict.append($('<option/>', {text: dict}));
@@ -22,11 +22,9 @@ $(function() {
 	});
 	$lang.change();
 	$('#search').click(function() {
-		// cannot use $(this).serialize()
 	    $.post("dictUrl", $('#form').serialize(), function(response) {
 			var word = $('#word').val();
 			var url = response.url.replace('{0}', encodeURIComponent(word));
-			// alert(url);
 			$('#dictframe').attr('src', url);
 	    });
 	    return false;

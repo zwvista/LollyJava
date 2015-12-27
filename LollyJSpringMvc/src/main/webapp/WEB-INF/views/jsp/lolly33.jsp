@@ -17,7 +17,7 @@ angular.module('app', []).controller("lollyCtrl", ["$scope", "$http", "$sce",
 		// ng-change won't work without ng-model
 		var $lang = $('#lang');
 		$lang.change(function() {
-			$http.post('dictList3', $(this).serialize(), {
+			$http.post('dictList3', $('#form').serialize(), {
 				headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 			}).success(function(data) {
 				// if we are not inside angular, we can use the following code instead
@@ -45,7 +45,7 @@ angular.module('app', []).controller("lollyCtrl", ["$scope", "$http", "$sce",
 </script>
 </head>
 <body ng-controller="lollyCtrl" id="lollyCtrl">
-<form:form id="form" method="post" modelAttribute="formBean">
+<form:form id="form" modelAttribute="formBean">
 	<table>
 		<tr>
 			<td>Language:</td>

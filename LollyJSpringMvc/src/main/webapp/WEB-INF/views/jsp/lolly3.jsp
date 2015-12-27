@@ -14,7 +14,7 @@ $(function() {
 	var $lang = $('#lang');
 	var $dict = $('#dict');
 	$lang.change(function() {
- 	    $.post("dictList3", $(this).serialize(), function(response) {
+ 	    $.post("dictList3", $('#form').serialize(), function(response) {
             $dict.empty();
             $.each(response, function(index, dict) {
                 $dict.append($('<option/>', {text: dict}));
@@ -23,11 +23,9 @@ $(function() {
 	});
 	$lang.change();
 	$('#search').click(function() {
-		// cannot use $(this).serialize()
 	    $.post("dictall3", $('#form').serialize(), function(response) {
 			var word = $('#word').val();
 			var url = response.url.replace('{0}', encodeURIComponent(word));
-			// alert(url);
 			$('#dictframe').attr('src', url);
 	    });
 	});
@@ -35,7 +33,7 @@ $(function() {
 </script>
 </head>
 <body>
-<form:form id="form" method="post" modelAttribute="formBean">
+<form:form id="form" modelAttribute="formBean">
 	<table>
 		<tr>
 			<td>Language:</td>

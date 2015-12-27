@@ -52,7 +52,6 @@ public class LollyControllerHibernate {
 	
 	@RequestMapping(value="/hibernate/dictList", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody ResponseEntity<String> dictList(
-			@ModelAttribute("formBean") LollyFormBean bean,
 			@RequestParam(value="langid", required=true) int langid,
 			ModelMap modelMap) {
 		return createJsonResponse(dictDao.getDataByLang(langid));
@@ -60,7 +59,6 @@ public class LollyControllerHibernate {
 	
 	@RequestMapping(value="/hibernate/dictList2", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody ResponseEntity<String> dictList2(
-			@ModelAttribute("formBean") LollyFormBean bean,
 			@RequestParam(value="langid", required=true) int langid,
 			ModelMap modelMap) {
 		return createJsonResponse(
@@ -70,7 +68,6 @@ public class LollyControllerHibernate {
 
 	@RequestMapping(value="/hibernate/dictall2", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody ResponseEntity<String> dictall2(
-			@ModelAttribute("formBean") LollyFormBean bean,
 			@RequestParam(value="langid", required=true) int langid,
 			@RequestParam(value="dictname", required=true) String dictname,
 			ModelMap modelMap) {

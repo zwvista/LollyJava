@@ -9,20 +9,17 @@
 <title>Spring4 Mvc jsp - Lolly</title>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/linq.js/2.2.0.2/linq.min.js"></script>
 <script>
 $(function() {
 	var $lang = $('#lang');
 	var $dict = $('#dict');
 	$lang.change(function() {
 	    $.getJSON("dictList", {langid: $lang.val()}, function(response) {
-			$("#dict option").remove();
-			var options = Enumerable.From(response).Aggregate("", function(acc, item) {
+            $dict.empty();
+            $.each(response, function(index, item) {
 				var jstring = encodeURIComponent(JSON.stringify(item));
-				return acc + '<option value=' + jstring + '>' + item.id.dictname + '</option>';
-			});
-			// alert(options);
-			$dict.html(options);
+                $dict.append($('<option/>', {value: jstring, text: item.id.dictname}));
+            });
 	    });
 	});
 	$lang.change();
@@ -37,7 +34,7 @@ $(function() {
 </script>
 </head>
 <body>
-<form:form id="form" method="post" modelAttribute="formBean">
+<form:form id="form" modelAttribute="formBean">
 	<table>
 		<tr>
 			<td>Language:</td>

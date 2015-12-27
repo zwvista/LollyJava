@@ -9,27 +9,23 @@
 <title>Spring4 Mvc jsp - Lolly</title>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/linq.js/2.2.0.2/linq.min.js"></script>
 <script>
 $(function() {
 	var $lang = $('#lang');
 	var $dict = $('#dict');
 	$lang.change(function() {
 	    $.getJSON("dictList2", {langid: $lang.val()}, function(response) {
-			$("#dict option").remove();
-			var options = Enumerable.From(response).Aggregate("",
-				"acc, item => acc + '<option>' + item + '</option>'"
-			);
-			// alert(options);
-			$dict.html(options);
+            $dict.empty();
+            $.each(response, function(index, dict) {
+                $dict.append($('<option/>', {text: dict}));
+            });
 	    });
 	});
 	$lang.change();
 	$('#search').click(function() {
-	    $.getJSON("dictall2", {langid: $lang.val(), dictname:$dict.val()}, function(response) {
+	    $.getJSON("dictall2", {langid: $lang.val(), dictname: $dict.val()}, function(response) {
 			var word = $('#word').val();
 			var url = response.url.replace('{0}', encodeURIComponent(word));
-			// alert(url);
 			$('#dictframe').attr('src', url);
 	    });
 	});
@@ -37,7 +33,7 @@ $(function() {
 </script>
 </head>
 <body>
-<form:form id="form" method="post" modelAttribute="formBean">
+<form:form id="form" modelAttribute="formBean">
 	<table>
 		<tr>
 			<td>Language:</td>
