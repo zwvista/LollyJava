@@ -11,7 +11,7 @@
 	<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
 	<!-- Spring -->
-	<spring-framework.version>4.1.1.RELEASE</spring-framework.version>
+	<spring-framework.version>4.1.8.RELEASE</spring-framework.version>
 
 	<!-- Logging -->
 	<logback.version>1.0.13</logback.version>
@@ -19,11 +19,6 @@
 
 </properties>
   <dependencies>
-	<dependency>
-		<groupId>com.miglayout</groupId>
-		<artifactId>miglayout-swing</artifactId>
-		<version>4.2</version>
-	</dependency>
 	<dependency>
 	   <groupId>org.javassist</groupId>
 	   <artifactId>javassist</artifactId>

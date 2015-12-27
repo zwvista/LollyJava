@@ -1,6 +1,7 @@
 package controllers;
 
-import com.google.inject.Inject;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.zwstudio.lolly.domain.Language;
 import com.zwstudio.lolly.spring.data.jpa.DictAllRepository;
 import com.zwstudio.lolly.spring.data.jpa.DictionaryRepository;
@@ -11,13 +12,14 @@ import play.mvc.Result;
 import views.html.index;
 import views.html.lolly;
 
+@org.springframework.stereotype.Controller
 public class Application extends Controller {
 	
-	@Inject
+	@Autowired
 	protected LanguageRepository langRepository;
-	@Inject
+	@Autowired
 	protected DictionaryRepository dictRepository;
-	@Inject
+	@Autowired
 	protected DictAllRepository dictallRepository;
 	
     public Result index() {
@@ -26,7 +28,7 @@ public class Application extends Controller {
         return ok(index.render("Your new application is ready."));
     }
     public Result lolly() {
-    	return ok(lolly.render("Your new application is ready."));
+    	return ok(lolly.render());
     }
 
 }
