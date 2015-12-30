@@ -1,6 +1,5 @@
 .classpath
 .springBeans
-.settings/
 target/
 bin/
 .sbtserver/
