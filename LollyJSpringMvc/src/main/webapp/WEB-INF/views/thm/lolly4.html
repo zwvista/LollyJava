@@ -28,31 +28,19 @@ $(function() {
 </script>
 </head>
 <body>
-<form id="form" method="post" th:object="${formBean}">
-	<table>
-		<tr>
-			<td>Language:</td>
-			<td>
-				<select th:field="*{selectedLangID}" id="lang" >
-					<option th:each="lang : ${formBean.langList}"
-          					th:value="${lang.langid}"
-          					th:text="${lang.langname}"></option>
-				</select>
-			</td>
-			<td>Dictionary:</td>
-			<td>
-				<select th:field="*{selectedDictName}" id="dict">
-				</select>
-			</td>
-		</tr>
-		<tr>
-			<td>Word:</td>
-			<td colspan="2"><input type="text" th:field="*{word}" id="word" /></td>
-            <td>
-                <input type="button" value="Search" id='search' />
-            </td>
-        </tr>
-	</table>
+<form id="form" th:object="${formBean}">
+	<label for='selectedLangID'>Language:</label>
+	<select th:field="*{selectedLangID}" id="lang" >
+		<option th:each="lang : ${formBean.langList}"
+				th:value="${lang.langid}"
+				th:text="${lang.langname}" />
+	</select>
+	<label for='selectedDictName'>Dictionary:</label>
+	<select th:field="*{selectedDictName}" id="dict">
+	</select>
+	<label for='word'>Word:</label>
+	<input type="text" th:field="*{word}" id="word" />
+	<input type="button" value="Search" id='search' />
 </form>
 <iframe id='dictframe' width='100%' height='500'>
 </iframe>

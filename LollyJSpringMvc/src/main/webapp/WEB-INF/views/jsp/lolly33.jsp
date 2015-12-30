@@ -4,6 +4,7 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="s" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ page session="false" %>
+<!DOCTYPE html>
 <html ng-app="app">
 <head>
 <title>Spring4 Mvc jsp - Lolly</title>
@@ -46,31 +47,19 @@ angular.module('app', []).controller("lollyCtrl", ["$scope", "$http", "$sce",
 </head>
 <body ng-controller="lollyCtrl" id="lollyCtrl">
 <form:form id="form" modelAttribute="formBean">
-	<table>
-		<tr>
-			<td>Language:</td>
-			<td>
-				<form:select path="selectedLangID" id="lang">
-					<form:options items="${formBean.langList}" itemValue="langid" itemLabel="langname"/>
-				</form:select>
-			</td>
-			<td>Dictionary:</td>
-			<td>
-				<form:select id="dict" path="selectedDictName" ng-model="selectedDictName">
-			    <option ng-repeat="o in dictList" ng-selected="{{o==selectedDictName}}" value="{{o}}">
-			        {{o}}
-			    </option>
-				</form:select>
-			</td>
-		</tr>
-		<tr>
-			<td>Word:</td>
-			<td colspan=2><form:input type="text" path="word" id="word" /></td>
-            <td>
-                <input type="button" value="Search" id='search' ng-click="getDictUrl()" />
-            </td>
-        </tr>
-	</table>
+	<label for='selectedLangID'>Language:</label>
+	<form:select path="selectedLangID" id="lang">
+		<form:options items="${formBean.langList}" itemValue="langid" itemLabel="langname" />
+	</form:select>
+	<label for='selectedDictName'>Dictionary:</label>
+	<form:select id="dict" path="selectedDictName" ng-model="selectedDictName">
+		<option ng-repeat="o in dictList" ng-selected="{{o==selectedDictName}}" value="{{o}}">
+		    {{o}}
+		</option>
+	</form:select>
+	<label for='word'>Word:</label>
+	<form:input type="text" path="word" id="word" />
+	<input type="button" value="Search" id='search' ng-click="getDictUrl()" />
 </form:form>
 <iframe id='dictframe' width='100%' height='500' ng-src="{{trustSrc(dictUrl)}}">
 </iframe>

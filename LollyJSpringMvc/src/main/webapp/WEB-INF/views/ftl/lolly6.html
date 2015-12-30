@@ -29,24 +29,14 @@ $(function() {
 </script>
 </head>
 <body>
-<form id="form" method="post"> <@spring.bind "formBean" />
-	<table>
-		<tr>
-			<td>Language:</td>
-			<td><@spring.formSingleSelect "formBean.selectedLangID", formBean.langMap />
-			</td>
-			<td>Dictionary:</td>
-			<td><@spring.formSingleSelect "formBean.selectedDictName", formBean.langMap />
-			</td>
-		</tr>
-		<tr>
-			<td>Word:</td>
-			<td colspan=2><@spring.formInput "formBean.word", "" /></td>
-            <td>
-                <input type="button" value="Search" id='search' />
-            </td>
-        </tr>
-	</table>
+<form id="form"> <@spring.bind "formBean" />
+	<label for='selectedLangID'>Language:</label>
+	<@spring.formSingleSelect "formBean.selectedLangID", formBean.langMap />
+	<label for='selectedDictName'>Dictionary:</label>
+	<@spring.formSingleSelect "formBean.selectedDictName", formBean.langMap />
+	<label for='word'>Word:</label>
+	<@spring.formInput "formBean.word", "" />
+	<input type="button" value="Search" id='search' />
 </form>
 <iframe id='dictframe' width='100%' height='500'>
 </iframe>

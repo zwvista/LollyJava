@@ -17,7 +17,7 @@ $(function() {
 <h:form id="form">
 	<table>
 		<tr>
-			<td>Language:</td>
+			<label for=''>Language:</label>
 			<td>
 				<p:selectOneMenu value="#{formBean.selectedLangID}" id="lang">
 					<p:ajax update="dict" />
@@ -25,7 +25,7 @@ $(function() {
 					itemValue="#{lang.langid}" itemLabel="#{lang.langname}" />
 				</p:selectOneMenu>
 			</td>
-			<td>Dictionary:</td>
+			<label for=''>Dictionary:</label>
 			<td>
 				<p:selectOneMenu value="#{formBean.selectedDictName}" id="dict">
 					<f:selectItems value="#{formBean.getDictList()}" />
@@ -33,7 +33,7 @@ $(function() {
 			</td>
 		</tr>
 		<tr>
-			<td>Word:</td>
+			<label for=''>Word:</label>
 			<td colspan="2">
 				<p:inputText value="#{formBean.word}" id="word" />
 			</td>

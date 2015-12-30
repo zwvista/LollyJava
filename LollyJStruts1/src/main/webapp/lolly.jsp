@@ -34,20 +34,20 @@ $(function() {
 <html:form styleId="form">
 	<table>
 		<tr>
-			<td>Language:</td>
+			<label for=''>Language:</label>
 			<td>
 				<html:select property="selectedLangID" styleId="lang">
 				<html:optionsCollection name="lollyForm" property="langList" label="langname" value="langid"/>
 				</html:select>
 			</td>
-			<td>Dictionary:</td>
+			<label for=''>Dictionary:</label>
 			<td>
 				<html:select property="selectedDictName" styleId="dict">
 				</html:select>
 			</td>
 		</tr>
 		<tr>
-			<td>Word:</td>
+			<label for=''>Word:</label>
 			<td colspan=2>
 				<html:text property="word" styleId="word" />
 			</td>

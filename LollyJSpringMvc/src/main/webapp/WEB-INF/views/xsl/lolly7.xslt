@@ -38,39 +38,27 @@ $(function() {
 </xsl:template>
 <xsl:template match="java/object">
 <form id="form" method="post">
-	<table>
-		<tr>
-			<td>Language:</td>
-			<td>
-				<select name="selectedLangID" id="lang" >
-			    	<xsl:for-each select="void[3]/void/object/void">
-					<option>
-					    <xsl:attribute name="value">
-					    	<xsl:value-of select="string"/>
-		    			</xsl:attribute>
-						<xsl:value-of select="string[2]"/>
-          			</option>
-          			</xsl:for-each>
-				</select>
-			</td>
-			<td>Dictionary:</td>
-			<td>
-				<select name="selectedDictName" id="dict">
-				</select>
-			</td>
-		</tr>
-		<tr>
-			<td>Word:</td>
-			<td colspan="2"><input type="text" id="word">
+	<label for='selectedLangID'>Language:</label>
+	<select name="selectedLangID" id="lang" >
+    	<xsl:for-each select="void[3]/void/object/void">
+			<option>
 			    <xsl:attribute name="value">
-			    	<xsl:value-of select="void/void/string"/>
-    			</xsl:attribute>
-			</input></td>
-            <td>
-                <input type="button" value="Search" id='search' />
-            </td>
-        </tr>
-	</table>
+			    	<xsl:value-of select="string"/>
+	   			</xsl:attribute>
+				<xsl:value-of select="string[2]"/>
+			</option>
+		</xsl:for-each>
+	</select>
+	<label for='selectedDictName'>Dictionary:</label>
+	<select name="selectedDictName" id="dict">
+	</select>
+	<label for='word'>Word:</label>
+	<input type="text" id="word">
+	    <xsl:attribute name="value">
+	    	<xsl:value-of select="void/void/string"/>
+		</xsl:attribute>
+	</input>
+	<input type="button" value="Search" id='search' />
 </form>
 </xsl:template>
 </xsl:stylesheet>

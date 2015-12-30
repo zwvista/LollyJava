@@ -4,6 +4,7 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="s" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ page session="false" %>
+<!DOCTYPE html>
 <html>
 <head>
 <title>Spring4 Mvc jsp - Lolly</title>
@@ -34,28 +35,15 @@ $(function() {
 </head>
 <body>
 <form:form id="form" modelAttribute="formBean">
-	<table>
-		<tr>
-			<td>Language:</td>
-			<td>
-				<form:select path="selectedLangID" id="lang" >
-					<form:options items="${formBean.langList}" itemValue="langid" itemLabel="langname"/>
-				</form:select>
-			</td>
-			<td>Dictionary:</td>
-			<td>
-				<form:select path="selectedDictName" id="dict">
-				</form:select>
-			</td>
-		</tr>
-		<tr>
-			<td>Word:</td>
-			<td colspan=2><form:input type="text" path="word" id="word" /></td>
-            <td>
-                <input type="button" value="Search" id='search' />
-            </td>
-        </tr>
-	</table>
+	<label for='selectedLangID'>Language:</label>
+	<form:select path="selectedLangID" id="lang" >
+		<form:options items="${formBean.langList}" itemValue="langid" itemLabel="langname" />
+	</form:select>
+	<label for='selectedDictName'>Dictionary:</label>
+	<form:select path="selectedDictName" id="dict" />
+	<label for='word'>Word:</label>
+	<form:input type="text" path="word" id="word" />
+    <input type="button" value="Search" id='search' />
 </form:form>
 <iframe id='dictframe' width='100%' height='500'>
 </iframe>

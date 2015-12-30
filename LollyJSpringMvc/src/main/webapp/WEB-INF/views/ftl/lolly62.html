@@ -30,31 +30,19 @@ $(function() {
 </head>
 <body>
 <form id="form" method="post"> <@spring.bind "formBean" />
-	<table>
-		<tr>
-			<td>Language:</td>
-			<td>
-				<@spring.bind "formBean.selectedLangID" />
-				<select name="selectedLangID" id="lang">
-					<#list formBean.langList as lang>
-						<option value="${lang.langid}">${lang.langname}</option>
-					</#list>
-				</select>
-			</td>
-			<td>Dictionary:</td>
-			<td>
-				<select name="selectedDictName" id="dict">
-				</select>
-			</td>
-		</tr>
-		<tr>
-			<td>Word:</td>
-			<td colspan=2><@spring.formInput "formBean.word", "" /></td>
-            <td>
-                <input type="button" value="Search" id='search' />
-            </td>
-        </tr>
-	</table>
+	<label for='selectedLangID'>Language:</label>
+	<@spring.bind "formBean.selectedLangID" />
+	<select name="selectedLangID" id="lang">
+		<#list formBean.langList as lang>
+			<option value="${lang.langid}">${lang.langname}</option>
+		</#list>
+	</select>
+	<label for='selectedDictName'>Dictionary:</label>
+	<select name="selectedDictName" id="dict">
+	</select>
+	<label for='word'>Word:</label>
+	<@spring.formInput "formBean.word", "" />
+	<input type="button" value="Search" id='search' />
 </form>
 <iframe id='dictframe' width='100%' height='500'>
 </iframe>

@@ -4,11 +4,45 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="s" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ page session="false" %>
+<!DOCTYPE html>
 <html>
 <head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Spring4 Mvc jsp - Lolly</title>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="<c:url value="/resources/css/lolly.css" />" rel="stylesheet">
+</head>
+<body>
+<form:form class="form-horizontal" id="form" modelAttribute="formBean">
+	<div class="form-group">
+		<label class="col-sm-2 control-label" for='lang'>Language:</label>
+    	<div class="col-sm-4">
+			<form:select class="form-control" path="selectedLangID" id="lang">
+				<form:options items="${formBean.langList}" itemValue="langid" itemLabel="langname" />
+			</form:select>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-sm-2 control-label" for='dict'>Dictionary:</label>
+    	<div class="col-sm-4">
+			<form:select class="form-control" path="selectedDictName" id="dict" />
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-sm-2 control-label" for='word'>Word:</label>
+    	<div class="col-sm-4">
+			<form:input class="form-control" type="text" path="word" id="word" />
+		</div>
+	    <button class="btn btn-primary" type="button" id='search'>Search</button>
+	</div>
+</form:form>
+<iframe id='dictframe'>
+</iframe>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <script>
 $(function() {
 	var $lang = $('#lang');
@@ -32,33 +66,5 @@ $(function() {
 	});
 });
 </script>
-</head>
-<body>
-<form:form id="form" modelAttribute="formBean">
-	<table>
-		<tr>
-			<td>Language:</td>
-			<td>
-				<form:select path="selectedLangID" id="lang" >
-					<form:options items="${formBean.langList}" itemValue="langid" itemLabel="langname"/>
-				</form:select>
-			</td>
-			<td>Dictionary:</td>
-			<td>
-				<form:select path="selectedDictName" id="dict">
-				</form:select>
-			</td>
-		</tr>
-		<tr>
-			<td>Word:</td>
-			<td colspan=2><form:input type="text" path="word" id="word" /></td>
-            <td>
-                <input type="button" value="Search" id='search' />
-            </td>
-        </tr>
-	</table>
-</form:form>
-<iframe id='dictframe' width='100%' height='500'>
-</iframe>
 </body>
 </html>
