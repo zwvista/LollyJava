@@ -8,7 +8,9 @@
 <title>Struts2 - Lolly</title>
 </head>
 <body>
-<a href="lolly">lolly</a><br/>
+<a href="lolly1">lolly1</a><br/>
+<a href="lolly12">lolly12</a><br/>
+<a href="lolly13">lolly13</a><br/>
 <a href="lolly2">lolly2</a><br/>
 <a href="lolly3">lolly3</a><br/>
 </body>

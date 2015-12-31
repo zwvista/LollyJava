@@ -7,6 +7,7 @@
 <h:outputScript library="javax.faces" name="jsf.js" target="head" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>JSF - Lolly</title>
+<link rel="stylesheet" href="resources/css/lolly.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/linq.js/2.2.0.2/linq.min.js"></script>
 <script>
@@ -19,7 +20,9 @@ $(function() {
 <h:form id="form">
 	<table>
 		<tr>
-			<label for=''>Language:</label>
+			<td>
+				<label for='lang'>Language:</label>
+			</td>
 			<td>
 				<h:selectOneMenu value="#{formBean.selectedLangID}" id="lang">
 					<f:ajax render="dict search" />
@@ -27,7 +30,9 @@ $(function() {
 					itemValue="#{lang.langid}" itemLabel="#{lang.langname}" />
 				</h:selectOneMenu>
 			</td>
-			<label for=''>Dictionary:</label>
+			<td>
+				<label for='dict'>Dictionary:</label>
+			</td>
 			<td>
 				<h:selectOneMenu value="#{formBean.selectedDictName}" id="dict">
 					<f:selectItems value="#{formBean.getDictList()}" />
@@ -35,7 +40,9 @@ $(function() {
 			</td>
 		</tr>
 		<tr>
-			<label for=''>Word:</label>
+            <td>
+				<label for='word'>Word:</label>
+			</td>
 			<td colspan="2">
 				<h:inputText value="#{formBean.word}" id="word" />
 			</td>
@@ -48,7 +55,7 @@ $(function() {
 	</table>
 </h:form>
 <h:panelGroup id="iframe-holder" layout="block">
-<iframe id='dictframe' width='100%' height='500' src="#{formBean.url}">
+<iframe id='dictframe' src="#{formBean.url}">
 </iframe>
 </h:panelGroup>
 </h:body>

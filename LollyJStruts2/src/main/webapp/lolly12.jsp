@@ -13,7 +13,7 @@ $(function() {
 	var $lang = $('#lang');
 	var $dict = $('#dict');
 	$lang.change(function() {
- 	    $.post("dictList", $('#form').serialize(), function(response) {
+ 	    $.post("dictList12", $('#form').serialize(), function(response) {
             $dict.empty();
             $.each(response.dictList, function(index, dict) {
                 $dict.append($('<option/>', {text: dict}));
@@ -22,7 +22,7 @@ $(function() {
 	});
 	$lang.change();
 	$('#search').click(function() {
-	    $.post("dictUrl", $('#form').serialize(), function(response) {
+	    $.post("dictUrl12", $('#form').serialize(), function(response) {
 			var word = $('#word').val();
 			var url = response.url.replace('{0}', encodeURIComponent(word));
 			$('#dictframe').attr('src', url);
@@ -33,7 +33,7 @@ $(function() {
 </script>
 </head>
 <body>
-<s:form id="form" method="post">
+<s:form id="form">
 	<s:select id="lang" name="selectedLangID" label="Language" value="selectedLangID" list="langList" listKey="langid" listValue="langname" />
 	<s:select id="dict" name="selectedDictName" label="Dictionary" value="selectedDictName" list="langList" listKey="langid" listValue="langname" />
 	<s:textfield id="word" name="word" label="Word" />

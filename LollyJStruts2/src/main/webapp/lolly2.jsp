@@ -1,9 +1,13 @@
-<!DOCTYPE html >
+<!DOCTYPE html>
 <html>
 <head>
 <title>Struts2 velocity - Lolly</title>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="resources/css/lolly.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
 #[[<script>
 $(function() {
 	var $lang = $('#lang');
@@ -29,13 +33,13 @@ $(function() {
 </script>]]#
 </head>
 <body>
-#sform("id=form" "method=post")
-	#sselect("id=lang" "name=selectedLangID" "label=Language" "value=selectedLangID" "list=langList" "listKey=langid" "listValue=langname")
-	#sselect("id=dict" "name=selectedDictName" "label=Dictionary" "value=selectedDictName" "list=langList" "listKey=langid" "listValue=langname")
-	#stextfield("id=word" "name=word" "label=Word")
+#sform("id=form")
+	#sselect("id=lang" "name=selectedLangID" "label=Language:" "value=selectedLangID" "list=langList" "listKey=langid" "listValue=langname")
+	#sselect("id=dict" "name=selectedDictName" "label=Dictionary:" "value=selectedDictName" "list=langList" "listKey=langid" "listValue=langname")
+	#stextfield("id=word" "name=word" "label=Word:")
 	#ssubmit("value=Search" "id=search")
 #end
-<iframe id='dictframe' width='100%' height='500'>
+<iframe id='dictframe'>
 </iframe>
 </body>
 </html>
