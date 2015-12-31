@@ -1,9 +1,15 @@
-<!DOCTYPE html >
+<!DOCTYPE html>
 <html>
 <head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Spring4 Mvc velocity - Lolly</title>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="../resources/css/lolly.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
 #[[<script>
 $(function() {
 	var $lang = $('#lang');
@@ -28,23 +34,34 @@ $(function() {
 </script>]]#
 </head>
 <body>
-<form id="form"> #springBind("formBean")
-	<label for='selectedLangID'>Language:</label>
-	#springBind("formBean.selectedLangID")
-	<select name="${status.expression}" id="lang">
-		#foreach($lang in $formBean.langList)
-			<option value="${lang.langid}">$lang.langname</option>
-		#end
-	</select>
-	<label for='selectedDictName'>Dictionary:</label>
-	#springBind("formBean.selectedDictName")
-	<select name="${status.expression}" id="dict">
-	</select>
-	<label for='word'>Word:</label>
-	#springFormInput("formBean.word")
-	<input type="button" value="Search" id='search' />
+<form class="form-horizontal" id="form"> #springBind("formBean")
+	<div class="form-group">
+		<label class="col-sm-2 control-label" for='lang'>Language:</label>
+    	<div class="col-sm-4">
+			#springBind("formBean.selectedLangID")
+			<select class="form-control" name="${status.expression}" id="lang">
+				#foreach($lang in $formBean.langList)
+					<option value="${lang.langid}">$lang.langname</option>
+				#end
+			</select>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-sm-2 control-label" for='dict'>Dictionary:</label>
+    	<div class="col-sm-4">
+			<select class="form-control" name="${status.expression}" id="dict">
+			</select>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-sm-2 control-label" for='word'>Word:</label>
+    	<div class="col-sm-4">
+			#springFormInput("formBean.word", 'class="form-control"')
+		</div>
+	    <button type="button" class="btn btn-primary" id='search'>Search</button>
+	</div>
 </form>
-<iframe id='dictframe' width='100%' height='500'>
+<iframe id='dictframe'>
 </iframe>
 </body>
 </html>

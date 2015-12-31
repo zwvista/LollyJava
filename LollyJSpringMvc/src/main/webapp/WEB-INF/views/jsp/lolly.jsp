@@ -13,7 +13,7 @@
 <title>Spring4 Mvc jsp - Lolly</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap-theme.min.css">
-<link rel="stylesheet" href="<c:url value="/resources/css/lolly.css" />" rel="stylesheet">
+<link rel="stylesheet" href="../resources/css/lolly.css">
 </head>
 <body>
 <form:form class="form-horizontal" id="form" modelAttribute="formBean">
@@ -34,9 +34,9 @@
 	<div class="form-group">
 		<label class="col-sm-2 control-label" for='word'>Word:</label>
     	<div class="col-sm-4">
-			<form:input class="form-control" type="text" path="word" id="word" />
+			<form:input type="text" class="form-control" path="word" id="word" />
 		</div>
-	    <button class="btn btn-primary" type="button" id='search'>Search</button>
+	    <button type="button" class="btn btn-primary" id='search'>Search</button>
 	</div>
 </form:form>
 <iframe id='dictframe'>

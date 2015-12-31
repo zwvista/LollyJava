@@ -7,9 +7,15 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Spring4 Mvc jsp - Lolly</title>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="../resources/css/lolly.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <script>
 $(function() {
 	var $lang = $('#lang');
@@ -34,18 +40,30 @@ $(function() {
 </script>
 </head>
 <body>
-<form:form id="form" modelAttribute="formBean">
-	<label for='selectedLangID'>Language:</label>
-	<form:select path="selectedLangID" id="lang" >
-		<form:options items="${formBean.langList}" itemValue="langid" itemLabel="langname" />
-	</form:select>
-	<label for='selectedDictName'>Dictionary:</label>
-	<form:select path="selectedDictName" id="dict" />
-	<label for='word'>Word:</label>
-	<form:input type="text" path="word" id="word" />
-    <input type="button" value="Search" id='search' />
+<form:form class="form-horizontal" id="form" modelAttribute="formBean">
+	<div class="form-group">
+		<label class="col-sm-2 control-label" for='lang'>Language:</label>
+    	<div class="col-sm-4">
+			<form:select class="form-control" path="selectedLangID" id="lang">
+				<form:options items="${formBean.langList}" itemValue="langid" itemLabel="langname" />
+			</form:select>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-sm-2 control-label" for='dict'>Dictionary:</label>
+    	<div class="col-sm-4">
+			<form:select class="form-control" path="selectedDictName" id="dict" />
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-sm-2 control-label" for='word'>Word:</label>
+    	<div class="col-sm-4">
+			<form:input type="text" class="form-control" path="word" id="word" />
+		</div>
+	    <button type="button" class="btn btn-primary" id='search'>Search</button>
+	</div>
 </form:form>
-<iframe id='dictframe' width='100%' height='500'>
+<iframe id='dictframe'>
 </iframe>
 </body>
 </html>
