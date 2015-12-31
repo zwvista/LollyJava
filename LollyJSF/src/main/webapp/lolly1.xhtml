@@ -1,20 +1,18 @@
+<?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html"
     xmlns:f="http://java.sun.com/jsf/core"
-    xmlns:a4j="http://richfaces.org/a4j"
-	xmlns:rich="http://richfaces.org/rich"
-	>
+    xmlns:h="http://java.sun.com/jsf/html">
 <h:head>
 <h:outputScript library="javax.faces" name="jsf.js" target="head" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>JSF richfaces - Lolly</title>
+<title>JSF - Lolly</title>
 <link rel="stylesheet" href="resources/css/lolly.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script>
 $(function() {
-	$(#{rich:element('form:lang')}).change();
+	$('#form\\:lang').change();
 });
 </script>
 </h:head>
@@ -22,22 +20,23 @@ $(function() {
 <h:form id="form">
 	<h:panelGrid columns="2">
 		<h:outputLabel for='lang' value="Language:" />
-		<rich:select value="#{formBean.selectedLangID}" id="lang">
-			<a4j:ajax event="change" render="dict" />
+		<h:selectOneMenu value="#{formBean.selectedLangID}" id="lang">
+			<f:ajax render="dict" />
 			<f:selectItems value="#{formBean.getLangList()}" var="lang"
 					itemValue="#{lang.langid}" itemLabel="#{lang.langname}" />
-		</rich:select>
+		</h:selectOneMenu>
 		
 		<h:outputLabel for='dict' value="Dictionary:" />
-		<rich:select value="#{formBean.selectedDictName}" id="dict">
+		<h:selectOneMenu value="#{formBean.selectedDictName}" id="dict">
 			<f:selectItems value="#{formBean.getDictList()}" />
-		</rich:select>
+		</h:selectOneMenu>
 		
 		<h:outputLabel for='word' value="Word:" />
 		<h:panelGroup>
 			<h:inputText value="#{formBean.word}" id="word" />
-			<a4j:commandButton value="Search" id="search2" action="#{formBean.searchButtonClicked}"
-					render=":iframe-holder" execute="@parent" />
+			<h:commandButton value="Search" id="search" action="#{formBean.searchButtonClicked}">
+				<f:ajax render=":iframe-holder" />
+			</h:commandButton>
 		</h:panelGroup>
 	</h:panelGrid>
 </h:form>

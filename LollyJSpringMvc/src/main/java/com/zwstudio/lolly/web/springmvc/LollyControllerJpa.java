@@ -102,9 +102,9 @@ public class LollyControllerJpa {
 	    return new ResponseEntity<String>(json, headers, HttpStatus.CREATED);
 	}
 	
-    @RequestMapping("/jpa/lolly")
-    public String lolly() {
-        return "jsp/lolly";
+    @RequestMapping("/jpa/lolly1")
+    public String lolly1() {
+        return "jsp/lolly1";
     }
     @RequestMapping("/jpa/lolly2")
     public String lolly2() {

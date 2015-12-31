@@ -33,11 +33,26 @@ $(function() {
 </script>]]#
 </head>
 <body>
-#sform("id=form")
-	#sselect("id=lang" "name=selectedLangID" "label=Language:" "value=selectedLangID" "list=langList" "listKey=langid" "listValue=langname")
-	#sselect("id=dict" "name=selectedDictName" "label=Dictionary:" "value=selectedDictName" "list=langList" "listKey=langid" "listValue=langname")
-	#stextfield("id=word" "name=word" "label=Word:")
-	#ssubmit("value=Search" "id=search")
+#sform("theme=simple" "cssClass=form-horizontal" "id=form")
+	<div class="form-group">
+		<label class="col-sm-2 control-label" for='lang'>Language:</label>
+    	<div class="col-sm-4">
+			#sselect("theme=simple" "cssClass=form-control" "id=lang" "name=selectedLangID" "value=selectedLangID" "list=langList" "listKey=langid" "listValue=langname")
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-sm-2 control-label" for='dict'>Dictionary:</label>
+    	<div class="col-sm-4">
+			#sselect("theme=simple" "cssClass=form-control" "id=dict" "name=selectedDictName" "value=selectedDictName" "list=langList" "listKey=langid" "listValue=langname")
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-sm-2 control-label" for='word'>Word:</label>
+    	<div class="col-sm-4">
+			#stextfield("theme=simple" "cssClass=form-control" "id=word" "name=word")
+		</div>
+		#ssubmit("theme=simple" "cssClass=btn btn-primary" "value=Search" "id=search")
+	</div>
 #end
 <iframe id='dictframe'>
 </iframe>

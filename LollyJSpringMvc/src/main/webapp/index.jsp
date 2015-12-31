@@ -3,7 +3,7 @@
 <title>Spring4 Mvc - Lolly</title>
 </head>
 <body>
-<a href="hibernate/lolly">hibernate/lolly</a><br/>
+<a href="hibernate/lolly1">hibernate/lolly1</a><br/>
 <a href="hibernate/lolly2">hibernate/lolly2</a><br/>
 <a href="hibernate/lolly3">hibernate/lolly3</a><br/>
 <a href="hibernate/lolly32">hibernate/lolly32</a><br/>
@@ -14,7 +14,7 @@
 <a href="hibernate/lolly6">hibernate/lolly6</a><br/>
 <a href="hibernate/lolly62">hibernate/lolly62</a><br/>
 <a href="hibernate/lolly7">hibernate/lolly7</a><br/>
-<a href="jpa/lolly">jpa/lolly</a><br/>
+<a href="jpa/lolly1">jpa/lolly1</a><br/>
 <a href="jpa/lolly2">jpa/lolly2</a><br/>
 <a href="jpa/lolly3">jpa/lolly3</a><br/>
 <a href="jpa/lolly32">jpa/lolly32</a><br/>
@@ -25,7 +25,7 @@
 <a href="jpa/lolly6">jpa/lolly6</a><br/>
 <a href="jpa/lolly62">jpa/lolly62</a><br/>
 <a href="jpa/lolly7">jpa/lolly7</a><br/>
-<a href="mybatis/lolly">mybatis/lolly</a><br/>
+<a href="mybatis/lolly1">mybatis/lolly1</a><br/>
 <a href="mybatis/lolly2">mybatis/lolly2</a><br/>
 <a href="mybatis/lolly3">mybatis/lolly3</a><br/>
 <a href="mybatis/lolly32">mybatis/lolly32</a><br/>

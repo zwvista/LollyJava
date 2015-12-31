@@ -102,9 +102,9 @@ public class LollyControllerMyBatis {
 	    return new ResponseEntity<String>(json, headers, HttpStatus.CREATED);
 	}
 	
-    @RequestMapping("/mybatis/lolly")
-    public String lolly() {
-        return "jsp/lolly";
+    @RequestMapping("/mybatis/lolly1")
+    public String lolly1() {
+        return "jsp/lolly1";
     }
     @RequestMapping("/mybatis/lolly2")
     public String lolly2() {

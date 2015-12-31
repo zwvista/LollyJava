@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:b="http://bootsfaces.net/ui">
+<h:head>
+<h:outputScript library="javax.faces" name="jsf.js" target="head" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>JSF - Lolly</title>
+<link rel="stylesheet" href="resources/css/lolly.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script>
+$(function() {
+	$('#form\\:lang').change();
+});
+</script>
+</h:head>
+<h:body>
+<h:form id="form">
+	<b:row>
+		<b:column span="2">
+			<h:outputLabel for='lang' value="Language:" />
+		</b:column>
+		<b:column span="4">
+			<b:selectOneMenu value="#{formBean.selectedLangID}" id="lang"
+					ajax="true"	onchange="ajax:ajaxBean.onChange()"	update="dict">
+				<!-- toString(): workaround for itemValue bug -->
+				<f:selectItems value="#{formBean.getLangList()}" var="lang"
+						itemValue="#{lang.langid.toString()}" itemLabel="#{lang.langname}" />
+			</b:selectOneMenu>
+		</b:column>
+	</b:row>
+	<b:row>
+		<b:column span="2">
+			<h:outputLabel for='dict' value="Dictionary:" />
+		</b:column>
+		<b:column span="4">
+			<b:selectOneMenu value="#{formBean.selectedDictName}" id="dict">
+				<f:selectItems value="#{formBean.getDictList()}" />
+			</b:selectOneMenu>
+		</b:column>
+	</b:row>
+	<b:row>
+		<b:column span="2">
+			<h:outputLabel for='word' value="Word:" />
+		</b:column>
+		<b:column span="4">
+			<b:inputText value="#{formBean.word}" id="word" />
+		</b:column>
+		<b:commandButton look="primary" value="Search" id="search" action="#{formBean.searchButtonClicked}"
+				ajax="true" update=":iframe-holder" process="@parent" />
+	</b:row>
+</h:form>
+<h:panelGroup id="iframe-holder" layout="block">
+<iframe id='dictframe' src="#{formBean.url}">
+</iframe>
+</h:panelGroup>
+</h:body>
+</html>

@@ -102,9 +102,9 @@ public class LollyControllerHibernate {
 	    return new ResponseEntity<String>(json, headers, HttpStatus.CREATED);
 	}
 	
-    @RequestMapping("/hibernate/lolly")
-    public String lolly() {
-        return "jsp/lolly";
+    @RequestMapping("/hibernate/lolly1")
+    public String lolly1() {
+        return "jsp/lolly1";
     }
     @RequestMapping("/hibernate/lolly2")
     public String lolly2() {

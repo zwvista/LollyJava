@@ -14,6 +14,31 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap-theme.min.css">
 <link rel="stylesheet" href="../resources/css/lolly.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script>
+$(function() {
+	var $lang = $('#lang');
+	var $dict = $('#dict');
+	$lang.change(function() {
+	    $.getJSON("dictList", {langid: $lang.val()}, function(response) {
+            $dict.empty();
+            $.each(response, function(index, item) {
+				var jstring = encodeURIComponent(JSON.stringify(item));
+                $dict.append($('<option/>', {value: jstring, text: item.id.dictname}));
+            });
+	    });
+	});
+	$lang.change();
+	$('#search').click(function() {
+		var item = JSON.parse(decodeURIComponent($dict.val()));
+		var word = $('#word').val();
+		var url = item.url.replace('{0}', encodeURIComponent(word));
+		// alert(url);
+		$('#dictframe').attr('src', url);
+	});
+});
+</script>
 </head>
 <body>
 <form:form class="form-horizontal" id="form" modelAttribute="formBean">
@@ -41,30 +66,5 @@
 </form:form>
 <iframe id='dictframe'>
 </iframe>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
-<script>
-$(function() {
-	var $lang = $('#lang');
-	var $dict = $('#dict');
-	$lang.change(function() {
-	    $.getJSON("dictList", {langid: $lang.val()}, function(response) {
-            $dict.empty();
-            $.each(response, function(index, item) {
-				var jstring = encodeURIComponent(JSON.stringify(item));
-                $dict.append($('<option/>', {value: jstring, text: item.id.dictname}));
-            });
-	    });
-	});
-	$lang.change();
-	$('#search').click(function() {
-		var item = JSON.parse(decodeURIComponent($dict.val()));
-		var word = $('#word').val();
-		var url = item.url.replace('{0}', encodeURIComponent(word));
-		// alert(url);
-		$('#dictframe').attr('src', url);
-	});
-});
-</script>
 </body>
 </html>
