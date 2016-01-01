@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:b="http://bootsfaces.net/ui">
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>JSF primefaces - Lolly</title>
+<link rel="stylesheet" href="resources/css/lolly.css" />
+<link type="text/css" rel="stylesheet" href="javax.faces.resource/theme.css.xhtml?ln=primefaces-bootstrap" />
+<script>
+$(function() {
+	$('#form\\:lang_input').change();
+});
+</script>
+</h:head>
+<h:body>
+<h:form id="form">
+	<b:row>
+		<b:column span="2">
+			<p:outputLabel styleClass="form-control" for='lang' value="Language:" />
+		</b:column>
+		<b:column span="4">
+			<p:selectOneMenu value="#{formBean.selectedLangID}" id="lang">
+				<p:ajax update="dict" />
+				<f:selectItems value="#{formBean.getLangList()}" var="lang"
+						itemValue="#{lang.langid}" itemLabel="#{lang.langname}" />
+			</p:selectOneMenu>
+		</b:column>
+	</b:row>
+	<b:row>
+		<b:column span="2">
+			<p:outputLabel styleClass="form-control" for='dict' value="Dictionary:" />
+		</b:column>
+		<b:column span="4">
+			<p:selectOneMenu value="#{formBean.selectedDictName}" id="dict">
+				<f:selectItems value="#{formBean.getDictList()}" />
+			</p:selectOneMenu>
+		</b:column>
+	</b:row>
+	<b:row>
+		<b:column span="2">
+			<p:outputLabel styleClass="form-control" for='word' value="Word:" />
+		</b:column>
+		<b:column span="4">
+			<p:inputText styleClass="form-control" value="#{formBean.word}" id="word" />
+		</b:column>
+		<p:commandButton value="Search" id="search" actionListener="#{formBean.searchButtonClicked}"
+				update=":iframe-holder" process="@parent" />
+	</b:row>
+</h:form>
+<h:panelGroup id="iframe-holder" layout="block">
+<iframe id='dictframe' src="#{formBean.url}">
+</iframe>
+</h:panelGroup>
+</h:body>
+</html>
