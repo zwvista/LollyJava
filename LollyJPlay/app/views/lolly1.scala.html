@@ -1,0 +1,68 @@
+@(lollyForm: LollyForm)
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Play - Lolly</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="@routes.Assets.versioned("stylesheets/lolly.css")">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script>
+$(function() {
+	var $lang = $('#lang');
+	var $dict = $('#dict');
+	$lang.change(function() {
+ 	    $.get("dictList", $('#form').serialize(), function(response) {
+            $dict.empty();
+            $.each(response, function(index, dict) {
+                $dict.append($('<option/>', {text: dict}));
+            });
+ 		});
+	});
+	$lang.change();
+	$('#search').click(function() {
+	    $.get("dictall", $('#form').serialize(), function(response) {
+			var word = $('#word').val();
+			var url = response.url.replace('{0}', encodeURIComponent(word));
+			$('#dictframe').attr('src', url);
+	    });
+	});
+});
+</script>
+</head>
+<body>
+<form class="form-horizontal" id="form">
+	<div class="form-group">
+		<label class="col-sm-2 control-label" for='lang'>Language:</label>
+    	<div class="col-sm-4">
+			<select class="form-control" name="selectedLangID" id="lang">
+				@for((langid, langname) <- lollyForm.langMap) {
+	  				<option value="@langid">@langname</option>
+				}
+			</select>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-sm-2 control-label" for='dict'>Dictionary:</label>
+    	<div class="col-sm-4">
+			<select class="form-control" name="selectedDictName" id="dict">
+			</select>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-sm-2 control-label" for='word'>Word:</label>
+    	<div class="col-sm-4">
+			<input type="text" class="form-control" name="word" id="word" value='@lollyForm.word' />
+		</div>
+	    <button type="button" class="btn btn-primary" id='search'>Search</button>
+	</div>
+</form>
+<iframe id='dictframe'>
+</iframe>
+</body>
+</html>

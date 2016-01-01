@@ -4,7 +4,10 @@
 
 # Home page
 GET     /                           controllers.Application.index()
-GET     /lolly                      controllers.Application.lolly()
+GET     /lolly1                     controllers.Application.lolly1()
+GET     /lolly2                     controllers.Application.lolly2()
+GET     /dictList                   controllers.Application.dictList(selectedLangID)
+GET     /dictall                    controllers.Application.dictall(selectedLangID, selectedDictName)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
