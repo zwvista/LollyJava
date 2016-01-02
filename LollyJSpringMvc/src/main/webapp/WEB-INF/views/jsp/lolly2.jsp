@@ -29,6 +29,12 @@ $(function() {
 	    });
 	});
 	$lang.change();
+	$('#word').keypress(function(event) {
+		if(event.which == 13){
+			event.preventDefault();
+			$('#search').click();
+		}
+	});
 	$('#search').click(function() {
 	    $.getJSON("dictall2", {langid: $lang.val(), dictname: $dict.val()}, function(response) {
 			var word = $('#word').val();

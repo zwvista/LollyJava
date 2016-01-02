@@ -26,6 +26,12 @@ $(function() {
  		});
 	});
 	$lang.change();
+	$('#word').keypress(function(event) {
+		if(event.which == 13){
+			event.preventDefault();
+			$('#search').click();
+		}
+	});
 	$('#search').click(function() {
 	    $.post("dictUrl.do", $('#form').serialize(), function(response) {
 			var word = $('#word').val();

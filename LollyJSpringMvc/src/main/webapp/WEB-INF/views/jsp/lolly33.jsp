@@ -34,6 +34,12 @@ angular.module('app', []).controller("lollyCtrl", ["$scope", "$http", "$sce",
 		    });
 		});
 		$lang.change();
+		$('#word').keypress(function(event) {
+			if(event.which == 13){
+				event.preventDefault();
+				$('#search').click();
+			}
+		});
 	});
 	$scope.trustSrc = function(url) {
 		return $sce.trustAsResourceUrl(url);

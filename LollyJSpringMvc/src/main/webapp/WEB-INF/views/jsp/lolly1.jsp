@@ -30,11 +30,16 @@ $(function() {
 	    });
 	});
 	$lang.change();
+	$('#word').keypress(function(event) {
+		if(event.which == 13){
+			event.preventDefault();
+			$('#search').click();
+		}
+	});
 	$('#search').click(function() {
 		var item = JSON.parse(decodeURIComponent($dict.val()));
 		var word = $('#word').val();
 		var url = item.url.replace('{0}', encodeURIComponent(word));
-		// alert(url);
 		$('#dictframe').attr('src', url);
 	});
 });

@@ -27,6 +27,12 @@ $(function() {
  		});
 	});
 	$lang.change();
+	$('#word').keypress(function(event) {
+		if(event.which == 13){
+			event.preventDefault();
+			$('#search').click();
+		}
+	});
 	$('#search').click(function() {
 	    $.post("dictall3", $('#form').serialize(), function(response) {
 			var word = $('#word').val();
@@ -47,7 +53,7 @@ $(function() {
 <xsl:template match="java/object">
 <form class="form-horizontal" id="form">
 	<div class="form-group">
-		<label class="col-sm-2 control-label" for='selectedLangID'>Language:</label>
+		<label class="col-sm-2 control-label" for='lang'>Language:</label>
     	<div class="col-sm-4">
 			<select class="form-control" name="selectedLangID" id="lang" >
 		    	<xsl:for-each select="void[3]/void/object/void">
@@ -62,7 +68,7 @@ $(function() {
 		</div>
 	</div>
 	<div class="form-group">
-		<label class="col-sm-2 control-label" for='selectedDictName'>Dictionary:</label>
+		<label class="col-sm-2 control-label" for='dict'>Dictionary:</label>
     	<div class="col-sm-4">
 			<select class="form-control" name="selectedDictName" id="dict">
 			</select>
