@@ -12,41 +12,14 @@
 <link rel="stylesheet" href="@routes.Assets.versioned("stylesheets/lolly.css")">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
-<script>
-$(function() {
-	var $lang = $('#lang');
-	var $dict = $('#dict');
-	$lang.change(function() {
- 	    $.get("dictList", $('#form').serialize(), function(response) {
-            $dict.empty();
-            $.each(response, function(index, dict) {
-                $dict.append($('<option/>', {text: dict}));
-            });
- 		});
-	});
-	$lang.change();
-	$('#word').keypress(function(event) {
-		if(event.which == 13){
-			event.preventDefault();
-			$('#search').click();
-		}
-	});
-	$('#search').click(function() {
-	    $.get("dictall", $('#form').serialize(), function(response) {
-			var word = $('#word').val();
-			var url = response.url.replace('{0}', encodeURIComponent(word));
-			$('#dictframe').attr('src', url);
-	    });
-	});
-});
-</script>
+<script src="@routes.Assets.versioned("javascripts/lolly.js")"></script>
 </head>
 <body>
 <form class="form-horizontal" id="form">
 	<div class="form-group">
-		<label class="col-sm-2 control-label" for='lang'>Language:</label>
+		<label class="col-sm-2 control-label" for='selectedLangID'>Language:</label>
     	<div class="col-sm-4">
-			<select class="form-control" name="selectedLangID" id="lang">
+			<select class="form-control" name="selectedLangID" id="selectedLangID">
 				@for((langid, langname) <- lollyForm.langMap) {
 	  				<option value="@langid">@langname</option>
 				}
@@ -54,9 +27,9 @@ $(function() {
 		</div>
 	</div>
 	<div class="form-group">
-		<label class="col-sm-2 control-label" for='dict'>Dictionary:</label>
+		<label class="col-sm-2 control-label" for='selectedDictName'>Dictionary:</label>
     	<div class="col-sm-4">
-			<select class="form-control" name="selectedDictName" id="dict">
+			<select class="form-control" name="selectedDictName" id="selectedDictName">
 			</select>
 		</div>
 	</div>

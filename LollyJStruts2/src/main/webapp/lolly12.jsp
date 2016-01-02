@@ -7,6 +7,7 @@
 <head>
 <title>Struts2 - Lolly</title>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" href="resources/css/lolly.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script>
 $(function() {
@@ -45,7 +46,7 @@ $(function() {
 	<s:textfield id="word" name="word" label="Word" />
 	<s:submit value="Search" id='search' />
 </s:form>
-<iframe id='dictframe' width='100%' height='500'>
+<iframe id='dictframe'>
 </iframe>
 </body>
 </html>
