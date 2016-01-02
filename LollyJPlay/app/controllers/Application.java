@@ -14,6 +14,7 @@ import play.mvc.Result;
 import views.html.index;
 import views.html.lolly1;
 import views.html.lolly2;
+import views.html.lolly3;
 
 @org.springframework.stereotype.Controller
 public class Application extends Controller {
@@ -39,6 +40,9 @@ public class Application extends Controller {
     }
     public Result lolly2() {
     	return ok(lolly2.render(Form.form(LollyForm.class).fill(newForm())));
+    }
+    public Result lolly3() {
+    	return ok(lolly3.render(Form.form(LollyForm.class).fill(newForm())));
     }
     public Result dictList(String selectedLangID) {
     	System.out.println(selectedLangID);

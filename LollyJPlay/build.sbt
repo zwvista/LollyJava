@@ -6,18 +6,22 @@ lazy val root = (project in file(".")).enablePlugins(PlayJava)
 
 scalaVersion := "2.11.6"
 
+// Resolver is needed only for SNAPSHOT versions
+resolvers += "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots/"
+
 libraryDependencies ++= Seq(
-  javaJdbc,
-  cache,
-  javaWs,
-  "org.hibernate" % "hibernate-core" % "4.3.9.Final",
-  "org.hibernate" % "hibernate-entitymanager" % "4.3.9.Final",
-  "org.springframework.data" % "spring-data-jpa" % "1.9.1.RELEASE",
-	"org.springframework" % "spring-context" % "4.1.8.RELEASE",
+    javaJdbc,
+    cache,
+    javaWs,
+    "org.hibernate" % "hibernate-core" % "4.3.9.Final",
+    "org.hibernate" % "hibernate-entitymanager" % "4.3.9.Final",
+    "org.springframework.data" % "spring-data-jpa" % "1.9.1.RELEASE",
+    "org.springframework" % "spring-context" % "4.1.8.RELEASE",
     "org.springframework" % "spring-orm" % "4.1.8.RELEASE",
     "org.springframework" % "spring-jdbc" % "4.1.8.RELEASE",
     "org.springframework" % "spring-tx" % "4.1.8.RELEASE",
-  	"org.xerial" % "sqlite-jdbc" % "3.8.11.2"
+    "org.xerial" % "sqlite-jdbc" % "3.8.11.2",
+    "com.adrianhurt" %% "play-bootstrap" % "1.0-P24-B3-SNAPSHOT"
 )
 
 // Play provides two styles of routers, one expects its actions to be injected, the
