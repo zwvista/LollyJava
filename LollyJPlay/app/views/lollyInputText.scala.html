@@ -1,0 +1,6 @@
+@(f: play.api.data.Field, label: String)
+
+<label class="col-sm-2 control-label" for='@f.id'>@label</label>
+<div class="col-sm-4">
+	<input type="text" class="form-control" id="@f.id" name="@f.name" value="@f.value" />
+</div>

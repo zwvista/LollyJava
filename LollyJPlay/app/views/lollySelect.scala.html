@@ -1,0 +1,10 @@
+@(f: play.api.data.Field, options: Seq[(String,String)], label: String)
+
+<label class="col-sm-2 control-label" for='@f.id'>@label</label>
+  	<div class="col-sm-4">
+	<select class="form-control" name="@f.name" id="@f.id">
+		@for((k, v) <- options) {
+			<option value="@k">@v</option>
+		}
+	</select>
+</div>

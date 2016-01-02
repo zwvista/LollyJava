@@ -1,7 +1,6 @@
 @(lollyForm: play.data.Form[LollyForm])
 
 @import helper._
-@import play.libs.Json
 
 <!DOCTYPE html>
 <html>
@@ -17,8 +16,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <script>
 $(function() {
-	var $lang = $('#lang');
-	var $dict = $('#dict');
+	var $lang = $('#selectedLangID');
+	var $dict = $('#selectedDictName');
 	$lang.change(function() {
  	    $.get("dictList", $('#form').serialize(), function(response) {
             $dict.empty();
@@ -41,27 +40,13 @@ $(function() {
 <body>
 <form class="form-horizontal" id="form">
 	<div class="form-group">
-		<label class="col-sm-2 control-label" for='lang'>Language:</label>
-    	<div class="col-sm-4">
-			<select class="form-control" name="selectedLangID" id="lang">
-				@for((langid, langname) <- lollyForm.get.langMap) {
-	  				<option value="@langid">@langname</option>
-				}
-			</select>
-		</div>
+		@lollySelect(lollyForm("selectedLangID"), options(lollyForm.get.langMap), "Language:")
 	</div>
 	<div class="form-group">
-		<label class="col-sm-2 control-label" for='dict'>Dictionary:</label>
-    	<div class="col-sm-4">
-			<select class="form-control" name="selectedDictName" id="dict">
-			</select>
-		</div>
+		@lollySelect(lollyForm("selectedDictName"), options(), "Dictionary:")
 	</div>
 	<div class="form-group">
-		<label class="col-sm-2 control-label" for='word'>Word:</label>
-    	<div class="col-sm-4">
-			<input type="text" class="form-control" name="word" id="word" value='@lollyForm.get.word' />
-		</div>
+		@lollyInputText(lollyForm("word"), "Word:")
 	    <button type="button" class="btn btn-primary" id='search'>Search</button>
 	</div>
 </form>
