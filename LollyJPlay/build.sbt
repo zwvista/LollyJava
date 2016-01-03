@@ -13,14 +13,6 @@ libraryDependencies ++= Seq(
     javaJdbc,
     cache,
     javaWs,
-    "org.hibernate" % "hibernate-core" % "4.3.9.Final",
-    "org.hibernate" % "hibernate-entitymanager" % "4.3.9.Final",
-    "org.springframework.data" % "spring-data-jpa" % "1.9.1.RELEASE",
-    "org.springframework" % "spring-context" % "4.1.8.RELEASE",
-    "org.springframework" % "spring-orm" % "4.1.8.RELEASE",
-    "org.springframework" % "spring-jdbc" % "4.1.8.RELEASE",
-    "org.springframework" % "spring-tx" % "4.1.8.RELEASE",
-    "org.xerial" % "sqlite-jdbc" % "3.8.11.2",
     "com.adrianhurt" %% "play-bootstrap" % "1.0-P24-B3-SNAPSHOT"
 )
 
@@ -33,4 +25,7 @@ EclipseKeys.preTasks := Seq(compile in Compile)
 EclipseKeys.projectFlavor := EclipseProjectFlavor.Java           // Java project. Don't expect Scala IDE
 EclipseKeys.createSrc := EclipseCreateSrc.ValueSet(EclipseCreateSrc.ManagedClasses, EclipseCreateSrc.ManagedResources)  // Use .class files instead of generated .scala files for views and routes 
 
-fork in run := true
+fork in run := false
+fork in Test := false
+
+ivyXML := <dependencies>{xml.XML.load("../LollyJShared/pom.xml") \\ "dependencies" \\ "dependency" filter (dep => (dep \\ "groupId").text != "org.scala-lang") map (dep => <dependency org={dep \\ "groupId" text} name={dep \\ "artifactId" text} rev={dep \\ "version" text} />)}</dependencies>
