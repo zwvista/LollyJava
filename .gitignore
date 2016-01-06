@@ -9,3 +9,7 @@ activator.bat
 .sbtserver
 .log
 *.jar
+/LollyJPlay/*.cache-main
+/LollyJPlay/*.cache-tests
+/LollySPlay/*.cache-main
+/LollySPlay/.cache-tests

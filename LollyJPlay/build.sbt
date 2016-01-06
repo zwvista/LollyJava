@@ -1,3 +1,7 @@
+import com.typesafe.sbteclipse.core.EclipsePlugin.{EclipseCreateSrc, EclipseProjectFlavor, EclipseKeys}
+import play.routes.compiler.InjectedRoutesGenerator
+import play.sbt.PlayJava
+
 name := """LollyJPlay"""
 
 version := "1.0-SNAPSHOT"
@@ -30,5 +34,9 @@ fork in Test := false
 
 ivyXML := <dependencies>{xml.XML.load("../LollyJShared/pom.xml") \\ "dependencies" \\ "dependency" filter (dep => (dep \\ "groupId").text != "org.scala-lang") map (dep => <dependency org={dep \\ "groupId" text} name={dep \\ "artifactId" text} rev={dep \\ "version" text} />)}</dependencies>
 
+
+fork in run := true
+
+fork in run := true
 
 fork in run := true

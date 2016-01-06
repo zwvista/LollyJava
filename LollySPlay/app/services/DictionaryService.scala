@@ -1,14 +1,14 @@
 package services
 
-import models.DictAllTable
+import models.DictionaryTable
 import slick.driver.SQLiteDriver.api._
 import play.api.db.DB
 import play.api.Play.current
 
-object DictAllService {
+object DictionaryService {
   def db: Database = Database.forDataSource(DB.getDataSource())
-  private lazy val items = TableQuery[DictAllTable]
+  private lazy val items = TableQuery[DictionaryTable]
   def getDataByLang(langid: Int) = db.run(items.filter { _.langid === langid }.result.headOption)
-  def getDataByLangDict(langid: Int, dictname: String) =
-    db.run(items.filter { x ⇒ (x.langid === langid) && (x.dictname === dictname) }.result.headOption)
+  def getNamesByLang(langid: Int) =
+    db.run(items.filter { _.langid === langid }.map { x ⇒ x.dictname }.result.headOption)
 }

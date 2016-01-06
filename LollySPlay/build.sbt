@@ -14,10 +14,7 @@ libraryDependencies ++= Seq(
   cache,
   ws,
   specs2 % Test,
-    "com.typesafe.play" %% "play-slick" % "1.0.1",
-    "com.typesafe.play" %% "play-slick-evolutions" % "1.0.1",
     "com.typesafe.slick" %% "slick" % "3.1.1",
-    "org.slf4j" % "slf4j-nop" % "1.7.12",
     "org.xerial" % "sqlite-jdbc" % "3.8.11.2",
     "com.adrianhurt" %% "play-bootstrap" % "1.0-P24-B3-SNAPSHOT"
 )
@@ -31,5 +28,7 @@ routesGenerator := InjectedRoutesGenerator
 fork in run := false
 fork in Test := false
 
+
+fork in run := true
 
 fork in run := true

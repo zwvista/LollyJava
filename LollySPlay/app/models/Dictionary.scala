@@ -27,6 +27,5 @@ class DictionaryTable(tag: Tag) extends Table[Dictionary](tag, "Dictionaries") {
   def autojump = column[Int]("autojump")
   def dicttable = column[String]("dicttable")
   def template = column[String]("template")
-  def * = (langid, dictname, ord, dicttypeid, langidto, url, chconv, automation, autojump, dicttable, template) <> (Dictionary.tupled, Dictionary.unapply)
+  override def * = (langid, dictname, ord, dicttypeid, langidto, url, chconv, automation, autojump, dicttable, template) <> (Dictionary.tupled, Dictionary.unapply)
 }
-object DictionaryTable extends TableQuery(new DictionaryTable(_))

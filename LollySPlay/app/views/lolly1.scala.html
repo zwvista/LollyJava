@@ -1,6 +1,4 @@
-@(lollyForm: Form[LollyForm])
-
-@import helper._
+@(lollyForm: LollyForm)
 
 <!DOCTYPE html>
 <html>
@@ -19,13 +17,27 @@
 <body>
 <form class="form-horizontal" id="form">
 	<div class="form-group">
-		@lollySelect(lollyForm("selectedLangID"), options(lollyForm.get.langMap), "Language:")
+		<label class="col-sm-2 control-label" for='selectedLangID'>Language:</label>
+    	<div class="col-sm-4">
+			<select class="form-control" name="selectedLangID" id="selectedLangID">
+				@for((langid, langname) <- lollyForm.langMap) {
+	  				<option value="@langid">@langname</option>
+				}
+			</select>
+		</div>
 	</div>
 	<div class="form-group">
-		@lollySelect(lollyForm("selectedDictName"), options(), "Dictionary:")
+		<label class="col-sm-2 control-label" for='selectedDictName'>Dictionary:</label>
+    	<div class="col-sm-4">
+			<select class="form-control" name="selectedDictName" id="selectedDictName">
+			</select>
+		</div>
 	</div>
 	<div class="form-group">
-		@lollyInputText(lollyForm("word"), "Word:")
+		<label class="col-sm-2 control-label" for='word'>Word:</label>
+    	<div class="col-sm-4">
+			<input type="text" class="form-control" name="word" id="word" value='@lollyForm.word' />
+		</div>
 	    <button type="button" class="btn btn-primary" id='search'>Search</button>
 	</div>
 </form>

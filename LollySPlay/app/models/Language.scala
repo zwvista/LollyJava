@@ -17,6 +17,5 @@ class LanguageTable(tag: Tag) extends Table[Language](tag, "Languages") {
   def voice = column[String]("voice")
   def curbookid = column[Int]("curbookid")
   def engname = column[String]("engname")
-  def * = (langid, langname, chnname, voice, curbookid, engname) <> (Language.tupled, Language.unapply)
+  override def * = (langid, langname, chnname, voice, curbookid, engname) <> (Language.tupled, Language.unapply)
 }
-object LanguageTable extends TableQuery(new LanguageTable(_))
