@@ -2,10 +2,9 @@ package models
 
 import scala.collection.immutable.Map
 
-class LollyForm {
-  var word: String = _
-  var selectedLangID: Int = _
-  var selectedDictName: String = _
-  var langList: Seq[Language] = _
-  var langMap: Map[String, String] = _
-}
+case class LollyForm(
+  word: String = null,
+  selectedLangID: Int = 0,
+  selectedDictName: String = null,
+  langList: Seq[Language] = null,
+  langMap: Map[String, String] = null)

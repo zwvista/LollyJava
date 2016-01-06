@@ -10,5 +10,5 @@ object LanguageService {
   private lazy val items = TableQuery[LanguageTable]
   def getData = db.run(items.filter { _.langid > 0 }.result)
   def getIdNameMap =
-    db.run(items.filter { _.langid > 0 }.map { x => x.langid.toString -> x.langname }.result)
+    db.run(items.filter { _.langid > 0 }.map { x => x.langid -> x.langname }.result)
 }
