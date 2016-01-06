@@ -2,11 +2,14 @@ package controllers
 
 import scala.concurrent.Await
 import scala.concurrent.duration.Duration
-import models.{ DictAll, LollyForm }
+
+import models.{ DictAll, Language, LollyForm }
+import play.api.data._
+import play.api.data.Forms._
+import play.api.data.format.Formats._
 import play.api.libs.json.Json
 import play.api.mvc.{ Action, Controller }
 import services.{ DictAllService, DictionaryService, LanguageService }
-import play.api.data.Form
 
 class Application extends Controller {
 
@@ -18,20 +21,19 @@ class Application extends Controller {
     val v = Await.result(LanguageService.getIdNameMap, Duration.Inf)
     LollyForm(
       word = "一人",
-      langMap = v.map { x => x._1.toString -> x._2 }.toMap)
+      langMap = v.map { x ⇒ x._1.toString → x._2 }.toMap)
   }
 
   def lolly1 = Action {
-    val f = newForm
-    for ((k, v) ← f.langMap)
-      printf("%s:%s", k, v)
-    Ok(views.html.lolly1.render(f))
+    Ok(views.html.lolly1.render(newForm))
   }
   //  def lolly2 = Action {
-  //    Ok(views.html.lolly2.render(Form.form(Class[LollyForm]).fill(newForm)))
+  //    var f = Form[LollyForm](null);
+  //    Ok(views.html.lolly2.render(f))
   //  }
   //  def lolly3 = Action {
-  //    Ok(views.html.lolly3.render(Form.form(Class[LollyForm]).fill(newForm)))
+  //    var f = Form(mapping("" → text, "" → text, "" → text, "" → text, "" → text)(LollyForm.apply)(LollyForm.unapply _))
+  //    Ok(views.html.lolly3.render(f))
   //  }
 
   def dictList(selectedLangID: String) = Action {

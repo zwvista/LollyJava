@@ -7,4 +7,5 @@ case class LollyForm(
   selectedLangID: Int = 0,
   selectedDictName: String = null,
   langList: Seq[Language] = null,
-  langMap: Map[String, String] = null)
+  langMap: Map[String, String] = null
+)

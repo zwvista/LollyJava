@@ -3,35 +3,35 @@ package models
 import slick.driver.SQLiteDriver.api._
 
 case class DictAll(
-  langid: Int,
-  dictname: String,
-  ord: Int,
-  langidto: Int,
-  dicttypename: String,
-  url: String,
-  chconv: String,
-  automation: String,
-  autojump: Int,
-  dicttable: String,
-  transformWin: String,
-  transformMac: String,
-  waitfield: Int,
-  template: String)
+  langid: Option[Int],
+  dictname: Option[String],
+  ord: Option[Int],
+  langidto: Option[Int],
+  dicttypename: Option[String],
+  url: Option[String],
+  chconv: Option[String],
+  automation: Option[String],
+  autojump: Option[Int],
+  dicttable: Option[String],
+  transformWin: Option[String],
+  transformMac: Option[String],
+  waitfield: Option[Int],
+  template: Option[String])
 
 class DictAllTable(tag: Tag) extends Table[DictAll](tag, "DictAll") {
-  def langid = column[Int]("langid")
-  def dictname = column[String]("dictname")
-  def ord = column[Int]("ord")
-  def langidto = column[Int]("langidto")
-  def dicttypename = column[String]("dicttypename")
-  def url = column[String]("url")
-  def chconv = column[String]("chconv")
-  def automation = column[String]("automation")
-  def autojump = column[Int]("autojump")
-  def dicttable = column[String]("dicttable")
-  def transformWin = column[String]("transformWin")
-  def transformMac = column[String]("transformMac")
-  def waitcolumn = column[Int]("wait")
-  def template = column[String]("template")
+  def langid = column[Option[Int]]("langid")
+  def dictname = column[Option[String]]("dictname")
+  def ord = column[Option[Int]]("ord")
+  def langidto = column[Option[Int]]("langidto")
+  def dicttypename = column[Option[String]]("dicttypename")
+  def url = column[Option[String]]("url")
+  def chconv = column[Option[String]]("chconv")
+  def automation = column[Option[String]]("automation")
+  def autojump = column[Option[Int]]("autojump")
+  def dicttable = column[Option[String]]("dicttable")
+  def transformWin = column[Option[String]]("transformWin")
+  def transformMac = column[Option[String]]("transformMac")
+  def waitcolumn = column[Option[Int]]("wait")
+  def template = column[Option[String]]("template")
   override def * = (langid, dictname, ord, langidto, dicttypename, url, chconv, automation, autojump, dicttable, transformWin, transformMac, waitcolumn, template) <> (DictAll.tupled, DictAll.unapply)
 }
