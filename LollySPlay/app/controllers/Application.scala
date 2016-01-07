@@ -17,24 +17,25 @@ class Application extends Controller {
     Ok(views.html.index("Your new application is ready."))
   }
 
-  private def newForm = {
+  private def lollyForm = {
     val v = Await.result(LanguageService.getIdNameMap, Duration.Inf)
     LollyForm(
       word = "一人",
       langMap = v.map { x ⇒ x._1.toString → x._2 }.toMap)
   }
+  private def lollyFormMapping =
+    Form[LollyForm](
+      mapping("word" → text)(word ⇒ LollyForm(word = word))(o ⇒ Some(o.word))).fill(lollyForm)
 
   def lolly1 = Action {
-    Ok(views.html.lolly1.render(newForm))
+    Ok(views.html.lolly1.render(lollyForm))
   }
-  //  def lolly2 = Action {
-  //    var f = Form[LollyForm](null);
-  //    Ok(views.html.lolly2.render(f))
-  //  }
-  //  def lolly3 = Action {
-  //    var f = Form(mapping("" → text, "" → text, "" → text, "" → text, "" → text)(LollyForm.apply)(LollyForm.unapply _))
-  //    Ok(views.html.lolly3.render(f))
-  //  }
+  def lolly2 = Action {
+    Ok(views.html.lolly2.render(lollyFormMapping))
+  }
+  def lolly3 = Action {
+    Ok(views.html.lolly3.render(lollyFormMapping))
+  }
 
   def dictList(selectedLangID: String) = Action {
     val v = Await.result(DictionaryService.getNamesByLang(selectedLangID.toInt), Duration.Inf)
