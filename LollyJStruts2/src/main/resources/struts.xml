@@ -5,70 +5,26 @@
  
 <struts>
 
- <constant name="struts.enable.DynamicMethodInvocation" value="false" />
-    <constant name="struts.devMode" value="true" />
-    <constant name="struts.custom.i18n.resources" value="global" />
- 
- <package name="default" namespace="/" extends="struts-default">
+<constant name="struts.enable.DynamicMethodInvocation" value="false" />
+<constant name="struts.devMode" value="true" />
+<constant name="struts.custom.i18n.resources" value="global" />
+
+<package name="default" namespace="/" extends="json-default">
     <interceptors>
-  <interceptor-stack name="appDefaultStack">
-    <interceptor-ref name="defaultStack">
-     <param name="exception.logEnabled">true</param>
-     <param name="exception.logLevel">ERROR</param>
-    </interceptor-ref>
- </interceptor-stack>
-</interceptors>
- 
-<default-interceptor-ref name="defaultStack" />
+        <interceptor-stack name="jsonStack">
+            <interceptor-ref name="defaultStack">
+                 <param name="exception.logEnabled">true</param>
+                 <param name="exception.logLevel">ERROR</param>
+            </interceptor-ref>
+            <interceptor-ref name="json">
+                <param name="enableSMD">true</param>
+            </interceptor-ref>
+        </interceptor-stack>
+    </interceptors>
+    <default-interceptor-ref name="defaultStack" />
+    
 	<action name="index">
 	    <result>/index.jsp</result>
-	</action>
-</package>
-
-<package name="default2" namespace="/" extends="json-default">
-
-	<interceptors>
-		<interceptor-stack name="jsonStack">
-    <interceptor-ref name="defaultStack">
-     <param name="exception.logEnabled">true</param>
-     <param name="exception.logLevel">ERROR</param>
-    </interceptor-ref>
-			<interceptor-ref name="json">
-				<param name="enableSMD">true</param>
-			</interceptor-ref>
-		</interceptor-stack>
-	</interceptors>
-	<default-interceptor-ref name="jsonStack" />
-
-	<action name="dictList1" class="com.zwstudio.lolly.web.struts2.LollyAction" method="writeDictList">
-		<result type="json">/lolly1.jsp</result>
-	</action>
-	<action name="dictUrl1" class="com.zwstudio.lolly.web.struts2.LollyAction" method="writeDictUrl">
-		<result type="json">/lolly1.jsp</result>
-	</action>
-	<action name="dictList12" class="com.zwstudio.lolly.web.struts2.LollyAction" method="writeDictList">
-		<result type="json">/lolly12.jsp</result>
-	</action>
-	<action name="dictUrl12" class="com.zwstudio.lolly.web.struts2.LollyAction" method="writeDictUrl">
-		<result type="json">/lolly12.jsp</result>
-	</action>
-	<action name="dictList13" class="com.zwstudio.lolly.web.struts2.LollyAction" method="writeDictList">
-		<result type="json">/lolly13.jsp</result>
-	</action>
-	<action name="dictUrl13" class="com.zwstudio.lolly.web.struts2.LollyAction" method="writeDictUrl">
-		<result type="json">/lolly13.jsp</result>
-	</action>
-	<action name="dictList2" class="com.zwstudio.lolly.web.struts2.LollyAction" method="writeDictList">
-		<result type="json">/lolly2.jsp</result>
-	</action>
-	<action name="dictUrl2" class="com.zwstudio.lolly.web.struts2.LollyAction" method="writeDictUrl">
-		<result type="json">/lolly2.jsp</result>
-	</action>
-	<action name="dictList3" class="com.zwstudio.lolly.web.struts2.LollyAction" method="writeDictList">
-		<result type="json">/lolly3.jsp</result>
-	</action>
-	<action name="dictUrl3" class="com.zwstudio.lolly.web.struts2.LollyAction" method="writeDictUrl">
-		<result type="json">/lolly3.jsp</result>
 	</action>
 </package>
  

@@ -70,7 +70,7 @@ public class LollyAction extends ActionSupport {
 		@Action(
 			value="lolly3",
 			results=@Result(location="lolly3.jsp", type="freemarker")
-		),
+		)
 	})
 	public String execute() {
 		langList = langDao.getData();
@@ -78,11 +78,55 @@ public class LollyAction extends ActionSupport {
 		return SUCCESS;
 	}
 
+	@Actions({
+		@Action(
+			value="dictList1",
+			results=@Result(type="json")
+		),
+		@Action(
+			value="dictList12",
+			results=@Result(type="json")
+		),
+		@Action(
+			value="dictList13",
+			results=@Result(type="json")
+		),
+		@Action(
+			value="dictList2",
+			results=@Result(type="json")
+		),
+		@Action(
+			value="dictList3",
+			results=@Result(type="json")
+		)
+	})
 	public String writeDictList() {
 		dictList = dictDao.getNamesByLang(selectedLangID);
 		return SUCCESS;
 	}
 
+	@Actions({
+		@Action(
+			value="dictUrl1",
+			results=@Result(type="json")
+		),
+		@Action(
+			value="dictUrl12",
+			results=@Result(type="json")
+		),
+		@Action(
+			value="dictUrl13",
+			results=@Result(type="json")
+		),
+		@Action(
+			value="dictUrl2",
+			results=@Result(type="json")
+		),
+		@Action(
+			value="dictUrl3",
+			results=@Result(type="json")
+		)
+	})
 	public String writeDictUrl() {
 		url = dictallDao.getDataByLangDict(selectedLangID, selectedDictName).getUrl();
 		return SUCCESS;
