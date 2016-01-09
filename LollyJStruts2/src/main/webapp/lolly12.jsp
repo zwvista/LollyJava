@@ -14,7 +14,7 @@ $(function() {
 	var $lang = $('#lang');
 	var $dict = $('#dict');
 	$lang.change(function() {
- 	    $.post("dictList12", $('#form').serialize(), function(response) {
+ 	    $.post("dictList", $('#form').serialize(), function(response) {
             $dict.empty();
             $.each(response.dictList, function(index, dict) {
                 $dict.append($('<option/>', {text: dict}));
@@ -29,7 +29,7 @@ $(function() {
 		}
 	});
 	$('#search').click(function() {
-	    $.post("dictUrl12", $('#form').serialize(), function(response) {
+	    $.post("dictUrl", $('#form').serialize(), function(response) {
 			var word = $('#word').val();
 			var url = response.url.replace('{0}', encodeURIComponent(word));
 			$('#dictframe').attr('src', url);
