@@ -8,8 +8,9 @@ import org.springframework.data.repository.query.Param;
 
 import com.zwstudio.lolly.domain.DictAll;
 import com.zwstudio.lolly.domain.DictAllId;
+import com.zwstudio.lolly.services.IDictAllService;
 
-public interface DictAllRepository extends CrudRepository<DictAll, DictAllId> {
+public interface DictAllRepository extends CrudRepository<DictAll, DictAllId>, IDictAllService {
 //	@Query(value="SELECT * FROM DICTALL WHERE LANGID = ?",nativeQuery=true)
 	@Query("from DictAll where id.langid = ?")
 	public List<DictAll> getDataByLang(int langid);

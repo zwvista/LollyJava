@@ -7,8 +7,9 @@ import org.springframework.data.repository.CrudRepository;
 
 import com.zwstudio.lolly.domain.Dictionary;
 import com.zwstudio.lolly.domain.DictionaryId;
+import com.zwstudio.lolly.services.IDictionaryService;
 
-public interface DictionaryRepository extends CrudRepository<Dictionary, DictionaryId> {
+public interface DictionaryRepository extends CrudRepository<Dictionary, DictionaryId>, IDictionaryService {
 //	@Query(value="SELECT * FROM DICTIONARIES WHERE LANGID = ?",nativeQuery=true)
 	@Query("from Dictionary where id.langid = ?")
 	public List<Dictionary> getDataByLang(int langid);

@@ -30,7 +30,7 @@ $(function() {
 	    });
 	});
 	$lang.change();
-	$('form').submit(function(event) {
+	$('form').submit(function() {
         event.preventDefault();
 		$.get("dictall", $('form').serialize(), function(response) {
 			if(response[0]) {

@@ -8,10 +8,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.zwstudio.lolly.domain.DictAll;
 import com.zwstudio.lolly.mybatis.mappers.DictAllMapper;
+import com.zwstudio.lolly.services.IDictAllService;
 
 @Service
 @Transactional
-public class DictAllService {
+public class DictAllService implements IDictAllService {
 	@Autowired
 	DictAllMapper mapper;
 	

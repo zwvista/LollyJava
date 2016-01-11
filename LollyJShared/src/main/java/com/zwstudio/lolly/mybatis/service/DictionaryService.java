@@ -9,10 +9,11 @@ import org.springframework.transaction.annotation.Transactional;
 import com.zwstudio.lolly.domain.Dictionary;
 import com.zwstudio.lolly.domain.DictionaryId;
 import com.zwstudio.lolly.mybatis.mappers.DictionaryMapper;
+import com.zwstudio.lolly.services.IDictionaryService;
 
 @Service
 @Transactional
-public class DictionaryService {
+public class DictionaryService implements IDictionaryService {
 	@Autowired
 	DictionaryMapper mapper;
 

@@ -8,10 +8,11 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.zwstudio.lolly.domain.Language;
+import com.zwstudio.lolly.services.ILanguageService;
 
 @Repository
 @Transactional
-public class LanguageDao extends BaseDao {
+public class LanguageDao extends BaseDao implements ILanguageService {
 	@SuppressWarnings("unchecked")
 	public List<Language> getData() {
 		return getCurrentSession()

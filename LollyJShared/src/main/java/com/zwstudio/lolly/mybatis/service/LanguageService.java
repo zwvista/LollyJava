@@ -10,10 +10,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.zwstudio.lolly.domain.Language;
 import com.zwstudio.lolly.mybatis.mappers.LanguageMapper;
+import com.zwstudio.lolly.services.ILanguageService;
 
 @Service
 @Transactional
-public class LanguageService {
+public class LanguageService implements ILanguageService {
 	@Autowired
 	LanguageMapper mapper;
 

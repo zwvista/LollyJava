@@ -6,10 +6,11 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.zwstudio.lolly.domain.Dictionary;
+import com.zwstudio.lolly.services.IDictionaryService;
 
 @Repository
 @Transactional
-public class DictionaryDao extends BaseDao {
+public class DictionaryDao extends BaseDao implements IDictionaryService {
 	@SuppressWarnings("unchecked")
 	public List<Dictionary> getDataByLang(int langid) {
 		return getCurrentSession()
