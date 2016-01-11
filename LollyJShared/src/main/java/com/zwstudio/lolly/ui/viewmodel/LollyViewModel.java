@@ -12,29 +12,30 @@ import java.util.Map.Entry;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import lombok.Getter;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 
 import com.jgoodies.binding.beans.Model;
 import com.zwstudio.lolly.domain.DictAll;
 import com.zwstudio.lolly.domain.Dictionary;
 import com.zwstudio.lolly.domain.DictionaryId;
 import com.zwstudio.lolly.domain.Language;
-import com.zwstudio.lolly.hibernate.dao.DictAllDao;
-import com.zwstudio.lolly.hibernate.dao.DictionaryDao;
-import com.zwstudio.lolly.hibernate.dao.LanguageDao;
+import com.zwstudio.lolly.services.IDictAllService;
+import com.zwstudio.lolly.services.IDictionaryService;
+import com.zwstudio.lolly.services.ILanguageService;
+
+import lombok.Getter;
 
 public class LollyViewModel extends Model {
 
 	private static final long serialVersionUID = 1L;
 	
-	@Autowired
-	protected LanguageDao langDao;
-	@Autowired
-	protected DictionaryDao dictDao;
-	@Autowired
-	protected DictAllDao dictallDao;
+	@Autowired @Qualifier("languageDao")
+	protected ILanguageService langDao;
+	@Autowired @Qualifier("dictionaryDao")
+	protected IDictionaryService dictDao;
+	@Autowired @Qualifier("dictAllDao")
+	protected IDictAllService dictallDao;
 	
 	protected DictAll dict;
 	@Getter
