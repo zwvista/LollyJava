@@ -11,6 +11,7 @@ import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -26,19 +27,19 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
-import com.zwstudio.lolly.mybatis.service.DictAllService;
-import com.zwstudio.lolly.mybatis.service.DictionaryService;
-import com.zwstudio.lolly.mybatis.service.LanguageService;
+import com.zwstudio.lolly.services.IDictAllService;
+import com.zwstudio.lolly.services.IDictionaryService;
+import com.zwstudio.lolly.services.ILanguageService;
 
 @Controller
 @RequestMapping("/mybatis/")
 public class LollyControllerMyBatis {
-	@Autowired
-	protected LanguageService langService;
-	@Autowired
-	protected DictionaryService dictService;
-	@Autowired
-	protected DictAllService dictallService;
+	@Autowired @Qualifier("languageService")
+	protected ILanguageService langService;
+	@Autowired @Qualifier("dictionaryService")
+	protected IDictionaryService dictService;
+	@Autowired @Qualifier("dictAllService")
+	protected IDictAllService dictallService;
 	
 	private Gson gson = new Gson();
 

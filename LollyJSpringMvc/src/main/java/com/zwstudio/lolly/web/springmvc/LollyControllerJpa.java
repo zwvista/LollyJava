@@ -11,6 +11,7 @@ import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -26,19 +27,19 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
-import com.zwstudio.lolly.spring.data.jpa.DictAllRepository;
-import com.zwstudio.lolly.spring.data.jpa.DictionaryRepository;
-import com.zwstudio.lolly.spring.data.jpa.LanguageRepository;
+import com.zwstudio.lolly.services.IDictAllService;
+import com.zwstudio.lolly.services.IDictionaryService;
+import com.zwstudio.lolly.services.ILanguageService;
 
 @Controller
 @RequestMapping("/jpa/")
 public class LollyControllerJpa {
-	@Autowired
-	protected LanguageRepository langRepository;
-	@Autowired
-	protected DictionaryRepository dictRepository;
-	@Autowired
-	protected DictAllRepository dictallRepository;
+	@Autowired @Qualifier("languageRepository")
+	protected ILanguageService langService;
+	@Autowired @Qualifier("dictionaryRepository")
+	protected IDictionaryService dictService;
+	@Autowired @Qualifier("dictAllRepository")
+	protected IDictAllService dictallService;
 	
 	private Gson gson = new Gson();
 
@@ -46,8 +47,8 @@ public class LollyControllerJpa {
 	public LollyFormBean createFormBean() {
 		LollyFormBean bean = new LollyFormBean();
 		bean.word = "一人";
-		bean.langList = langRepository.getData();
-		bean.langMap = langRepository.getIdNameMap();
+		bean.langList = langService.getData();
+		bean.langMap = langService.getIdNameMap();
 		return bean;
 	}
 	
@@ -55,7 +56,7 @@ public class LollyControllerJpa {
 	public @ResponseBody ResponseEntity<String> dictList(
 			@RequestParam(value="langid", required=true) int langid,
 			ModelMap modelMap) {
-		return createJsonResponse(dictRepository.getDataByLang(langid));
+		return createJsonResponse(dictService.getDataByLang(langid));
 	}
 	
 	@RequestMapping(value="dictList2", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
@@ -63,7 +64,7 @@ public class LollyControllerJpa {
 			@RequestParam(value="langid", required=true) int langid,
 			ModelMap modelMap) {
 		return createJsonResponse(
-			dictRepository.getNamesByLang(langid)
+			dictService.getNamesByLang(langid)
 		);
 	}
 
@@ -73,7 +74,7 @@ public class LollyControllerJpa {
 			@RequestParam(value="dictname", required=true) String dictname,
 			ModelMap modelMap) {
 		return createJsonResponse(
-			dictallRepository.getDataByLangDict(langid, dictname)
+			dictallService.getDataByLangDict(langid, dictname)
 		);
 	}
 	
@@ -82,7 +83,7 @@ public class LollyControllerJpa {
 			@ModelAttribute("formBean") LollyFormBean bean,
 			BindingResult bindingResult) {
 		return createJsonResponse(
-			dictRepository.getNamesByLang(bean.selectedLangID)
+			dictService.getNamesByLang(bean.selectedLangID)
 		);
 	}
 
@@ -91,7 +92,7 @@ public class LollyControllerJpa {
 			@ModelAttribute("formBean") LollyFormBean bean,
 			BindingResult bindingResult) {
 		return createJsonResponse(
-			dictallRepository.getDataByLangDict(bean.selectedLangID, bean.selectedDictName)
+			dictallService.getDataByLangDict(bean.selectedLangID, bean.selectedDictName)
 		);
 	}
 

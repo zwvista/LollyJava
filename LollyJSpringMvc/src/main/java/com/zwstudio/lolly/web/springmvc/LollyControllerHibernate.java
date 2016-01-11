@@ -13,6 +13,7 @@ import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -26,26 +27,26 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.zwstudio.lolly.domain.DictAll;
 import com.zwstudio.lolly.domain.Dictionary;
-import com.zwstudio.lolly.hibernate.dao.DictAllDao;
-import com.zwstudio.lolly.hibernate.dao.DictionaryDao;
-import com.zwstudio.lolly.hibernate.dao.LanguageDao;
+import com.zwstudio.lolly.services.IDictAllService;
+import com.zwstudio.lolly.services.IDictionaryService;
+import com.zwstudio.lolly.services.ILanguageService;
 
 @Controller
 @RequestMapping("/hibernate/")
 public class LollyControllerHibernate {
-	@Autowired
-	protected LanguageDao langDao;
-	@Autowired
-	protected DictionaryDao dictDao;
-	@Autowired
-	protected DictAllDao dictallDao;
-
+	@Autowired @Qualifier("languageDao")
+	protected ILanguageService langService;
+	@Autowired @Qualifier("dictionaryDao")
+	protected IDictionaryService dictService;
+	@Autowired @Qualifier("dictAllDao")
+	protected IDictAllService dictallService;
+	
 	@ModelAttribute("formBean")
 	public LollyFormBean createFormBean() {
 		LollyFormBean bean = new LollyFormBean();
 		bean.word = "一人";
-		bean.langList = langDao.getData();
-		bean.langMap = langDao.getIdNameMap();
+		bean.langList = langService.getData();
+		bean.langMap = langService.getIdNameMap();
 		return bean;
 	}
 	
@@ -53,7 +54,7 @@ public class LollyControllerHibernate {
 	public @ResponseBody List<Dictionary> dictList(
 			@RequestParam(value="langid", required=true) int langid,
 			ModelMap modelMap) {
-		return dictDao.getDataByLang(langid);
+		return dictService.getDataByLang(langid);
 	}
 	
 	@RequestMapping(value="dictall", method=RequestMethod.GET)
@@ -67,7 +68,7 @@ public class LollyControllerHibernate {
 	public @ResponseBody List<String> dictList2(
 			@RequestParam(value="langid", required=true) int langid,
 			ModelMap modelMap) {
-		return dictDao.getNamesByLang(langid);
+		return dictService.getNamesByLang(langid);
 	}
 
 	@RequestMapping(value="dictall2", method=RequestMethod.GET)
@@ -75,21 +76,21 @@ public class LollyControllerHibernate {
 			@RequestParam(value="langid", required=true) int langid,
 			@RequestParam(value="dictname", required=true) String dictname,
 			ModelMap modelMap) {
-		return dictallDao.getDataByLangDict(langid, dictname);
+		return dictallService.getDataByLangDict(langid, dictname);
 	}
 	
 	@RequestMapping(value="dictList3", method=RequestMethod.POST)
 	public @ResponseBody List<String> dictList3(
 			@ModelAttribute("formBean") LollyFormBean bean,
 			BindingResult bindingResult) {
-		return dictDao.getNamesByLang(bean.selectedLangID);
+		return dictService.getNamesByLang(bean.selectedLangID);
 	}
 
 	@RequestMapping(value="dictall3", method=RequestMethod.POST)
 	public @ResponseBody DictAll dictall3(
 			@ModelAttribute("formBean") LollyFormBean bean,
 			BindingResult bindingResult) {
-		return dictallDao.getDataByLangDict(bean.selectedLangID, bean.selectedDictName);
+		return dictallService.getDataByLangDict(bean.selectedLangID, bean.selectedDictName);
 	}
 	
     @RequestMapping("lolly1")
