@@ -43,6 +43,7 @@ angular.module('app', []).controller("lollyCtrl", ["$scope", "$http", "$sce",
         $scope.dictUrl = null;
         var formdata = $('form').serialize();
         $http.get("validate?" + formdata).then(function(response) {
+        	// alert(JSON.stringify(response));
             if(response.data[0]) {
             	$scope.wordError = response.data[0].defaultMessage;
                 $scope.dictUrl = "about:blank";

@@ -18,28 +18,31 @@
 $(function() {
 	var $lang = $('#lang');
 	var $dict = $('#dict');
-	$lang.change(function() {
- 	    $.post("dictList3", $('#form').serialize(), function(response) {
+    $lang.change(function() {
+        $.post("dictList3", $('form').serialize(), function(response) {
             $dict.empty();
             $.each(response, function(index, dict) {
                 $dict.append($('<option/>', {text: dict}));
             });
- 		});
-	});
-	$lang.change();
-	$('#word').keypress(function(event) {
-		if(event.which == 13){
-			event.preventDefault();
-			$('#search').click();
-		}
-	});
-	$('#search').click(function() {
-	    $.post("dictall3", $('#form').serialize(), function(response) {
-			var word = $('#word').val();
-			var url = response.url.replace('{0}', encodeURIComponent(word));
-			$('#dictframe').attr('src', url);
-	    });
-	});
+        });
+    });
+    $lang.change();
+    $('form').submit(function() {
+        event.preventDefault();
+        $.get("validate", $('form').serialize(), function(response) {
+            if(response[0]) {
+                $('#wordError').html(response[0].defaultMessage);
+                $('#dictframe').attr('src', 'about:blank');
+            } else {
+                $('#wordError').empty();
+                $.post("dictall3", $('form').serialize(), function(response) {
+                    var word = $('#word').val();
+                    var url = response.url.replace('{0}', encodeURIComponent(word));
+                    $('#dictframe').attr('src', url);
+                });
+            }
+        });
+    });
 });
 </script>
 </head>
@@ -51,10 +54,10 @@ $(function() {
 </html>
 </xsl:template>
 <xsl:template match="java/object">
-<form class="form-horizontal" id="form">
+<form class="form-horizontal">
 	<div class="form-group">
-		<label class="col-sm-2 control-label" for='lang'>Language:</label>
-    	<div class="col-sm-4">
+		<label class="col-sm-1 control-label" for='lang'>Language:</label>
+    	<div class="col-sm-3">
 			<select class="form-control" name="selectedLangID" id="lang" >
 		    	<xsl:for-each select="void[3]/void/object/void">
 					<option>
@@ -66,24 +69,23 @@ $(function() {
 				</xsl:for-each>
 			</select>
 		</div>
-	</div>
-	<div class="form-group">
-		<label class="col-sm-2 control-label" for='dict'>Dictionary:</label>
-    	<div class="col-sm-4">
+		<label class="col-sm-1 control-label" for='dict'>Dictionary:</label>
+    	<div class="col-sm-3">
 			<select class="form-control" name="selectedDictName" id="dict">
 			</select>
 		</div>
 	</div>
 	<div class="form-group">
-		<label class="col-sm-2 control-label" for='word'>Word:</label>
-    	<div class="col-sm-4">
-			<input type="text" class="form-control" id="word">
+		<label class="col-sm-1 control-label" for='word'>Word:</label>
+    	<div class="col-sm-3">
+			<input type="text" class="form-control" name="word" id="word">
 			    <xsl:attribute name="value">
 			    	<xsl:value-of select="void/void/string"/>
 				</xsl:attribute>
 			</input>
 		</div>
-	    <button type="button" class="btn btn-primary" id='search'>Search</button>
+        <div class="col-sm-3 error vcenter" id='wordError'></div>
+        <input type="submit" class="btn btn-primary" value='Search' id='search' />
 	</div>
 </form>
 </xsl:template>
