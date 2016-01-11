@@ -64,13 +64,6 @@ public class LollyControllerJpa {
 		return bindingResult.getAllErrors();
 	}
 	
-	@RequestMapping(value="validate2", method=RequestMethod.POST)
-	public @ResponseBody List<ObjectError> validate2(
-			@Valid @ModelAttribute("formBean") LollyFormBean bean,
-			BindingResult bindingResult) {
-		return bindingResult.getAllErrors();
-	}
-	
 	@RequestMapping(value="dictList2", method=RequestMethod.GET)
 	public @ResponseBody List<String> dictList2(
 			@RequestParam(value="langid", required=true) int langid,

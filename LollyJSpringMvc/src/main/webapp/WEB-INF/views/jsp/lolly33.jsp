@@ -41,15 +41,14 @@ angular.module('app', []).controller("lollyCtrl", ["$scope", "$http", "$sce",
 	$scope.getDictUrl = function() {
 		event.preventDefault();
         $scope.dictUrl = null;
-        $http.post('validate2', $('form').serialize(), {
-            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-        }).success(function(response) {
-            if(response[0]) {
-            	$scope.wordError = response[0].defaultMessage;
+        var formdata = $('form').serialize();
+        $http.get("validate?" + formdata).then(function(response) {
+            if(response.data[0]) {
+            	$scope.wordError = response.data[0].defaultMessage;
                 $scope.dictUrl = "about:blank";
             } else {
                 $scope.wordError = null;
-				$http.post('dictall3', $('form').serialize(), {
+				$http.post('dictall3', formdata, {
 					headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 				}).success(function(response) {
 					var word = $('#word').val();
