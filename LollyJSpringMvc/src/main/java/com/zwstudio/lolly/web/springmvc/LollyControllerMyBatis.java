@@ -4,21 +4,20 @@ import java.beans.XMLEncoder;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.StringReader;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -26,7 +25,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.google.gson.Gson;
+import com.zwstudio.lolly.domain.DictAll;
+import com.zwstudio.lolly.domain.Dictionary;
 import com.zwstudio.lolly.services.IDictAllService;
 import com.zwstudio.lolly.services.IDictionaryService;
 import com.zwstudio.lolly.services.ILanguageService;
@@ -41,8 +41,6 @@ public class LollyControllerMyBatis {
 	@Autowired @Qualifier("dictAllService")
 	protected IDictAllService dictallService;
 	
-	private Gson gson = new Gson();
-
 	@ModelAttribute("formBean")
 	public LollyFormBean createFormBean() {
 		LollyFormBean bean = new LollyFormBean();
@@ -52,56 +50,47 @@ public class LollyControllerMyBatis {
 		return bean;
 	}
 	
-	@RequestMapping(value="dictList", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody ResponseEntity<String> dictList(
+	@RequestMapping(value="dictList", method=RequestMethod.GET)
+	public @ResponseBody List<Dictionary> dictList(
 			@RequestParam(value="langid", required=true) int langid,
 			ModelMap modelMap) {
-		return createJsonResponse(dictService.getDataByLang(langid));
+		return dictService.getDataByLang(langid);
 	}
 	
-	@RequestMapping(value="dictList2", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody ResponseEntity<String> dictList2(
+	@RequestMapping(value="dictall", method=RequestMethod.GET)
+	public @ResponseBody List<ObjectError> dictall(
+			@Valid @ModelAttribute("formBean") LollyFormBean bean,
+			BindingResult bindingResult) {
+		return bindingResult.getAllErrors();
+	}
+	
+	@RequestMapping(value="dictList2", method=RequestMethod.GET)
+	public @ResponseBody List<String> dictList2(
 			@RequestParam(value="langid", required=true) int langid,
 			ModelMap modelMap) {
-		return createJsonResponse(
-			dictService.getNamesByLang(langid)
-		);
+		return dictService.getNamesByLang(langid);
 	}
 
-	@RequestMapping(value="dictall2", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody ResponseEntity<String> dictall2(
+	@RequestMapping(value="dictall2", method=RequestMethod.GET)
+	public @ResponseBody DictAll dictall2(
 			@RequestParam(value="langid", required=true) int langid,
 			@RequestParam(value="dictname", required=true) String dictname,
 			ModelMap modelMap) {
-		return createJsonResponse(
-			dictallService.getDataByLangDict(langid, dictname)
-		);
+		return dictallService.getDataByLangDict(langid, dictname);
 	}
 	
-	@RequestMapping(value="dictList3", method=RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody ResponseEntity<String> dictList3(
+	@RequestMapping(value="dictList3", method=RequestMethod.POST)
+	public @ResponseBody List<String> dictList3(
 			@ModelAttribute("formBean") LollyFormBean bean,
 			BindingResult bindingResult) {
-		return createJsonResponse(
-			dictService.getNamesByLang(bean.selectedLangID)
-		);
+		return dictService.getNamesByLang(bean.selectedLangID);
 	}
 
-	@RequestMapping(value="dictall3", method=RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody ResponseEntity<String> dictall3(
+	@RequestMapping(value="dictall3", method=RequestMethod.POST)
+	public @ResponseBody DictAll dictall3(
 			@ModelAttribute("formBean") LollyFormBean bean,
 			BindingResult bindingResult) {
-		return createJsonResponse(
-			dictallService.getDataByLangDict(bean.selectedLangID, bean.selectedDictName)
-		);
-	}
-
-	private ResponseEntity<String> createJsonResponse(Object o) {
-	    HttpHeaders headers = new HttpHeaders();
-	    headers.add("Content-Type", "application/json; charset=utf-8");
-	    String json = gson.toJson(o);
-	    System.out.println(json);
-	    return new ResponseEntity<String>(json, headers, HttpStatus.CREATED);
+		return dictallService.getDataByLangDict(bean.selectedLangID, bean.selectedDictName);
 	}
 	
     @RequestMapping("lolly1")
