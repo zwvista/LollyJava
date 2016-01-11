@@ -7,6 +7,7 @@ import java.io.StringReader;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
 
@@ -31,6 +32,7 @@ import com.zwstudio.lolly.hibernate.dao.DictionaryDao;
 import com.zwstudio.lolly.hibernate.dao.LanguageDao;
 
 @Controller
+@RequestMapping("/hibernate/")
 public class LollyControllerHibernate {
 	@Autowired
 	protected LanguageDao langDao;
@@ -50,14 +52,21 @@ public class LollyControllerHibernate {
 		return bean;
 	}
 	
-	@RequestMapping(value="/hibernate/dictList", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value="dictList", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody ResponseEntity<String> dictList(
 			@RequestParam(value="langid", required=true) int langid,
 			ModelMap modelMap) {
 		return createJsonResponse(dictDao.getDataByLang(langid));
 	}
 	
-	@RequestMapping(value="/hibernate/dictList2", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value="dictall", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody ResponseEntity<String> dictall(
+			@Valid @ModelAttribute("formBean") LollyFormBean bean,
+			BindingResult bindingResult) {
+		return createJsonResponse(bindingResult.getAllErrors());
+	}
+	
+	@RequestMapping(value="dictList2", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody ResponseEntity<String> dictList2(
 			@RequestParam(value="langid", required=true) int langid,
 			ModelMap modelMap) {
@@ -66,7 +75,7 @@ public class LollyControllerHibernate {
 		);
 	}
 
-	@RequestMapping(value="/hibernate/dictall2", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value="dictall2", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody ResponseEntity<String> dictall2(
 			@RequestParam(value="langid", required=true) int langid,
 			@RequestParam(value="dictname", required=true) String dictname,
@@ -76,7 +85,7 @@ public class LollyControllerHibernate {
 		);
 	}
 	
-	@RequestMapping(value="/hibernate/dictList3", method=RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value="dictList3", method=RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody ResponseEntity<String> dictList3(
 			@ModelAttribute("formBean") LollyFormBean bean,
 			BindingResult bindingResult) {
@@ -85,7 +94,7 @@ public class LollyControllerHibernate {
 		);
 	}
 
-	@RequestMapping(value="/hibernate/dictall3", method=RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value="dictall3", method=RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody ResponseEntity<String> dictall3(
 			@ModelAttribute("formBean") LollyFormBean bean,
 			BindingResult bindingResult) {
@@ -102,47 +111,47 @@ public class LollyControllerHibernate {
 	    return new ResponseEntity<String>(json, headers, HttpStatus.CREATED);
 	}
 	
-    @RequestMapping("/hibernate/lolly1")
+    @RequestMapping("lolly1")
     public String lolly1() {
         return "jsp/lolly1";
     }
-    @RequestMapping("/hibernate/lolly2")
+    @RequestMapping("lolly2")
     public String lolly2() {
         return "jsp/lolly2";
     }
-    @RequestMapping("/hibernate/lolly3")
+    @RequestMapping("lolly3")
     public String lolly3() {
         return "jsp/lolly3";
     }
-    @RequestMapping("/hibernate/lolly32")
+    @RequestMapping("lolly32")
     public String lolly32() {
         return "jsp/lolly32";
     }
-    @RequestMapping("/hibernate/lolly33")
+    @RequestMapping("lolly33")
     public String lolly33() {
         return "jsp/lolly33";
     }
-    @RequestMapping("/hibernate/lolly4")
+    @RequestMapping("lolly4")
     public String lolly4() {
         return "thm/lolly4";
     }
-    @RequestMapping("/hibernate/lolly5")
+    @RequestMapping("lolly5")
     public String lolly5() {
         return "vm/lolly5";
     }
-    @RequestMapping("/hibernate/lolly52")
+    @RequestMapping("lolly52")
     public String lolly52() {
         return "vm/lolly52";
     }
-    @RequestMapping("/hibernate/lolly6")
+    @RequestMapping("lolly6")
     public String lolly6() {
         return "ftl/lolly6";
     }
-    @RequestMapping("/hibernate/lolly62")
+    @RequestMapping("lolly62")
     public String lolly62() {
         return "ftl/lolly62";
     }
-    @RequestMapping("/hibernate/lolly7")
+    @RequestMapping("lolly7")
     public ModelAndView lolly7(HttpServletRequest request,
             HttpServletResponse response) throws IOException {
     	LollyFormBean bean = createFormBean();

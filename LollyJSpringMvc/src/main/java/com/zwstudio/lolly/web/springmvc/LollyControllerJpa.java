@@ -31,6 +31,7 @@ import com.zwstudio.lolly.spring.data.jpa.DictionaryRepository;
 import com.zwstudio.lolly.spring.data.jpa.LanguageRepository;
 
 @Controller
+@RequestMapping("/jpa/")
 public class LollyControllerJpa {
 	@Autowired
 	protected LanguageRepository langRepository;
@@ -50,14 +51,14 @@ public class LollyControllerJpa {
 		return bean;
 	}
 	
-	@RequestMapping(value="/jpa/dictList", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value="dictList", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody ResponseEntity<String> dictList(
 			@RequestParam(value="langid", required=true) int langid,
 			ModelMap modelMap) {
 		return createJsonResponse(dictRepository.getDataByLang(langid));
 	}
 	
-	@RequestMapping(value="/jpa/dictList2", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value="dictList2", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody ResponseEntity<String> dictList2(
 			@RequestParam(value="langid", required=true) int langid,
 			ModelMap modelMap) {
@@ -66,7 +67,7 @@ public class LollyControllerJpa {
 		);
 	}
 
-	@RequestMapping(value="/jpa/dictall2", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value="dictall2", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody ResponseEntity<String> dictall2(
 			@RequestParam(value="langid", required=true) int langid,
 			@RequestParam(value="dictname", required=true) String dictname,
@@ -76,7 +77,7 @@ public class LollyControllerJpa {
 		);
 	}
 	
-	@RequestMapping(value="/jpa/dictList3", method=RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value="dictList3", method=RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody ResponseEntity<String> dictList3(
 			@ModelAttribute("formBean") LollyFormBean bean,
 			BindingResult bindingResult) {
@@ -85,7 +86,7 @@ public class LollyControllerJpa {
 		);
 	}
 
-	@RequestMapping(value="/jpa/dictall3", method=RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value="dictall3", method=RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody ResponseEntity<String> dictall3(
 			@ModelAttribute("formBean") LollyFormBean bean,
 			BindingResult bindingResult) {
@@ -102,47 +103,47 @@ public class LollyControllerJpa {
 	    return new ResponseEntity<String>(json, headers, HttpStatus.CREATED);
 	}
 	
-    @RequestMapping("/jpa/lolly1")
+    @RequestMapping("lolly1")
     public String lolly1() {
         return "jsp/lolly1";
     }
-    @RequestMapping("/jpa/lolly2")
+    @RequestMapping("lolly2")
     public String lolly2() {
         return "jsp/lolly2";
     }
-    @RequestMapping("/jpa/lolly3")
+    @RequestMapping("lolly3")
     public String lolly3() {
         return "jsp/lolly3";
     }
-    @RequestMapping("/jpa/lolly32")
+    @RequestMapping("lolly32")
     public String lolly32() {
         return "jsp/lolly32";
     }
-    @RequestMapping("/jpa/lolly33")
+    @RequestMapping("lolly33")
     public String lolly33() {
         return "jsp/lolly33";
     }
-    @RequestMapping("/jpa/lolly4")
+    @RequestMapping("lolly4")
     public String lolly4() {
         return "thm/lolly4";
     }
-    @RequestMapping("/jpa/lolly5")
+    @RequestMapping("lolly5")
     public String lolly5() {
         return "vm/lolly5";
     }
-    @RequestMapping("/jpa/lolly52")
+    @RequestMapping("lolly52")
     public String lolly52() {
         return "vm/lolly52";
     }
-    @RequestMapping("/jpa/lolly6")
+    @RequestMapping("lolly6")
     public String lolly6() {
         return "ftl/lolly6";
     }
-    @RequestMapping("/jpa/lolly62")
+    @RequestMapping("lolly62")
     public String lolly62() {
         return "ftl/lolly62";
     }
-    @RequestMapping("/jpa/lolly7")
+    @RequestMapping("lolly7")
     public ModelAndView lolly7(HttpServletRequest request,
             HttpServletResponse response) throws IOException {
     	LollyFormBean bean = createFormBean();

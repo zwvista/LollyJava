@@ -3,13 +3,16 @@ package com.zwstudio.lolly.web.springmvc;
 import java.util.List;
 import java.util.Map;
 
-import lombok.Getter;
-import lombok.Setter;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import com.zwstudio.lolly.domain.Language;
 
+import lombok.Getter;
+import lombok.Setter;
+
 @Getter @Setter
 public class LollyFormBean {
+	@NotEmpty
 	public String word;
 	public int selectedLangID;
 	public String selectedDictName;
