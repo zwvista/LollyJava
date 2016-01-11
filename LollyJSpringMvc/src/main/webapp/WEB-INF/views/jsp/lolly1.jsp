@@ -32,12 +32,12 @@ $(function() {
 	$lang.change();
 	$('form').submit(function() {
         event.preventDefault();
-		$.get("dictall", $('form').serialize(), function(response) {
+		$.get("validate", $('form').serialize(), function(response) {
 			if(response[0]) {
 				$('#wordError').html(response[0].defaultMessage);
                 $('#dictframe').attr('src', 'about:blank');
 			} else {
-                $('#wordError').html("");
+                $('#wordError').empty();
 	            var item = JSON.parse(decodeURIComponent($dict.val()));
 	            var word = $('#word').val();
 	            var url = item.url.replace('{0}', encodeURIComponent(word));

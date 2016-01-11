@@ -57,8 +57,15 @@ public class LollyControllerJpa {
 		return dictService.getDataByLang(langid);
 	}
 	
-	@RequestMapping(value="dictall", method=RequestMethod.GET)
-	public @ResponseBody List<ObjectError> dictall(
+	@RequestMapping(value="validate", method=RequestMethod.GET)
+	public @ResponseBody List<ObjectError> validate(
+			@Valid @ModelAttribute("formBean") LollyFormBean bean,
+			BindingResult bindingResult) {
+		return bindingResult.getAllErrors();
+	}
+	
+	@RequestMapping(value="validate2", method=RequestMethod.POST)
+	public @ResponseBody List<ObjectError> validate2(
 			@Valid @ModelAttribute("formBean") LollyFormBean bean,
 			BindingResult bindingResult) {
 		return bindingResult.getAllErrors();

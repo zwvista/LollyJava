@@ -16,7 +16,7 @@
 <link rel="stylesheet" href="../resources/css/lolly.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.0/angular.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular.min.js"></script>
 <script>
 angular.module('app', []).controller("lollyCtrl", ["$scope", "$http", "$sce",
     	function($scope, $http, $sce) {
@@ -24,7 +24,7 @@ angular.module('app', []).controller("lollyCtrl", ["$scope", "$http", "$sce",
 		// ng-change won't work without ng-model
 		var $lang = $('#lang');
 		$lang.change(function() {
-			$http.post('dictList3', $('#form').serialize(), {
+			$http.post('dictList3', $('form').serialize(), {
 				headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 			}).success(function(data) {
 				// if we are not inside angular, we can use the following code instead
@@ -34,42 +34,45 @@ angular.module('app', []).controller("lollyCtrl", ["$scope", "$http", "$sce",
 		    });
 		});
 		$lang.change();
-		$('#word').keypress(function(event) {
-			if(event.which == 13){
-				event.preventDefault();
-				$('#search').click();
-			}
-		});
 	});
 	$scope.trustSrc = function(url) {
 		return $sce.trustAsResourceUrl(url);
 	};
 	$scope.getDictUrl = function() {
-		$scope.dictUrl = null;
-		$http.post('dictall3', $('#form').serialize(), {
-			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-		}).success(function(response) {
-			var word = $('#word').val();
-			var url = response.url.replace('{0}', encodeURIComponent(word));
-			$scope.dictUrl = url;
-	    });
+		event.preventDefault();
+        $scope.dictUrl = null;
+        $http.post('validate2', $('form').serialize(), {
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        }).success(function(response) {
+            if(response[0]) {
+            	$scope.wordError = response[0].defaultMessage;
+                $scope.dictUrl = "about:blank";
+            } else {
+                $scope.wordError = null;
+				$http.post('dictall3', $('form').serialize(), {
+					headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+				}).success(function(response) {
+					var word = $('#word').val();
+					var url = response.url.replace('{0}', encodeURIComponent(word));
+					$scope.dictUrl = url;
+			    });
+            }
+        });
 	};
 }]);
 </script>
 </head>
 <body ng-controller="lollyCtrl" id="lollyCtrl">
-<form:form class="form-horizontal" id="form" modelAttribute="formBean">
+<form:form class="form-horizontal" modelAttribute="formBean" ng-submit="getDictUrl()">
 	<div class="form-group">
-		<label class="col-sm-2 control-label" for='lang'>Language:</label>
-    	<div class="col-sm-4">
+		<label class="col-sm-1 control-label" for='lang'>Language:</label>
+    	<div class="col-sm-3">
 			<form:select class="form-control" path="selectedLangID" id="lang">
 				<form:options items="${formBean.langList}" itemValue="langid" itemLabel="langname" />
 			</form:select>
 		</div>
-	</div>
-	<div class="form-group">
-		<label class="col-sm-2 control-label" for='dict'>Dictionary:</label>
-    	<div class="col-sm-4">
+		<label class="col-sm-1 control-label" for='dict'>Dictionary:</label>
+    	<div class="col-sm-3">
 			<form:select class="form-control" id="dict" path="selectedDictName" ng-model="selectedDictName">
 				<option ng-repeat="o in dictList" ng-selected="{{o==selectedDictName}}" value="{{o}}">
 				    {{o}}
@@ -78,11 +81,12 @@ angular.module('app', []).controller("lollyCtrl", ["$scope", "$http", "$sce",
 		</div>
 	</div>
 	<div class="form-group">
-		<label class="col-sm-2 control-label" for='word'>Word:</label>
-    	<div class="col-sm-4">
+		<label class="col-sm-1 control-label" for='word'>Word:</label>
+    	<div class="col-sm-3">
 			<form:input type="text" class="form-control" path="word" id="word" />
 		</div>
-	    <button type="button" class="btn btn-primary" id='search' ng-click="getDictUrl()">Search</button>
+        <div class="col-sm-3 error vcenter" id='wordError'>{{wordError}}</div>
+	    <input type="submit" class="btn btn-primary" value='Search' id='search' />
 	</div>
 </form:form>
 <iframe id='dictframe' ng-src="{{trustSrc(dictUrl)}}">

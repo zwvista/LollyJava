@@ -21,7 +21,7 @@ $(function() {
 	var $lang = $('#lang');
 	var $dict = $('#dict');
 	$lang.change(function() {
- 	    $.post("dictList3", $('#form').serialize(), function(response) {
+ 	    $.post("dictList3", $('form').serialize(), function(response) {
             $dict.empty();
             $.each(response, function(index, dict) {
                 $dict.append($('<option/>', {text: dict}));
@@ -29,44 +29,46 @@ $(function() {
  		});
 	});
 	$lang.change();
-	$('#word').keypress(function(event) {
-		if(event.which == 13){
-			event.preventDefault();
-			$('#search').click();
-		}
-	});
-	$('#search').click(function() {
-	    $.post("dictall3", $('#form').serialize(), function(response) {
-			var word = $('#word').val();
-			var url = response.url.replace('{0}', encodeURIComponent(word));
-			$('#dictframe').attr('src', url);
-	    });
-	});
+    $('form').submit(function() {
+        event.preventDefault();
+        $.get("validate", $('form').serialize(), function(response) {
+            if(response[0]) {
+                $('#wordError').html(response[0].defaultMessage);
+                $('#dictframe').attr('src', 'about:blank');
+            } else {
+                $('#wordError').empty();
+			    $.post("dictall3", $('form').serialize(), function(response) {
+					var word = $('#word').val();
+					var url = response.url.replace('{0}', encodeURIComponent(word));
+					$('#dictframe').attr('src', url);
+			    });
+            }
+        });
+    });
 });
 </script>
 </head>
 <body>
-<form:form class="form-horizontal" id="form" modelAttribute="formBean">
+<form:form class="form-horizontal" modelAttribute="formBean">
 	<div class="form-group">
-		<label class="col-sm-2 control-label" for='lang'>Language:</label>
-    	<div class="col-sm-4">
+		<label class="col-sm-1 control-label" for='lang'>Language:</label>
+    	<div class="col-sm-3">
 			<form:select class="form-control" path="selectedLangID" id="lang">
 				<form:options items="${formBean.langList}" itemValue="langid" itemLabel="langname" />
 			</form:select>
 		</div>
-	</div>
-	<div class="form-group">
-		<label class="col-sm-2 control-label" for='dict'>Dictionary:</label>
-    	<div class="col-sm-4">
+		<label class="col-sm-1 control-label" for='dict'>Dictionary:</label>
+    	<div class="col-sm-3">
 			<form:select class="form-control" path="selectedDictName" id="dict" />
 		</div>
 	</div>
 	<div class="form-group">
-		<label class="col-sm-2 control-label" for='word'>Word:</label>
-    	<div class="col-sm-4">
+		<label class="col-sm-1 control-label" for='word'>Word:</label>
+    	<div class="col-sm-3">
 			<form:input type="text" class="form-control" path="word" id="word" />
 		</div>
-	    <button type="button" class="btn btn-primary" id='search'>Search</button>
+        <div class="col-sm-3 error vcenter" id='wordError'></div>
+        <input type="submit" class="btn btn-primary" value='Search' id='search' />
 	</div>
 </form:form>
 <iframe id='dictframe'>
