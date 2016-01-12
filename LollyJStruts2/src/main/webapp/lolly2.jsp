@@ -43,21 +43,21 @@ $(function() {
 	<div class="form-group">
 		<label class="col-sm-2 control-label" for='lang'>Language:</label>
     	<div class="col-sm-4">
-			#sselect("theme=simple" "cssClass=form-control" "id=lang" "name=selectedLangID" "value=selectedLangID" "list=langList" "listKey=langid" "listValue=langname")
+			#sselect("cssClass=form-control" "id=lang" "name=selectedLangID" "value=selectedLangID" "list=langList" "listKey=langid" "listValue=langname")
 		</div>
 	</div>
 	<div class="form-group">
 		<label class="col-sm-2 control-label" for='dict'>Dictionary:</label>
     	<div class="col-sm-4">
-			#sselect("theme=simple" "cssClass=form-control" "id=dict" "name=selectedDictName" "value=selectedDictName" "list=langList" "listKey=langid" "listValue=langname")
+			#sselect("cssClass=form-control" "id=dict" "name=selectedDictName" "value=selectedDictName" "list=langList" "listKey=langid" "listValue=langname")
 		</div>
 	</div>
 	<div class="form-group">
 		<label class="col-sm-2 control-label" for='word'>Word:</label>
     	<div class="col-sm-4">
-			#stextfield("theme=simple" "cssClass=form-control" "id=word" "name=word")
+			#stextfield("cssClass=form-control" "id=word" "name=word")
 		</div>
-		#ssubmit("theme=simple" "cssClass=btn btn-primary" "value=Search" "id=search")
+		#ssubmit("cssClass=btn btn-primary" "value=Search" "id=search")
 	</div>
 #end
 <iframe id='dictframe'>

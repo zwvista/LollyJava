@@ -48,10 +48,10 @@ $(function() {
 </head>
 <body>
 <s:form theme="bootstrap" id="form">
-	<s:select theme="bootstrap" id="lang" name="selectedLangID" label="Language:" value="selectedLangID" list="langList" listKey="langid" listValue="langname" />
-	<s:select theme="bootstrap" id="dict" name="selectedDictName" label="Dictionary:" value="selectedDictName" list="langList" listKey="langid" listValue="langname" />
-	<s:textfield theme="bootstrap" id="word" name="word" label="Word:" />
-	<s:submit theme="bootstrap" value="Search" id='search' />
+	<s:select id="lang" name="selectedLangID" label="Language:" value="selectedLangID" list="langList" listKey="langid" listValue="langname" />
+	<s:select id="dict" name="selectedDictName" label="Dictionary:" value="selectedDictName" list="langList" listKey="langid" listValue="langname" />
+	<s:textfield id="word" name="word" label="Word:" />
+	<s:submit value="Search" id='search' />
 </s:form>
 <iframe id='dictframe'>
 </iframe>

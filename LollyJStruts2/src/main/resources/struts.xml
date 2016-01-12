@@ -19,9 +19,13 @@
             <interceptor-ref name="json">
                 <param name="enableSMD">true</param>
             </interceptor-ref>
+			<interceptor-ref name="validation">
+			    <param name="validateAnnotatedMethodOnly">true</param>
+			    <param name="excludeMethods">input,back,cancel,browse</param>
+			</interceptor-ref>
         </interceptor-stack>
     </interceptors>
-    <default-interceptor-ref name="defaultStack" />
+    <default-interceptor-ref name="jsonStack" />
     
 	<action name="index">
 	    <result>/index.jsp</result>
