@@ -67,8 +67,8 @@ $(function() {
     	<div class="col-sm-3">
 			<form:input type="text" class="form-control" path="word" id="word" />
 		</div>
-        <div class="col-sm-3 error vcenter" id='wordError'></div>
         <input type="submit" class="btn btn-primary" value='Search' id='search' />
+        <div class="col-sm-3 error vcenter" id='wordError'></div>
 	</div>
 </form:form>
 <iframe id='dictframe'>
