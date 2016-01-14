@@ -27,7 +27,7 @@
 	<controller>
 	    <set-property property="processorClass" value="org.springframework.web.struts.AutowiringRequestProcessor" />
 	</controller>
-	<message-resources parameter="application.properties" />
+	<message-resources parameter="ApplicationResources" />
 	<plug-in className="org.springframework.web.struts.ContextLoaderPlugIn">
 	  	<set-property property="contextConfigLocation"  value="/WEB-INF/classes/beans.xml"/>
 	</plug-in>

@@ -61,9 +61,6 @@ $(function() {
 			<html:text styleClass="form-control" property="word" styleId="word" />
 		</div>
 	    <html:submit styleClass="btn btn-primary" property="search" value="Search" />
-        <html:messages id="msg" message="true">
-		    <li><bean:write name="msg" ignore="true"/></li>
-		</html:messages>
 	</div>
 </html:form>
 <iframe id='dictframe'>
