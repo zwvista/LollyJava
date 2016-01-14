@@ -13,7 +13,7 @@ $(function() {
 	var $lang = $('#lang');
 	var $dict = $('#dict');
 	$lang.change(function() {
- 	    $.post("dictList", $('#form').serialize(), function(response) {
+ 	    $.post("dictList", $('form').serialize(), function(response) {
             $dict.empty();
             $.each(response.dictList, function(index, dict) {
                 $dict.append($('<option/>', {text: dict}));
@@ -21,14 +21,9 @@ $(function() {
  		});
 	});
 	$lang.change();
-	$('#word').keypress(function(event) {
-		if(event.which == 13){
-			event.preventDefault();
-			$('#search').click();
-		}
-	});
-	$('#search').click(function() {
-	    $.post("dictUrl", $('#form').serialize(), function(response) {
+	$('form').submit(function() {
+		event.preventDefault();
+	    $.post("dictUrl", $('form').serialize(), function(response) {
 			var word = $('#word').val();
 			var url = response.url.replace('{0}', encodeURIComponent(word));
 			$('#dictframe').attr('src', url);
@@ -39,7 +34,7 @@ $(function() {
 </script>]]#
 </head>
 <body>
-#sform("theme=simple" "cssClass=form-horizontal" "id=form")
+#sform("theme=simple" "cssClass=form-horizontal")
 	<div class="form-group">
 		<label class="col-sm-2 control-label" for='lang'>Language:</label>
     	<div class="col-sm-4">
@@ -57,7 +52,7 @@ $(function() {
     	<div class="col-sm-4">
 			#stextfield("cssClass=form-control" "id=word" "name=word")
 		</div>
-		#ssubmit("cssClass=btn btn-primary" "value=Search" "id=search")
+		#ssubmit("cssClass=btn btn-primary" "value=Search")
 	</div>
 #end
 <iframe id='dictframe'>

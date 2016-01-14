@@ -2,6 +2,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
+<%@ taglib prefix="sj" uri="/struts-jquery-tags"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page session="false" %>
 <!DOCTYPE html>
@@ -16,12 +17,14 @@
 <link rel="stylesheet" href="resources/css/lolly.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/struts/utils.js"></script>
+<script src="${pageContext.request.contextPath}/struts/xhtml/validation.js"></script>
 <script>
 $(function() {
 	var $lang = $('#lang');
 	var $dict = $('#dict');
 	$lang.change(function() {
- 	    $.post("dictList", $('#form').serialize(), function(response) {
+ 	    $.post("dictList", $('form').serialize(), function(response) {
             $dict.empty();
             $.each(response.dictList, function(index, dict) {
                 $dict.append($('<option/>', {text: dict}));
@@ -29,14 +32,9 @@ $(function() {
  		});
 	});
 	$lang.change();
-	$('#word').keypress(function(event) {
-		if(event.which == 13){
-			event.preventDefault();
-			$('#search').click();
-		}
-	});
-	$('#search').click(function() {
-	    $.post("dictUrl", $('#form').serialize(), function(response) {
+	$('form').submit(function() {
+		event.preventDefault();
+	    $.post("dictUrl", $('form').serialize(), function(response) {
 			var word = $('#word').val();
 			var url = response.url.replace('{0}', encodeURIComponent(word));
 			$('#dictframe').attr('src', url);
@@ -47,7 +45,7 @@ $(function() {
 </script>
 </head>
 <body>
-<s:form theme="simple" cssClass="form-horizontal" id="form">
+<s:form theme="simple" cssClass="form-horizontal">
 	<div class="form-group">
 		<label class="col-sm-1 control-label" for='lang'>Language:</label>
     	<div class="col-sm-3">
@@ -63,7 +61,7 @@ $(function() {
     	<div class="col-sm-3">
 			<s:textfield cssClass="form-control" id="word" name="word" />
 		</div>
-		<s:submit cssClass="btn btn-primary" value="Search" id='search' />
+		<sj:submit cssClass="btn btn-primary" value="Search" validate="true" />
 	</div>
 </s:form>
 <iframe id='dictframe'>

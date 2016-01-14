@@ -18,22 +18,16 @@ $(function() {
 	var $lang = $('#lang');
 	var $dict = $('#dict');
 	$lang.change(function() {
- 	    $.post("dictList.do", $('#form').serialize(), function(response) {
+ 	    $.post("dictList.do", $('form').serialize(), function(response) {
             $dict.empty();
             $.each(response, function(index, dict) {
                 $dict.append($('<option/>', {text: dict}));
             });
  		});
 	});
-	$lang.change();
-	$('#word').keypress(function(event) {
-		if(event.which == 13){
-			event.preventDefault();
-			$('#search').click();
-		}
-	});
-	$('#search').click(function() {
-	    $.post("dictUrl.do", $('#form').serialize(), function(response) {
+	$('form').submit(function() {
+		event.preventDefault();
+	    $.post("dictUrl.do", $('form').serialize(), function(response) {
 			var word = $('#word').val();
 			var url = response.replace('{0}', encodeURIComponent(word));
 			$('#dictframe').attr('src', url);

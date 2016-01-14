@@ -84,7 +84,7 @@ $(function() {
 				</xsl:attribute>
 			</input>
 		</div>
-        <input type="submit" class="btn btn-primary" value='Search' id='search' />
+        <input type="submit" class="btn btn-primary" value='Search' />
         <div class="col-sm-3 error vcenter" id='wordError'></div>
 	</div>
 </form>

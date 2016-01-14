@@ -25,7 +25,7 @@
 	@b3.select(lollyForm("selectedDictName"), options(), '_label -> "Dictionary:")
 	@b3.multifield()(Seq('_label -> "Word:"), Seq.empty) { implicit cfc =>
 		@b3.text(lollyForm("word"))
-	    <button type="button" class="btn btn-primary" id='search'>Search</button>
+	    <input type="submit" class="btn btn-primary" value="Search" />
 	}
 }
 <iframe id='dictframe'>

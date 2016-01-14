@@ -85,7 +85,7 @@ angular.module('app', []).controller("lollyCtrl", ["$scope", "$http", "$sce",
     	<div class="col-sm-3">
 			<form:input type="text" class="form-control" path="word" id="word" />
 		</div>
-	    <input type="submit" class="btn btn-primary" value='Search' id='search' />
+	    <input type="submit" class="btn btn-primary" value='Search' />
         <div class="col-sm-3 error vcenter" id='wordError'>{{wordError}}</div>
 	</div>
 </form:form>
