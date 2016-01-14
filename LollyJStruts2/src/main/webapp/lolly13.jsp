@@ -2,6 +2,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
+<%@ taglib prefix="sj" uri="/struts-jquery-tags"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page session="false" %>
 <!DOCTYPE html>
@@ -45,8 +46,8 @@ $(function() {
 <s:form theme="bootstrap">
 	<s:select id="lang" name="selectedLangID" label="Language:" value="selectedLangID" list="langList" listKey="langid" listValue="langname" />
 	<s:select id="dict" name="selectedDictName" label="Dictionary:" value="selectedDictName" list="langList" listKey="langid" listValue="langname" />
-	<s:textfield id="word" name="word" label="Word:" />
-	<s:submit value="Search" />
+	<s:textfield id="word" name="word" label="Word:" required="true" />
+	<sj:submit value="Search" />
 </s:form>
 <iframe id='dictframe'>
 </iframe>

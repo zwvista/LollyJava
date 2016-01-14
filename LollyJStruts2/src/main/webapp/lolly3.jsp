@@ -50,9 +50,9 @@ $(function() {
 	<div class="form-group">
 		<label class="col-sm-2 control-label" for='word'>Word:</label>
     	<div class="col-sm-4">
-			<@s.textfield cssClass="form-control" id="word" name="word" />
+			<@s.textfield cssClass="form-control" id="word" name="word" required="true" />
 		</div>
-		<@s.submit cssClass="btn btn-primary" value="Search" />
+		<@sj.submit cssClass="btn btn-primary" value="Search" required="true" />
 	</div>
 </@s.form>
 <iframe id='dictframe'>

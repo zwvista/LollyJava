@@ -59,9 +59,9 @@ $(function() {
 	<div class="form-group">
 		<label class="col-sm-1 control-label" for='word'>Word:</label>
     	<div class="col-sm-3">
-			<s:textfield cssClass="form-control" id="word" name="word" />
+			<s:textfield cssClass="form-control" id="word" name="word" required="true" />
 		</div>
-		<sj:submit cssClass="btn btn-primary" value="Search" validate="true" />
+		<sj:submit cssClass="btn btn-primary" value="Search" />
 	</div>
 </s:form>
 <iframe id='dictframe'>
