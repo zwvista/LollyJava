@@ -5,23 +5,24 @@ import java.net.URLEncoder;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.zwstudio.lolly.domain.DictAll;
 import com.zwstudio.lolly.domain.Language;
-import com.zwstudio.lolly.hibernate.dao.DictAllDao;
-import com.zwstudio.lolly.hibernate.dao.DictionaryDao;
-import com.zwstudio.lolly.hibernate.dao.LanguageDao;
+import com.zwstudio.lolly.services.IDictAllService;
+import com.zwstudio.lolly.services.IDictionaryService;
+import com.zwstudio.lolly.services.ILanguageService;
 
 @Service
 public class LollyFormBo {
 
-	@Autowired
-	private LanguageDao langDao;
-	@Autowired
-	private DictionaryDao dictDao;
-	@Autowired
-	private DictAllDao dictallDao;
+	@Autowired @Qualifier("languageDao")
+	protected ILanguageService langDao;
+	@Autowired @Qualifier("dictionaryDao")
+	protected IDictionaryService dictDao;
+	@Autowired @Qualifier("dictAllDao")
+	protected IDictAllService dictallDao;
 	
 	public List<Language> getLangList() {
 		return langDao.getData();

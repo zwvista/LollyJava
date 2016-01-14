@@ -18,7 +18,7 @@ $(function() {
 </h:head>
 <h:body>
 <h:form id="form">
-	<h:panelGrid columns="2">
+	<h:panelGrid columns="4">
 		<h:outputLabel for='lang' value="Language:" />
 		<h:selectOneMenu value="#{formBean.selectedLangID}" id="lang">
 			<f:ajax render="dict" />
@@ -32,12 +32,15 @@ $(function() {
 		</h:selectOneMenu>
 		
 		<h:outputLabel for='word' value="Word:" />
-		<h:panelGroup>
-			<h:inputText value="#{formBean.word}" id="word" />
-			<h:commandButton value="Search" id="search" action="#{formBean.searchButtonClicked}">
-				<f:ajax render=":iframe-holder" />
-			</h:commandButton>
-		</h:panelGroup>
+		<h:inputText value="#{formBean.word}" id="word" required="true">
+		    <f:ajax render="wordError" />
+		</h:inputText>
+		<h:commandButton value="Search" id="search" 
+		        disabled="#{facesContext.validationFailed}"
+		        action="#{formBean.searchButtonClicked}">
+		    <f:ajax render=":iframe-holder" />
+		</h:commandButton>
+		<h:message for="word" id="wordError" errorClass="error" />
 	</h:panelGrid>
 </h:form>
 <h:panelGroup id="iframe-holder" layout="block">
