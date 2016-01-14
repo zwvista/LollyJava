@@ -4,38 +4,40 @@ import java.util.List;
 
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
-import org.apache.struts2.convention.annotation.InterceptorRef;
 import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.ResultPath;
+import org.apache.struts2.interceptor.validation.SkipValidation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 
 import com.opensymphony.xwork2.ActionSupport;
+import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
+import com.opensymphony.xwork2.validator.annotations.Validations;
+import com.opensymphony.xwork2.validator.annotations.ValidatorType;
 import com.zwstudio.lolly.domain.Language;
-import com.zwstudio.lolly.hibernate.dao.DictAllDao;
-import com.zwstudio.lolly.hibernate.dao.DictionaryDao;
-import com.zwstudio.lolly.hibernate.dao.LanguageDao;
+import com.zwstudio.lolly.services.IDictAllService;
+import com.zwstudio.lolly.services.IDictionaryService;
+import com.zwstudio.lolly.services.ILanguageService;
 
 import lombok.Getter;
 import lombok.Setter;
 
+@SuppressWarnings("serial")
 @Controller
 @Namespace("/")
 @ResultPath("/")
 @ParentPackage("default")
-@InterceptorRef("defaultStack")
 public class LollyAction extends ActionSupport {
- 
-    private static final long serialVersionUID = 1L;
     
-	@Autowired
-	private LanguageDao langDao;
-	@Autowired
-	private DictionaryDao dictDao;
-	@Autowired
-	private DictAllDao dictallDao;
+	@Autowired @Qualifier("languageDao")
+	protected ILanguageService langDao;
+	@Autowired @Qualifier("dictionaryDao")
+	protected IDictionaryService dictDao;
+	@Autowired @Qualifier("dictAllDao")
+	protected IDictAllService dictallDao;
 	
 	@Getter @Setter
 	public List<Language> langList;
@@ -72,6 +74,7 @@ public class LollyAction extends ActionSupport {
 			results=@Result(location="lolly3.jsp", type="freemarker")
 		)
 	})
+	@SkipValidation
 	public String execute() {
 		langList = langDao.getData();
 		word = "一人";
@@ -82,6 +85,7 @@ public class LollyAction extends ActionSupport {
 		value="dictList",
 		results=@Result(type="json")
 	)
+	@SkipValidation
 	public String writeDictList() {
 		dictList = dictDao.getNamesByLang(selectedLangID);
 		return SUCCESS;
@@ -91,6 +95,10 @@ public class LollyAction extends ActionSupport {
 		value="dictUrl",
 		results=@Result(type="json")
 	)
+	@Validations(
+		requiredStrings =
+            {@RequiredStringValidator(type = ValidatorType.SIMPLE, fieldName = "word", message = "You must enter a value for word.")}
+    )
 	public String writeDictUrl() {
 		url = dictallDao.getDataByLangDict(selectedLangID, selectedDictName).getUrl();
 		return SUCCESS;

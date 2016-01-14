@@ -43,21 +43,21 @@ $(function() {
 	<div class="form-group">
 		<label class="col-sm-2 control-label" for='lang'>Language:</label>
     	<div class="col-sm-4">
-			<@s.select theme="simple" cssClass="form-control" id="lang" name="selectedLangID" value="selectedLangID" list="langList" listKey="langid" listValue="langname" />
+			<@s.select cssClass="form-control" id="lang" name="selectedLangID" value="selectedLangID" list="langList" listKey="langid" listValue="langname" />
 		</div>
 	</div>
 	<div class="form-group">
 		<label class="col-sm-2 control-label" for='dict'>Dictionary:</label>
     	<div class="col-sm-4">
-			<@s.select theme="simple" cssClass="form-control" id="dict" name="selectedDictName" value="selectedDictName" list="langList" listKey="langid" listValue="langname" />
+			<@s.select cssClass="form-control" id="dict" name="selectedDictName" value="selectedDictName" list="langList" listKey="langid" listValue="langname" />
 		</div>
 	</div>
 	<div class="form-group">
 		<label class="col-sm-2 control-label" for='word'>Word:</label>
     	<div class="col-sm-4">
-			<@s.textfield theme="simple" cssClass="form-control" id="word" name="word" />
+			<@s.textfield cssClass="form-control" id="word" name="word" />
 		</div>
-		<@s.submit theme="simple" cssClass="btn btn-primary" value="Search" id='search' />
+		<@s.submit cssClass="btn btn-primary" value="Search" id='search' />
 	</div>
 </@s.form>
 <iframe id='dictframe'>
