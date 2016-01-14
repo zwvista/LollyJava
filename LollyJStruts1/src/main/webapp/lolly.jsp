@@ -13,6 +13,7 @@
 <link rel="stylesheet" href="resources/css/lolly.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<html:javascript formName="LollyForm"/>
 <script>
 $(function() {
 	var $lang = $('#lang');
@@ -25,41 +26,44 @@ $(function() {
             });
  		});
 	});
-	$('form').submit(function() {
-		event.preventDefault();
-	    $.post("dictUrl.do", $('form').serialize(), function(response) {
-			var word = $('#word').val();
-			var url = response.replace('{0}', encodeURIComponent(word));
-			$('#dictframe').attr('src', url);
-	    });
-	    return false;
-	});
+    $lang.change();
+    $('form').submit(function() {
+		if(validateLollyForm(this)) {
+	        $.post("dictUrl.do", $('form').serialize(), function(response) {
+	            var word = $('#word').val();
+	            var url = response.replace('{0}', encodeURIComponent(word));
+	            $('#dictframe').attr('src', url);
+	        });
+	    }
+		return false;
+	})
 });
 </script>
 </head>
 <body>
-<html:form styleClass="form-horizontal" styleId="form">
+<html:form styleClass="form-horizontal" styleId="LollyForm">
 	<div class="form-group">
-		<label class="col-sm-2 control-label" for='lang'>Language:</label>
-    	<div class="col-sm-4">
+		<label class="col-sm-1 control-label" for='lang'>Language:</label>
+    	<div class="col-sm-3">
 			<html:select styleClass="form-control" property="selectedLangID" styleId="lang">
 				<html:optionsCollection name="lollyForm" property="langList" label="langname" value="langid"/>
 			</html:select>
 		</div>
-	</div>
-	<div class="form-group">
-		<label class="col-sm-2 control-label" for='dict'>Dictionary:</label>
-    	<div class="col-sm-4">
+		<label class="col-sm-1 control-label" for='dict'>Dictionary:</label>
+    	<div class="col-sm-3">
 			<html:select styleClass="form-control" property="selectedDictName" styleId="dict">
 			</html:select>
 		</div>
 	</div>
 	<div class="form-group">
-		<label class="col-sm-2 control-label" for='word'>Word:</label>
-    	<div class="col-sm-4">
+		<label class="col-sm-1 control-label" for='word'>Word:</label>
+    	<div class="col-sm-3">
 			<html:text styleClass="form-control" property="word" styleId="word" />
 		</div>
-	    <html:submit styleClass="btn btn-primary" property="search" value="Search" styleId="search" />
+	    <html:submit styleClass="btn btn-primary" property="search" value="Search" />
+        <html:messages id="msg" message="true">
+		    <li><bean:write name="msg" ignore="true"/></li>
+		</html:messages>
 	</div>
 </html:form>
 <iframe id='dictframe'>

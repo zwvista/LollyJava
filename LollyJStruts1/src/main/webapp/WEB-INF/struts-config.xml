@@ -19,15 +19,21 @@
 		type="org.springframework.web.struts.DelegatingActionProxy"
 		name="lollyForm">
 		</action>
-		<action path="/dictUrl"
+		<action path="/dictUrl" validate="true"
 		type="org.springframework.web.struts.DelegatingActionProxy"
 		name="lollyForm">
 		</action>
 	</action-mappings>
 	<controller>
 	    <set-property property="processorClass" value="org.springframework.web.struts.AutowiringRequestProcessor" />
-	</controller>	
+	</controller>
+	<message-resources parameter="application.properties" />
 	<plug-in className="org.springframework.web.struts.ContextLoaderPlugIn">
 	  	<set-property property="contextConfigLocation"  value="/WEB-INF/classes/beans.xml"/>
 	</plug-in>
+	<plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+        <set-property property="pathnames"
+            value="/org/apache/struts/validator/validator-rules.xml,
+                        /WEB-INF/validation.xml" />
+    </plug-in>	
 </struts-config>

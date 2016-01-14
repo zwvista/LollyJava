@@ -2,18 +2,16 @@ package com.zwstudio.lolly.web.struts1;
  
 import java.util.List;
 
-import lombok.Getter;
-import lombok.Setter;
-
-import org.apache.struts.action.ActionForm;
+import org.apache.struts.validator.ValidatorForm;
 
 import com.zwstudio.lolly.domain.Language;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@SuppressWarnings("serial")
 @Getter @Setter
-public class LollyForm extends ActionForm {
-
-	private static final long serialVersionUID = 1L;
-
+public class LollyForm extends ValidatorForm {
 	public List<Language> langList;
 	public List<String> dictList;
 	public int selectedLangID;
