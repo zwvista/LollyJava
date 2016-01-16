@@ -7,8 +7,11 @@ import javax.persistence.Entity;
 
 import com.zwstudio.lolly.domain.Language;
 
+import play.data.validation.Constraints.Required;
+
 @Entity
 public class LollyForm {
+	@Required
 	public String word;
 	public int selectedLangID;
 	public String selectedDictName;

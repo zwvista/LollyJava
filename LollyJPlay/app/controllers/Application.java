@@ -50,7 +50,12 @@ public class Application extends Controller {
     			Integer.parseInt(selectedLangID))));
     }
     public Result dictall(String selectedLangID, String selectedDictName) {
-    	return ok(Json.toJson(dictallRepository.getDataByLangDict(
-    			Integer.parseInt(selectedLangID), selectedDictName)));
+    	Form<LollyForm> f = Form.form(LollyForm.class).bindFromRequest();
+    	if(f.hasErrors()) {
+    		return badRequest(f.errorsAsJson());
+    	} else {
+        	return ok(Json.toJson(dictallRepository.getDataByLangDict(
+        			Integer.parseInt(selectedLangID), selectedDictName)));
+    	}
     }
 }

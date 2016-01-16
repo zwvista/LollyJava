@@ -8,7 +8,7 @@ version := "1.0-SNAPSHOT"
 
 lazy val root = (project in file(".")).enablePlugins(PlayJava)
 
-scalaVersion := "2.11.6"
+scalaVersion := "2.11.7"
 
 // Resolver is needed only for SNAPSHOT versions
 resolvers += "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots/"
@@ -33,10 +33,3 @@ fork in run := false
 fork in Test := false
 
 ivyXML := <dependencies>{xml.XML.load("../LollyJShared/pom.xml") \\ "dependencies" \\ "dependency" filter (dep => (dep \\ "groupId").text != "org.scala-lang") map (dep => <dependency org={dep \\ "groupId" text} name={dep \\ "artifactId" text} rev={dep \\ "version" text} />)}</dependencies>
-
-
-fork in run := true
-
-fork in run := true
-
-fork in run := true
