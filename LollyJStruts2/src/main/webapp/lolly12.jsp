@@ -10,6 +10,8 @@
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <link rel="stylesheet" href="resources/css/lolly.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/struts/utils.js"></script>
+<script src="${pageContext.request.contextPath}/struts/xhtml/validation.js"></script>
 <script>
 $(function() {
 	var $lang = $('#lang');
@@ -30,17 +32,17 @@ $(function() {
 			var url = response.url.replace('{0}', encodeURIComponent(word));
 			$('#dictframe').attr('src', url);
 	    });
-	    return false;
 	});
 });
 </script>
+<sj:head jqueryui="true"/>
 </head>
 <body>
 <s:form>
 	<s:select id="lang" name="selectedLangID" label="Language" value="selectedLangID" list="langList" listKey="langid" listValue="langname" />
 	<s:select id="dict" name="selectedDictName" label="Dictionary" value="selectedDictName" list="langList" listKey="langid" listValue="langname" />
 	<s:textfield id="word" name="word" label="Word" required="true" />
-	<sj:submit value="Search" />
+	<sj:submit validate="true" value="Search" />
 </s:form>
 <iframe id='dictframe'>
 </iframe>

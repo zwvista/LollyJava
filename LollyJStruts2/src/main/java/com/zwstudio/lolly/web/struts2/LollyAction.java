@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
+import org.apache.struts2.convention.annotation.InterceptorRef;
 import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
@@ -30,6 +31,7 @@ import lombok.Setter;
 @Namespace("/")
 @ResultPath("/")
 @ParentPackage("default")
+@InterceptorRef("jsonValidationWorkflowStack")
 public class LollyAction extends ActionSupport {
     
 	@Autowired @Qualifier("languageDao")
@@ -97,7 +99,7 @@ public class LollyAction extends ActionSupport {
 	)
 	@Validations(
 		requiredStrings =
-            {@RequiredStringValidator(type = ValidatorType.SIMPLE, fieldName = "word", message = "You must enter a value for word.")}
+            {@RequiredStringValidator(fieldName = "word", type = ValidatorType.FIELD, message = "You must enter a value for word.")}
     )
 	public String writeDictUrl() {
 		url = dictallDao.getDataByLangDict(selectedLangID, selectedDictName).getUrl();

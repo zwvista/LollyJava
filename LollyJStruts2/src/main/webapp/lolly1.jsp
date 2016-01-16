@@ -39,10 +39,10 @@ $(function() {
 			var url = response.url.replace('{0}', encodeURIComponent(word));
 			$('#dictframe').attr('src', url);
 	    });
-	    return false;
 	});
 });
 </script>
+<sj:head jqueryui="true"/>
 </head>
 <body>
 <s:form theme="simple" cssClass="form-horizontal">
@@ -61,7 +61,7 @@ $(function() {
     	<div class="col-sm-3">
 			<s:textfield cssClass="form-control" id="word" name="word" required="true" />
 		</div>
-		<sj:submit cssClass="btn btn-primary" value="Search" />
+		<sj:submit validate="true" cssClass="btn btn-primary" value="Search" />
 	</div>
 </s:form>
 <iframe id='dictframe'>
