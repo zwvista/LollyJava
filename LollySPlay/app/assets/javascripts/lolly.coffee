@@ -9,7 +9,16 @@ $ ->
     $lang.change()
     $('form').submit ->
         event.preventDefault()
-        $.get "dictall", $('form').serialize(), (response) ->
-            word = $('#word').val()
-            url = response.url.replace '{0}', encodeURIComponent(word)
-            $('#dictframe').attr 'src', url
+        $.ajax {
+            type: "GET",
+            url: "dictall",
+            data: $('form').serialize(),
+            success: (response) ->
+                word = $('#word').val()
+                url = response.url.replace '{0}', encodeURIComponent(word)
+                $('#dictframe').attr 'src', url
+            ,
+            error: (response) ->
+                $('#wordError').html "word: " + response.responseJSON.word
+                $('#dictframe').attr 'src', 'about:blank'
+        }

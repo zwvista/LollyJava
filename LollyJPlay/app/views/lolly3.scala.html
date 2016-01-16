@@ -24,6 +24,7 @@
 	@b3.multifield()(Seq('_label -> "Word:"), Seq.empty) { implicit cfc =>
 		@b3.text(lollyForm("word"))
 	    <input type="submit" class="btn btn-primary" value="Search" />
+        <div class="col-sm-3 error vcenter" id='wordError'></div>
 	}
 }
 <iframe id='dictframe'>

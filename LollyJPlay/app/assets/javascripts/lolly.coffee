@@ -13,13 +13,12 @@ $ ->
             type: "GET",
             url: "dictall",
             data: $('form').serialize(),
-            error: (response) ->
-                //alert(JSON.stringify(response))
-                $('#wordError').html "word: " + response.responseJSON.word
-                $('#dictframe').attr 'src', 'about:blank'
-            ,
             success: (response) ->
                 word = $('#word').val()
                 url = response.url.replace '{0}', encodeURIComponent(word)
                 $('#dictframe').attr 'src', url
+            ,
+            error: (response) ->
+                $('#wordError').html "word: " + response.responseJSON.word
+                $('#dictframe').attr 'src', 'about:blank'
         }
