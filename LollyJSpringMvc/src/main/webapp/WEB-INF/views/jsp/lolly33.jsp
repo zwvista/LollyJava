@@ -41,22 +41,18 @@ angular.module('app', []).controller("lollyCtrl", ["$scope", "$http", "$sce",
 	$scope.getDictUrl = function() {
 		event.preventDefault();
         $scope.dictUrl = null;
-        var formdata = $('form').serialize();
-        $http.get("validate?" + formdata).then(function(response) {
-        	// alert(JSON.stringify(response));
-            if(response.data[0]) {
-            	$scope.wordError = response.data[0].defaultMessage;
-                $scope.dictUrl = "about:blank";
-            } else {
-                $scope.wordError = null;
-				$http.post('dictall3', formdata, {
-					headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-				}).success(function(response) {
-					var word = $('#word').val();
-					var url = response.url.replace('{0}', encodeURIComponent(word));
-					$scope.dictUrl = url;
-			    });
-            }
+        $http.post('dictall3', $('form').serialize(), {
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        }).success(function(response) {
+            $scope.wordError = null;
+            var word = $('#word').val();
+            var url = response.url.replace('{0}', encodeURIComponent(word));
+            $scope.dictUrl = url;
+        }).error(function(response) {
+            //alert(JSON.stringify(response));
+            var err = response[0];
+            $scope.wordError = err.field + ": " + err.defaultMessage;
+            $scope.dictUrl = "about:blank";
         });
 	};
 }]);

@@ -14,10 +14,10 @@ import javax.xml.transform.stream.StreamSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.zwstudio.lolly.domain.DictAll;
 import com.zwstudio.lolly.domain.Dictionary;
 import com.zwstudio.lolly.services.IDictAllService;
@@ -52,45 +53,45 @@ public class LollyControllerHibernate {
 	
 	@RequestMapping(value="dictList", method=RequestMethod.GET)
 	public @ResponseBody List<Dictionary> dictList(
-			@RequestParam(value="langid", required=true) int langid,
-			ModelMap modelMap) {
+			@RequestParam(value="langid", required=true) int langid) {
 		return dictService.getDataByLang(langid);
 	}
 	
 	@RequestMapping(value="validate", method=RequestMethod.GET)
-	public @ResponseBody List<ObjectError> validate(
+	public ResponseEntity<Object> validate(
 			@Valid @ModelAttribute("formBean") LollyFormBean bean,
-			BindingResult bindingResult) {
-		return bindingResult.getAllErrors();
+			BindingResult bindingResult) throws JsonProcessingException {
+		return bindingResult.hasErrors() ? 
+				new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.BAD_REQUEST) :
+				new ResponseEntity<>("", HttpStatus.OK);
 	}
 	
 	@RequestMapping(value="dictList2", method=RequestMethod.GET)
 	public @ResponseBody List<String> dictList2(
-			@RequestParam(value="langid", required=true) int langid,
-			ModelMap modelMap) {
+			@RequestParam(value="langid", required=true) int langid) {
 		return dictService.getNamesByLang(langid);
 	}
 
 	@RequestMapping(value="dictall2", method=RequestMethod.GET)
 	public @ResponseBody DictAll dictall2(
 			@RequestParam(value="langid", required=true) int langid,
-			@RequestParam(value="dictname", required=true) String dictname,
-			ModelMap modelMap) {
+			@RequestParam(value="dictname", required=true) String dictname) {
 		return dictallService.getDataByLangDict(langid, dictname);
 	}
 	
 	@RequestMapping(value="dictList3", method=RequestMethod.POST)
 	public @ResponseBody List<String> dictList3(
-			@ModelAttribute("formBean") LollyFormBean bean,
-			BindingResult bindingResult) {
+			@ModelAttribute("formBean") LollyFormBean bean) {
 		return dictService.getNamesByLang(bean.selectedLangID);
 	}
 
 	@RequestMapping(value="dictall3", method=RequestMethod.POST)
-	public @ResponseBody DictAll dictall3(
-			@ModelAttribute("formBean") LollyFormBean bean,
+	public ResponseEntity<Object> dictall3(
+			@Valid @ModelAttribute("formBean") LollyFormBean bean,
 			BindingResult bindingResult) {
-		return dictallService.getDataByLangDict(bean.selectedLangID, bean.selectedDictName);
+		return bindingResult.hasErrors() ?
+				new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.BAD_REQUEST) :
+				new ResponseEntity<>(dictallService.getDataByLangDict(bean.selectedLangID, bean.selectedDictName), HttpStatus.OK);
 	}
 	
     @RequestMapping("lolly1")

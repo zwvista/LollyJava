@@ -32,17 +32,23 @@ $(function() {
 	$lang.change();
 	$('form').submit(function() {
         event.preventDefault();
-		$.get("validate", $('form').serialize(), function(response) {
-			if(response[0]) {
-				$('#wordError').html(response[0].defaultMessage);
-                $('#dictframe').attr('src', 'about:blank');
-			} else {
+		$.ajax({
+			type: "GET",
+			url: "validate",
+			data: $('form').serialize(),
+			success: function(response) {
                 $('#wordError').empty();
-	            var item = JSON.parse(decodeURIComponent($dict.val()));
-	            var word = $('#word').val();
-	            var url = item.url.replace('{0}', encodeURIComponent(word));
-	            $('#dictframe').attr('src', url);
-			}
+                var item = JSON.parse(decodeURIComponent($dict.val()));
+                var word = $('#word').val();
+                var url = item.url.replace('{0}', encodeURIComponent(word));
+                $('#dictframe').attr('src', url);
+            },
+            error: function(response) {
+                //alert(JSON.stringify(response));
+                var err = response.responseJSON[0];
+                $('#wordError').html(err.field + ": " + err.defaultMessage);
+                $('#dictframe').attr('src', 'about:blank');
+            }
         });
 	});
 });
