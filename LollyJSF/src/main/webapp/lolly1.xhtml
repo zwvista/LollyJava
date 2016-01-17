@@ -33,7 +33,7 @@ $(function() {
 		
 		<h:outputLabel for='word' value="Word:" />
 		<h:inputText value="#{formBean.word}" id="word" required="true">
-		    <f:ajax render="wordError" />
+		    <f:ajax render="wordError search" />
 		</h:inputText>
 		<h:commandButton value="Search" id="search" 
 		        disabled="#{facesContext.validationFailed}"
