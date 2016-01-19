@@ -15,7 +15,7 @@
 <script src="@routes.Assets.versioned("javascripts/lolly.js")"></script>
 </head>
 <body>
-<form class="form-horizontal" id="form">
+<form class="form-horizontal" id="form" method="post" action='search'>
 	<div class="form-group">
 		<label class="col-sm-1 control-label" for='selectedLangID'>Language:</label>
     	<div class="col-sm-3">
@@ -37,6 +37,7 @@
 			<input type="text" class="form-control" name="word" id="word" value='@lollyForm.word' />
 		</div>
 	    <input type="submit" class="btn btn-primary" value="Search" />
+		<input type="submit" class="btn btn-primary" value="Search(redirect)" id = 'redirectSearch' />
         <div class="col-sm-3 error vcenter" id='wordError'></div>
 	</div>
 </form>

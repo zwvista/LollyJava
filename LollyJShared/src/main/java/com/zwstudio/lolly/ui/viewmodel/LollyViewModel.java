@@ -67,9 +67,9 @@ public class LollyViewModel extends Model {
 	}
 	
 	protected String getUrlByWord(String word) {
-		String url = dict.getUrl().replace("{0}", "%s");
+		String url = dict.getUrl();
 		try {
-			url = String.format(url, URLEncoder.encode(word, "UTF-8"));
+			url = url.replace("{0}", URLEncoder.encode(word, "UTF-8"));
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}

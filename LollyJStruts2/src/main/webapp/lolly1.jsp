@@ -37,13 +37,14 @@ $(function() {
 		redirectSearch = true;
 	});
 	$('form').submit(function() {
-		if(redirectSearch) return;
+		if(redirectSearch) return true;
 		event.preventDefault();
 	    $.post("dictUrl", $('form').serialize(), function(response) {
 			var word = $('#word').val();
 			var url = response.url.replace('{0}', encodeURIComponent(word));
 			$('#dictframe').attr('src', url);
 	    });
+	    return false;
 	});
 });
 </script>

@@ -7,7 +7,12 @@ $ ->
             $.each response, (index, dict) ->
                 $dict.append $('<option/>', {text: dict})
     $lang.change()
+    redirectSearch = false
+    $('#redirectSearch').click ->
+        redirectSearch = true
     $('form').submit ->
+        if redirectSearch
+            return true
         event.preventDefault()
         $.ajax {
             type: "GET",

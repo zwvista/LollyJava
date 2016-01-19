@@ -1,5 +1,7 @@
 package com.zwstudio.lolly.web.struts2;
  
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.List;
 
 import org.apache.struts2.convention.annotation.Action;
@@ -32,6 +34,10 @@ import lombok.Setter;
 @ResultPath("/")
 @ParentPackage("default")
 @InterceptorRef("jsonValidationWorkflowStack")
+@Validations(
+	requiredStrings =
+        {@RequiredStringValidator(fieldName = "word", type = ValidatorType.FIELD, message = "You must enter a value for word.")}
+)
 public class LollyAction extends ActionSupport {
     
 	@Autowired @Qualifier("languageDao")
@@ -97,12 +103,32 @@ public class LollyAction extends ActionSupport {
 		value="dictUrl",
 		results=@Result(type="json")
 	)
-	@Validations(
-		requiredStrings =
-            {@RequiredStringValidator(fieldName = "word", type = ValidatorType.FIELD, message = "You must enter a value for word.")}
-    )
 	public String writeDictUrl() {
 		url = dictallDao.getDataByLangDict(selectedLangID, selectedDictName).getUrl();
+		return SUCCESS;
+	}
+
+	@Action(
+		value="search",
+		results={@Result(name="success", location="${url}", type="redirect"),
+				@Result(name="input", location="error", type="chain")}
+	)
+	public String search() {
+		url = dictallDao.getDataByLangDict(selectedLangID, selectedDictName).getUrl();
+		try {
+			url = url.replace("{0}", URLEncoder.encode(word, "UTF-8"));
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		return SUCCESS;
+	}
+
+	@Action(
+		value="error",
+		results=@Result(location="error.jsp", type="redirect")
+	)
+	@SkipValidation
+	public String error() {
 		return SUCCESS;
 	}
 }
