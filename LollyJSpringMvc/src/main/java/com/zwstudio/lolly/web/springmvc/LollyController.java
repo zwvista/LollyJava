@@ -144,7 +144,7 @@ public class LollyController {
 		if(bindingResult.hasErrors()) {
 		    attr.addFlashAttribute("org.springframework.validation.BindingResult.formBean", bindingResult);
 		    attr.addFlashAttribute("formBean", bean);
-		    return new RedirectView("jsp/error");
+		    return new RedirectView("error");
 		} else {
 			String url = getDictAllService(orm).getDataByLangDict(bean.selectedLangID, bean.selectedDictName).getUrl()
 					.replace("{0}", bean.word);
@@ -152,6 +152,10 @@ public class LollyController {
 		}
 	}
 	
+    @RequestMapping("error")
+    public String error() {
+        return "jsp/error";
+    }
     @RequestMapping("lolly1")
     public String lolly1() {
         return "jsp/lolly1";

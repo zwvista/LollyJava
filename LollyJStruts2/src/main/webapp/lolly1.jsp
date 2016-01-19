@@ -32,7 +32,12 @@ $(function() {
  		});
 	});
 	$lang.change();
+	var redirectSearch = false;
+	$('#redirectSearch').click(function() {
+		redirectSearch = true;
+	});
 	$('form').submit(function() {
+		if(redirectSearch) return;
 		event.preventDefault();
 	    $.post("dictUrl", $('form').serialize(), function(response) {
 			var word = $('#word').val();
@@ -45,7 +50,7 @@ $(function() {
 <sj:head jqueryui="true"/>
 </head>
 <body>
-<s:form theme="simple" cssClass="form-horizontal">
+<s:form theme="simple" cssClass="form-horizontal" action='search'>
 	<div class="form-group">
 		<label class="col-sm-1 control-label" for='lang'>Language:</label>
     	<div class="col-sm-3">
@@ -62,6 +67,7 @@ $(function() {
 			<s:textfield cssClass="form-control" id="word" name="word" required="true" />
 		</div>
 		<sj:submit validate="true" cssClass="btn btn-primary" value="Search" />
+		<sj:submit validate="true" cssClass="btn btn-primary" value='Search(redirect)' id = 'redirectSearch' />
 	</div>
 </s:form>
 <iframe id='dictframe'>
