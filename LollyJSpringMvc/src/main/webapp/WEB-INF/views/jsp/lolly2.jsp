@@ -29,8 +29,13 @@ $(function() {
 	    });
 	});
 	$lang.change();
-    $('form').submit(function() {
-        event.preventDefault();
+	var redirectSearch = false;
+	$('#redirectSearch').click(function() {
+		redirectSearch = true;
+	});
+	$('form').submit(function() {
+		if(redirectSearch) return;
+		event.preventDefault();
         $.ajax({
             type: "GET",
             url: "validate",
@@ -55,7 +60,7 @@ $(function() {
 </script>
 </head>
 <body>
-<form:form class="form-horizontal" modelAttribute="formBean">
+<form:form class="form-horizontal" modelAttribute="formBean" action='search'>
 	<div class="form-group">
 		<label class="col-sm-1 control-label" for='lang'>Language:</label>
     	<div class="col-sm-3">
@@ -74,6 +79,7 @@ $(function() {
 			<form:input type="text" class="form-control" path="word" id="word" />
 		</div>
         <input type="submit" class="btn btn-primary" value='Search' />
+	    <input type="submit" class="btn btn-primary" value='Search(redirect)' id = 'redirectSearch' />
         <div class="col-sm-3 error vcenter" id='wordError'></div>
 	</div>
 </form:form>

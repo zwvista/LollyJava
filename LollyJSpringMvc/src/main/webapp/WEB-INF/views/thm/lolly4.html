@@ -23,7 +23,12 @@ $(function() {
         });
     });
     $lang.change();
-    $('form').submit(function() {
+	var redirectSearch = false;
+	$('#redirectSearch').click(function() {
+		redirectSearch = true;
+	});
+	$('form').submit(function() {
+		if(redirectSearch) return;
         event.preventDefault();
         $.ajax({
             type: "POST",
@@ -47,7 +52,7 @@ $(function() {
 </script>
 </head>
 <body>
-<form class="form-horizontal" th:object="${formBean}">
+<form class="form-horizontal" th:object="${formBean}" method="post" action='search'>
 	<div class="form-group">
 		<label class="col-sm-1 control-label" for='lang'>Language:</label>
     	<div class="col-sm-3">
@@ -69,6 +74,7 @@ $(function() {
 			<input type="text" class="form-control" th:field="*{word}" id="word" />
 		</div>
         <input type="submit" class="btn btn-primary" value='Search' />
+	    <input type="submit" class="btn btn-primary" value='Search(redirect)' id = 'redirectSearch' />
         <div class="col-sm-3 error vcenter" id='wordError'></div>
 	</div>
 </form>

@@ -27,7 +27,12 @@ $(function() {
         });
     });
     $lang.change();
-    $('form').submit(function() {
+	var redirectSearch = false;
+	$('#redirectSearch').click(function() {
+		redirectSearch = true;
+	});
+	$('form').submit(function() {
+		if(redirectSearch) return;
         event.preventDefault();
         $.ajax({
             type: "POST",
@@ -58,7 +63,7 @@ $(function() {
 </html>
 </xsl:template>
 <xsl:template match="java/object">
-<form class="form-horizontal">
+<form class="form-horizontal" method="post" action='search'>
 	<div class="form-group">
 		<label class="col-sm-1 control-label" for='lang'>Language:</label>
     	<div class="col-sm-3">
@@ -89,6 +94,7 @@ $(function() {
 			</input>
 		</div>
         <input type="submit" class="btn btn-primary" value='Search' />
+        <input type="submit" class="btn btn-primary" value='Search(redirect)' id = 'redirectSearch' />
         <div class="col-sm-3 error vcenter" id='wordError'></div>
 	</div>
 </form>

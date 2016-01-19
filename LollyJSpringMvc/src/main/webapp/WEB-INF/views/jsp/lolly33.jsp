@@ -38,9 +38,13 @@ angular.module('app', []).controller("lollyCtrl", ["$scope", "$http", "$sce",
 	$scope.trustSrc = function(url) {
 		return $sce.trustAsResourceUrl(url);
 	};
+	$scope.redirectSearch = false;
+	$scope.redirect = function() {
+		$scope.redirectSearch = true;
+	};
 	$scope.getDictUrl = function() {
+		if($scope.redirectSearch) return;
 		event.preventDefault();
-        $scope.dictUrl = null;
         $http.post('dictall3', $('form').serialize(), {
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).success(function(response) {
@@ -59,7 +63,7 @@ angular.module('app', []).controller("lollyCtrl", ["$scope", "$http", "$sce",
 </script>
 </head>
 <body ng-controller="lollyCtrl" id="lollyCtrl">
-<form:form class="form-horizontal" modelAttribute="formBean" ng-submit="getDictUrl()">
+<form:form class="form-horizontal" modelAttribute="formBean" ng-submit="getDictUrl()" action='search'>
 	<div class="form-group">
 		<label class="col-sm-1 control-label" for='lang'>Language:</label>
     	<div class="col-sm-3">
@@ -82,6 +86,7 @@ angular.module('app', []).controller("lollyCtrl", ["$scope", "$http", "$sce",
 			<form:input type="text" class="form-control" path="word" id="word" />
 		</div>
 	    <input type="submit" class="btn btn-primary" value='Search' />
+	    <input type="submit" class="btn btn-primary" value='Search(redirect)' id = 'redirectSearch' ng-click="redirect()" />
         <div class="col-sm-3 error vcenter" id='wordError'>{{wordError}}</div>
 	</div>
 </form:form>

@@ -8,22 +8,25 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.zwstudio.lolly.domain.DictAll;
@@ -33,28 +36,62 @@ import com.zwstudio.lolly.services.IDictionaryService;
 import com.zwstudio.lolly.services.ILanguageService;
 
 @Controller
-@RequestMapping("/hibernate/")
-public class LollyControllerHibernate {
-	@Autowired @Qualifier("languageDao")
-	protected ILanguageService langService;
-	@Autowired @Qualifier("dictionaryDao")
-	protected IDictionaryService dictService;
-	@Autowired @Qualifier("dictAllDao")
-	protected IDictAllService dictallService;
+@RequestMapping("/{orm}/")
+public class LollyController {
+	@Autowired
+	private ILanguageService languageDao;
+	@Autowired
+	private IDictionaryService dictionaryDao;
+	@Autowired
+	private IDictAllService dictAllDao;
+	@Autowired
+	private ILanguageService languageRepository;
+	@Autowired
+	private IDictionaryService dictionaryRepository;
+	@Autowired
+	private IDictAllService dictAllRepository;
+	@Autowired
+	private ILanguageService languageService;
+	@Autowired
+	private IDictionaryService dictionaryService;
+	@Autowired
+	private IDictAllService dictAllService;
+	
+	public ILanguageService getLangService(String orm) {
+		return "hibernate".equals(orm) ? languageDao :
+			"jpa".equals(orm) ? languageRepository :
+			"mybatis".equals(orm) ? languageService :
+			null;
+	}
+	
+	public IDictionaryService getDictService(String orm) {
+		return "hibernate".equals(orm) ? dictionaryDao :
+			"jpa".equals(orm) ? dictionaryRepository :
+			"mybatis".equals(orm) ? dictionaryService :
+			null;
+	}
+	
+	public IDictAllService getDictAllService(String orm) {
+		return "hibernate".equals(orm) ? dictAllDao :
+			"jpa".equals(orm) ? dictAllRepository :
+			"mybatis".equals(orm) ? dictAllService :
+			null;
+	}
 	
 	@ModelAttribute("formBean")
-	public LollyFormBean createFormBean() {
+	public LollyFormBean createFormBean(@PathVariable String orm) {
 		LollyFormBean bean = new LollyFormBean();
 		bean.word = "一人";
-		bean.langList = langService.getData();
-		bean.langMap = langService.getIdNameMap();
+		bean.langList = getLangService(orm).getData();
+		bean.langMap = getLangService(orm).getIdNameMap();
 		return bean;
 	}
 	
 	@RequestMapping(value="dictList", method=RequestMethod.GET)
 	public @ResponseBody List<Dictionary> dictList(
+			@PathVariable String orm,
 			@RequestParam(value="langid", required=true) int langid) {
-		return dictService.getDataByLang(langid);
+		return getDictService(orm).getDataByLang(langid);
 	}
 	
 	@RequestMapping(value="validate", method=RequestMethod.GET)
@@ -68,30 +105,51 @@ public class LollyControllerHibernate {
 	
 	@RequestMapping(value="dictList2", method=RequestMethod.GET)
 	public @ResponseBody List<String> dictList2(
+			@PathVariable String orm,
 			@RequestParam(value="langid", required=true) int langid) {
-		return dictService.getNamesByLang(langid);
+		return getDictService(orm).getNamesByLang(langid);
 	}
 
 	@RequestMapping(value="dictall2", method=RequestMethod.GET)
 	public @ResponseBody DictAll dictall2(
+			@PathVariable String orm,
 			@RequestParam(value="langid", required=true) int langid,
 			@RequestParam(value="dictname", required=true) String dictname) {
-		return dictallService.getDataByLangDict(langid, dictname);
+		return getDictAllService(orm).getDataByLangDict(langid, dictname);
 	}
 	
 	@RequestMapping(value="dictList3", method=RequestMethod.POST)
 	public @ResponseBody List<String> dictList3(
+			@PathVariable String orm,
 			@ModelAttribute("formBean") LollyFormBean bean) {
-		return dictService.getNamesByLang(bean.selectedLangID);
+		return getDictService(orm).getNamesByLang(bean.selectedLangID);
 	}
 
 	@RequestMapping(value="dictall3", method=RequestMethod.POST)
 	public ResponseEntity<Object> dictall3(
+			@PathVariable String orm,
 			@Valid @ModelAttribute("formBean") LollyFormBean bean,
 			BindingResult bindingResult) {
 		return bindingResult.hasErrors() ?
 				new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.BAD_REQUEST) :
-				new ResponseEntity<>(dictallService.getDataByLangDict(bean.selectedLangID, bean.selectedDictName), HttpStatus.OK);
+				new ResponseEntity<>(getDictAllService(orm).getDataByLangDict(bean.selectedLangID, bean.selectedDictName), HttpStatus.OK);
+	}
+
+	@RequestMapping(value="search", method=RequestMethod.POST)
+	public RedirectView search(
+			@PathVariable String orm,
+			@Valid @ModelAttribute("formBean") LollyFormBean bean,
+			BindingResult bindingResult,
+			RedirectAttributes attr, HttpSession session) {
+		if(bindingResult.hasErrors()) {
+		    attr.addFlashAttribute("org.springframework.validation.BindingResult.formBean", bindingResult);
+		    attr.addFlashAttribute("formBean", bean);
+		    return new RedirectView("jsp/error");
+		} else {
+			String url = getDictAllService(orm).getDataByLangDict(bean.selectedLangID, bean.selectedDictName).getUrl()
+					.replace("{0}", bean.word);
+			return new RedirectView(url);
+		}
 	}
 	
     @RequestMapping("lolly1")
@@ -135,9 +193,11 @@ public class LollyControllerHibernate {
         return "ftl/lolly62";
     }
     @RequestMapping("lolly7")
-    public ModelAndView lolly7(HttpServletRequest request,
+    public ModelAndView lolly7(
+			@PathVariable String orm,
+    		HttpServletRequest request,
             HttpServletResponse response) throws IOException {
-    	LollyFormBean bean = createFormBean();
+    	LollyFormBean bean = createFormBean(orm);
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		XMLEncoder xmlEncoder = new XMLEncoder(baos);
 		xmlEncoder.writeObject(bean);

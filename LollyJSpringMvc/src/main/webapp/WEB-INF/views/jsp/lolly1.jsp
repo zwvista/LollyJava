@@ -30,8 +30,14 @@ $(function() {
 	    });
 	});
 	$lang.change();
+	var redirectSearch = false;
+	$('#redirectSearch').click(function() {
+		redirectSearch = true;
+	});
 	$('form').submit(function() {
-        event.preventDefault();
+		$('#selectedDictName').val($dict.children(':selected').text());
+		if(redirectSearch) return;
+		event.preventDefault();
 		$.ajax({
 			type: "GET",
 			url: "validate",
@@ -55,7 +61,7 @@ $(function() {
 </script>
 </head>
 <body>
-<form:form class="form-horizontal" modelAttribute="formBean">
+<form:form class="form-horizontal" modelAttribute="formBean" action='search'>
 	<div class="form-group">
 		<label class="col-sm-1 control-label" for='lang'>Language:</label>
     	<div class="col-sm-3">
@@ -65,7 +71,8 @@ $(function() {
 		</div>
 		<label class="col-sm-1 control-label" for='dict'>Dictionary:</label>
     	<div class="col-sm-3">
-			<form:select class="form-control" path="selectedDictName" id="dict" />
+			<select class="form-control" id="dict">
+			</select>
 		</div>
 	</div>
 	<div class="form-group">
@@ -74,8 +81,10 @@ $(function() {
 			<form:input type="text" class="form-control" path="word" id="word" />
 		</div>
 	    <input type="submit" class="btn btn-primary" value='Search' />
+	    <input type="submit" class="btn btn-primary" value='Search(redirect)' id = 'redirectSearch' />
         <div class="col-sm-3 error vcenter" id='wordError'></div>
 	</div>
+	<input type="hidden" name="selectedDictName" id="selectedDictName" />
 </form:form>
 <iframe id='dictframe'>
 </iframe>

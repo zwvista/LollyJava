@@ -23,7 +23,12 @@ $(function() {
         });
     });
     $lang.change();
-    $('form').submit(function() {
+	var redirectSearch = false;
+	$('#redirectSearch').click(function() {
+		redirectSearch = true;
+	});
+	$('form').submit(function() {
+		if(redirectSearch) return;
         event.preventDefault();
         $.ajax({
             type: "POST",
@@ -47,7 +52,7 @@ $(function() {
 </script>]]#
 </head>
 <body>
-<form class="form-horizontal"> #springBind("formBean")
+<form class="form-horizontal" method="post" action='search'> #springBind("formBean")
 	<div class="form-group">
 		<label class="col-sm-1 control-label" for='selectedLangID'>Language:</label>
     	<div class="col-sm-3">
@@ -64,6 +69,7 @@ $(function() {
 			#springFormInput("formBean.word", 'class="form-control"')
 		</div>
         <input type="submit" class="btn btn-primary" value='Search' />
+	    <input type="submit" class="btn btn-primary" value='Search(redirect)' id = 'redirectSearch' />
         <div class="col-sm-3 error vcenter" id='wordError'></div>
 	</div>
 </form>

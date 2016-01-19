@@ -8,6 +8,8 @@
 <link rel="stylesheet" href="resources/css/lolly.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/struts/utils.js"></script>
+<script src="${pageContext.request.contextPath}/struts/xhtml/validation.js"></script>
 #[[<script>
 $(function() {
 	var $lang = $('#lang');
