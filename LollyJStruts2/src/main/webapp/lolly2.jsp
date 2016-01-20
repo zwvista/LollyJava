@@ -39,7 +39,7 @@ $(function() {
 </script>]]#
 </head>
 <body>
-#sform("theme=simple" "cssClass=form-horizontal")
+#sform("theme=simple" "cssClass=form-horizontal" "action=search")
 	<div class="form-group">
 		<label class="col-sm-1 control-label" for='lang'>Language:</label>
     	<div class="col-sm-3">
@@ -56,7 +56,7 @@ $(function() {
 			#stextfield("cssClass=form-control" "id=word" "name=word")
 		</div>
         #ssubmit("cssClass=btn btn-primary" "value=Search" "id=search")
-        #ssubmit("cssClass=btn btn-primary" "value=Search(redirect)" id="redirectSearch"")
+        #ssubmit("cssClass=btn btn-primary" "value=Search(redirect)" id="redirectSearch")
 	</div>
 #end
 <iframe id='dictframe'>

@@ -36,7 +36,7 @@ $(function() {
 </script>
 </head>
 <body>
-<@s.form theme="simple" cssClass="form-horizontal">
+<@s.form theme="simple" cssClass="form-horizontal" action="search">
 	<div class="form-group">
 		<label class="col-sm-2 control-label" for='lang'>Language:</label>
     	<div class="col-sm-4">
