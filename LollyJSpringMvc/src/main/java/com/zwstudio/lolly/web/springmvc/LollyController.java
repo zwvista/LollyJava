@@ -4,8 +4,6 @@ import java.beans.XMLEncoder;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.StringReader;
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -148,12 +146,8 @@ public class LollyController {
 		    attr.addFlashAttribute("formBean", bean);
 		    return new RedirectView("error");
 		} else {
-			String url = getDictAllService(orm).getDataByLangDict(bean.selectedLangID, bean.selectedDictName).getUrl();
-			try {
-				url = url.replace("{0}", URLEncoder.encode(bean.word, "UTF-8"));
-			} catch (UnsupportedEncodingException e) {
-				e.printStackTrace();
-			}
+			String url = getDictAllService(orm).getDataByLangDict(bean.selectedLangID, bean.selectedDictName).getUrl()
+					.replace("{0}", bean.word);
 			System.out.println(url);
 			return new RedirectView(url);
 		}

@@ -110,8 +110,8 @@ public class LollyAction extends ActionSupport {
 
 	@Action(
 		value="search",
-		results={@Result(name="success", location="${url}", type="redirect"),
-				@Result(name="input", location="error", type="chain")}
+		results={@Result(name=SUCCESS, location="${url}", type="redirect"),
+				@Result(name=INPUT, location="error", type="chain")}
 	)
 	public String search() {
 		url = dictallDao.getDataByLangDict(selectedLangID, selectedDictName).getUrl();
@@ -125,10 +125,10 @@ public class LollyAction extends ActionSupport {
 
 	@Action(
 		value="error",
-		results=@Result(location="error.jsp", type="redirect")
+		results=@Result(name=ERROR, location="error.jsp", type="redirect")
 	)
 	@SkipValidation
 	public String error() {
-		return SUCCESS;
+		return ERROR;
 	}
 }
