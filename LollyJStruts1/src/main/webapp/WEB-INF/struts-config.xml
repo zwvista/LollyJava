@@ -13,7 +13,7 @@
 		<action path="/lolly"
 		type="org.springframework.web.struts.DelegatingActionProxy"
 		name="lollyForm">
- 		<forward name="success" path="/lolly.jsp" />
+		<forward name="success" path="/lolly.jsp" />
 		</action>
 		<action path="/dictList"
 		type="org.springframework.web.struts.DelegatingActionProxy"
@@ -23,6 +23,10 @@
 		type="org.springframework.web.struts.DelegatingActionProxy"
 		name="lollyForm">
 		</action>
+        <action path="/search" validate="true"
+        type="org.springframework.web.struts.DelegatingActionProxy"
+        name="lollyForm">
+        </action>
 	</action-mappings>
 	<controller>
 	    <set-property property="processorClass" value="org.springframework.web.struts.AutowiringRequestProcessor" />

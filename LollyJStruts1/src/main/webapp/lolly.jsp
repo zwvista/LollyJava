@@ -27,7 +27,13 @@ $(function() {
  		});
 	});
     $lang.change();
+    var redirectSearch = false;
+    $('#redirectSearch').click(function() {
+        redirectSearch = true;
+    });
     $('form').submit(function() {
+        if(redirectSearch) return;
+        event.preventDefault();
 		if(validateLollyForm(this)) {
 	        $.post("dictUrl.do", $('form').serialize(), function(response) {
 	            var word = $('#word').val();
@@ -35,13 +41,12 @@ $(function() {
 	            $('#dictframe').attr('src', url);
 	        });
 	    }
-		return false;
 	})
 });
 </script>
 </head>
 <body>
-<html:form styleClass="form-horizontal" styleId="LollyForm">
+<html:form styleClass="form-horizontal" styleId="LollyForm" method="post" action='search'>
 	<div class="form-group">
 		<label class="col-sm-1 control-label" for='lang'>Language:</label>
     	<div class="col-sm-3">
@@ -61,6 +66,7 @@ $(function() {
 			<html:text styleClass="form-control" property="word" styleId="word" />
 		</div>
 	    <html:submit styleClass="btn btn-primary" property="search" value="Search" />
+        <input type="submit" class="btn btn-primary" value='Search(redirect)' id = 'redirectSearch' />
 	</div>
 </html:form>
 <iframe id='dictframe'>

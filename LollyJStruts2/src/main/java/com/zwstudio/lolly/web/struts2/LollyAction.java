@@ -125,7 +125,7 @@ public class LollyAction extends ActionSupport {
 
 	@Action(
 		value="error",
-		results=@Result(name=ERROR, location="error.jsp", type="redirect")
+		results=@Result(name=ERROR, location="error.jsp")
 	)
 	@SkipValidation
 	public String error() {
