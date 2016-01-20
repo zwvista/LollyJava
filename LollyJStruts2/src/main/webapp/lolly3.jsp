@@ -21,14 +21,16 @@ $(function() {
  		});
 	});
 	$lang.change();
-	$('form').submit(function() {
+    $('#search').click(function() {redirectSearch = false;});
+    $('#redirectSearch').click(function() {redirectSearch = true;});
+    $('form').submit(function() {
+        if(redirectSearch) return;
 		event.preventDefault();
 	    $.post("dictUrl", $('form').serialize(), function(response) {
 			var word = $('#word').val();
 			var url = response.url.replace('{0}', encodeURIComponent(word));
 			$('#dictframe').attr('src', url);
 	    });
-	    return false;
 	});
 });
 </script>
@@ -52,7 +54,8 @@ $(function() {
     	<div class="col-sm-4">
 			<@s.textfield cssClass="form-control" id="word" name="word" required="true" />
 		</div>
-		<@sj.submit cssClass="btn btn-primary" value="Search" required="true" />
+        <@sj.submit cssClass="btn btn-primary" value="Search" required="true" id="search" />
+        <@s.submit cssClass="btn btn-primary" value="Search(redirect)" required="true" id="redirectSearch" />
 	</div>
 </@s.form>
 <iframe id='dictframe'>

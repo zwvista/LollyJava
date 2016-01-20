@@ -37,7 +37,6 @@ $(function() {
 			var url = response.url.replace('{0}', encodeURIComponent(word));
 			$('#dictframe').attr('src', url);
 	    });
-	    return false;
 	});
 });
 </script>

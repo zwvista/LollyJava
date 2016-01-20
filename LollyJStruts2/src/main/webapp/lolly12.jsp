@@ -25,7 +25,11 @@ $(function() {
  		});
 	});
 	$lang.change();
-	$('form').submit(function() {
+    var redirectSearch = false;
+    $('#search').click(function() {redirectSearch = false;});
+    $('#redirectSearch').click(function() {redirectSearch = true;});
+    $('form').submit(function() {
+        if(redirectSearch) return;
 		event.preventDefault();
 	    $.post("dictUrl", $('form').serialize(), function(response) {
 			var word = $('#word').val();
@@ -42,7 +46,8 @@ $(function() {
 	<s:select id="lang" name="selectedLangID" label="Language" value="selectedLangID" list="langList" listKey="langid" listValue="langname" />
 	<s:select id="dict" name="selectedDictName" label="Dictionary" value="selectedDictName" list="langList" listKey="langid" listValue="langname" />
 	<s:textfield id="word" name="word" label="Word" required="true" />
-	<sj:submit validate="true" value="Search" />
+    <sj:submit validate="true" value="Search" id="search" />
+    <s:submit validate="true" value="Search(redirect)" id="redirectSearch" />
 </s:form>
 <iframe id='dictframe'>
 </iframe>

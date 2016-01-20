@@ -39,9 +39,8 @@ angular.module('app', []).controller("lollyCtrl", ["$scope", "$http", "$sce",
 		return $sce.trustAsResourceUrl(url);
 	};
 	$scope.redirectSearch = false;
-	$scope.redirect = function() {
-		$scope.redirectSearch = true;
-	};
+    $scope.searchClick = function() {$scope.redirectSearch = false;};
+    $scope.redirectSearchClick = function() {$scope.redirectSearch = true;};
 	$scope.getDictUrl = function() {
 		if($scope.redirectSearch) return;
 		event.preventDefault();
@@ -85,8 +84,8 @@ angular.module('app', []).controller("lollyCtrl", ["$scope", "$http", "$sce",
     	<div class="col-sm-3">
 			<form:input type="text" class="form-control" path="word" id="word" />
 		</div>
-	    <input type="submit" class="btn btn-primary" value='Search' />
-	    <input type="submit" class="btn btn-primary" value='Search(redirect)' id = 'redirectSearch' ng-click="redirect()" />
+	    <input type="submit" class="btn btn-primary" value='Search' id='search' ng-click="searchClick()" />
+	    <input type="submit" class="btn btn-primary" value='Search(redirect)' id='redirectSearch' ng-click="redirectSearchClick()" />
         <div class="col-sm-3 error vcenter" id='wordError'>{{wordError}}</div>
 	</div>
 </form:form>

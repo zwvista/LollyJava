@@ -23,14 +23,17 @@ $(function() {
  		});
 	});
 	$lang.change();
+    var redirectSearch = false;
+    $('#search').click(function() {redirectSearch = false;});
+    $('#redirectSearch').click(function() {redirectSearch = true;});
 	$('form').submit(function() {
+        if(redirectSearch) return;
 		event.preventDefault();
 	    $.post("dictUrl", $('form').serialize(), function(response) {
 			var word = $('#word').val();
 			var url = response.url.replace('{0}', encodeURIComponent(word));
 			$('#dictframe').attr('src', url);
 	    });
-	    return false;
 	});
 });
 </script>]]#
@@ -38,23 +41,22 @@ $(function() {
 <body>
 #sform("theme=simple" "cssClass=form-horizontal")
 	<div class="form-group">
-		<label class="col-sm-2 control-label" for='lang'>Language:</label>
-    	<div class="col-sm-4">
+		<label class="col-sm-1 control-label" for='lang'>Language:</label>
+    	<div class="col-sm-3">
 			#sselect("cssClass=form-control" "id=lang" "name=selectedLangID" "value=selectedLangID" "list=langList" "listKey=langid" "listValue=langname")
 		</div>
-	</div>
-	<div class="form-group">
-		<label class="col-sm-2 control-label" for='dict'>Dictionary:</label>
-    	<div class="col-sm-4">
+		<label class="col-sm-1 control-label" for='dict'>Dictionary:</label>
+    	<div class="col-sm-3">
 			#sselect("cssClass=form-control" "id=dict" "name=selectedDictName" "value=selectedDictName" "list=langList" "listKey=langid" "listValue=langname")
 		</div>
 	</div>
 	<div class="form-group">
-		<label class="col-sm-2 control-label" for='word'>Word:</label>
-    	<div class="col-sm-4">
+		<label class="col-sm-1 control-label" for='word'>Word:</label>
+    	<div class="col-sm-3">
 			#stextfield("cssClass=form-control" "id=word" "name=word")
 		</div>
-		#ssubmit("cssClass=btn btn-primary" "value=Search")
+        #ssubmit("cssClass=btn btn-primary" "value=Search" "id=search")
+        #ssubmit("cssClass=btn btn-primary" "value=Search(redirect)" id="redirectSearch"")
 	</div>
 #end
 <iframe id='dictframe'>

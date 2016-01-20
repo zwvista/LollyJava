@@ -28,9 +28,8 @@ $(function() {
 	});
     $lang.change();
     var redirectSearch = false;
-    $('#redirectSearch').click(function() {
-        redirectSearch = true;
-    });
+    $('#search').click(function() {redirectSearch = false;});
+    $('#redirectSearch').click(function() {redirectSearch = true;});
     $('form').submit(function() {
         if(redirectSearch) return;
         event.preventDefault();
@@ -65,8 +64,8 @@ $(function() {
     	<div class="col-sm-3">
 			<html:text styleClass="form-control" property="word" styleId="word" />
 		</div>
-	    <html:submit styleClass="btn btn-primary" property="search" value="Search" />
-        <input type="submit" class="btn btn-primary" value='Search(redirect)' id = 'redirectSearch' />
+	    <html:submit styleClass="btn btn-primary" property="search" value="Search" styleId='search' />
+        <html:submit styleClass="btn btn-primary" property="search" value="Search(redirect)" styleId='redirectSearch' />
 	</div>
 </html:form>
 <iframe id='dictframe'>

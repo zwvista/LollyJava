@@ -33,9 +33,8 @@ $(function() {
 	});
 	$lang.change();
 	var redirectSearch = false;
-	$('#redirectSearch').click(function() {
-		redirectSearch = true;
-	});
+    $('#search').click(function() {redirectSearch = false;});
+    $('#redirectSearch').click(function() {redirectSearch = true;});
 	$('form').submit(function() {
 		if(redirectSearch) return true;
 		event.preventDefault();
@@ -44,7 +43,6 @@ $(function() {
 			var url = response.url.replace('{0}', encodeURIComponent(word));
 			$('#dictframe').attr('src', url);
 	    });
-	    return false;
 	});
 });
 </script>
@@ -65,10 +63,10 @@ $(function() {
 	<div class="form-group">
 		<label class="col-sm-1 control-label" for='word'>Word:</label>
     	<div class="col-sm-3">
-			<s:textfield cssClass="form-control" id="word" name="word" required="true" />
+			<s:textfield cssClass="form-control" id="word" name="word" />
 		</div>
-		<sj:submit validate="true" cssClass="btn btn-primary" value="Search" />
-		<sj:submit validate="true" cssClass="btn btn-primary" value='Search(redirect)' id = 'redirectSearch' />
+		<sj:submit cssClass="btn btn-primary" value="Search" id='search' />
+		<s:submit cssClass="btn btn-primary" value='Search(redirect)' id='redirectSearch' />
 	</div>
 </s:form>
 <iframe id='dictframe'>

@@ -28,9 +28,8 @@ $(function() {
     });
     $lang.change();
 	var redirectSearch = false;
-	$('#redirectSearch').click(function() {
-		redirectSearch = true;
-	});
+    $('#search').click(function() {redirectSearch = false;});
+    $('#redirectSearch').click(function() {redirectSearch = true;});
 	$('form').submit(function() {
 		if(redirectSearch) return;
         event.preventDefault();
@@ -93,8 +92,8 @@ $(function() {
 				</xsl:attribute>
 			</input>
 		</div>
-        <input type="submit" class="btn btn-primary" value='Search' />
-        <input type="submit" class="btn btn-primary" value='Search(redirect)' id = 'redirectSearch' />
+        <input type="submit" class="btn btn-primary" value='Search' id='search' />
+        <input type="submit" class="btn btn-primary" value='Search(redirect)' id='redirectSearch' />
         <div class="col-sm-3 error vcenter" id='wordError'></div>
 	</div>
 </form>
