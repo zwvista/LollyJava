@@ -18,6 +18,7 @@ $(function() {
 </script>
 </h:head>
 <h:body>
+<b:container>
 <h:form id="form">
 	<b:row>
 		<b:column span="1">
@@ -45,14 +46,17 @@ $(function() {
 			<h:outputLabel for='word' value="Word:" />
 		</b:column>
 		<b:column span="3">
-			<b:inputText value="#{formBean.word}" id="word" />
+			<b:inputText value="#{formBean.word}" id="word" required="true"
+				ajax="true" update="wordError search redirectSearch" />
 		</b:column>
 		<b:commandButton look="primary" value="Search" id="search" action="#{formBean.searchButtonClicked}"
-				ajax="true" update=":iframe-holder" process="@parent" />
+			ajax="true" update=":iframe-holder" process="@parent" />
         <b:commandButton look="primary" value="Search(redirect)" id="redirectSearch" action="#{formBean.redirectSearchButtonClicked}"
-                ajax="true" />
+            ajax="true" process="@parent" />
+		<h:message for="word" id="wordError" errorClass="error" />
 	</b:row>
 </h:form>
+</b:container>
 <h:panelGroup id="iframe-holder" layout="block">
 <iframe id='dictframe' src="#{formBean.url}">
 </iframe>
