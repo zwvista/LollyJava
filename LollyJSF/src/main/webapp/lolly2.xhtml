@@ -35,6 +35,8 @@ $(function() {
 			<p:inputText value="#{formBean.word}" id="word" />
 			<p:commandButton value="Search" id="search" actionListener="#{formBean.searchButtonClicked}"
 					update=":iframe-holder" process="@parent" />
+            <p:commandButton value="Search(redirect)" id="redirectSearch" actionListener="#{formBean.redirectSearchButtonClicked}"
+                    process="@parent" />
 		</p:row>
 	</p:panelGrid>
 </h:form>

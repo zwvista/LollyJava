@@ -1,5 +1,6 @@
 package com.zwstudio.lolly.web.jsf;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
@@ -71,6 +72,11 @@ public class LollyFormBean implements Serializable {
 		word = params.get("form:word");
 		url = formBo.getUrl(selectedLangID, selectedDictName, word);
 		System.out.println("url=" + url);
+	}
+	
+	public void redirectSearchButtonClicked() throws IOException {
+		searchButtonClicked();
+		FacesContext.getCurrentInstance().getExternalContext().redirect(url);
 	}
 	
 	@PostConstruct

@@ -33,13 +33,18 @@ $(function() {
 		
 		<h:outputLabel for='word' value="Word:" />
 		<h:inputText value="#{formBean.word}" id="word" required="true">
-		    <f:ajax render="wordError search" />
+		    <f:ajax render="wordError search redirectSearch" />
 		</h:inputText>
 		<h:commandButton value="Search" id="search" 
 		        disabled="#{facesContext.validationFailed}"
 		        action="#{formBean.searchButtonClicked}">
 		    <f:ajax render=":iframe-holder" />
 		</h:commandButton>
+        <h:commandButton value="Search(redirect)" id="redirectSearch" 
+                disabled="#{facesContext.validationFailed}"
+                action="#{formBean.redirectSearchButtonClicked}">
+            <f:ajax />
+        </h:commandButton>
 		<h:message for="word" id="wordError" errorClass="error" />
 	</h:panelGrid>
 </h:form>

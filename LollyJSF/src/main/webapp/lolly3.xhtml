@@ -36,8 +36,10 @@ $(function() {
 		<h:outputLabel for='word' value="Word:" />
 		<h:panelGroup>
 			<h:inputText value="#{formBean.word}" id="word" />
-			<a4j:commandButton value="Search" id="search2" action="#{formBean.searchButtonClicked}"
+			<a4j:commandButton value="Search" id="search" action="#{formBean.searchButtonClicked}"
 					render=":iframe-holder" execute="@parent" />
+            <a4j:commandButton value="Search(redirect)" id="redirectSearch" action="#{formBean.redirectSearchButtonClicked}"
+                    execute="@parent" />
 		</h:panelGroup>
 	</h:panelGrid>
 </h:form>

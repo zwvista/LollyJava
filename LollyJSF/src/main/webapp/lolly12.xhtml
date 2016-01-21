@@ -20,10 +20,10 @@ $(function() {
 <h:body>
 <h:form id="form">
 	<b:row>
-		<b:column span="2">
+		<b:column span="1">
 			<h:outputLabel for='lang' value="Language:" />
 		</b:column>
-		<b:column span="4">
+		<b:column span="3">
 			<b:selectOneMenu value="#{formBean.selectedLangID}" id="lang"
 					ajax="true"	onchange="ajax:ajaxBean.onChange()"	update="dict">
 				<!-- toString(): workaround for itemValue bug -->
@@ -31,26 +31,26 @@ $(function() {
 						itemValue="#{lang.langid.toString()}" itemLabel="#{lang.langname}" />
 			</b:selectOneMenu>
 		</b:column>
-	</b:row>
-	<b:row>
-		<b:column span="2">
+		<b:column span="1">
 			<h:outputLabel for='dict' value="Dictionary:" />
 		</b:column>
-		<b:column span="4">
+		<b:column span="3">
 			<b:selectOneMenu value="#{formBean.selectedDictName}" id="dict">
 				<f:selectItems value="#{formBean.getDictList()}" />
 			</b:selectOneMenu>
 		</b:column>
-	</b:row>
-	<b:row>
-		<b:column span="2">
+    </b:row>
+    <b:row>
+		<b:column span="1">
 			<h:outputLabel for='word' value="Word:" />
 		</b:column>
-		<b:column span="4">
+		<b:column span="3">
 			<b:inputText value="#{formBean.word}" id="word" />
 		</b:column>
 		<b:commandButton look="primary" value="Search" id="search" action="#{formBean.searchButtonClicked}"
 				ajax="true" update=":iframe-holder" process="@parent" />
+        <b:commandButton look="primary" value="Search(redirect)" id="redirectSearch" action="#{formBean.redirectSearchButtonClicked}"
+                ajax="true" />
 	</b:row>
 </h:form>
 <h:panelGroup id="iframe-holder" layout="block">
