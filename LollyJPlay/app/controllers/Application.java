@@ -1,12 +1,10 @@
 package controllers;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import com.zwstudio.lolly.spring.data.jpa.DictAllRepository;
 import com.zwstudio.lolly.spring.data.jpa.DictionaryRepository;
 import com.zwstudio.lolly.spring.data.jpa.LanguageRepository;
-
 import models.LollyForm;
+import org.springframework.beans.factory.annotation.Autowired;
 import play.data.Form;
 import play.libs.Json;
 import play.mvc.Controller;
@@ -15,6 +13,9 @@ import views.html.index;
 import views.html.lolly1;
 import views.html.lolly2;
 import views.html.lolly3;
+
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 
 @org.springframework.stereotype.Controller
 public class Application extends Controller {
@@ -58,13 +59,18 @@ public class Application extends Controller {
     }
 	public Result search() {
 		Form<LollyForm> f = Form.form(LollyForm.class).bindFromRequest();
-		LollyForm o = f.get();
 		if(f.hasErrors())
 			return redirect("error");
 		else {
-			String url = dictallRepository.getDataByLangDict(o.selectedLangID, o.selectedDictName)
-					.getUrl().replace("{0}", o.word);
-			return redirect(url);
+            LollyForm o = f.get();
+            String url = null;
+            try {
+                url = dictallRepository.getDataByLangDict(o.selectedLangID, o.selectedDictName)
+                        .getUrl().replace("{0}", URLEncoder.encode(o.word, "UTF-8"));
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+            return redirect(url);
 		}
 	}
 }

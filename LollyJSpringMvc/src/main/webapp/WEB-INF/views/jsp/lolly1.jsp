@@ -34,7 +34,6 @@ $(function() {
     $('#search').click(function() {redirectSearch = false;});
 	$('#redirectSearch').click(function() {redirectSearch = true;});
 	$('form').submit(function() {
-		$('#selectedDictName').val($dict.children(':selected').text());
 		if(redirectSearch) return;
 		event.preventDefault();
 		$.ajax({
@@ -70,7 +69,7 @@ $(function() {
 		</div>
 		<label class="col-sm-1 control-label" for='dict'>Dictionary:</label>
     	<div class="col-sm-3">
-			<select class="form-control" id="dict">
+			<select class="form-control" name="selectedDictName" id="dict">
 			</select>
 		</div>
 	</div>
@@ -83,7 +82,6 @@ $(function() {
 	    <input type="submit" class="btn btn-primary" value='Search(redirect)' id='redirectSearch' />
         <div class="col-sm-3 error vcenter" id='wordError'></div>
 	</div>
-	<input type="hidden" name="selectedDictName" id="selectedDictName" />
 </form:form>
 <iframe id='dictframe'>
 </iframe>
