@@ -56,13 +56,14 @@ public class Application extends Controller {
         	ok(Json.toJson(dictallRepository.getDataByLangDict(
         			Integer.parseInt(selectedLangID), selectedDictName)));
     }
-	public Result search(String selectedLangID, String selectedDictName, String word) {
+	public Result search() {
 		Form<LollyForm> f = Form.form(LollyForm.class).bindFromRequest();
+		LollyForm o = f.get();
 		if(f.hasErrors())
 			return redirect("error");
 		else {
-			String url = dictallRepository.getDataByLangDict(Integer.parseInt(selectedLangID), selectedDictName)
-					.getUrl().replace("{0}", word);
+			String url = dictallRepository.getDataByLangDict(o.selectedLangID, o.selectedDictName)
+					.getUrl().replace("{0}", o.word);
 			return redirect(url);
 		}
 	}
