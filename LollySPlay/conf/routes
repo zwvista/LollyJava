@@ -9,6 +9,7 @@ GET     /lolly2                     controllers.Application.lolly2()
 GET     /lolly3                     controllers.Application.lolly3()
 GET     /dictList                   controllers.Application.dictList(selectedLangID)
 GET     /dictall                    controllers.Application.dictall(selectedLangID, selectedDictName)
+POST    /search                     controllers.Application.search()
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
