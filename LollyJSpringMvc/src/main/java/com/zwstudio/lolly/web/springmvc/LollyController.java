@@ -99,9 +99,9 @@ public class LollyController {
 	@RequestMapping(value="validate", method=RequestMethod.GET)
 	public ResponseEntity<Object> validate(
 			@Valid @ModelAttribute("formBean") LollyFormBean bean,
-			BindingResult bindingResult) throws JsonProcessingException {
-		return bindingResult.hasErrors() ? 
-				new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.BAD_REQUEST) :
+			BindingResult result) throws JsonProcessingException {
+		return result.hasErrors() ? 
+				new ResponseEntity<>(result.getAllErrors(), HttpStatus.BAD_REQUEST) :
 				new ResponseEntity<>("", HttpStatus.OK);
 	}
 	
@@ -131,9 +131,9 @@ public class LollyController {
 	public ResponseEntity<Object> dictall3(
 			@PathVariable String orm,
 			@Valid @ModelAttribute("formBean") LollyFormBean bean,
-			BindingResult bindingResult) {
-		return bindingResult.hasErrors() ?
-				new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.BAD_REQUEST) :
+			BindingResult result) {
+		return result.hasErrors() ?
+				new ResponseEntity<>(result.getAllErrors(), HttpStatus.BAD_REQUEST) :
 				new ResponseEntity<>(getDictAllService(orm).getDataByLangDict(bean.selectedLangID, bean.selectedDictName), HttpStatus.OK);
 	}
 
@@ -141,10 +141,10 @@ public class LollyController {
 	public RedirectView search(
 			@PathVariable String orm,
 			@Valid @ModelAttribute("formBean") LollyFormBean bean,
-			BindingResult bindingResult,
+			BindingResult result,
 			RedirectAttributes attr, HttpSession session) throws UnsupportedEncodingException {
-		if(bindingResult.hasErrors()) {
-		    attr.addFlashAttribute("org.springframework.validation.BindingResult.formBean", bindingResult);
+		if(result.hasErrors()) {
+		    attr.addFlashAttribute("org.springframework.validation.BindingResult.formBean", result);
 		    attr.addFlashAttribute("formBean", bean);
 		    return new RedirectView("error");
 		} else {
