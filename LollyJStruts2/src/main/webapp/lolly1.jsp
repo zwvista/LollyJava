@@ -36,7 +36,6 @@ $(function() {
     //$('#search').click(function() {redirectSearch = false;alert(redirectSearch); });
     $('#redirectSearch').click(function() {redirectSearch = true;alert(redirectSearch); });
 	$('form').submit(function() {
-		alert(redirectSearch);
 		if(redirectSearch) return true;
 		event.preventDefault();
 	    $.post("dictUrl", $('form').serialize(), function(response) {

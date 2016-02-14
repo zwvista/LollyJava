@@ -4,6 +4,8 @@ import java.beans.XMLEncoder;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.StringReader;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -97,9 +99,9 @@ public class LollyController {
 	@RequestMapping(value="validate", method=RequestMethod.GET)
 	public ResponseEntity<Object> validate(
 			@Valid @ModelAttribute("formBean") LollyFormBean bean,
-			BindingResult result) throws JsonProcessingException {
-		return result.hasErrors() ? 
-				new ResponseEntity<>(result.getAllErrors(), HttpStatus.BAD_REQUEST) :
+			BindingResult bindingResult) throws JsonProcessingException {
+		return bindingResult.hasErrors() ? 
+				new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.BAD_REQUEST) :
 				new ResponseEntity<>("", HttpStatus.OK);
 	}
 	
@@ -129,9 +131,9 @@ public class LollyController {
 	public ResponseEntity<Object> dictall3(
 			@PathVariable String orm,
 			@Valid @ModelAttribute("formBean") LollyFormBean bean,
-			BindingResult result) {
-		return result.hasErrors() ?
-				new ResponseEntity<>(result.getAllErrors(), HttpStatus.BAD_REQUEST) :
+			BindingResult bindingResult) {
+		return bindingResult.hasErrors() ?
+				new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.BAD_REQUEST) :
 				new ResponseEntity<>(getDictAllService(orm).getDataByLangDict(bean.selectedLangID, bean.selectedDictName), HttpStatus.OK);
 	}
 
@@ -139,15 +141,15 @@ public class LollyController {
 	public RedirectView search(
 			@PathVariable String orm,
 			@Valid @ModelAttribute("formBean") LollyFormBean bean,
-			BindingResult result,
-			RedirectAttributes attr, HttpSession session) {
-		if(result.hasErrors()) {
-		    attr.addFlashAttribute("org.springframework.validation.BindingResult.formBean", result);
+			BindingResult bindingResult,
+			RedirectAttributes attr, HttpSession session) throws UnsupportedEncodingException {
+		if(bindingResult.hasErrors()) {
+		    attr.addFlashAttribute("org.springframework.validation.BindingResult.formBean", bindingResult);
 		    attr.addFlashAttribute("formBean", bean);
 		    return new RedirectView("error");
 		} else {
 			String url = getDictAllService(orm).getDataByLangDict(bean.selectedLangID, bean.selectedDictName).getUrl()
-					.replace("{0}", bean.word);
+					.replace("{0}", URLEncoder.encode(bean.word, "UTF-8"));
 			System.out.println(url);
 			return new RedirectView(url);
 		}
