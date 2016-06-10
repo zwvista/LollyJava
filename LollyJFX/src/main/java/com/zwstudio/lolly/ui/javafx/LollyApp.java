@@ -72,4 +72,14 @@ public class LollyApp extends Application {
 		stage.addEventHandler(WindowEvent.WINDOW_SHOWING, w -> ctl.windowShowing());
 		stage.show();
 	}
+	
+	public static void showSelectUnits() throws IOException {
+    	WordsOnlineController ctl = context.getBean(WordsOnlineController.class);
+		Parent page = load("views/SelectUnits.fxml");
+		Scene scene = new Scene(page);
+		Stage stage = new Stage();
+		stage.setScene(scene);
+		stage.addEventHandler(WindowEvent.WINDOW_SHOWING, w -> ctl.windowShowing());
+		stage.showAndWait();
+	}
 }

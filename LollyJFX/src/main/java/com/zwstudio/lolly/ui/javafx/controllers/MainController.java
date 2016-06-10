@@ -32,4 +32,13 @@ public class MainController implements Initializable {
 		}
     }
 
+    @FXML
+    private void handleSelectUnits() {
+    	try {
+			LollyApp.showSelectUnits();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+    }
+
 }
