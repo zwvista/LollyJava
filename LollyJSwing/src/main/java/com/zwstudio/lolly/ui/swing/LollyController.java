@@ -12,9 +12,9 @@ import org.jdesktop.observablecollections.ObservableCollections;
 import com.zwstudio.lolly.domain.Dictionary;
 import com.zwstudio.lolly.domain.DictionaryId;
 import com.zwstudio.lolly.domain.Language;
-import com.zwstudio.lolly.ui.viewmodel.LollyViewModel;
+import com.zwstudio.lolly.ui.viewmodel.WordsOnlineViewModel;
 
-public class LollyController extends LollyViewModel {
+public class LollyController extends WordsOnlineViewModel {
 	
 	private static final long serialVersionUID = 1L;
 

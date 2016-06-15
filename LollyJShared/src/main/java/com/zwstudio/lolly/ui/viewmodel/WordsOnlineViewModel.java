@@ -26,7 +26,7 @@ import com.zwstudio.lolly.services.ILanguageService;
 
 import lombok.Getter;
 
-public class LollyViewModel extends Model {
+public class WordsOnlineViewModel extends Model {
 
 	private static final long serialVersionUID = 1L;
 	

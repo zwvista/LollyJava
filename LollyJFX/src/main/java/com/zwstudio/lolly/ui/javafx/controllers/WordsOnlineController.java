@@ -28,10 +28,10 @@ import org.springframework.stereotype.Controller;
 import com.zwstudio.lolly.domain.Dictionary;
 import com.zwstudio.lolly.domain.DictionaryId;
 import com.zwstudio.lolly.domain.Language;
-import com.zwstudio.lolly.ui.viewmodel.LollyViewModel;
+import com.zwstudio.lolly.ui.viewmodel.WordsOnlineViewModel;
 
 @Controller
-public class WordsOnlineController extends LollyViewModel implements Initializable {
+public class WordsOnlineController extends WordsOnlineViewModel implements Initializable {
 
 	private static final long serialVersionUID = 1L;
 	

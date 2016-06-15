@@ -17,7 +17,7 @@ public class Book implements java.io.Serializable {
 	private int bookid;
 	private int langid;
 	private String bookname;
-	private int uintsinbook;
+	private int unitsinbook;
 	private String parts;
 	private int unitfrom;
 	private int partfrom;
@@ -27,12 +27,12 @@ public class Book implements java.io.Serializable {
 	public Book() {
 	}
 
-	public Book(int bookid, int langid, String bookname, int uintsinbook,
+	public Book(int bookid, int langid, String bookname, int unitsinbook,
 			String parts, int unitfrom, int partfrom, int unitto, int partto) {
 		this.bookid = bookid;
 		this.langid = langid;
 		this.bookname = bookname;
-		this.uintsinbook = uintsinbook;
+		this.unitsinbook = unitsinbook;
 		this.parts = parts;
 		this.unitfrom = unitfrom;
 		this.partfrom = partfrom;
@@ -68,13 +68,13 @@ public class Book implements java.io.Serializable {
 		this.bookname = bookname;
 	}
 
-	@Column(name = "UINTSINBOOK", nullable = false)
-	public int getUintsinbook() {
-		return this.uintsinbook;
+	@Column(name = "UNITSINBOOK", nullable = false)
+	public int getUnitsinbook() {
+		return this.unitsinbook;
 	}
 
-	public void setUintsinbook(int uintsinbook) {
-		this.uintsinbook = uintsinbook;
+	public void setUnitsinbook(int unitsinbook) {
+		this.unitsinbook = unitsinbook;
 	}
 
 	@Column(name = "PARTS", nullable = false, length = 2000000000)

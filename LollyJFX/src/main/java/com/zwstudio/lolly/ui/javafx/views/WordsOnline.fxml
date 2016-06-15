@@ -53,7 +53,7 @@
          <children>
             <TextField fx:id="tfWord" onAction="#btnSearch_tfWord_OnAction" prefHeight="0.0" prefWidth="745.0" HBox.hgrow="ALWAYS" />
             <Separator prefWidth="5.0" />
-            <Button fx:id="btnSearch" minWidth="-Infinity" mnemonicParsing="false" onAction="#btnSearch_tfWord_OnAction" prefHeight="23.0" text="Search" HBox.hgrow="NEVER" />
+            <Button minWidth="-Infinity" mnemonicParsing="false" onAction="#btnSearch_tfWord_OnAction" prefHeight="23.0" text="Search" HBox.hgrow="NEVER" />
          </children>
       </HBox>
    </top>

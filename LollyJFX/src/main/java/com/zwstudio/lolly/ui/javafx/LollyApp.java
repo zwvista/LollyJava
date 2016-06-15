@@ -6,6 +6,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
+import com.zwstudio.lolly.ui.javafx.controllers.SelectUnitsController;
 import com.zwstudio.lolly.ui.javafx.controllers.WordsOnlineController;
 import com.zwstudio.lolly.util.LollyConfigHibernate;
 
@@ -74,7 +75,7 @@ public class LollyApp extends Application {
 	}
 	
 	public static void showSelectUnits() throws IOException {
-    	WordsOnlineController ctl = context.getBean(WordsOnlineController.class);
+		SelectUnitsController ctl = context.getBean(SelectUnitsController.class);
 		Parent page = load("views/SelectUnits.fxml");
 		Scene scene = new Scene(page);
 		Stage stage = new Stage();
