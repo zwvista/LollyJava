@@ -3,6 +3,13 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import org.springframework.stereotype.Controller;
+
+import com.zwstudio.lolly.domain.Dictionary;
+import com.zwstudio.lolly.domain.DictionaryId;
+import com.zwstudio.lolly.domain.Language;
+import com.zwstudio.lolly.ui.viewmodel.WordsOnlineViewModel;
+
 import javafx.beans.property.adapter.JavaBeanObjectProperty;
 import javafx.beans.property.adapter.JavaBeanObjectPropertyBuilder;
 import javafx.beans.property.adapter.JavaBeanStringProperty;
@@ -23,13 +30,6 @@ import javafx.scene.web.WebView;
 import javafx.util.StringConverter;
 import lombok.Getter;
 
-import org.springframework.stereotype.Controller;
-
-import com.zwstudio.lolly.domain.Dictionary;
-import com.zwstudio.lolly.domain.DictionaryId;
-import com.zwstudio.lolly.domain.Language;
-import com.zwstudio.lolly.ui.viewmodel.WordsOnlineViewModel;
-
 @Controller
 public class WordsOnlineController extends WordsOnlineViewModel implements Initializable {
 
@@ -44,9 +44,9 @@ public class WordsOnlineController extends WordsOnlineViewModel implements Initi
     @FXML
     private WebView wvDictOffline;
     @FXML
-    private ComboBox<Language> cmbLang;
+    private ComboBox<Language> cboLang;
     @FXML
-    private ComboBox<Dictionary> cmbDict;
+    private ComboBox<Dictionary> cboDict;
     
     private ObservableList<Language> langList;
     private ObservableList<Dictionary> dictList = FXCollections.observableArrayList();
@@ -71,15 +71,15 @@ public class WordsOnlineController extends WordsOnlineViewModel implements Initi
 
 		tfWord.textProperty().bindBidirectional(wordProp);
 
-		cmbLang.valueProperty().bindBidirectional(selectedLangProp);
-		cmbLang.valueProperty().addListener(new ChangeListener<Language>() {
+		cboLang.valueProperty().bindBidirectional(selectedLangProp);
+		cboLang.valueProperty().addListener(new ChangeListener<Language>() {
 			@Override
 			public void changed(ObservableValue<? extends Language> observable,
 					Language oldValue, Language newValue) {
-				cmbLang_ValueChanged();
+				cboLang_ValueChanged();
 			}
 		});
-		cmbLang.setConverter(new StringConverter<Language>() {
+		cboLang.setConverter(new StringConverter<Language>() {
             @Override
             public String toString(Language lang) {
             	return lang == null ? null : lang.getLangname();
@@ -91,16 +91,16 @@ public class WordsOnlineController extends WordsOnlineViewModel implements Initi
 			}
 		});
 
-		cmbDict.valueProperty().bindBidirectional(selectedDictProp);
-		cmbDict.valueProperty().addListener(new ChangeListener<Dictionary>() {
+		cboDict.valueProperty().bindBidirectional(selectedDictProp);
+		cboDict.valueProperty().addListener(new ChangeListener<Dictionary>() {
 			@Override
 			public void changed(
 					ObservableValue<? extends Dictionary> observable,
 					Dictionary oldValue, Dictionary newValue) {
-				cmbDict_ValueChanged();
+				cboDict_ValueChanged();
 			}
 		});
-		cmbDict.setConverter(new StringConverter<Dictionary>() {
+		cboDict.setConverter(new StringConverter<Dictionary>() {
             @Override
             public String toString(Dictionary dict) {
             	return dict == null ? null : dict.getId().getDictname();
@@ -124,21 +124,21 @@ public class WordsOnlineController extends WordsOnlineViewModel implements Initi
 
 		langList = FXCollections.observableArrayList(langDao.getData());
 		
-		cmbLang.setItems(langList);
-		cmbDict.setItems(dictList);
+		cboLang.setItems(langList);
+		cboDict.setItems(dictList);
 		
 		setSelectedLang(langList.get(1));
 		setWord("一人");
 	}
 	
-	private void cmbLang_ValueChanged() {
+	private void cboLang_ValueChanged() {
 		if (selectedLang == null) return;
 		dictList.clear();
 		dictList.addAll(dictDao.getDataByLang(selectedLang.getLangid()));
 		setSelectedDict(dictList.get(0));
 	}
 	
-	private void cmbDict_ValueChanged() {
+	private void cboDict_ValueChanged() {
 		if (selectedDict == null) return;
 		DictionaryId id2 = selectedDict.getId();
 		updateDict(id2);

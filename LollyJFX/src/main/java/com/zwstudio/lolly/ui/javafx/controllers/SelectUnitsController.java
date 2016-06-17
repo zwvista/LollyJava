@@ -27,9 +27,9 @@ import javafx.util.StringConverter;
 public class SelectUnitsController extends SelectUnitsViewModel implements Initializable {
 	
     @FXML
-    private ComboBox<Language> cmbLang;
+    private ComboBox<Language> cboLang;
     @FXML
-    private ComboBox<Book> cmbbook;
+    private ComboBox<Book> cboBook;
     @FXML
     private TextField tfUnitFrom;
     @FXML
@@ -49,7 +49,7 @@ public class SelectUnitsController extends SelectUnitsViewModel implements Initi
     private ObservableList<Book> bookList = FXCollections.observableArrayList();
     
     private JavaBeanObjectProperty<Language> selectedLangProp;
-    private JavaBeanObjectProperty<Book> selectedbookProp;
+    private JavaBeanObjectProperty<Book> selectedBookProp;
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -59,20 +59,20 @@ public class SelectUnitsController extends SelectUnitsViewModel implements Initi
 	public void windowShowing() {
 		try {
 			selectedLangProp = JavaBeanObjectPropertyBuilder.create().bean(this).name("selectedLang").build();
-			selectedbookProp = JavaBeanObjectPropertyBuilder.create().bean(this).name("selectedbook").build();
+			selectedBookProp = JavaBeanObjectPropertyBuilder.create().bean(this).name("selectedBook").build();
 		} catch (NoSuchMethodException e) {
 			e.printStackTrace();
 		}
 
-		cmbLang.valueProperty().bindBidirectional(selectedLangProp);
-		cmbLang.valueProperty().addListener(new ChangeListener<Language>() {
+		cboLang.valueProperty().bindBidirectional(selectedLangProp);
+		cboLang.valueProperty().addListener(new ChangeListener<Language>() {
 			@Override
 			public void changed(ObservableValue<? extends Language> observable,
 					Language oldValue, Language newValue) {
-				cmbLang_ValueChanged();
+				cboLang_ValueChanged();
 			}
 		});
-		cmbLang.setConverter(new StringConverter<Language>() {
+		cboLang.setConverter(new StringConverter<Language>() {
             @Override
             public String toString(Language lang) {
             	return lang == null ? null : lang.getLangname();
@@ -84,16 +84,16 @@ public class SelectUnitsController extends SelectUnitsViewModel implements Initi
 			}
 		});
 
-		cmbbook.valueProperty().bindBidirectional(selectedbookProp);
-		cmbbook.valueProperty().addListener(new ChangeListener<Book>() {
+		cboBook.valueProperty().bindBidirectional(selectedBookProp);
+		cboBook.valueProperty().addListener(new ChangeListener<Book>() {
 			@Override
 			public void changed(
 					ObservableValue<? extends Book> observable,
 					Book oldValue, Book newValue) {
-				cmbbook_ValueChanged();
+				cboBook_ValueChanged();
 			}
 		});
-		cmbbook.setConverter(new StringConverter<Book>() {
+		cboBook.setConverter(new StringConverter<Book>() {
             @Override
             public String toString(Book book) {
             	return book == null ? null : book.getBookname();
@@ -107,20 +107,20 @@ public class SelectUnitsController extends SelectUnitsViewModel implements Initi
 
 		langList = FXCollections.observableArrayList(langDao.getData());
 		
-		cmbLang.setItems(langList);
-		cmbbook.setItems(bookList);
+		cboLang.setItems(langList);
+		cboBook.setItems(bookList);
 		
 		setSelectedLang(langList.get(1));
 	}
 	
-	private void cmbLang_ValueChanged() {
-//		if (selectedLang == null) return;
-//		bookList.clear();
-//		bookList.addAll(bookDao.getDataByLang(selectedLang.getLangid()));
-//		setSelectedbook(bookList.get(0));
+	private void cboLang_ValueChanged() {
+		if (selectedLang == null) return;
+		bookList.clear();
+		bookList.addAll(bookDao.getDataByLang(selectedLang.getLangid()));
+		setSelectedBook(bookList.get(0));
 	}
 	
-	private void cmbbook_ValueChanged() {
+	private void cboBook_ValueChanged() {
 //		if (selectedbook == null) return;
 //		Book id2 = selectedbook.getId();
 //		updatebook(id2);
