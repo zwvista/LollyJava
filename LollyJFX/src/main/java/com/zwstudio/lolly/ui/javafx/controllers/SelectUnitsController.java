@@ -6,7 +6,7 @@ import org.springframework.stereotype.Controller;
 
 import com.zwstudio.lolly.domain.Book;
 import com.zwstudio.lolly.domain.Language;
-import com.zwstudio.lolly.ui.viewmodel.WordsOnlineViewModel;
+import com.zwstudio.lolly.ui.viewmodel.SelectUnitsViewModel;
 
 import javafx.beans.property.adapter.JavaBeanObjectProperty;
 import javafx.beans.property.adapter.JavaBeanObjectPropertyBuilder;
@@ -16,19 +16,35 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.util.StringConverter;
 
 @Controller
-public class SelectUnitsController extends WordsOnlineViewModel implements Initializable {
-
-	private static final long serialVersionUID = 1L;
+@SuppressWarnings("serial")
+public class SelectUnitsController extends SelectUnitsViewModel implements Initializable {
 	
     @FXML
     private ComboBox<Language> cmbLang;
     @FXML
     private ComboBox<Book> cmbbook;
-    
+    @FXML
+    private TextField tfUnitFrom;
+    @FXML
+    private CheckBox chkTo;
+    @FXML
+    private TextField tfUnitTo;
+    @FXML
+    private ComboBox<?> cboPartFrom;
+    @FXML
+    private ComboBox<?> cboPartTo;
+    @FXML
+    private Label lblUntsInAllFrom;
+    @FXML
+    private Label lblUntsInAllTo;
+
     private ObservableList<Language> langList;
     private ObservableList<Book> bookList = FXCollections.observableArrayList();
     
@@ -95,7 +111,6 @@ public class SelectUnitsController extends WordsOnlineViewModel implements Initi
 		cmbbook.setItems(bookList);
 		
 		setSelectedLang(langList.get(1));
-		setWord("一人");
 	}
 	
 	private void cmbLang_ValueChanged() {
