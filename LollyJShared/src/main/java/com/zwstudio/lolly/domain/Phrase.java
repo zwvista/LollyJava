@@ -18,29 +18,29 @@ public class Phrase implements java.io.Serializable {
 	private int bookid;
 	private int unit;
 	private int part;
-	private int ord;
+	private int seqnum;
 	private String phrase;
 	private String translation;
 
 	public Phrase() {
 	}
 
-	public Phrase(int id, int bookid, int unit, int part, int ord, String phrase) {
+	public Phrase(int id, int bookid, int unit, int part, int seqnum, String phrase) {
 		this.id = id;
 		this.bookid = bookid;
 		this.unit = unit;
 		this.part = part;
-		this.ord = ord;
+		this.seqnum = seqnum;
 		this.phrase = phrase;
 	}
 
-	public Phrase(int id, int bookid, int unit, int part, int ord,
+	public Phrase(int id, int bookid, int unit, int part, int seqnum,
 			String phrase, String translation) {
 		this.id = id;
 		this.bookid = bookid;
 		this.unit = unit;
 		this.part = part;
-		this.ord = ord;
+		this.seqnum = seqnum;
 		this.phrase = phrase;
 		this.translation = translation;
 	}
@@ -82,13 +82,13 @@ public class Phrase implements java.io.Serializable {
 		this.part = part;
 	}
 
-	@Column(name = "ORD", nullable = false)
-	public int getOrd() {
-		return this.ord;
+	@Column(name = "SEQNUM", nullable = false)
+	public int getSeqnum() {
+		return this.seqnum;
 	}
 
-	public void setOrd(int ord) {
-		this.ord = ord;
+	public void setSeqnum(int seqnum) {
+		this.seqnum = seqnum;
 	}
 
 	@Column(name = "PHRASE", nullable = false, length = 2000000000)

@@ -17,7 +17,7 @@ import javax.persistence.Table;
 public class DictAll implements java.io.Serializable {
 
 	private DictAllId id;
-	private Integer ord;
+	private Integer seqnum;
 	private Integer langidto;
 	private String dicttypename;
 	private String url;
@@ -37,12 +37,12 @@ public class DictAll implements java.io.Serializable {
 		this.id = id;
 	}
 
-	public DictAll(DictAllId id, Integer ord, Integer langidto,
+	public DictAll(DictAllId id, Integer seqnum, Integer langidto,
 			String dicttypename, String url, String chconv, String automation,
 			Integer autojump, String dicttable, String transformWin,
 			String transformMac, Integer wait, String template) {
 		this.id = id;
-		this.ord = ord;
+		this.seqnum = seqnum;
 		this.langidto = langidto;
 		this.dicttypename = dicttypename;
 		this.url = url;
@@ -68,13 +68,13 @@ public class DictAll implements java.io.Serializable {
 		this.id = id;
 	}
 
-	@Column(name = "ORD")
-	public Integer getOrd() {
-		return this.ord;
+	@Column(name = "SEQNUM")
+	public Integer getSeqnum() {
+		return this.seqnum;
 	}
 
-	public void setOrd(Integer ord) {
-		this.ord = ord;
+	public void setSeqnum(Integer seqnum) {
+		this.seqnum = seqnum;
 	}
 
 	@Column(name = "LANGIDTO")

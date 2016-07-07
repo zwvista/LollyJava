@@ -17,7 +17,7 @@ import javax.persistence.Table;
 public class Dictionary implements java.io.Serializable {
 
 	private DictionaryId id;
-	private int ord;
+	private int seqnum;
 	private int dicttypeid;
 	private int langidto;
 	private String url;
@@ -30,20 +30,20 @@ public class Dictionary implements java.io.Serializable {
 	public Dictionary() {
 	}
 
-	public Dictionary(DictionaryId id, int ord, int dicttypeid, int langidto,
+	public Dictionary(DictionaryId id, int seqnum, int dicttypeid, int langidto,
 			int autojump) {
 		this.id = id;
-		this.ord = ord;
+		this.seqnum = seqnum;
 		this.dicttypeid = dicttypeid;
 		this.langidto = langidto;
 		this.autojump = autojump;
 	}
 
-	public Dictionary(DictionaryId id, int ord, int dicttypeid, int langidto,
+	public Dictionary(DictionaryId id, int seqnum, int dicttypeid, int langidto,
 			String url, String chconv, String automation, int autojump,
 			String dicttable, String template) {
 		this.id = id;
-		this.ord = ord;
+		this.seqnum = seqnum;
 		this.dicttypeid = dicttypeid;
 		this.langidto = langidto;
 		this.url = url;
@@ -66,13 +66,13 @@ public class Dictionary implements java.io.Serializable {
 		this.id = id;
 	}
 
-	@Column(name = "ORD", nullable = false)
-	public int getOrd() {
-		return this.ord;
+	@Column(name = "SEQNUM", nullable = false)
+	public int getSeqnum() {
+		return this.seqnum;
 	}
 
-	public void setOrd(int ord) {
-		this.ord = ord;
+	public void setSeqnum(int seqnum) {
+		this.seqnum = seqnum;
 	}
 
 	@Column(name = "DICTTYPEID", nullable = false)

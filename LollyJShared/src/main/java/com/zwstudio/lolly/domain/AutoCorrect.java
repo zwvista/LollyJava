@@ -19,7 +19,7 @@ public class AutoCorrect implements java.io.Serializable {
 
 	private int id;
 	private Language language;
-	private int ord;
+	private int seqnum;
 	private String input;
 	private String extended;
 	private String basic;
@@ -27,11 +27,11 @@ public class AutoCorrect implements java.io.Serializable {
 	public AutoCorrect() {
 	}
 
-	public AutoCorrect(int id, Language language, int ord, String input,
+	public AutoCorrect(int id, Language language, int seqnum, String input,
 			String extended, String basic) {
 		this.id = id;
 		this.language = language;
-		this.ord = ord;
+		this.seqnum = seqnum;
 		this.input = input;
 		this.extended = extended;
 		this.basic = basic;
@@ -57,13 +57,13 @@ public class AutoCorrect implements java.io.Serializable {
 		this.language = language;
 	}
 
-	@Column(name = "ORD", nullable = false)
-	public int getOrd() {
-		return this.ord;
+	@Column(name = "SEQNUM", nullable = false)
+	public int getSeqnum() {
+		return this.seqnum;
 	}
 
-	public void setOrd(int ord) {
-		this.ord = ord;
+	public void setSeqnum(int seqnum) {
+		this.seqnum = seqnum;
 	}
 
 	@Column(name = "INPUT", nullable = false, length = 2000000000)

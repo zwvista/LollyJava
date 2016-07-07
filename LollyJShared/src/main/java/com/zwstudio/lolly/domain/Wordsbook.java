@@ -18,30 +18,30 @@ public class Wordsbook implements java.io.Serializable {
 	private int bookid;
 	private int unit;
 	private int part;
-	private int ord;
+	private int seqnum;
 	private String word;
 	private String note;
 
 	public Wordsbook() {
 	}
 
-	public Wordsbook(int id, int bookid, int unit, int part, int ord,
+	public Wordsbook(int id, int bookid, int unit, int part, int seqnum,
 			String word) {
 		this.id = id;
 		this.bookid = bookid;
 		this.unit = unit;
 		this.part = part;
-		this.ord = ord;
+		this.seqnum = seqnum;
 		this.word = word;
 	}
 
-	public Wordsbook(int id, int bookid, int unit, int part, int ord,
+	public Wordsbook(int id, int bookid, int unit, int part, int seqnum,
 			String word, String note) {
 		this.id = id;
 		this.bookid = bookid;
 		this.unit = unit;
 		this.part = part;
-		this.ord = ord;
+		this.seqnum = seqnum;
 		this.word = word;
 		this.note = note;
 	}
@@ -83,13 +83,13 @@ public class Wordsbook implements java.io.Serializable {
 		this.part = part;
 	}
 
-	@Column(name = "ORD", nullable = false)
-	public int getOrd() {
-		return this.ord;
+	@Column(name = "SEQNUM", nullable = false)
+	public int getSeqnum() {
+		return this.seqnum;
 	}
 
-	public void setOrd(int ord) {
-		this.ord = ord;
+	public void setSeqnum(int seqnum) {
+		this.seqnum = seqnum;
 	}
 
 	@Column(name = "WORD", nullable = false, length = 2000000000)
