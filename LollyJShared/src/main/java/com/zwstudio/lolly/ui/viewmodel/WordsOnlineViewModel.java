@@ -26,9 +26,8 @@ import com.zwstudio.lolly.services.ILanguageService;
 
 import lombok.Getter;
 
+@SuppressWarnings("serial")
 public class WordsOnlineViewModel extends Model {
-
-	private static final long serialVersionUID = 1L;
 	
 	@Autowired @Qualifier("languageDao")
 	protected ILanguageService langDao;

@@ -133,8 +133,7 @@ public class WordsOnlineController extends WordsOnlineViewModel implements Initi
 	
 	private void cboLang_ValueChanged() {
 		if (selectedLang == null) return;
-		dictList.clear();
-		dictList.addAll(dictDao.getDataByLang(selectedLang.getLangid()));
+		dictList.setAll(dictDao.getDataByLang(selectedLang.getLangid()));
 		setSelectedDict(dictList.get(0));
 	}
 	
