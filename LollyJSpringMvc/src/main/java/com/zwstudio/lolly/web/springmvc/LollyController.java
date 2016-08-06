@@ -31,9 +31,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.zwstudio.lolly.domain.DictAll;
 import com.zwstudio.lolly.domain.Dictionary;
-import com.zwstudio.lolly.services.IDictAllService;
 import com.zwstudio.lolly.services.IDictionaryService;
 import com.zwstudio.lolly.services.ILanguageService;
 
@@ -45,19 +43,13 @@ public class LollyController {
 	@Autowired
 	private IDictionaryService dictionaryDao;
 	@Autowired
-	private IDictAllService dictAllDao;
-	@Autowired
 	private ILanguageService languageRepository;
 	@Autowired
 	private IDictionaryService dictionaryRepository;
 	@Autowired
-	private IDictAllService dictAllRepository;
-	@Autowired
 	private ILanguageService languageService;
 	@Autowired
 	private IDictionaryService dictionaryService;
-	@Autowired
-	private IDictAllService dictAllService;
 	
 	public ILanguageService getLangService(String orm) {
 		return "hibernate".equals(orm) ? languageDao :
@@ -70,13 +62,6 @@ public class LollyController {
 		return "hibernate".equals(orm) ? dictionaryDao :
 			"jpa".equals(orm) ? dictionaryRepository :
 			"mybatis".equals(orm) ? dictionaryService :
-			null;
-	}
-	
-	public IDictAllService getDictAllService(String orm) {
-		return "hibernate".equals(orm) ? dictAllDao :
-			"jpa".equals(orm) ? dictAllRepository :
-			"mybatis".equals(orm) ? dictAllService :
 			null;
 	}
 	
@@ -113,11 +98,11 @@ public class LollyController {
 	}
 
 	@RequestMapping(value="dictall2", method=RequestMethod.GET)
-	public @ResponseBody DictAll dictall2(
+	public @ResponseBody Dictionary dictall2(
 			@PathVariable String orm,
 			@RequestParam(value="langid", required=true) int langid,
 			@RequestParam(value="dictname", required=true) String dictname) {
-		return getDictAllService(orm).getDataByLangDict(langid, dictname);
+		return getDictService(orm).getDataByLangDict(langid, dictname);
 	}
 	
 	@RequestMapping(value="dictList3", method=RequestMethod.POST)
@@ -134,7 +119,7 @@ public class LollyController {
 			BindingResult result) {
 		return result.hasErrors() ?
 				new ResponseEntity<>(result.getAllErrors(), HttpStatus.BAD_REQUEST) :
-				new ResponseEntity<>(getDictAllService(orm).getDataByLangDict(bean.selectedLangID, bean.selectedDictName), HttpStatus.OK);
+				new ResponseEntity<>(getDictService(orm).getDataByLangDict(bean.selectedLangID, bean.selectedDictName), HttpStatus.OK);
 	}
 
 	@RequestMapping(value="search", method=RequestMethod.POST)
@@ -148,7 +133,7 @@ public class LollyController {
 		    attr.addFlashAttribute("formBean", bean);
 		    return new RedirectView("error");
 		} else {
-			String url = getDictAllService(orm).getDataByLangDict(bean.selectedLangID, bean.selectedDictName).getUrl()
+			String url = getDictService(orm).getDataByLangDict(bean.selectedLangID, bean.selectedDictName).getUrl()
 					.replace("{0}", URLEncoder.encode(bean.word, "UTF-8"));
 			System.out.println(url);
 			return new RedirectView(url);

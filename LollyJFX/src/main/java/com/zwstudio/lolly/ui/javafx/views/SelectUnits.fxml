@@ -14,7 +14,7 @@
       <Label layoutX="48.0" layoutY="29.0" text="Language:" />
       <ComboBox fx:id="cboLang" layoutX="101.0" layoutY="25.0" prefWidth="150.0" />
       <Label layoutX="48.0" layoutY="65.0" text="Book:" />
-      <ComboBox fx:id="cboBook" layoutX="101.0" layoutY="61.0" prefWidth="150.0" />
+      <ComboBox fx:id="cboTextBook" layoutX="101.0" layoutY="61.0" prefWidth="150.0" />
       <Label layoutX="48.0" layoutY="102.0" text="Units:" />
       <TextField fx:id="tfUnitFrom" layoutX="102.0" layoutY="98.0" />
       <CheckBox fx:id="chkTo" layoutX="48.0" layoutY="143.0" mnemonicParsing="false" text="To" />

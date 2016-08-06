@@ -17,7 +17,7 @@ public class LollySearchAction extends LollyBaseAction {
         throws Exception {
 		 
 		LollyForm lollyForm = (LollyForm) form;
-		String url = dictallDao.getDataByLangDict(lollyForm.selectedLangID, lollyForm.selectedDictName)
+		String url = dictDao.getDataByLangDict(lollyForm.selectedLangID, lollyForm.selectedDictName)
 			.getUrl().replace("{0}", lollyForm.word);
         return new ActionForward(url){{setRedirect(true);}}; 
 	}

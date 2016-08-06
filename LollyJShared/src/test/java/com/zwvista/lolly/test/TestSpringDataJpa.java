@@ -5,8 +5,8 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import com.zwstudio.lolly.domain.DictAll;
-import com.zwstudio.lolly.spring.data.jpa.DictAllRepository;
+import com.zwstudio.lolly.domain.Dictionary;
+import com.zwstudio.lolly.spring.data.jpa.DictionaryRepository;
 import com.zwstudio.lolly.util.LollyConfigSpringDataJpa;
 
 public class TestSpringDataJpa {
@@ -15,8 +15,8 @@ public class TestSpringDataJpa {
 
 	@Test
 	public void test() {
-		DictAllRepository repository = context.getBean(DictAllRepository.class);
-		DictAll da = repository.getDataByLangDict(1, "Cambridge");
+		DictionaryRepository repository = context.getBean(DictionaryRepository.class);
+		Dictionary da = repository.getDataByLangDict(1, "Cambridge");
 		assertEquals("Url", "http://dictionary.cambridge.org/", da.getUrl());
 	}
 

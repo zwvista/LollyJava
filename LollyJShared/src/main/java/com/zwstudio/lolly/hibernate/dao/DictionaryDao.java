@@ -14,17 +14,26 @@ public class DictionaryDao extends BaseDao implements IDictionaryService {
 	@SuppressWarnings("unchecked")
 	public List<Dictionary> getDataByLang(int langid) {
 		return getCurrentSession()
-			.createSQLQuery("SELECT * FROM DICTIONARIES WHERE LANGID = :langid")
+			.createSQLQuery("SELECT * FROM VDICTIONARIES WHERE LANGIDFROM = :langid")
 			.addEntity(Dictionary.class)
-//			.createQuery("from Dictionary where id.langid = :langid")
+//			.createQuery("from Dictionary where id.langidfrom = :langid")
 			.setParameter("langid", langid)
 			.list();
+	}
+    public Dictionary getDataByLangDict(int langid, String dictname) {
+    	return (Dictionary) getCurrentSession()
+			.createSQLQuery("SELECT * FROM VDICTIONARIES WHERE LANGIDFROM = :langid AND DICTNAME = :dictname")
+ 			.addEntity(Dictionary.class)
+//			.createQuery("from Dictionary where id.langidfrom = :langid and id.dictname = :dictname")
+			.setParameter("langid", langid)
+			.setParameter("dictname", dictname)
+			.uniqueResult();
 	}
 	@SuppressWarnings("unchecked")
 	public List<String> getNamesByLang(int langid) {
 		return getCurrentSession()
-			.createSQLQuery("SELECT DICTNAME FROM DICTIONARIES WHERE LANGID = :langid")
-//			.createQuery("select id.dictname from Dictionary where id.langid = :langid")
+			.createSQLQuery("SELECT DICTNAME FROM VDICTIONARIES WHERE LANGIDFROM = :langid")
+//			.createQuery("select id.dictname from Dictionary where id.langidfrom = :langid")
 			.setParameter("langid", langid)
 			.list();
 	}

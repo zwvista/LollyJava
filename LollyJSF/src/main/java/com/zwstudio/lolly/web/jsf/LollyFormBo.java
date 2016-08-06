@@ -8,9 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import com.zwstudio.lolly.domain.DictAll;
+import com.zwstudio.lolly.domain.Dictionary;
 import com.zwstudio.lolly.domain.Language;
-import com.zwstudio.lolly.services.IDictAllService;
 import com.zwstudio.lolly.services.IDictionaryService;
 import com.zwstudio.lolly.services.ILanguageService;
 
@@ -21,8 +20,6 @@ public class LollyFormBo {
 	protected ILanguageService langDao;
 	@Autowired @Qualifier("dictionaryDao")
 	protected IDictionaryService dictDao;
-	@Autowired @Qualifier("dictAllDao")
-	protected IDictAllService dictallDao;
 	
 	public List<Language> getLangList() {
 		return langDao.getData();
@@ -33,7 +30,7 @@ public class LollyFormBo {
 	}
 	
 	public String getUrl(int langid, String dictname, String word) {
-		DictAll dict = dictallDao.getDataByLangDict(langid, dictname);
+		Dictionary dict = dictDao.getDataByLangDict(langid, dictname);
 		String url = dict.getUrl().replace("{0}", "%s");
 		try {
 			url = String.format(url, URLEncoder.encode(word, "UTF-8"));

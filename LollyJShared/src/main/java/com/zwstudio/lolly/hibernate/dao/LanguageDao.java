@@ -16,7 +16,7 @@ public class LanguageDao extends BaseDao implements ILanguageService {
 	@SuppressWarnings("unchecked")
 	public List<Language> getData() {
 		return getCurrentSession()
-			.createSQLQuery("SELECT * FROM LANGUAGES WHERE LANGID > 0")
+			.createSQLQuery("SELECT * FROM VLANGUAGES WHERE LANGID > 0")
 			.addEntity(Language.class)
 //			.createQuery("from Language where langid > 0")
 			.list();

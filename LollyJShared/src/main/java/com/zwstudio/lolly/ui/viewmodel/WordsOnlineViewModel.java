@@ -16,11 +16,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
 import com.jgoodies.binding.beans.Model;
-import com.zwstudio.lolly.domain.DictAll;
 import com.zwstudio.lolly.domain.Dictionary;
 import com.zwstudio.lolly.domain.DictionaryId;
 import com.zwstudio.lolly.domain.Language;
-import com.zwstudio.lolly.services.IDictAllService;
 import com.zwstudio.lolly.services.IDictionaryService;
 import com.zwstudio.lolly.services.ILanguageService;
 
@@ -33,10 +31,8 @@ public class WordsOnlineViewModel extends Model {
 	protected ILanguageService langDao;
 	@Autowired @Qualifier("dictionaryDao")
 	protected IDictionaryService dictDao;
-	@Autowired @Qualifier("dictAllDao")
-	protected IDictAllService dictallDao;
 	
-	protected DictAll dict;
+	protected Dictionary dict;
 	@Getter
 	public String word;
 	@Getter
@@ -62,7 +58,7 @@ public class WordsOnlineViewModel extends Model {
 	}
 
 	protected void updateDict(DictionaryId id2) {
-		dict = dictallDao.getDataByLangDict(id2.getLangid(), id2.getDictname());
+		dict = dictDao.getDataByLangDict(id2.getLangidfrom(), id2.getDictname());
 	}
 	
 	protected String getUrlByWord(String word) {

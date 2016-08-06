@@ -2,59 +2,23 @@
 <!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd" >
 
 <hibernate-reverse-engineering>
-	<table-filter match-name="AUTOCORRECT"></table-filter>
-	<table-filter match-name="DICTIONARIES"></table-filter>
-	<table-filter match-name="DICTTYPES"></table-filter>
-    <table-filter match-name="ETEXTBOOKS"></table-filter>
-    <table-filter match-name="LANGPHRASES"></table-filter>
-	<table-filter match-name="LANGUAGES"></table-filter>
-	<table-filter match-name="LANGWORDS"></table-filter>
-    <table-filter match-name="SITES"></table-filter>
-    <table-filter match-name="TEXTBOOKS"></table-filter>
-    <table-filter match-name="TEXTSITES"></table-filter>
-    <table-filter match-name="UNITPHRASES"></table-filter>
-    <table-filter match-name="UNITWORDS"></table-filter>
-    <table-filter match-name="USERS"></table-filter>
-    <table-filter match-name="USERSETTINGS"></table-filter>
-    <table-filter match-name="VTEXTBOOKWORDS"></table-filter>
-    <table-filter match-name="VDICTIONARIES"></table-filter>
-    <table-filter match-name="VETEXTBOOKS"></table-filter>
-    <table-filter match-name="VLANGUAGES"></table-filter>
-    <table-filter match-name="VTEXTBOOKS"></table-filter>
-    <table-filter match-name="VTEXTSITES"></table-filter>
-
-    <table name="AUTOCORRECT" class="com.zwstudio.lolly.domain.AutoCorrect" />
-	<table name="DICTIONARIES" class="com.zwstudio.lolly.domain.Dictionary" />
-    <table name="DICTTYPES" class="com.zwstudio.lolly.domain.DictType" />
-    <table name="ETEXTBOOKS" class="com.zwstudio.lolly.domain.ETextBook" />
-    <table name="LANGPHRASES" class="com.zwstudio.lolly.domain.LangPhrase" />
-    <table name="LANGUAGES" class="com.zwstudio.lolly.domain.Language" />
-    <table name="LANGWORDS" class="com.zwstudio.lolly.domain.LangWord" />
-    <table name="SITES" class="com.zwstudio.lolly.domain.Site" />
-    <table name="TEXTBOOKS" class="com.zwstudio.lolly.domain.TextBook" />
-    <table name="TEXTSITES" class="com.zwstudio.lolly.domain.TextSite" />
-    <table name="UNITPRASES" class="com.zwstudio.lolly.domain.UnitPhrase" />
-    <table name="UNITWORDS" class="com.zwstudio.lolly.domain.UnitWord" />
-    <table name="TEXTBOOKS" class="com.zwstudio.lolly.domain.TextBook" />
-    <table name="USERS" class="com.zwstudio.lolly.domain.User" />
-    <table name="USERSETTINGS" class="com.zwstudio.lolly.domain.UserSetting" />
-    <table name="VTEXTBOOKWORDS" class="com.zwstudio.lolly.domain.VTextBookWord">
-        <primary-key>
-            <key-column name="TEXTBOOKID"/>
-            <key-column name="UNIT"/>
-            <key-column name="PART"/>
-            <key-column name="WORD"/>
-        </primary-key>
-    </table>
-    <table name="VDICTIONARIES" class="com.zwstudio.lolly.domain.VDictionary">
+    <table-filter match-name="VDICTIONARIES2"></table-filter>
+    <table-filter match-name="VLANGUAGES2"></table-filter>
+    <table-filter match-name="VTEXTBOOKS2"></table-filter>
+    <table name="VDICTIONARIES2" class="com.zwstudio.lolly.domain.Dictionary">
         <primary-key>
             <key-column name="LANGIDFROM"/>
             <key-column name="DICTNAME"/>
         </primary-key>
     </table>
-    <table name="VETEXTBOOKS" class="com.zwstudio.lolly.domain.VETextBook">
+    <table name="VLANGUAGES2" class="com.zwstudio.lolly.domain.Language">
         <primary-key>
-            <key-column name="ETEXTBOOKID"/>
+            <key-column name="LANGID"/>
+        </primary-key>
+    </table>
+    <table name="VTEXTBOOKS2" class="com.zwstudio.lolly.domain.TextBook">
+        <primary-key>
+            <key-column name="TEXTBOOKID"/>
         </primary-key>
     </table>
 </hibernate-reverse-engineering>

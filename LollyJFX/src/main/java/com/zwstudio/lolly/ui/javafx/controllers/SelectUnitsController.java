@@ -4,8 +4,8 @@ import java.util.ResourceBundle;
 
 import org.springframework.stereotype.Controller;
 
-import com.zwstudio.lolly.domain.Book;
 import com.zwstudio.lolly.domain.Language;
+import com.zwstudio.lolly.domain.TextBook;
 import com.zwstudio.lolly.ui.viewmodel.SelectUnitsViewModel;
 
 import javafx.beans.property.adapter.JavaBeanObjectProperty;
@@ -29,7 +29,7 @@ public class SelectUnitsController extends SelectUnitsViewModel implements Initi
     @FXML
     private ComboBox<Language> cboLang;
     @FXML
-    private ComboBox<Book> cboBook;
+    private ComboBox<TextBook> cboTextBook;
     @FXML
     private TextField tfUnitFrom;
     @FXML
@@ -46,10 +46,10 @@ public class SelectUnitsController extends SelectUnitsViewModel implements Initi
     private Label lblUntsInAllTo;
 
     private ObservableList<Language> langList;
-    private ObservableList<Book> bookList = FXCollections.observableArrayList();
+    private ObservableList<TextBook> textbookList = FXCollections.observableArrayList();
     
     private JavaBeanObjectProperty<Language> selectedLangProp;
-    private JavaBeanObjectProperty<Book> selectedBookProp;
+    private JavaBeanObjectProperty<TextBook> selectedTextBookProp;
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -59,7 +59,7 @@ public class SelectUnitsController extends SelectUnitsViewModel implements Initi
 	public void windowShowing() {
 		try {
 			selectedLangProp = JavaBeanObjectPropertyBuilder.create().bean(this).name("selectedLang").build();
-			selectedBookProp = JavaBeanObjectPropertyBuilder.create().bean(this).name("selectedBook").build();
+			selectedTextBookProp = JavaBeanObjectPropertyBuilder.create().bean(this).name("selectedBook").build();
 		} catch (NoSuchMethodException e) {
 			e.printStackTrace();
 		}
@@ -84,23 +84,23 @@ public class SelectUnitsController extends SelectUnitsViewModel implements Initi
 			}
 		});
 
-		cboBook.valueProperty().bindBidirectional(selectedBookProp);
-		cboBook.valueProperty().addListener(new ChangeListener<Book>() {
+		cboTextBook.valueProperty().bindBidirectional(selectedTextBookProp);
+		cboTextBook.valueProperty().addListener(new ChangeListener<TextBook>() {
 			@Override
 			public void changed(
-					ObservableValue<? extends Book> observable,
-					Book oldValue, Book newValue) {
-				cboBook_ValueChanged();
+					ObservableValue<? extends TextBook> observable,
+					TextBook oldValue, TextBook newValue) {
+				cboTextBook_ValueChanged();
 			}
 		});
-		cboBook.setConverter(new StringConverter<Book>() {
+		cboTextBook.setConverter(new StringConverter<TextBook>() {
             @Override
-            public String toString(Book book) {
-            	return book == null ? null : book.getBookname();
+            public String toString(TextBook book) {
+            	return book == null ? null : book.getTextbookname();
             }
 
 			@Override
-			public Book fromString(String arg0) {
+			public TextBook fromString(String arg0) {
 				return null;
 			}
 		});
@@ -108,20 +108,20 @@ public class SelectUnitsController extends SelectUnitsViewModel implements Initi
 		langList = FXCollections.observableArrayList(langDao.getData());
 		
 		cboLang.setItems(langList);
-		cboBook.setItems(bookList);
+		cboTextBook.setItems(textbookList);
 		
 		setSelectedLang(langList.get(1));
 	}
 	
 	private void cboLang_ValueChanged() {
 		if (selectedLang == null) return;
-		bookList.setAll(bookDao.getDataByLang(selectedLang.getLangid()));
-		setSelectedBook(bookList.get(0));
+		textbookList.setAll(textbookDao.getDataByLang(selectedLang.getLangid()));
+		setSelectedBook(textbookList.get(0));
 	}
 	
-	private void cboBook_ValueChanged() {
-//		if (selectedbook == null) return;
-//		Book id2 = selectedbook.getId();
+	private void cboTextBook_ValueChanged() {
+//		if (selectedtextbook == null) return;
+//		Book id2 = selectedtextbook.getId();
 //		updatebook(id2);
 	}
 

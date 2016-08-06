@@ -24,6 +24,9 @@ public class DictionaryService implements IDictionaryService {
 			dicts.get(i).setId(ids.get(i));
 		return dicts;
 	}
+    public Dictionary getDataByLangDict(int langid, String dictname) {
+    	return mapper.getDataByLangDict(langid, dictname);
+	}
 	public List<String> getNamesByLang(int langid) {
 		return mapper.getNamesByLang(langid);
 	}

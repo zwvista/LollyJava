@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.struts.DispatchActionSupport;
 
 import com.google.gson.Gson;
-import com.zwstudio.lolly.services.IDictAllService;
 import com.zwstudio.lolly.services.IDictionaryService;
 import com.zwstudio.lolly.services.ILanguageService;
 
@@ -21,8 +20,6 @@ public class LollyBaseAction extends DispatchActionSupport {
 	protected ILanguageService langDao;
 	@Autowired @Qualifier("dictionaryDao")
 	protected IDictionaryService dictDao;
-	@Autowired @Qualifier("dictAllDao")
-	protected IDictAllService dictallDao;
 	
 	private Gson gson = new Gson();
 	

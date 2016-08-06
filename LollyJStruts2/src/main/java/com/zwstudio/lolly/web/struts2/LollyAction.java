@@ -21,7 +21,6 @@ import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
 import com.opensymphony.xwork2.validator.annotations.Validations;
 import com.opensymphony.xwork2.validator.annotations.ValidatorType;
 import com.zwstudio.lolly.domain.Language;
-import com.zwstudio.lolly.services.IDictAllService;
 import com.zwstudio.lolly.services.IDictionaryService;
 import com.zwstudio.lolly.services.ILanguageService;
 
@@ -44,8 +43,6 @@ public class LollyAction extends ActionSupport {
 	protected ILanguageService langDao;
 	@Autowired @Qualifier("dictionaryDao")
 	protected IDictionaryService dictDao;
-	@Autowired @Qualifier("dictAllDao")
-	protected IDictAllService dictallDao;
 	
 	@Getter @Setter
 	public List<Language> langList;
@@ -104,7 +101,7 @@ public class LollyAction extends ActionSupport {
 		results=@Result(type="json")
 	)
 	public String writeDictUrl() {
-		url = dictallDao.getDataByLangDict(selectedLangID, selectedDictName).getUrl();
+		url = dictDao.getDataByLangDict(selectedLangID, selectedDictName).getUrl();
 		return SUCCESS;
 	}
 
@@ -114,7 +111,7 @@ public class LollyAction extends ActionSupport {
 				@Result(name=INPUT, location="error", type="chain")}
 	)
 	public String search() {
-		url = dictallDao.getDataByLangDict(selectedLangID, selectedDictName).getUrl();
+		url = dictDao.getDataByLangDict(selectedLangID, selectedDictName).getUrl();
 		try {
 			url = url.replace("{0}", URLEncoder.encode(word, "UTF-8"));
 		} catch (UnsupportedEncodingException e) {

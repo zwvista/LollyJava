@@ -1,6 +1,5 @@
 package com.zwstudio.lolly.domain;
-
-// Generated 2014-10-4 23:22:52 by Hibernate Tools 4.3.1
+// Generated 2016/08/06 9:15:14 by Hibernate Tools 5.1.0.Beta1
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
@@ -11,24 +10,24 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class DictionaryId implements java.io.Serializable {
 
-	private int langid;
+	private int langidfrom;
 	private String dictname;
 
 	public DictionaryId() {
 	}
 
-	public DictionaryId(int langid, String dictname) {
-		this.langid = langid;
+	public DictionaryId(int langidfrom, String dictname) {
+		this.langidfrom = langidfrom;
 		this.dictname = dictname;
 	}
 
-	@Column(name = "LANGID", nullable = false)
-	public int getLangid() {
-		return this.langid;
+	@Column(name = "LANGIDFROM", nullable = false)
+	public int getLangidfrom() {
+		return this.langidfrom;
 	}
 
-	public void setLangid(int langid) {
-		this.langid = langid;
+	public void setLangidfrom(int langidfrom) {
+		this.langidfrom = langidfrom;
 	}
 
 	@Column(name = "DICTNAME", nullable = false, length = 2000000000)
@@ -49,19 +48,16 @@ public class DictionaryId implements java.io.Serializable {
 			return false;
 		DictionaryId castOther = (DictionaryId) other;
 
-		return (this.getLangid() == castOther.getLangid())
-				&& ((this.getDictname() == castOther.getDictname()) || (this
-						.getDictname() != null
-						&& castOther.getDictname() != null && this
-						.getDictname().equals(castOther.getDictname())));
+		return (this.getLangidfrom() == castOther.getLangidfrom())
+				&& ((this.getDictname() == castOther.getDictname()) || (this.getDictname() != null
+						&& castOther.getDictname() != null && this.getDictname().equals(castOther.getDictname())));
 	}
 
 	public int hashCode() {
 		int result = 17;
 
-		result = 37 * result + this.getLangid();
-		result = 37 * result
-				+ (getDictname() == null ? 0 : this.getDictname().hashCode());
+		result = 37 * result + this.getLangidfrom();
+		result = 37 * result + (getDictname() == null ? 0 : this.getDictname().hashCode());
 		return result;
 	}
 

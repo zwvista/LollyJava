@@ -17,7 +17,7 @@ public class LollyDictUrlAction extends LollyBaseAction {
 		 
 		LollyForm lollyForm = (LollyForm) form;
 		createJsonResponse(request, response,
-			dictallDao.getDataByLangDict(lollyForm.selectedLangID, lollyForm.selectedDictName)
+			dictDao.getDataByLangDict(lollyForm.selectedLangID, lollyForm.selectedDictName)
 			.getUrl()
 		);
  
