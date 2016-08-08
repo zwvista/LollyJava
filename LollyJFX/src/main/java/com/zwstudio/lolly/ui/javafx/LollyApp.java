@@ -24,8 +24,8 @@ public class LollyApp extends Application {
 	private static AnnotationConfigApplicationContext context;
 
 	public static void main(String[] args) {
-//    	System.setProperty("http.proxyHost", "gw3");
-//    	System.setProperty("http.proxyPort", "80");
+    	System.setProperty("http.proxyHost", "10.20.160.251");
+    	System.setProperty("http.proxyPort", "8080");
 		launch(args);
 	}
     

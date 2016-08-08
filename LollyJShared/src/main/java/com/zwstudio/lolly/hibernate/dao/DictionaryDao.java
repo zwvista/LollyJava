@@ -11,30 +11,26 @@ import com.zwstudio.lolly.services.IDictionaryService;
 @Repository
 @Transactional
 public class DictionaryDao extends BaseDao implements IDictionaryService {
-	@SuppressWarnings("unchecked")
 	public List<Dictionary> getDataByLang(int langid) {
 		return getCurrentSession()
-			.createSQLQuery("SELECT * FROM VDICTIONARIES WHERE LANGIDFROM = :langid")
-			.addEntity(Dictionary.class)
-//			.createQuery("from Dictionary where id.langidfrom = :langid")
+			.createNativeQuery("SELECT * FROM VDICTIONARIES WHERE LANGIDFROM = :langid", Dictionary.class)
+//			.createQuery("from Dictionary where id.langidfrom = :langid", Dictionary.class)
 			.setParameter("langid", langid)
-			.list();
+			.getResultList();
 	}
     public Dictionary getDataByLangDict(int langid, String dictname) {
     	return (Dictionary) getCurrentSession()
-			.createSQLQuery("SELECT * FROM VDICTIONARIES WHERE LANGIDFROM = :langid AND DICTNAME = :dictname")
- 			.addEntity(Dictionary.class)
-//			.createQuery("from Dictionary where id.langidfrom = :langid and id.dictname = :dictname")
+			.createNativeQuery("SELECT * FROM VDICTIONARIES WHERE LANGIDFROM = :langid AND DICTNAME = :dictname", Dictionary.class)
+//			.createQuery("from Dictionary where id.langidfrom = :langid and id.dictname = :dictname", Dictionary.class)
 			.setParameter("langid", langid)
 			.setParameter("dictname", dictname)
-			.uniqueResult();
+			.getSingleResult();
 	}
-	@SuppressWarnings("unchecked")
 	public List<String> getNamesByLang(int langid) {
 		return getCurrentSession()
-			.createSQLQuery("SELECT DICTNAME FROM VDICTIONARIES WHERE LANGIDFROM = :langid")
-//			.createQuery("select id.dictname from Dictionary where id.langidfrom = :langid")
+			.createNativeQuery("SELECT DICTNAME FROM VDICTIONARIES WHERE LANGIDFROM = :langid", String.class)
+//			.createQuery("select id.dictname from Dictionary where id.langidfrom = :langid", Dictionary.class)
 			.setParameter("langid", langid)
-			.list();
+			.getResultList();
 	}
 }

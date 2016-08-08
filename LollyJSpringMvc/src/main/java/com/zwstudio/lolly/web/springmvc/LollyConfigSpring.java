@@ -16,9 +16,8 @@ import org.springframework.web.servlet.view.velocity.VelocityViewResolver;
 import org.springframework.web.servlet.view.xslt.XsltView;
 import org.springframework.web.servlet.view.xslt.XsltViewResolver;
 import org.thymeleaf.spring4.SpringTemplateEngine;
+import org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring4.view.ThymeleafViewResolver;
-import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
-import org.thymeleaf.templateresolver.TemplateResolver;
 
 @Configuration
 @ComponentScan("com.zwstudio.lolly.web.springmvc")
@@ -43,8 +42,8 @@ public class LollyConfigSpring extends WebMvcConfigurerAdapter {
     
     // thymeleaf beans
     @Bean
-    public TemplateResolver templateResolver() {
-        ServletContextTemplateResolver templateResolver = new ServletContextTemplateResolver();
+    public SpringResourceTemplateResolver templateResolver() {
+    	SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
         templateResolver.setPrefix("/WEB-INF/views/");
         templateResolver.setSuffix(".html");
         templateResolver.setTemplateMode("HTML5");
