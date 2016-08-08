@@ -3,8 +3,8 @@ package com.zwstudio.lolly.util;
 import org.hibernate.SessionFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.orm.hibernate4.HibernateTransactionManager;
-import org.springframework.orm.hibernate4.LocalSessionFactoryBuilder;
+import org.springframework.orm.hibernate5.HibernateTransactionManager;
+import org.springframework.orm.hibernate5.LocalSessionFactoryBuilder;
 
 @ComponentScan("com.zwstudio.lolly.hibernate.dao")
 public class LollyConfigHibernate extends LollyConfigBase {
