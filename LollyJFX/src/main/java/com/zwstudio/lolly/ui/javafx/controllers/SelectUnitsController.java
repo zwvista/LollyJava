@@ -18,7 +18,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.util.StringConverter;
 
@@ -37,14 +36,14 @@ public class SelectUnitsController extends SelectUnitsViewModel implements Initi
     @FXML
     private TextField tfUnitTo;
     @FXML
-    private ComboBox<?> cboPartFrom;
+    private ComboBox<String> cboPartFrom;
     @FXML
-    private ComboBox<?> cboPartTo;
-    @FXML
-    private Label lblUntsInAllFrom;
-    @FXML
-    private Label lblUntsInAllTo;
-
+    private ComboBox<String> cboPartTo;
+////    @FXML
+////    private Label lblUntsInAllFrom;
+////    @FXML
+////    private Label lblUntsInAllTo;
+//
     private ObservableList<Language> langList;
     private ObservableList<TextBook> textbookList = FXCollections.observableArrayList();
     
@@ -59,7 +58,7 @@ public class SelectUnitsController extends SelectUnitsViewModel implements Initi
 	public void windowShowing() {
 		try {
 			selectedLangProp = JavaBeanObjectPropertyBuilder.create().bean(this).name("selectedLang").build();
-			selectedTextBookProp = JavaBeanObjectPropertyBuilder.create().bean(this).name("selectedBook").build();
+			selectedTextBookProp = JavaBeanObjectPropertyBuilder.create().bean(this).name("selectedTextBook").build();
 		} catch (NoSuchMethodException e) {
 			e.printStackTrace();
 		}
@@ -116,7 +115,7 @@ public class SelectUnitsController extends SelectUnitsViewModel implements Initi
 	private void cboLang_ValueChanged() {
 		if (selectedLang == null) return;
 		textbookList.setAll(textbookDao.getDataByLang(selectedLang.getLangid()));
-		setSelectedBook(textbookList.get(0));
+		setSelectedTextBook(textbookList.get(0));
 	}
 	
 	private void cboTextBook_ValueChanged() {

@@ -28,8 +28,8 @@ public class SelectUnitsViewModel extends Model {
 		firePropertyChange("selectedLang", this.selectedLang, this.selectedLang = selectedLang);
 	}
 
-	public void setSelectedBook(TextBook selectedBook) {
-		firePropertyChange("selectedBook", this.selectedTextBook, this.selectedTextBook = selectedBook);
+	public void setSelectedTextBook(TextBook selectedTextBook) {
+		firePropertyChange("selectedTextBook", this.selectedTextBook, this.selectedTextBook = selectedTextBook);
 	}
 	
 
