@@ -11,18 +11,21 @@ import com.zwstudio.lolly.services.ITextBookService;
 @Repository
 @Transactional
 public class TextBookDao extends BaseDao implements ITextBookService {
+	@SuppressWarnings("unchecked")
 	public List<TextBook> getDataByLang(int langid) {
 		return getCurrentSession()
-			.createNativeQuery("SELECT * FROM VTEXTBOOKS WHERE LANGID = :langid", TextBook.class)
-//			.createQuery("from Book where id.langid = :langid", TextBook.class)
+			.createSQLQuery("SELECT * FROM VTEXTBOOKS WHERE LANGID = :langid")
+			.addEntity(TextBook.class)
+//			.createQuery("from Book where id.langid = :langid")
 			.setParameter("langid", langid)
-			.getResultList();
+			.list();
 	}
+	@SuppressWarnings("unchecked")
 	public List<String> getNamesByLang(int langid) {
 		return getCurrentSession()
-			.createNativeQuery("SELECT DICTNAME FROM VDICTIONARIES WHERE LANGID = :langid", String.class)
-//			.createQuery("select id.dictname from Dictionary where id.langid = :langid", TextBook.class)
+			.createSQLQuery("SELECT DICTNAME FROM VDICTIONARIES WHERE LANGID = :langid")
+//			.createQuery("select id.dictname from Dictionary where id.langid = :langid")
 			.setParameter("langid", langid)
-			.getResultList();
+			.list();
 	}
 }

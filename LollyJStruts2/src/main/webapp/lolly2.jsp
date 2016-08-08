@@ -56,7 +56,7 @@ $(function() {
 			#stextfield("cssClass=form-control" "id=word" "name=word")
 		</div>
         #ssubmit("cssClass=btn btn-primary" "value=Search" "id=search")
-        #ssubmit("cssClass=btn btn-primary" "value=Search(redirect)" id="redirectSearch")
+        #ssubmit("cssClass=btn btn-primary" "value=Search(redirect)" "id=redirectSearch")
 	</div>
 #end
 <iframe id='dictframe'>

@@ -13,11 +13,13 @@ import com.zwstudio.lolly.services.ILanguageService;
 @Repository
 @Transactional
 public class LanguageDao extends BaseDao implements ILanguageService {
+	@SuppressWarnings("unchecked")
 	public List<Language> getData() {
 		return getCurrentSession()
-			.createNativeQuery("SELECT * FROM VLANGUAGES WHERE LANGID > 0", Language.class)
+			.createSQLQuery("SELECT * FROM VLANGUAGES WHERE LANGID > 0")
+			.addEntity(Language.class)
 //			.createQuery("from Language where langid > 0")
-			.getResultList();
+			.list();
 	}
 	public Map<String, String> getIdNameMap() {
 		return getData().stream()
