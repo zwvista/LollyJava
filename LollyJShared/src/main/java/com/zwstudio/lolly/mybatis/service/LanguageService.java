@@ -24,7 +24,7 @@ public class LanguageService implements ILanguageService {
 	public Map<String, String> getIdNameMap() {
 		return getData().stream()
 			.collect(Collectors.toMap(
-				(Language r) -> Integer.toString(r.getLangid()),
+				(Language r) -> Integer.toString(r.getId()),
 				Language::getLangname
 			));
 	}

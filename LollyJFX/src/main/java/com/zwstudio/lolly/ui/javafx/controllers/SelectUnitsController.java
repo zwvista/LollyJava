@@ -114,7 +114,7 @@ public class SelectUnitsController extends SelectUnitsViewModel implements Initi
 	
 	private void cboLang_ValueChanged() {
 		if (selectedLang == null) return;
-		textbookList.setAll(textbookDao.getDataByLang(selectedLang.getLangid()));
+		textbookList.setAll(textbookDao.getDataByLang(selectedLang.getId()));
 		setSelectedTextBook(textbookList.get(0));
 	}
 	

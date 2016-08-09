@@ -59,7 +59,7 @@ $(function() {
 			#springBind("formBean.selectedLangID")
 			<select class="form-control" name="selectedLangID" id="lang">
 				#foreach($lang in $formBean.langList)
-					<option value="${lang.langid}">$lang.langname</option>
+					<option value="${lang.id}">$lang.langname</option>
 				#end
 			</select>
 		</div>

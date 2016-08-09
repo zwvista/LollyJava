@@ -9,12 +9,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
-import javafx.application.Platform;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.concurrent.Worker;
-import javafx.concurrent.Worker.State;
-
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -36,6 +30,12 @@ import org.jdesktop.swingbinding.SwingBindings;
 import com.zwstudio.lolly.domain.Dictionary;
 import com.zwstudio.lolly.domain.Language;
 import com.zwstudio.lolly.ui.component.JFXWebView;
+
+import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.concurrent.Worker;
+import javafx.concurrent.Worker.State;
 
 public class LollyFrame extends JFrame {
 
@@ -130,7 +130,7 @@ public class LollyFrame extends JFrame {
             public Component getListCellRendererComponent(JList list, Object value, int index,
                                                           boolean isSelected, boolean cellHasFocus) {
                 if (value instanceof Dictionary) {
-                    value = ((Dictionary)value).getId().getDictname();
+                    value = ((Dictionary)value).getDictname();
                 }
                 return super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
             }

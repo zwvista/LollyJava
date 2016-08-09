@@ -6,7 +6,6 @@ import java.util.ResourceBundle;
 import org.springframework.stereotype.Controller;
 
 import com.zwstudio.lolly.domain.Dictionary;
-import com.zwstudio.lolly.domain.DictionaryId;
 import com.zwstudio.lolly.domain.Language;
 import com.zwstudio.lolly.ui.viewmodel.WordsOnlineViewModel;
 
@@ -103,7 +102,7 @@ public class WordsOnlineController extends WordsOnlineViewModel implements Initi
 		cboDict.setConverter(new StringConverter<Dictionary>() {
             @Override
             public String toString(Dictionary dict) {
-            	return dict == null ? null : dict.getId().getDictname();
+            	return dict == null ? null : dict.getDictname();
             }
 
 			@Override
@@ -133,14 +132,14 @@ public class WordsOnlineController extends WordsOnlineViewModel implements Initi
 	
 	private void cboLang_ValueChanged() {
 		if (selectedLang == null) return;
-		dictList.setAll(dictDao.getDataByLang(selectedLang.getLangid()));
+		dictList.setAll(dictDao.getDataByLang(selectedLang.getId()));
 		setSelectedDict(dictList.get(0));
 	}
 	
 	private void cboDict_ValueChanged() {
-		if (selectedDict == null) return;
-		DictionaryId id2 = selectedDict.getId();
-		updateDict(id2);
+//		if (selectedDict == null) return;
+//		DictionaryId id2 = selectedDict.getId();
+//		updateDict(id2);
 	}
 	
     @FXML

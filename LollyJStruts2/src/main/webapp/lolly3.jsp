@@ -40,13 +40,13 @@ $(function() {
 	<div class="form-group">
 		<label class="col-sm-2 control-label" for='lang'>Language:</label>
     	<div class="col-sm-4">
-			<@s.select cssClass="form-control" id="lang" name="selectedLangID" value="selectedLangID" list="langList" listKey="langid" listValue="langname" />
+			<@s.select cssClass="form-control" id="lang" name="selectedLangID" value="selectedLangID" list="langList" listKey="id" listValue="langname" />
 		</div>
 	</div>
 	<div class="form-group">
 		<label class="col-sm-2 control-label" for='dict'>Dictionary:</label>
     	<div class="col-sm-4">
-			<@s.select cssClass="form-control" id="dict" name="selectedDictName" value="selectedDictName" list="langList" listKey="langid" listValue="langname" />
+			<@s.select cssClass="form-control" id="dict" name="selectedDictName" value="selectedDictName" list="langList" listKey="id" listValue="langname" />
 		</div>
 	</div>
 	<div class="form-group">

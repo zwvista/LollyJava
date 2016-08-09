@@ -53,7 +53,7 @@ $(function() {
 	<div class="form-group">
 		<label class="col-sm-1 control-label" for='lang'>Language:</label>
     	<div class="col-sm-3">
-			<s:select cssClass="form-control" id="lang" name="selectedLangID" value="selectedLangID" list="langList" listKey="langid" listValue="langname" />
+			<s:select cssClass="form-control" id="lang" name="selectedLangID" value="selectedLangID" list="langList" listKey="id" listValue="langname" />
 		</div>
 		<label class="col-sm-1 control-label" for='dict'>Dictionary:</label>
     	<div class="col-sm-3">

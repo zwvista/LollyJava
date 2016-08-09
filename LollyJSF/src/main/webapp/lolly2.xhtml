@@ -22,7 +22,7 @@ $(function() {
 		<p:selectOneMenu value="#{formBean.selectedLangID}" id="lang">
 			<p:ajax update="dict" />
 			<f:selectItems value="#{formBean.getLangList()}" var="lang"
-					itemValue="#{lang.langid}" itemLabel="#{lang.langname}" />
+					itemValue="#{lang.id}" itemLabel="#{lang.langname}" />
 		</p:selectOneMenu>
 		
 		<p:outputLabel for='dict' value="Dictionary:" />

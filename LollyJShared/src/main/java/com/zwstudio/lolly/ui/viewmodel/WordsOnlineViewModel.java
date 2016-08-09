@@ -17,7 +17,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 
 import com.jgoodies.binding.beans.Model;
 import com.zwstudio.lolly.domain.Dictionary;
-import com.zwstudio.lolly.domain.DictionaryId;
 import com.zwstudio.lolly.domain.Language;
 import com.zwstudio.lolly.services.IDictionaryService;
 import com.zwstudio.lolly.services.ILanguageService;
@@ -55,10 +54,6 @@ public class WordsOnlineViewModel extends Model {
 
 	public void setSelectedDict(Dictionary selectedDict) {
 		firePropertyChange("selectedDict", this.selectedDict, this.selectedDict = selectedDict);
-	}
-
-	protected void updateDict(DictionaryId id2) {
-		dict = dictDao.getDataByLangDict(id2.getLangidfrom(), id2.getDictname());
 	}
 	
 	protected String getUrlByWord(String word) {

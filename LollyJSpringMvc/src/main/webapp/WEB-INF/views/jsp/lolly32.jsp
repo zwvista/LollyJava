@@ -63,7 +63,7 @@ $(function() {
     	<div class="col-sm-3">
 			<form:select class="form-control" path="selectedLangID" id="lang">
 				<c:forEach items="${formBean.langList}" var="lang">
-					<form:option value="${lang.langid}" label="${lang.langname}" />
+					<form:option value="${lang.id}" label="${lang.langname}" />
 				</c:forEach>
 			</form:select>
 		</div>

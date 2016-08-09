@@ -6,11 +6,8 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import com.zwstudio.lolly.domain.Dictionary;
-import com.zwstudio.lolly.domain.DictionaryId;
 
 public interface DictionaryMapper {
-	@Select("SELECT LANGIDFROM, DICTNAME FROM VDICTIONARIES WHERE LANGIDFROM = #{langid}")
-	public List<DictionaryId> getIdByLang(int langid);
 	@Select("SELECT * FROM VDICTIONARIES WHERE LANGIDFROM = #{langid}")
 	public List<Dictionary> getDataByLang(int langid);
 	// No need to return a list if the query returns only one row

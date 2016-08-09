@@ -16,15 +16,15 @@ public class LanguageDao extends BaseDao implements ILanguageService {
 	@SuppressWarnings("unchecked")
 	public List<Language> getData() {
 		return getCurrentSession()
-			.createSQLQuery("SELECT * FROM VLANGUAGES WHERE LANGID > 0")
+			.createSQLQuery("SELECT * FROM VLANGUAGES WHERE ID > 0")
 			.addEntity(Language.class)
-//			.createQuery("from Language where langid > 0")
+//			.createQuery("from Language where id > 0")
 			.list();
 	}
 	public Map<String, String> getIdNameMap() {
 		return getData().stream()
 			.collect(Collectors.toMap(
-				(Language r) -> Integer.toString(r.getLangid()),
+				(Language r) -> Integer.toString(r.getId()),
 				Language::getLangname
 			));
 	}

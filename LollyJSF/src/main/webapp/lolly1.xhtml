@@ -23,7 +23,7 @@ $(function() {
 		<h:selectOneMenu value="#{formBean.selectedLangID}" id="lang">
 			<f:ajax render="dict" />
 			<f:selectItems value="#{formBean.getLangList()}" var="lang"
-					itemValue="#{lang.langid}" itemLabel="#{lang.langname}" />
+					itemValue="#{lang.id}" itemLabel="#{lang.langname}" />
 		</h:selectOneMenu>
 		
 		<h:outputLabel for='dict' value="Dictionary:" />
