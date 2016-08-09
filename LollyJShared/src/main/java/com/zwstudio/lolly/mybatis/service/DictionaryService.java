@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.zwstudio.lolly.domain.Dictionary;
-import com.zwstudio.lolly.domain.DictionaryId;
 import com.zwstudio.lolly.mybatis.mappers.DictionaryMapper;
 import com.zwstudio.lolly.services.IDictionaryService;
 
@@ -18,11 +17,7 @@ public class DictionaryService implements IDictionaryService {
 	DictionaryMapper mapper;
 
 	public List<Dictionary> getDataByLang(int langid) {
-		List<DictionaryId> ids = mapper.getIdByLang(langid);
-		List<Dictionary> dicts = mapper.getDataByLang(langid);
-		for(int i = 0; i < ids.size(); i++)
-			dicts.get(i).setId(ids.get(i));
-		return dicts;
+    	return mapper.getDataByLang(langid);
 	}
     public Dictionary getDataByLangDict(int langid, String dictname) {
     	return mapper.getDataByLangDict(langid, dictname);

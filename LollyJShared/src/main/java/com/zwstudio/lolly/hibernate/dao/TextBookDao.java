@@ -16,7 +16,7 @@ public class TextBookDao extends BaseDao implements ITextBookService {
 		return getCurrentSession()
 			.createSQLQuery("SELECT * FROM VTEXTBOOKS WHERE LANGID = :langid")
 			.addEntity(TextBook.class)
-//			.createQuery("from Book where id.langid = :langid")
+//			.createQuery("from TextBook where langid = :langid")
 			.setParameter("langid", langid)
 			.list();
 	}
@@ -24,7 +24,7 @@ public class TextBookDao extends BaseDao implements ITextBookService {
 	public List<String> getNamesByLang(int langid) {
 		return getCurrentSession()
 			.createSQLQuery("SELECT DICTNAME FROM VDICTIONARIES WHERE LANGID = :langid")
-//			.createQuery("select id.dictname from Dictionary where id.langid = :langid")
+//			.createQuery("select id.dictname from Dictionary where langid = :langid")
 			.setParameter("langid", langid)
 			.list();
 	}

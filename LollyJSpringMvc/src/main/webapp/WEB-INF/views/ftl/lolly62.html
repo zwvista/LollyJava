@@ -59,7 +59,7 @@ $(function() {
 			<@spring.bind "formBean.selectedLangID" />
 			<select class="form-control" name="selectedLangID" id="lang">
 				<#list formBean.langList as lang>
-					<option value="${lang.langid}">${lang.langname}</option>
+					<option value="${lang.id}">${lang.langname}</option>
 				</#list>
 			</select>
 		</div>

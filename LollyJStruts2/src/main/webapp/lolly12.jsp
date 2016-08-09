@@ -43,8 +43,8 @@ $(function() {
 </head>
 <body>
 <s:form action='search'>
-	<s:select id="lang" name="selectedLangID" label="Language" value="selectedLangID" list="langList" listKey="langid" listValue="langname" />
-	<s:select id="dict" name="selectedDictName" label="Dictionary" value="selectedDictName" list="langList" listKey="langid" listValue="langname" />
+	<s:select id="lang" name="selectedLangID" label="Language" value="selectedLangID" list="langList" listKey="id" listValue="langname" />
+	<s:select id="dict" name="selectedDictName" label="Dictionary" value="selectedDictName" list="langList" listKey="id" listValue="langname" />
 	<s:textfield id="word" name="word" label="Word" required="true" />
     <sj:submit validate="true" value="Search" id="search" />
     <s:submit validate="true" value="Search(redirect)" id="redirectSearch" />

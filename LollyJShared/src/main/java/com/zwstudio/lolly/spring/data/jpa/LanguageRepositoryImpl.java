@@ -14,7 +14,7 @@ public class LanguageRepositoryImpl implements LanguageRepositoryCustom {
 	public Map<String, String> getIdNameMap() {
 		return repository.getData().stream()
 			.collect(Collectors.toMap(
-				(Language r) -> Integer.toString(r.getLangid()),
+				(Language r) -> Integer.toString(r.getId()),
 				Language::getLangname
 			));
 	}

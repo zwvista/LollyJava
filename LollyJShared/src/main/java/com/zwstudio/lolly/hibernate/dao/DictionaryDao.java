@@ -16,7 +16,7 @@ public class DictionaryDao extends BaseDao implements IDictionaryService {
 		return getCurrentSession()
 			.createSQLQuery("SELECT * FROM VDICTIONARIES WHERE LANGIDFROM = :langid")
 			.addEntity(Dictionary.class)
-//			.createQuery("from Dictionary where id.langidfrom = :langid")
+//			.createQuery("from Dictionary where langidfrom = :langid")
 			.setParameter("langid", langid)
 			.list();
 	}
@@ -24,7 +24,7 @@ public class DictionaryDao extends BaseDao implements IDictionaryService {
     	return (Dictionary) getCurrentSession()
 			.createSQLQuery("SELECT * FROM VDICTIONARIES WHERE LANGIDFROM = :langid AND DICTNAME = :dictname")
  			.addEntity(Dictionary.class)
-//			.createQuery("from Dictionary where id.langidfrom = :langid and id.dictname = :dictname")
+//			.createQuery("from Dictionary where langidfrom = :langid and dictname = :dictname")
 			.setParameter("langid", langid)
 			.setParameter("dictname", dictname)
 			.uniqueResult();
@@ -33,7 +33,7 @@ public class DictionaryDao extends BaseDao implements IDictionaryService {
 	public List<String> getNamesByLang(int langid) {
 		return getCurrentSession()
 			.createSQLQuery("SELECT DICTNAME FROM VDICTIONARIES WHERE LANGIDFROM = :langid")
-//			.createQuery("select id.dictname from Dictionary where id.langidfrom = :langid")
+//			.createQuery("select id.dictname from Dictionary where langidfrom = :langid")
 			.setParameter("langid", langid)
 			.list();
 	}

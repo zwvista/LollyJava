@@ -4,15 +4,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javafx.application.Platform;
-import lombok.Getter;
-
 import org.jdesktop.observablecollections.ObservableCollections;
 
 import com.zwstudio.lolly.domain.Dictionary;
-import com.zwstudio.lolly.domain.DictionaryId;
 import com.zwstudio.lolly.domain.Language;
 import com.zwstudio.lolly.ui.viewmodel.WordsOnlineViewModel;
+
+import javafx.application.Platform;
+import lombok.Getter;
 
 public class LollyController extends WordsOnlineViewModel {
 	
@@ -37,14 +36,14 @@ public class LollyController extends WordsOnlineViewModel {
 	public void cmbLang_actionPerformed() {
 		if (selectedLang == null) return;
 		dictList.clear();
-		dictList.addAll(dictDao.getDataByLang(selectedLang.getLangid()));
+		dictList.addAll(dictDao.getDataByLang(selectedLang.getId()));
 		setSelectedDict(dictList.get(0));
 	}
 	
 	public void cmbDict_actionPerformed() {
-		if (selectedDict == null) return;
-		DictionaryId id2 = selectedDict.getId();
-		updateDict(id2);
+//		if (selectedDict == null) return;
+//		DictionaryId id2 = selectedDict.getId();
+//		updateDict(id2);
 	}
 	
 	public void btnSearch_tfWord_actionPerformed() {

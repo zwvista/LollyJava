@@ -25,7 +25,7 @@ $(function() {
 		<rich:select value="#{formBean.selectedLangID}" id="lang">
 			<a4j:ajax event="change" render="dict" />
 			<f:selectItems value="#{formBean.getLangList()}" var="lang"
-					itemValue="#{lang.langid}" itemLabel="#{lang.langname}" />
+					itemValue="#{lang.id}" itemLabel="#{lang.langname}" />
 		</rich:select>
 		
 		<h:outputLabel for='dict' value="Dictionary:" />

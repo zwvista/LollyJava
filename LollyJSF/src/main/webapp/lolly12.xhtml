@@ -29,7 +29,7 @@ $(function() {
 					ajax="true"	onchange="ajax:ajaxBean.onChange()"	update="dict">
 				<!-- toString(): workaround for itemValue bug -->
 				<f:selectItems value="#{formBean.getLangList()}" var="lang"
-						itemValue="#{lang.langid.toString()}" itemLabel="#{lang.langname}" />
+						itemValue="#{lang.id.toString()}" itemLabel="#{lang.langname}" />
 			</b:selectOneMenu>
 		</b:column>
 		<b:column span="1">

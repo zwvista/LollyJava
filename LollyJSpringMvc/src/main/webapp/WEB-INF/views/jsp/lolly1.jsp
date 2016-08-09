@@ -25,7 +25,7 @@ $(function() {
             $dict.empty();
             $.each(response, function(index, item) {
 				var jstring = encodeURIComponent(JSON.stringify(item));
-                $dict.append($('<option/>', {value: jstring, text: item.id.dictname}));
+                $dict.append($('<option/>', {value: jstring, text: item.dictname}));
             });
 	    });
 	});
@@ -65,7 +65,7 @@ $(function() {
 		<label class="col-sm-1 control-label" for='lang'>Language:</label>
     	<div class="col-sm-3">
 			<form:select class="form-control" path="selectedLangID" id="lang">
-				<form:options items="${formBean.langList}" itemValue="langid" itemLabel="langname" />
+				<form:options items="${formBean.langList}" itemValue="id" itemLabel="langname" />
 			</form:select>
 		</div>
 		<label class="col-sm-1 control-label" for='dict'>Dictionary:</label>
