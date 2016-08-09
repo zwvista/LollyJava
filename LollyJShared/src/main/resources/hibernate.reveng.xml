@@ -2,23 +2,41 @@
 <!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd" >
 
 <hibernate-reverse-engineering>
+    <table-filter match-name="LANGPHRASES"></table-filter>
+	<table-filter match-name="LANGWORDS"></table-filter>
+    <table-filter match-name="UNITWORDS"></table-filter>
     <table-filter match-name="VDICTIONARIES2"></table-filter>
     <table-filter match-name="VLANGUAGES2"></table-filter>
+    <table-filter match-name="VTBWORDS2"></table-filter>
     <table-filter match-name="VTEXTBOOKS2"></table-filter>
+    <table-filter match-name="VUNITPHRASES2"></table-filter>
+    
+    <table name="LANGPHRASES" class="com.zwstudio.lolly.domain.LangPhrase" />
+    <table name="LANGWORDS" class="com.zwstudio.lolly.domain.LangWord" />
+    <table name="UNITWORDS" class="com.zwstudio.lolly.domain.UnitWord" />
     <table name="VDICTIONARIES2" class="com.zwstudio.lolly.domain.Dictionary">
         <primary-key>
-            <key-column name="LANGIDFROM"/>
-            <key-column name="DICTNAME"/>
+            <key-column name="ID"/>
         </primary-key>
     </table>
     <table name="VLANGUAGES2" class="com.zwstudio.lolly.domain.Language">
         <primary-key>
-            <key-column name="LANGID"/>
+            <key-column name="ID"/>
+        </primary-key>
+    </table>
+    <table name="VTBWORDS2" class="com.zwstudio.lolly.domain.TBWord">
+        <primary-key>
+            <key-column name="ID"/>
         </primary-key>
     </table>
     <table name="VTEXTBOOKS2" class="com.zwstudio.lolly.domain.TextBook">
         <primary-key>
-            <key-column name="TEXTBOOKID"/>
+            <key-column name="ID"/>
+        </primary-key>
+    </table>
+    <table name="VUNITPHRASES2" class="com.zwstudio.lolly.domain.UnitPhrase">
+        <primary-key>
+            <key-column name="ID"/>
         </primary-key>
     </table>
 </hibernate-reverse-engineering>
