@@ -1,5 +1,5 @@
 package com.zwstudio.lolly.domain;
-// Generated 2016/08/09 13:08:27 by Hibernate Tools 5.1.0.Beta1
+// Generated 2016/08/18 14:00:46 by Hibernate Tools 5.1.0.Beta1
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,10 +18,10 @@ public class TextBook implements java.io.Serializable {
 	private String textbookname;
 	private Integer units;
 	private String parts;
-	private String usunitfrom;
-	private String uspartfrom;
-	private String usunitto;
-	private String uspartto;
+	private Integer usunitfrom;
+	private Integer uspartfrom;
+	private Integer usunitto;
+	private Integer uspartto;
 
 	public TextBook() {
 	}
@@ -30,8 +30,8 @@ public class TextBook implements java.io.Serializable {
 		this.id = id;
 	}
 
-	public TextBook(int id, Integer langid, String textbookname, Integer units, String parts, String usunitfrom,
-			String uspartfrom, String usunitto, String uspartto) {
+	public TextBook(int id, Integer langid, String textbookname, Integer units, String parts, Integer usunitfrom,
+			Integer uspartfrom, Integer usunitto, Integer uspartto) {
 		this.id = id;
 		this.langid = langid;
 		this.textbookname = textbookname;
@@ -90,39 +90,39 @@ public class TextBook implements java.io.Serializable {
 		this.parts = parts;
 	}
 
-	@Column(name = "USUNITFROM", length = 2000000000)
-	public String getUsunitfrom() {
+	@Column(name = "USUNITFROM")
+	public Integer getUsunitfrom() {
 		return this.usunitfrom;
 	}
 
-	public void setUsunitfrom(String usunitfrom) {
+	public void setUsunitfrom(Integer usunitfrom) {
 		this.usunitfrom = usunitfrom;
 	}
 
-	@Column(name = "USPARTFROM", length = 2000000000)
-	public String getUspartfrom() {
+	@Column(name = "USPARTFROM")
+	public Integer getUspartfrom() {
 		return this.uspartfrom;
 	}
 
-	public void setUspartfrom(String uspartfrom) {
+	public void setUspartfrom(Integer uspartfrom) {
 		this.uspartfrom = uspartfrom;
 	}
 
-	@Column(name = "USUNITTO", length = 2000000000)
-	public String getUsunitto() {
+	@Column(name = "USUNITTO")
+	public Integer getUsunitto() {
 		return this.usunitto;
 	}
 
-	public void setUsunitto(String usunitto) {
+	public void setUsunitto(Integer usunitto) {
 		this.usunitto = usunitto;
 	}
 
-	@Column(name = "USPARTTO", length = 2000000000)
-	public String getUspartto() {
+	@Column(name = "USPARTTO")
+	public Integer getUspartto() {
 		return this.uspartto;
 	}
 
-	public void setUspartto(String uspartto) {
+	public void setUspartto(Integer uspartto) {
 		this.uspartto = uspartto;
 	}
 

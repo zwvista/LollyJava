@@ -10,6 +10,7 @@
     <table-filter match-name="VTBWORDS2"></table-filter>
     <table-filter match-name="VTEXTBOOKS2"></table-filter>
     <table-filter match-name="VUNITPHRASES2"></table-filter>
+    <table-filter match-name="VUSERSETTINGS2"></table-filter>
     
     <table name="LANGPHRASES" class="com.zwstudio.lolly.domain.LangPhrase" />
     <table name="LANGWORDS" class="com.zwstudio.lolly.domain.LangWord" />
@@ -35,6 +36,11 @@
         </primary-key>
     </table>
     <table name="VUNITPHRASES2" class="com.zwstudio.lolly.domain.UnitPhrase">
+        <primary-key>
+            <key-column name="ID"/>
+        </primary-key>
+    </table>
+    <table name="VUSERSETTINGS2" class="com.zwstudio.lolly.domain.UserSetting">
         <primary-key>
             <key-column name="ID"/>
         </primary-key>

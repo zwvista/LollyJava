@@ -8,12 +8,12 @@ import org.jdesktop.observablecollections.ObservableCollections;
 
 import com.zwstudio.lolly.domain.Dictionary;
 import com.zwstudio.lolly.domain.Language;
-import com.zwstudio.lolly.ui.viewmodel.WordsOnlineViewModel;
+import com.zwstudio.lolly.ui.viewmodel.SettingsViewModel;
 
 import javafx.application.Platform;
 import lombok.Getter;
 
-public class LollyController extends WordsOnlineViewModel {
+public class LollyController extends SettingsViewModel {
 	
 	private static final long serialVersionUID = 1L;
 

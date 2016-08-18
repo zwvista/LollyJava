@@ -1,5 +1,5 @@
 package com.zwstudio.lolly.domain;
-// Generated 2016/08/09 13:08:27 by Hibernate Tools 5.1.0.Beta1
+// Generated 2016/08/18 14:00:46 by Hibernate Tools 5.1.0.Beta1
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,7 +16,8 @@ public class Language implements java.io.Serializable {
 	private int id;
 	private String langname;
 	private String voice;
-	private String ustextbookid;
+	private Integer ustextbookid;
+	private Integer usdictid;
 
 	public Language() {
 	}
@@ -25,11 +26,12 @@ public class Language implements java.io.Serializable {
 		this.id = id;
 	}
 
-	public Language(int id, String langname, String voice, String ustextbookid) {
+	public Language(int id, String langname, String voice, Integer ustextbookid, Integer usdictid) {
 		this.id = id;
 		this.langname = langname;
 		this.voice = voice;
 		this.ustextbookid = ustextbookid;
+		this.usdictid = usdictid;
 	}
 
 	@Id
@@ -61,13 +63,22 @@ public class Language implements java.io.Serializable {
 		this.voice = voice;
 	}
 
-	@Column(name = "USTEXTBOOKID", length = 2000000000)
-	public String getUstextbookid() {
+	@Column(name = "USTEXTBOOKID")
+	public Integer getUstextbookid() {
 		return this.ustextbookid;
 	}
 
-	public void setUstextbookid(String ustextbookid) {
+	public void setUstextbookid(Integer ustextbookid) {
 		this.ustextbookid = ustextbookid;
+	}
+
+	@Column(name = "USDICTID")
+	public Integer getUsdictid() {
+		return this.usdictid;
+	}
+
+	public void setUsdictid(Integer usdictid) {
+		this.usdictid = usdictid;
 	}
 
 }

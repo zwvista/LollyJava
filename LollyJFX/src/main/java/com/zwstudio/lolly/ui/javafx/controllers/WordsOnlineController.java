@@ -7,7 +7,7 @@ import org.springframework.stereotype.Controller;
 
 import com.zwstudio.lolly.domain.Dictionary;
 import com.zwstudio.lolly.domain.Language;
-import com.zwstudio.lolly.ui.viewmodel.WordsOnlineViewModel;
+import com.zwstudio.lolly.ui.viewmodel.SettingsViewModel;
 
 import javafx.beans.property.adapter.JavaBeanObjectProperty;
 import javafx.beans.property.adapter.JavaBeanObjectPropertyBuilder;
@@ -30,7 +30,7 @@ import javafx.util.StringConverter;
 import lombok.Getter;
 
 @Controller
-public class WordsOnlineController extends WordsOnlineViewModel implements Initializable {
+public class WordsOnlineController extends SettingsViewModel implements Initializable {
 
 	private static final long serialVersionUID = 1L;
 	

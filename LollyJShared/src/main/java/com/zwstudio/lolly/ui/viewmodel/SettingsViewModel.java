@@ -18,19 +18,26 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import com.jgoodies.binding.beans.Model;
 import com.zwstudio.lolly.domain.Dictionary;
 import com.zwstudio.lolly.domain.Language;
+import com.zwstudio.lolly.domain.TextBook;
 import com.zwstudio.lolly.services.IDictionaryService;
 import com.zwstudio.lolly.services.ILanguageService;
+import com.zwstudio.lolly.services.ITextBookService;
+import com.zwstudio.lolly.services.IUserSettingService;
 
 import lombok.Getter;
 
 @SuppressWarnings("serial")
-public class WordsOnlineViewModel extends Model {
+public class SettingsViewModel extends Model {
 	
+	@Autowired
+	protected IUserSettingService usersettingDao;
 	@Autowired @Qualifier("languageDao")
 	protected ILanguageService langDao;
 	@Autowired @Qualifier("dictionaryDao")
 	protected IDictionaryService dictDao;
-	
+	@Autowired
+	protected ITextBookService textbookDao;
+
 	protected Dictionary dict;
 	@Getter
 	public String word;
@@ -38,7 +45,9 @@ public class WordsOnlineViewModel extends Model {
 	public Language selectedLang;
 	@Getter
 	public Dictionary selectedDict;
-	
+	@Getter
+	public TextBook selectedTextBook;
+
 	private Map<String, String> escapes = new HashMap<String, String>() {{
 		put("<delete>", ""); put("\\t", "\t");
 		put("\\r", "\r"); put("\\n", "\n");
@@ -55,7 +64,11 @@ public class WordsOnlineViewModel extends Model {
 	public void setSelectedDict(Dictionary selectedDict) {
 		firePropertyChange("selectedDict", this.selectedDict, this.selectedDict = selectedDict);
 	}
-	
+
+	public void setSelectedTextBook(TextBook selectedTextBook) {
+		firePropertyChange("selectedTextBook", this.selectedTextBook, this.selectedTextBook = selectedTextBook);
+	}
+
 	protected String getUrlByWord(String word) {
 		String url = dict.getUrl();
 		try {

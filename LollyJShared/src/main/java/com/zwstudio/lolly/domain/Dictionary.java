@@ -1,5 +1,5 @@
 package com.zwstudio.lolly.domain;
-// Generated 2016/08/09 13:08:27 by Hibernate Tools 5.1.0.Beta1
+// Generated 2016/08/18 14:00:46 by Hibernate Tools 5.1.0.Beta1
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

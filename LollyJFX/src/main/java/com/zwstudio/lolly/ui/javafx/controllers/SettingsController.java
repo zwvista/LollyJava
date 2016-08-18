@@ -6,7 +6,7 @@ import org.springframework.stereotype.Controller;
 
 import com.zwstudio.lolly.domain.Language;
 import com.zwstudio.lolly.domain.TextBook;
-import com.zwstudio.lolly.ui.viewmodel.SelectUnitsViewModel;
+import com.zwstudio.lolly.ui.viewmodel.SettingsViewModel;
 
 import javafx.beans.property.adapter.JavaBeanObjectProperty;
 import javafx.beans.property.adapter.JavaBeanObjectPropertyBuilder;
@@ -23,7 +23,7 @@ import javafx.util.StringConverter;
 
 @Controller
 @SuppressWarnings("serial")
-public class SelectUnitsController extends SelectUnitsViewModel implements Initializable {
+public class SettingsController extends SettingsViewModel implements Initializable {
 	
     @FXML
     private ComboBox<Language> cboLang;
