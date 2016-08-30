@@ -53,7 +53,7 @@ public class LollyController extends SettingsViewModel {
 	}
 	
 	public void wvDictOnline_succeeded(String html) {
-    	if(!dict.getDicttypename().equals("OFFLINE-ONLINE")) return;
+    	if(!selectedDict.getDicttypename().equals("OFFLINE-ONLINE")) return;
     	try {
 			html = extractFromHtml(html, word);
 		} catch (IOException e) {

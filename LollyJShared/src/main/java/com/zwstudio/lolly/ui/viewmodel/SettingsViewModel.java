@@ -38,7 +38,6 @@ public class SettingsViewModel extends Model {
 	@Autowired
 	protected ITextBookService textbookDao;
 
-	protected Dictionary dict;
 	@Getter
 	public String word;
 	@Getter
@@ -70,7 +69,7 @@ public class SettingsViewModel extends Model {
 	}
 
 	protected String getUrlByWord(String word) {
-		String url = dict.getUrl();
+		String url = selectedDict.getUrl();
 		try {
 			url = url.replace("{0}", URLEncoder.encode(word, "UTF-8"));
 		} catch (UnsupportedEncodingException e) {
@@ -89,7 +88,7 @@ public class SettingsViewModel extends Model {
 	}
 	
 	protected String extractFromHtml(String html, String word) throws IOException {
-		String transform = dict.getTransformWin();
+		String transform = selectedDict.getTransformWin();
 		String[] arr = null;
 		arr = transform.split("\n");
 		
@@ -112,7 +111,7 @@ public class SettingsViewModel extends Model {
 		if(debugExtract)
 			Files.write(Paths.get(logFolder + "3_cooked.txt"), text.getBytes(), StandardOpenOption.CREATE);
 
-		String template = dict.getTemplate();
+		String template = selectedDict.getTemplate();
 		template = template.replaceAll("\\{\\d\\}", "%s");
 		text = String.format(template, word, "", text);
 		if(debugExtract)
