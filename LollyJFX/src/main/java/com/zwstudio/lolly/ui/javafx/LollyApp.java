@@ -76,7 +76,7 @@ public class LollyApp extends Application {
 	
 	public static void showSelectUnits() throws IOException {
 		SettingsController ctl = context.getBean(SettingsController.class);
-		Parent page = load("views/SelectUnits.fxml");
+		Parent page = load("views/Settings.fxml");
 		Scene scene = new Scene(page);
 		Stage stage = new Stage();
 		stage.setScene(scene);

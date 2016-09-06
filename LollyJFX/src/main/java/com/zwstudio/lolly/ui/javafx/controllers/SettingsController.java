@@ -4,6 +4,7 @@ import java.util.ResourceBundle;
 
 import org.springframework.stereotype.Controller;
 
+import com.zwstudio.lolly.domain.Dictionary;
 import com.zwstudio.lolly.domain.Language;
 import com.zwstudio.lolly.domain.TextBook;
 import com.zwstudio.lolly.ui.viewmodel.SettingsViewModel;
@@ -18,7 +19,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
 import javafx.util.StringConverter;
 
 @Controller
@@ -30,11 +30,13 @@ public class SettingsController extends SettingsViewModel implements Initializab
     @FXML
     private ComboBox<TextBook> cboTextBook;
     @FXML
-    private TextField tfUnitFrom;
+    private ComboBox<Dictionary> cboDict;
     @FXML
     private CheckBox chkTo;
     @FXML
-    private TextField tfUnitTo;
+    private ComboBox<String> cboUnitFrom;
+    @FXML
+    private ComboBox<String> cboUnitTo;
     @FXML
     private ComboBox<String> cboPartFrom;
     @FXML
@@ -46,9 +48,11 @@ public class SettingsController extends SettingsViewModel implements Initializab
 //
     private ObservableList<Language> langList;
     private ObservableList<TextBook> textbookList = FXCollections.observableArrayList();
+    private ObservableList<Dictionary> dictList = FXCollections.observableArrayList();
     
     private JavaBeanObjectProperty<Language> selectedLangProp;
     private JavaBeanObjectProperty<TextBook> selectedTextBookProp;
+    private JavaBeanObjectProperty<Dictionary> selectedDictProp;
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -59,6 +63,7 @@ public class SettingsController extends SettingsViewModel implements Initializab
 		try {
 			selectedLangProp = JavaBeanObjectPropertyBuilder.create().bean(this).name("selectedLang").build();
 			selectedTextBookProp = JavaBeanObjectPropertyBuilder.create().bean(this).name("selectedTextBook").build();
+			selectedDictProp = JavaBeanObjectPropertyBuilder.create().bean(this).name("selectedDict").build();
 		} catch (NoSuchMethodException e) {
 			e.printStackTrace();
 		}
@@ -104,10 +109,32 @@ public class SettingsController extends SettingsViewModel implements Initializab
 			}
 		});
 
+		cboDict.valueProperty().bindBidirectional(selectedDictProp);
+		cboDict.valueProperty().addListener(new ChangeListener<Dictionary>() {
+			@Override
+			public void changed(
+					ObservableValue<? extends Dictionary> observable,
+					Dictionary oldValue, Dictionary newValue) {
+				cboDict_ValueChanged();
+			}
+		});
+		cboDict.setConverter(new StringConverter<Dictionary>() {
+            @Override
+            public String toString(Dictionary dict) {
+            	return dict == null ? null : dict.getDictname();
+            }
+
+			@Override
+			public Dictionary fromString(String arg0) {
+				return null;
+			}
+		});
+
 		langList = FXCollections.observableArrayList(langDao.getData());
 		
 		cboLang.setItems(langList);
 		cboTextBook.setItems(textbookList);
+		cboDict.setItems(dictList);
 		
 		setSelectedLang(langList.get(1));
 	}
@@ -116,9 +143,17 @@ public class SettingsController extends SettingsViewModel implements Initializab
 		if (selectedLang == null) return;
 		textbookList.setAll(textbookDao.getDataByLang(selectedLang.getId()));
 		setSelectedTextBook(textbookList.get(0));
+		dictList.setAll(dictDao.getDataByLang(selectedLang.getId()));
+		setSelectedDict(dictList.get(0));
 	}
 	
 	private void cboTextBook_ValueChanged() {
+//		if (selectedtextbook == null) return;
+//		Book id2 = selectedtextbook.getId();
+//		updatebook(id2);
+	}
+	
+	private void cboDict_ValueChanged() {
 //		if (selectedtextbook == null) return;
 //		Book id2 = selectedtextbook.getId();
 //		updatebook(id2);
