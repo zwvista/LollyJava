@@ -19,7 +19,7 @@
       <ComboBox fx:id="cboUnitTo" layoutX="125.0" layoutY="200.0" prefWidth="150.0" />
       <Label layoutX="48.0" layoutY="74.0" text="Dictionary:" />
       <ComboBox fx:id="cboDict" layoutX="125.0" layoutY="70.0" prefWidth="150.0" />
-      <Label layoutX="300.0" layoutY="162.0" text="(100 in all)" />
-      <Label layoutX="300.0" layoutY="204.0" text="(100 in all)" />
+      <Label fx:id="lblUntsInAllFrom" layoutX="300.0" layoutY="162.0" text="(100 in all)" />
+      <Label fx:id="lblUntsInAllTo" layoutX="300.0" layoutY="204.0" text="(100 in all)" />
    </children>
 </AnchorPane>

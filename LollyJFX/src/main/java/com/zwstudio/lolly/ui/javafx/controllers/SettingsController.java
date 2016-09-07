@@ -19,6 +19,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.util.StringConverter;
 
 @Controller
@@ -41,11 +42,11 @@ public class SettingsController extends SettingsViewModel implements Initializab
     private ComboBox<String> cboPartFrom;
     @FXML
     private ComboBox<String> cboPartTo;
-////    @FXML
-////    private Label lblUntsInAllFrom;
-////    @FXML
-////    private Label lblUntsInAllTo;
-//
+    @FXML
+    private Label lblUntsInAllFrom;
+    @FXML
+    private Label lblUntsInAllTo;
+
     private ObservableList<Language> langList;
     private ObservableList<TextBook> textbookList = FXCollections.observableArrayList();
     private ObservableList<Dictionary> dictList = FXCollections.observableArrayList();
@@ -141,9 +142,11 @@ public class SettingsController extends SettingsViewModel implements Initializab
 	
 	private void cboLang_ValueChanged() {
 		if (selectedLang == null) return;
-		textbookList.setAll(textbookDao.getDataByLang(selectedLang.getId()));
+		int langid = selectedLang.getId();
+		textbookList.setAll(textbookDao.getDataByLang(langid));
+		
 		setSelectedTextBook(textbookList.get(0));
-		dictList.setAll(dictDao.getDataByLang(selectedLang.getId()));
+		dictList.setAll(dictDao.getDataByLang(langid));
 		setSelectedDict(dictList.get(0));
 	}
 	

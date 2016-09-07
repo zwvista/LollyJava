@@ -19,7 +19,7 @@
           <Menu mnemonicParsing="false" text="File">
             <items>
                   <MenuItem mnemonicParsing="false" onAction="#handleWordsOnline" text="Words Online" />
-                  <MenuItem mnemonicParsing="false" onAction="#handleSelectUnits" text="Select Units ..." />
+                  <MenuItem mnemonicParsing="false" onAction="#handleSelectUnits" text="Settings ..." />
               <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
             </items>
           </Menu>
