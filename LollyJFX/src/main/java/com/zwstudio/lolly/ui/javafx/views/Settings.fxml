@@ -9,8 +9,8 @@
    <children>
       <Label layoutX="48.0" layoutY="29.0" text="Language:" />
       <ComboBox fx:id="cboLang" layoutX="125.0" layoutY="25.0" prefWidth="150.0" />
-      <Label layoutX="48.0" layoutY="125.0" text="TextBook:" />
-      <ComboBox fx:id="cboTextBook" layoutX="125.0" layoutY="121.0" prefWidth="150.0" />
+      <Label layoutX="48.0" layoutY="125.0" text="Textbook:" />
+      <ComboBox fx:id="cboTextbook" layoutX="125.0" layoutY="121.0" prefWidth="150.0" />
       <Label layoutX="48.0" layoutY="162.0" text="Units:" />
       <CheckBox fx:id="chkTo" layoutX="48.0" layoutY="203.0" mnemonicParsing="false" text="To" />
       <ComboBox fx:id="cboPartFrom" layoutX="379.0" layoutY="158.0" prefWidth="150.0" />

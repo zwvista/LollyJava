@@ -7,6 +7,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.regex.Matcher;
@@ -18,10 +19,10 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import com.jgoodies.binding.beans.Model;
 import com.zwstudio.lolly.domain.Dictionary;
 import com.zwstudio.lolly.domain.Language;
-import com.zwstudio.lolly.domain.TextBook;
+import com.zwstudio.lolly.domain.Textbook;
 import com.zwstudio.lolly.services.IDictionaryService;
 import com.zwstudio.lolly.services.ILanguageService;
-import com.zwstudio.lolly.services.ITextBookService;
+import com.zwstudio.lolly.services.ITextbookService;
 import com.zwstudio.lolly.services.IUserSettingService;
 
 import lombok.Getter;
@@ -36,16 +37,28 @@ public class SettingsViewModel extends Model {
 	@Autowired @Qualifier("dictionaryDao")
 	protected IDictionaryService dictDao;
 	@Autowired
-	protected ITextBookService textbookDao;
+	protected ITextbookService textbookDao;
 
 	@Getter
-	public String word;
+	private String word;
+	@Getter
+	private List<Language> lstLanguages;
+	@Getter
+	private List<Dictionary> lstDictionaries;
+	@Getter
+	private List<Textbook> lstTextbooks;
+	@Getter
+	private int selectedLangIndex;
+	@Getter
+	private int selectedDictIndex;
+	@Getter
+	private int selectedTextbookIndex;
 	@Getter
 	public Language selectedLang;
 	@Getter
 	public Dictionary selectedDict;
 	@Getter
-	public TextBook selectedTextBook;
+	public Textbook selectedTextbook;
 
 	private Map<String, String> escapes = new HashMap<String, String>() {{
 		put("<delete>", ""); put("\\t", "\t");
@@ -56,20 +69,32 @@ public class SettingsViewModel extends Model {
 		firePropertyChange("word", this.word, this.word = word);
 	}
 
+	public void setSelectedLangIndex(int selectedLangIndex) {
+		firePropertyChange("selectedLangIndex", this.selectedLangIndex, this.selectedLangIndex = selectedLangIndex);
+	}
+
+	public void setSelectedDictIndex(int selectedDictIndex) {
+		firePropertyChange("selectedDictIndex", this.selectedDictIndex, this.selectedDictIndex = selectedDictIndex);
+	}
+
+	public void setSelectedTextbookIndex(int selectedTextbookIndex) {
+		firePropertyChange("selectedTextbookIndex", this.selectedTextbookIndex, this.selectedTextbookIndex = selectedTextbookIndex);
+	}
+	
 	public void setSelectedLang(Language selectedLang) {
 		firePropertyChange("selectedLang", this.selectedLang, this.selectedLang = selectedLang);
 	}
-
+	 
 	public void setSelectedDict(Dictionary selectedDict) {
 		firePropertyChange("selectedDict", this.selectedDict, this.selectedDict = selectedDict);
 	}
-
-	public void setSelectedTextBook(TextBook selectedTextBook) {
-		firePropertyChange("selectedTextBook", this.selectedTextBook, this.selectedTextBook = selectedTextBook);
+	 
+	public void setSelectedTextbook(Textbook selectedTextbook) {
+		firePropertyChange("selectedTextbook", this.selectedTextbook, this.selectedTextbook = selectedTextbook);
 	}
 
 	protected String getUrlByWord(String word) {
-		String url = selectedDict.getUrl();
+		String url = getSelectedDict().getUrl();
 		try {
 			url = url.replace("{0}", URLEncoder.encode(word, "UTF-8"));
 		} catch (UnsupportedEncodingException e) {
@@ -88,7 +113,7 @@ public class SettingsViewModel extends Model {
 	}
 	
 	protected String extractFromHtml(String html, String word) throws IOException {
-		String transform = selectedDict.getTransformWin();
+		String transform = getSelectedDict().getTransformWin();
 		String[] arr = null;
 		arr = transform.split("\n");
 		
@@ -111,7 +136,7 @@ public class SettingsViewModel extends Model {
 		if(debugExtract)
 			Files.write(Paths.get(logFolder + "3_cooked.txt"), text.getBytes(), StandardOpenOption.CREATE);
 
-		String template = selectedDict.getTemplate();
+		String template = getSelectedDict().getTemplate();
 		template = template.replaceAll("\\{\\d\\}", "%s");
 		text = String.format(template, word, "", text);
 		if(debugExtract)

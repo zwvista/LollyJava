@@ -5,18 +5,18 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.zwstudio.lolly.domain.TextBook;
-import com.zwstudio.lolly.services.ITextBookService;
+import com.zwstudio.lolly.domain.Textbook;
+import com.zwstudio.lolly.services.ITextbookService;
 
 @Repository
 @Transactional
-public class TextBookDao extends BaseDao implements ITextBookService {
+public class TextbookDao extends BaseDao implements ITextbookService {
 	@SuppressWarnings("unchecked")
-	public List<TextBook> getDataByLang(int langid) {
+	public List<Textbook> getDataByLang(int langid) {
 		return getCurrentSession()
 			.createSQLQuery("SELECT * FROM VTEXTBOOKS WHERE LANGID = :langid")
-			.addEntity(TextBook.class)
-//			.createQuery("from TextBook where langid = :langid")
+			.addEntity(Textbook.class)
+//			.createQuery("from Textbook where langid = :langid")
 			.setParameter("langid", langid)
 			.list();
 	}

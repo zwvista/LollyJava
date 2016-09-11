@@ -48,14 +48,14 @@ public class LollyController extends SettingsViewModel {
 	
 	public void btnSearch_tfWord_actionPerformed() {
     	view.layoutCenter.show(view.pnlCenter, "Online");
-    	String url = getUrlByWord(word);
+    	String url = getUrlByWord(getWord());
     	view.wvDictOnline.loadURL(url);
 	}
 	
 	public void wvDictOnline_succeeded(String html) {
     	if(!selectedDict.getDicttypename().equals("OFFLINE-ONLINE")) return;
     	try {
-			html = extractFromHtml(html, word);
+			html = extractFromHtml(html, getWord());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

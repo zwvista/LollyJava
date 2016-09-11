@@ -6,7 +6,7 @@ import org.springframework.stereotype.Controller;
 
 import com.zwstudio.lolly.domain.Dictionary;
 import com.zwstudio.lolly.domain.Language;
-import com.zwstudio.lolly.domain.TextBook;
+import com.zwstudio.lolly.domain.Textbook;
 import com.zwstudio.lolly.ui.viewmodel.SettingsViewModel;
 
 import javafx.beans.property.adapter.JavaBeanObjectProperty;
@@ -29,7 +29,7 @@ public class SettingsController extends SettingsViewModel implements Initializab
     @FXML
     private ComboBox<Language> cboLang;
     @FXML
-    private ComboBox<TextBook> cboTextBook;
+    private ComboBox<Textbook> cboTextbook;
     @FXML
     private ComboBox<Dictionary> cboDict;
     @FXML
@@ -48,11 +48,11 @@ public class SettingsController extends SettingsViewModel implements Initializab
     private Label lblUntsInAllTo;
 
     private ObservableList<Language> langList;
-    private ObservableList<TextBook> textbookList = FXCollections.observableArrayList();
+    private ObservableList<Textbook> textbookList = FXCollections.observableArrayList();
     private ObservableList<Dictionary> dictList = FXCollections.observableArrayList();
     
     private JavaBeanObjectProperty<Language> selectedLangProp;
-    private JavaBeanObjectProperty<TextBook> selectedTextBookProp;
+    private JavaBeanObjectProperty<Textbook> selectedTextbookProp;
     private JavaBeanObjectProperty<Dictionary> selectedDictProp;
 
 	@Override
@@ -63,7 +63,7 @@ public class SettingsController extends SettingsViewModel implements Initializab
 	public void windowShowing() {
 		try {
 			selectedLangProp = JavaBeanObjectPropertyBuilder.create().bean(this).name("selectedLang").build();
-			selectedTextBookProp = JavaBeanObjectPropertyBuilder.create().bean(this).name("selectedTextBook").build();
+			selectedTextbookProp = JavaBeanObjectPropertyBuilder.create().bean(this).name("selectedTextbook").build();
 			selectedDictProp = JavaBeanObjectPropertyBuilder.create().bean(this).name("selectedDict").build();
 		} catch (NoSuchMethodException e) {
 			e.printStackTrace();
@@ -89,23 +89,23 @@ public class SettingsController extends SettingsViewModel implements Initializab
 			}
 		});
 
-		cboTextBook.valueProperty().bindBidirectional(selectedTextBookProp);
-		cboTextBook.valueProperty().addListener(new ChangeListener<TextBook>() {
+		cboTextbook.valueProperty().bindBidirectional(selectedTextbookProp);
+		cboTextbook.valueProperty().addListener(new ChangeListener<Textbook>() {
 			@Override
 			public void changed(
-					ObservableValue<? extends TextBook> observable,
-					TextBook oldValue, TextBook newValue) {
-				cboTextBook_ValueChanged();
+					ObservableValue<? extends Textbook> observable,
+					Textbook oldValue, Textbook newValue) {
+				cboTextbook_ValueChanged();
 			}
 		});
-		cboTextBook.setConverter(new StringConverter<TextBook>() {
+		cboTextbook.setConverter(new StringConverter<Textbook>() {
             @Override
-            public String toString(TextBook book) {
+            public String toString(Textbook book) {
             	return book == null ? null : book.getTextbookname();
             }
 
 			@Override
-			public TextBook fromString(String arg0) {
+			public Textbook fromString(String arg0) {
 				return null;
 			}
 		});
@@ -134,7 +134,7 @@ public class SettingsController extends SettingsViewModel implements Initializab
 		langList = FXCollections.observableArrayList(langDao.getData());
 		
 		cboLang.setItems(langList);
-		cboTextBook.setItems(textbookList);
+		cboTextbook.setItems(textbookList);
 		cboDict.setItems(dictList);
 		
 		setSelectedLang(langList.get(1));
@@ -145,12 +145,12 @@ public class SettingsController extends SettingsViewModel implements Initializab
 		int langid = selectedLang.getId();
 		textbookList.setAll(textbookDao.getDataByLang(langid));
 		
-		setSelectedTextBook(textbookList.get(0));
+		setSelectedTextbook(textbookList.get(0));
 		dictList.setAll(dictDao.getDataByLang(langid));
 		setSelectedDict(dictList.get(0));
 	}
 	
-	private void cboTextBook_ValueChanged() {
+	private void cboTextbook_ValueChanged() {
 //		if (selectedtextbook == null) return;
 //		Book id2 = selectedtextbook.getId();
 //		updatebook(id2);

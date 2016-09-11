@@ -30,7 +30,7 @@
             <key-column name="ID"/>
         </primary-key>
     </table>
-    <table name="VTEXTBOOKS2" class="com.zwstudio.lolly.domain.TextBook">
+    <table name="VTEXTBOOKS2" class="com.zwstudio.lolly.domain.Textbook">
         <primary-key>
             <key-column name="ID"/>
         </primary-key>
