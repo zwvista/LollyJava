@@ -12,7 +12,7 @@ public class UserSettingDao extends BaseDao implements IUserSettingService {
 	@SuppressWarnings("unchecked")
 	public UserSetting getData() {
 		return (UserSetting) getCurrentSession()
-			.createSQLQuery("SELECT * FROM VUSERSETTING")
+			.createSQLQuery("SELECT * FROM VUSERSETTINGS")
 			.addEntity(UserSetting.class)
 //			.createQuery("from UserSetting")
 			.uniqueResult();

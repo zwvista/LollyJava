@@ -11,8 +11,6 @@ import com.zwstudio.lolly.ui.viewmodel.SettingsViewModel;
 
 import javafx.beans.property.adapter.JavaBeanObjectProperty;
 import javafx.beans.property.adapter.JavaBeanObjectPropertyBuilder;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -47,10 +45,6 @@ public class SettingsController extends SettingsViewModel implements Initializab
     @FXML
     private Label lblUntsInAllTo;
 
-    private ObservableList<Language> langList;
-    private ObservableList<Textbook> textbookList = FXCollections.observableArrayList();
-    private ObservableList<Dictionary> dictList = FXCollections.observableArrayList();
-    
     private JavaBeanObjectProperty<Language> selectedLangProp;
     private JavaBeanObjectProperty<Textbook> selectedTextbookProp;
     private JavaBeanObjectProperty<Dictionary> selectedDictProp;
@@ -70,13 +64,6 @@ public class SettingsController extends SettingsViewModel implements Initializab
 		}
 
 		cboLang.valueProperty().bindBidirectional(selectedLangProp);
-		cboLang.valueProperty().addListener(new ChangeListener<Language>() {
-			@Override
-			public void changed(ObservableValue<? extends Language> observable,
-					Language oldValue, Language newValue) {
-				cboLang_ValueChanged();
-			}
-		});
 		cboLang.setConverter(new StringConverter<Language>() {
             @Override
             public String toString(Language lang) {
@@ -90,14 +77,6 @@ public class SettingsController extends SettingsViewModel implements Initializab
 		});
 
 		cboTextbook.valueProperty().bindBidirectional(selectedTextbookProp);
-		cboTextbook.valueProperty().addListener(new ChangeListener<Textbook>() {
-			@Override
-			public void changed(
-					ObservableValue<? extends Textbook> observable,
-					Textbook oldValue, Textbook newValue) {
-				cboTextbook_ValueChanged();
-			}
-		});
 		cboTextbook.setConverter(new StringConverter<Textbook>() {
             @Override
             public String toString(Textbook book) {
@@ -111,14 +90,6 @@ public class SettingsController extends SettingsViewModel implements Initializab
 		});
 
 		cboDict.valueProperty().bindBidirectional(selectedDictProp);
-		cboDict.valueProperty().addListener(new ChangeListener<Dictionary>() {
-			@Override
-			public void changed(
-					ObservableValue<? extends Dictionary> observable,
-					Dictionary oldValue, Dictionary newValue) {
-				cboDict_ValueChanged();
-			}
-		});
 		cboDict.setConverter(new StringConverter<Dictionary>() {
             @Override
             public String toString(Dictionary dict) {
@@ -131,35 +102,12 @@ public class SettingsController extends SettingsViewModel implements Initializab
 			}
 		});
 
-		langList = FXCollections.observableArrayList(langDao.getData());
-		
-		cboLang.setItems(langList);
-		cboTextbook.setItems(textbookList);
-		cboDict.setItems(dictList);
-		
-		setSelectedLang(langList.get(1));
+		langList = FXCollections.observableArrayList(langList);
+		dictList = FXCollections.observableArrayList(dictList);
+		textbookList = FXCollections.observableArrayList(textbookList);
+		cboLang.setItems((ObservableList<Language>)langList);
+		cboDict.setItems((ObservableList<Dictionary>)dictList);
+		cboTextbook.setItems((ObservableList<Textbook>)textbookList);		
+		init();
 	}
-	
-	private void cboLang_ValueChanged() {
-		if (selectedLang == null) return;
-		int langid = selectedLang.getId();
-		textbookList.setAll(textbookDao.getDataByLang(langid));
-		
-		setSelectedTextbook(textbookList.get(0));
-		dictList.setAll(dictDao.getDataByLang(langid));
-		setSelectedDict(dictList.get(0));
-	}
-	
-	private void cboTextbook_ValueChanged() {
-//		if (selectedtextbook == null) return;
-//		Book id2 = selectedtextbook.getId();
-//		updatebook(id2);
-	}
-	
-	private void cboDict_ValueChanged() {
-//		if (selectedtextbook == null) return;
-//		Book id2 = selectedtextbook.getId();
-//		updatebook(id2);
-	}
-
 }

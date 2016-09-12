@@ -6,6 +6,7 @@ import java.net.URLEncoder;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,65 +32,69 @@ import lombok.Getter;
 public class SettingsViewModel extends Model {
 	
 	@Autowired
-	protected IUserSettingService usersettingDao;
+	private IUserSettingService usersettingDao;
 	@Autowired @Qualifier("languageDao")
-	protected ILanguageService langDao;
+	private ILanguageService langDao;
 	@Autowired @Qualifier("dictionaryDao")
-	protected IDictionaryService dictDao;
+	private IDictionaryService dictDao;
 	@Autowired
-	protected ITextbookService textbookDao;
+	private ITextbookService textbookDao;
 
 	@Getter
-	private String word;
+	protected String word;
 	@Getter
-	private List<Language> lstLanguages;
+	protected List<Language> langList = new ArrayList<>();
 	@Getter
-	private List<Dictionary> lstDictionaries;
+	protected List<Dictionary> dictList = new ArrayList<>();
 	@Getter
-	private List<Textbook> lstTextbooks;
+	protected List<Textbook> textbookList = new ArrayList<>();
 	@Getter
-	private int selectedLangIndex;
+	protected Language selectedLang;
 	@Getter
-	private int selectedDictIndex;
+	protected Dictionary selectedDict;
 	@Getter
-	private int selectedTextbookIndex;
-	@Getter
-	public Language selectedLang;
-	@Getter
-	public Dictionary selectedDict;
-	@Getter
-	public Textbook selectedTextbook;
+	protected Textbook selectedTextbook;
 
 	private Map<String, String> escapes = new HashMap<String, String>() {{
 		put("<delete>", ""); put("\\t", "\t");
 		put("\\r", "\r"); put("\\n", "\n");
 	}};
+	
+	public void init() {
+		langList.addAll(langDao.getData());
+		int langid = usersettingDao.getData().getUslangid();
+		dictList.clear();
+		dictList.addAll(dictDao.getDataByLang(langid));
+		textbookList.clear();
+		textbookList.addAll(textbookDao.getDataByLang(langid));
+		Language lang = langList.stream().filter(o -> o.getId() == langid).findFirst()
+				.orElse(langList.get(0));
+		setSelectedLang(lang);
+		setWord("一人");
+	}
 
 	public void setWord(String word) {
 		firePropertyChange("word", this.word, this.word = word);
 	}
 
-	public void setSelectedLangIndex(int selectedLangIndex) {
-		firePropertyChange("selectedLangIndex", this.selectedLangIndex, this.selectedLangIndex = selectedLangIndex);
-	}
-
-	public void setSelectedDictIndex(int selectedDictIndex) {
-		firePropertyChange("selectedDictIndex", this.selectedDictIndex, this.selectedDictIndex = selectedDictIndex);
-	}
-
-	public void setSelectedTextbookIndex(int selectedTextbookIndex) {
-		firePropertyChange("selectedTextbookIndex", this.selectedTextbookIndex, this.selectedTextbookIndex = selectedTextbookIndex);
-	}
-	
 	public void setSelectedLang(Language selectedLang) {
+		if(selectedLang == null) return;
 		firePropertyChange("selectedLang", this.selectedLang, this.selectedLang = selectedLang);
+		Dictionary dict = dictList.stream().filter(o -> o.getId() == selectedLang.getUsdictid())
+				.findFirst().orElse(dictList.get(0));
+		setSelectedDict(dict);
+		Textbook textbook = textbookList.stream().filter(o -> o.getId() == selectedLang.getUstextbookid())
+				.findFirst().orElse(textbookList.get(0));
+		setSelectedTextbook(textbook);
 	}
 	 
 	public void setSelectedDict(Dictionary selectedDict) {
+		if(selectedDict == null) return;
 		firePropertyChange("selectedDict", this.selectedDict, this.selectedDict = selectedDict);
 	}
 	 
 	public void setSelectedTextbook(Textbook selectedTextbook) {
+		if(selectedTextbook == null) return;
 		firePropertyChange("selectedTextbook", this.selectedTextbook, this.selectedTextbook = selectedTextbook);
 	}
 

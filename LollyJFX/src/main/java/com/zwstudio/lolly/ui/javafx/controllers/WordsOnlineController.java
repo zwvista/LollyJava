@@ -47,9 +47,6 @@ public class WordsOnlineController extends SettingsViewModel implements Initiali
     @FXML
     private ComboBox<Dictionary> cboDict;
     
-    private ObservableList<Language> langList;
-    private ObservableList<Dictionary> dictList = FXCollections.observableArrayList();
-    
     private JavaBeanObjectProperty<Language> selectedLangProp;
     private JavaBeanObjectProperty<Dictionary> selectedDictProp;
     private JavaBeanStringProperty wordProp;
@@ -71,13 +68,6 @@ public class WordsOnlineController extends SettingsViewModel implements Initiali
 		tfWord.textProperty().bindBidirectional(wordProp);
 
 		cboLang.valueProperty().bindBidirectional(selectedLangProp);
-		cboLang.valueProperty().addListener(new ChangeListener<Language>() {
-			@Override
-			public void changed(ObservableValue<? extends Language> observable,
-					Language oldValue, Language newValue) {
-				cboLang_ValueChanged();
-			}
-		});
 		cboLang.setConverter(new StringConverter<Language>() {
             @Override
             public String toString(Language lang) {
@@ -91,14 +81,6 @@ public class WordsOnlineController extends SettingsViewModel implements Initiali
 		});
 
 		cboDict.valueProperty().bindBidirectional(selectedDictProp);
-		cboDict.valueProperty().addListener(new ChangeListener<Dictionary>() {
-			@Override
-			public void changed(
-					ObservableValue<? extends Dictionary> observable,
-					Dictionary oldValue, Dictionary newValue) {
-				cboDict_ValueChanged();
-			}
-		});
 		cboDict.setConverter(new StringConverter<Dictionary>() {
             @Override
             public String toString(Dictionary dict) {
@@ -121,38 +103,25 @@ public class WordsOnlineController extends SettingsViewModel implements Initiali
 			}
 		});
 
-		langList = FXCollections.observableArrayList(langDao.getData());
-		
-		cboLang.setItems(langList);
-		cboDict.setItems(dictList);
-		
-		setSelectedLang(langList.get(1));
-		setWord("一人");
-	}
-	
-	private void cboLang_ValueChanged() {
-		if (selectedLang == null) return;
-		dictList.setAll(dictDao.getDataByLang(selectedLang.getId()));
-		setSelectedDict(dictList.get(0));
-	}
-	
-	private void cboDict_ValueChanged() {
-//		if (selectedDict == null) return;
-//		DictionaryId id2 = selectedDict.getId();
-//		updateDict(id2);
+		langList = FXCollections.observableArrayList(langList);
+		dictList = FXCollections.observableArrayList(dictList);
+		textbookList = FXCollections.observableArrayList(textbookList);
+		cboLang.setItems((ObservableList<Language>)langList);
+		cboDict.setItems((ObservableList<Dictionary>)dictList);		
+		init();
 	}
 	
     @FXML
     public void btnSearch_tfWord_OnAction(ActionEvent event) {
     	wvDictOffline.setVisible(false);
-    	String url = getUrlByWord(word);
+    	String url = getUrlByWord(getWord());
     	wvDictOnline.getEngine().load(url);
     }
     
     private void wvDictOnline_succeeded(String html) {
     	if(!selectedDict.getDicttypename().equals("OFFLINE-ONLINE")) return;
     	try {
-			html = extractFromHtml(html, word);
+			html = extractFromHtml(html, getWord());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

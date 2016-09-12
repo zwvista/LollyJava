@@ -94,11 +94,6 @@ public class LollyFrame extends JFrame {
 		pnlBottom.add(lblLanguage);
 		
 		cmbLang = new JComboBox();
-		cmbLang.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				controller.cmbLang_actionPerformed();
-			}
-		});
 		lblLanguage.setLabelFor(cmbLang);
 		pnlBottom.add(cmbLang);
 		
@@ -106,11 +101,6 @@ public class LollyFrame extends JFrame {
 		pnlBottom.add(lblDictionary);
 		
 		cmbDict = new JComboBox();
-		cmbDict.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				controller.cmbDict_actionPerformed();
-			}
-		});
 		lblDictionary.setLabelFor(cmbDict);
 		pnlBottom.add(cmbDict);
 		setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{pnlBottom, getContentPane(), pnlTop, textWord, btnSearch, lblLanguage, cmbLang, lblDictionary, cmbDict}));
