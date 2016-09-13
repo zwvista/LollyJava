@@ -18,6 +18,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.util.Pair;
 import javafx.util.StringConverter;
 
 @Controller
@@ -33,21 +34,25 @@ public class SettingsController extends SettingsViewModel implements Initializab
     @FXML
     private CheckBox chkTo;
     @FXML
-    private ComboBox<String> cboUnitFrom;
+    private ComboBox<Integer> cboUnitFrom;
     @FXML
-    private ComboBox<String> cboUnitTo;
+    private ComboBox<Integer> cboUnitTo;
     @FXML
-    private ComboBox<String> cboPartFrom;
+    private ComboBox<Pair<Integer, String>> cboPartFrom;
     @FXML
-    private ComboBox<String> cboPartTo;
+    private ComboBox<Pair<Integer, String>> cboPartTo;
     @FXML
-    private Label lblUntsInAllFrom;
+    private Label lblUnitsInAllFrom;
     @FXML
-    private Label lblUntsInAllTo;
+    private Label lblUnitsInAllTo;
 
     private JavaBeanObjectProperty<Language> selectedLangProp;
     private JavaBeanObjectProperty<Textbook> selectedTextbookProp;
     private JavaBeanObjectProperty<Dictionary> selectedDictProp;
+    private JavaBeanObjectProperty<Integer> selectedUnitFromProp;
+    private JavaBeanObjectProperty<Integer> selectedUnitToProp;
+    private JavaBeanObjectProperty<Pair<Integer, String>> selectedPartFromProp;
+    private JavaBeanObjectProperty<Pair<Integer, String>> selectedPartToProp;
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -59,6 +64,10 @@ public class SettingsController extends SettingsViewModel implements Initializab
 			selectedLangProp = JavaBeanObjectPropertyBuilder.create().bean(this).name("selectedLang").build();
 			selectedTextbookProp = JavaBeanObjectPropertyBuilder.create().bean(this).name("selectedTextbook").build();
 			selectedDictProp = JavaBeanObjectPropertyBuilder.create().bean(this).name("selectedDict").build();
+			selectedUnitFromProp = JavaBeanObjectPropertyBuilder.create().bean(this).name("selectedUnitFrom").build();
+			selectedUnitToProp = JavaBeanObjectPropertyBuilder.create().bean(this).name("selectedUnitTo").build();
+			selectedPartFromProp = JavaBeanObjectPropertyBuilder.create().bean(this).name("selectedPartFrom").build();
+			selectedPartToProp = JavaBeanObjectPropertyBuilder.create().bean(this).name("selectedPartTo").build();
 		} catch (NoSuchMethodException e) {
 			e.printStackTrace();
 		}
@@ -79,8 +88,8 @@ public class SettingsController extends SettingsViewModel implements Initializab
 		cboTextbook.valueProperty().bindBidirectional(selectedTextbookProp);
 		cboTextbook.setConverter(new StringConverter<Textbook>() {
             @Override
-            public String toString(Textbook book) {
-            	return book == null ? null : book.getTextbookname();
+            public String toString(Textbook textbook) {
+            	return textbook == null ? null : textbook.getTextbookname();
             }
 
 			@Override
@@ -102,12 +111,66 @@ public class SettingsController extends SettingsViewModel implements Initializab
 			}
 		});
 
+		StringConverter<Integer> intConverter2 = new StringConverter<Integer>() {
+            @Override
+            public String toString(Integer unit) {
+            	return unit == null ? null : unit.toString();
+            }
+
+			@Override
+			public Integer fromString(String unit) {
+				return Integer.valueOf(unit);
+			}
+		};
+		cboUnitFrom.valueProperty().bindBidirectional(selectedUnitFromProp);
+		cboUnitFrom.setConverter(intConverter2);
+		cboUnitTo.valueProperty().bindBidirectional(selectedUnitToProp);
+		cboUnitTo.setConverter(intConverter2);
+		
+		StringConverter<Textbook> textbookConverter = new StringConverter<Textbook>() {
+			@Override
+			public String toString(Textbook textbook) {
+				return textbook == null ? null : String.format("(%d in all)", textbook.getUnits());
+			}
+
+			@Override
+			public Textbook fromString(String string) {
+				return null;
+			}
+		};
+		lblUnitsInAllFrom.textProperty().bindBidirectional(selectedTextbookProp, textbookConverter);
+		lblUnitsInAllTo.textProperty().bindBidirectional(selectedTextbookProp, textbookConverter);
+
+		StringConverter<Pair<Integer, String>> intConverter = new StringConverter<Pair<Integer, String>>() {
+            @Override
+            public String toString(Pair<Integer, String> part) {
+            	return part == null ? null : part.getValue();
+            }
+
+			@Override
+			public Pair<Integer, String> fromString(String part) {
+				return null;
+			}
+		};
+		cboPartFrom.valueProperty().bindBidirectional(selectedPartFromProp);
+		cboPartFrom.setConverter(intConverter);
+		cboPartTo.valueProperty().bindBidirectional(selectedPartToProp);
+		cboPartTo.setConverter(intConverter);
+
 		langList = FXCollections.observableArrayList(langList);
 		dictList = FXCollections.observableArrayList(dictList);
 		textbookList = FXCollections.observableArrayList(textbookList);
+		unitList = FXCollections.observableArrayList(unitList);
+		partList = FXCollections.observableArrayList(partList);
+		
 		cboLang.setItems((ObservableList<Language>)langList);
 		cboDict.setItems((ObservableList<Dictionary>)dictList);
-		cboTextbook.setItems((ObservableList<Textbook>)textbookList);		
+		cboTextbook.setItems((ObservableList<Textbook>)textbookList);
+		cboUnitFrom.setItems((ObservableList<Integer>)unitList);
+		cboUnitTo.setItems((ObservableList<Integer>)unitList);
+		cboPartFrom.setItems((ObservableList<Pair<Integer, String>>)partList);
+		cboPartTo.setItems((ObservableList<Pair<Integer, String>>)partList);
+		
 		init();
 	}
 }

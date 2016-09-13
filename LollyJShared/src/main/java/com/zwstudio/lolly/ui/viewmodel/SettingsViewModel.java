@@ -13,6 +13,8 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -26,6 +28,7 @@ import com.zwstudio.lolly.services.ILanguageService;
 import com.zwstudio.lolly.services.ITextbookService;
 import com.zwstudio.lolly.services.IUserSettingService;
 
+import javafx.util.Pair;
 import lombok.Getter;
 
 @SuppressWarnings("serial")
@@ -49,11 +52,23 @@ public class SettingsViewModel extends Model {
 	@Getter
 	protected List<Textbook> textbookList = new ArrayList<>();
 	@Getter
+	protected List<Integer> unitList = new ArrayList<>();
+	@Getter
+	protected List<Pair<Integer, String>> partList = new ArrayList<>();
+	@Getter
 	protected Language selectedLang;
 	@Getter
 	protected Dictionary selectedDict;
 	@Getter
 	protected Textbook selectedTextbook;
+	@Getter
+	protected Integer selectedUnitFrom;
+	@Getter
+	protected Integer selectedUnitTo;
+	@Getter
+	protected Pair<Integer, String> selectedPartFrom;
+	@Getter
+	protected Pair<Integer, String> selectedPartTo;
 
 	private Map<String, String> escapes = new HashMap<String, String>() {{
 		put("<delete>", ""); put("\\t", "\t");
@@ -63,12 +78,8 @@ public class SettingsViewModel extends Model {
 	public void init() {
 		langList.addAll(langDao.getData());
 		int langid = usersettingDao.getData().getUslangid();
-		dictList.clear();
-		dictList.addAll(dictDao.getDataByLang(langid));
-		textbookList.clear();
-		textbookList.addAll(textbookDao.getDataByLang(langid));
-		Language lang = langList.stream().filter(o -> o.getId() == langid).findFirst()
-				.orElse(langList.get(0));
+		Language lang = langList.stream().filter(o -> o.getId() == langid)
+				.findFirst().orElse(langList.get(0));
 		setSelectedLang(lang);
 		setWord("一人");
 	}
@@ -80,22 +91,62 @@ public class SettingsViewModel extends Model {
 	public void setSelectedLang(Language selectedLang) {
 		if(selectedLang == null) return;
 		firePropertyChange("selectedLang", this.selectedLang, this.selectedLang = selectedLang);
+		int langid = selectedLang.getId();
+		
+		dictList.clear();
+		dictList.addAll(dictDao.getDataByLang(langid));
 		Dictionary dict = dictList.stream().filter(o -> o.getId() == selectedLang.getUsdictid())
 				.findFirst().orElse(dictList.get(0));
 		setSelectedDict(dict);
+
+		textbookList.clear();
+		textbookList.addAll(textbookDao.getDataByLang(langid));
 		Textbook textbook = textbookList.stream().filter(o -> o.getId() == selectedLang.getUstextbookid())
 				.findFirst().orElse(textbookList.get(0));
 		setSelectedTextbook(textbook);
 	}
-	 
+
 	public void setSelectedDict(Dictionary selectedDict) {
 		if(selectedDict == null) return;
 		firePropertyChange("selectedDict", this.selectedDict, this.selectedDict = selectedDict);
 	}
-	 
+
 	public void setSelectedTextbook(Textbook selectedTextbook) {
 		if(selectedTextbook == null) return;
 		firePropertyChange("selectedTextbook", this.selectedTextbook, this.selectedTextbook = selectedTextbook);
+		unitList.clear();
+		unitList.addAll(IntStream.rangeClosed(1, selectedTextbook.getUnits())
+				.boxed().collect(Collectors.toList()));
+		setSelectedUnitFrom(selectedTextbook.getUsunitfrom());
+		setSelectedUnitTo(selectedTextbook.getUsunitto());
+		String[] partNames = selectedTextbook.getParts().split(" ");
+		partList.clear();
+		partList.addAll(IntStream.rangeClosed(1, partNames.length)
+				.mapToObj(i -> new Pair<Integer, String>(i, partNames[i - 1])).collect(Collectors.toList()));
+		Integer i = selectedTextbook.getUspartfrom();
+		setSelectedPartFrom(new Pair<Integer, String>(i, partNames[i - 1]));
+		i = selectedTextbook.getUspartto();
+		setSelectedPartTo(new Pair<Integer, String>(i, partNames[i - 1]));
+	}
+
+	public void setSelectedUnitFrom(Integer selectedUnitFrom) {
+		if(selectedUnitFrom == null) return;
+		firePropertyChange("selectedUnitFrom", this.selectedUnitFrom, this.selectedUnitFrom = selectedUnitFrom);
+	}
+
+	public void setSelectedUnitTo(Integer selectedUnitTo) {
+		if(selectedUnitTo == null) return;
+		firePropertyChange("selectedUnitTo", this.selectedUnitTo, this.selectedUnitTo = selectedUnitTo);
+	}
+
+	public void setSelectedPartFrom(Pair<Integer, String> selectedPartFrom) {
+		if(selectedPartFrom == null) return;
+		firePropertyChange("selectedPartFrom", this.selectedPartFrom, this.selectedPartFrom = selectedPartFrom);
+	}
+
+	public void setSelectedPartTo(Pair<Integer, String> selectedPartTo) {
+		if(selectedPartTo == null) return;
+		firePropertyChange("selectedPartTo", this.selectedPartTo, this.selectedPartTo = selectedPartTo);
 	}
 
 	protected String getUrlByWord(String word) {
@@ -108,7 +159,7 @@ public class SettingsViewModel extends Model {
 		System.out.println(url);
 		return url;
 	}
-	
+
 	private String doTransform(String text, String reg, String replacer) {
 		for(Entry<String, String> entry : escapes.entrySet())
 			replacer = replacer.replace(entry.getKey(), entry.getValue());
@@ -116,7 +167,7 @@ public class SettingsViewModel extends Model {
 		
 		return text;
 	}
-	
+
 	protected String extractFromHtml(String html, String word) throws IOException {
 		String transform = getSelectedDict().getTransformWin();
 		String[] arr = null;
