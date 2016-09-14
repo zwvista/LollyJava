@@ -5,21 +5,21 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.zwstudio.lolly.ui.javafx.controllers.SettingsController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="601.0" stylesheets="@Main.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.zwstudio.lolly.ui.javafx.controllers.SettingsController">
    <children>
-      <Label layoutX="48.0" layoutY="29.0" text="Language:" />
-      <ComboBox fx:id="cboLang" layoutX="125.0" layoutY="25.0" prefWidth="150.0" />
-      <Label layoutX="48.0" layoutY="125.0" text="Textbook:" />
-      <ComboBox fx:id="cboTextbook" layoutX="125.0" layoutY="121.0" prefWidth="150.0" />
-      <Label layoutX="48.0" layoutY="162.0" text="Units:" />
-      <CheckBox fx:id="chkTo" layoutX="48.0" layoutY="203.0" mnemonicParsing="false" text="To" />
-      <ComboBox fx:id="cboPartFrom" layoutX="379.0" layoutY="158.0" prefWidth="150.0" />
-      <ComboBox fx:id="cboPartTo" layoutX="379.0" layoutY="200.0" prefWidth="150.0" />
-      <ComboBox fx:id="cboUnitFrom" layoutX="125.0" layoutY="158.0" prefWidth="150.0" />
-      <ComboBox fx:id="cboUnitTo" layoutX="125.0" layoutY="200.0" prefWidth="150.0" />
-      <Label layoutX="48.0" layoutY="74.0" text="Dictionary:" />
-      <ComboBox fx:id="cboDict" layoutX="125.0" layoutY="70.0" prefWidth="150.0" />
-      <Label fx:id="lblUnitsInAllFrom" layoutX="300.0" layoutY="162.0" text="(100 in all)" />
-      <Label fx:id="lblUnitsInAllTo" layoutX="300.0" layoutY="204.0" text="(100 in all)" />
+      <Label layoutX="34.0" layoutY="29.0" text="Language:" />
+      <ComboBox fx:id="cboLang" layoutX="125.0" layoutY="25.0" prefWidth="250.0" />
+      <Label layoutX="34.0" layoutY="74.0" text="Dictionary:" />
+      <ComboBox fx:id="cboDict" layoutX="125.0" layoutY="70.0" prefWidth="250.0" />
+      <Label layoutX="34.0" layoutY="118.0" text="Textbook:" />
+      <ComboBox fx:id="cboTextbook" layoutX="125.0" layoutY="115.0" prefWidth="250.0" />
+      <Label layoutX="34.0" layoutY="164.0" text="Units:" />
+      <ComboBox fx:id="cboUnitFrom" layoutX="125.0" layoutY="160.0" prefWidth="150.0" />
+      <Label fx:id="lblUnitsInAllFrom" layoutX="289.0" layoutY="164.0" text="(100 in all)" />
+      <ComboBox fx:id="cboPartFrom" layoutX="379.0" layoutY="160.0" prefWidth="150.0" />
+      <CheckBox fx:id="chkTo" layoutX="34.0" layoutY="210.0" mnemonicParsing="false" text="To" />
+      <ComboBox fx:id="cboUnitTo" layoutX="125.0" layoutY="205.0" prefWidth="150.0" />
+      <Label fx:id="lblUnitsInAllTo" layoutX="289.0" layoutY="211.0" text="(100 in all)" />
+      <ComboBox fx:id="cboPartTo" layoutX="379.0" layoutY="205.0" prefWidth="150.0" />
    </children>
 </AnchorPane>

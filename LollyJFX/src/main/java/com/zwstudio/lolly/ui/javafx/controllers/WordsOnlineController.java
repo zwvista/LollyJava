@@ -107,7 +107,7 @@ public class WordsOnlineController extends SettingsViewModel implements Initiali
 		dictList = FXCollections.observableArrayList(dictList);
 		textbookList = FXCollections.observableArrayList(textbookList);
 		cboLang.setItems((ObservableList<Language>)langList);
-		cboDict.setItems((ObservableList<Dictionary>)dictList);		
+		cboDict.setItems((ObservableList<Dictionary>)dictList);	
 		init();
 	}
 	

@@ -74,7 +74,7 @@ public class LollyApp extends Application {
 		stage.show();
 	}
 	
-	public static void showSelectUnits() throws IOException {
+	public static void showSettings() throws IOException {
 		SettingsController ctl = context.getBean(SettingsController.class);
 		Parent page = load("views/Settings.fxml");
 		Scene scene = new Scene(page);

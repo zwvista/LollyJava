@@ -35,7 +35,7 @@ public class MainController implements Initializable {
     @FXML
     private void handleSelectUnits() {
     	try {
-			LollyApp.showSelectUnits();
+			LollyApp.showSettings();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
