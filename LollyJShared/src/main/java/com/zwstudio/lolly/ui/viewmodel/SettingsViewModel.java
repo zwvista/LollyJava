@@ -28,7 +28,6 @@ import com.zwstudio.lolly.services.ILanguageService;
 import com.zwstudio.lolly.services.ITextbookService;
 import com.zwstudio.lolly.services.IUserSettingService;
 
-import javafx.util.Pair;
 import lombok.Getter;
 
 @SuppressWarnings("serial")
@@ -54,7 +53,8 @@ public class SettingsViewModel extends Model {
 	@Getter
 	protected List<Integer> unitList = new ArrayList<>();
 	@Getter
-	protected List<Pair<Integer, String>> partList = new ArrayList<>();
+	protected List<Integer> partList = new ArrayList<>();
+	protected String[] partNames;
 	@Getter
 	protected Language selectedLang;
 	@Getter
@@ -66,9 +66,9 @@ public class SettingsViewModel extends Model {
 	@Getter
 	protected Integer selectedUnitTo;
 	@Getter
-	protected Pair<Integer, String> selectedPartFrom;
+	protected Integer selectedPartFrom;
 	@Getter
-	protected Pair<Integer, String> selectedPartTo;
+	protected Integer selectedPartTo;
 
 	private Map<String, String> escapes = new HashMap<String, String>() {{
 		put("<delete>", ""); put("\\t", "\t");
@@ -107,7 +107,6 @@ public class SettingsViewModel extends Model {
 	}
 
 	public void setSelectedDict(Dictionary selectedDict) {
-		if(selectedDict == null) return;
 		firePropertyChange("selectedDict", this.selectedDict, this.selectedDict = selectedDict);
 	}
 
@@ -117,35 +116,33 @@ public class SettingsViewModel extends Model {
 		unitList.clear();
 		unitList.addAll(IntStream.rangeClosed(1, selectedTextbook.getUnits())
 				.boxed().collect(Collectors.toList()));
+		setSelectedUnitFrom(null);
 		setSelectedUnitFrom(selectedTextbook.getUsunitfrom());
+		setSelectedUnitTo(null);
 		setSelectedUnitTo(selectedTextbook.getUsunitto());
-		String[] partNames = selectedTextbook.getParts().split(" ");
+		partNames = selectedTextbook.getParts().split(" ");
 		partList.clear();
 		partList.addAll(IntStream.rangeClosed(1, partNames.length)
-				.mapToObj(i -> new Pair<Integer, String>(i, partNames[i - 1])).collect(Collectors.toList()));
-		Integer i = selectedTextbook.getUspartfrom();
-		setSelectedPartFrom(new Pair<Integer, String>(i, partNames[i - 1]));
-		i = selectedTextbook.getUspartto();
-		setSelectedPartTo(new Pair<Integer, String>(i, partNames[i - 1]));
+				.boxed().collect(Collectors.toList()));
+		setSelectedPartFrom(null);
+		setSelectedPartFrom(partList.get(selectedTextbook.getUspartfrom() - 1));
+		setSelectedPartTo(null);
+		setSelectedPartTo(partList.get(selectedTextbook.getUspartto() - 1));
 	}
 
 	public void setSelectedUnitFrom(Integer selectedUnitFrom) {
-		if(selectedUnitFrom == null) return;
 		firePropertyChange("selectedUnitFrom", this.selectedUnitFrom, this.selectedUnitFrom = selectedUnitFrom);
 	}
 
 	public void setSelectedUnitTo(Integer selectedUnitTo) {
-		if(selectedUnitTo == null) return;
 		firePropertyChange("selectedUnitTo", this.selectedUnitTo, this.selectedUnitTo = selectedUnitTo);
 	}
 
-	public void setSelectedPartFrom(Pair<Integer, String> selectedPartFrom) {
-		if(selectedPartFrom == null) return;
+	public void setSelectedPartFrom(Integer selectedPartFrom) {
 		firePropertyChange("selectedPartFrom", this.selectedPartFrom, this.selectedPartFrom = selectedPartFrom);
 	}
 
-	public void setSelectedPartTo(Pair<Integer, String> selectedPartTo) {
-		if(selectedPartTo == null) return;
+	public void setSelectedPartTo(Integer selectedPartTo) {
 		firePropertyChange("selectedPartTo", this.selectedPartTo, this.selectedPartTo = selectedPartTo);
 	}
 

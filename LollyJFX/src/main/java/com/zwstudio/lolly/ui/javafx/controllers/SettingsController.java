@@ -18,7 +18,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.util.Pair;
 import javafx.util.StringConverter;
 
 @Controller
@@ -38,9 +37,9 @@ public class SettingsController extends SettingsViewModel implements Initializab
     @FXML
     private ComboBox<Integer> cboUnitTo;
     @FXML
-    private ComboBox<Pair<Integer, String>> cboPartFrom;
+    private ComboBox<Integer> cboPartFrom;
     @FXML
-    private ComboBox<Pair<Integer, String>> cboPartTo;
+    private ComboBox<Integer> cboPartTo;
     @FXML
     private Label lblUnitsInAllFrom;
     @FXML
@@ -51,8 +50,8 @@ public class SettingsController extends SettingsViewModel implements Initializab
     private JavaBeanObjectProperty<Dictionary> selectedDictProp;
     private JavaBeanObjectProperty<Integer> selectedUnitFromProp;
     private JavaBeanObjectProperty<Integer> selectedUnitToProp;
-    private JavaBeanObjectProperty<Pair<Integer, String>> selectedPartFromProp;
-    private JavaBeanObjectProperty<Pair<Integer, String>> selectedPartToProp;
+    private JavaBeanObjectProperty<Integer> selectedPartFromProp;
+    private JavaBeanObjectProperty<Integer> selectedPartToProp;
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -111,21 +110,8 @@ public class SettingsController extends SettingsViewModel implements Initializab
 			}
 		});
 
-		StringConverter<Integer> intConverter2 = new StringConverter<Integer>() {
-            @Override
-            public String toString(Integer unit) {
-            	return unit == null ? null : unit.toString();
-            }
-
-			@Override
-			public Integer fromString(String unit) {
-				return Integer.valueOf(unit);
-			}
-		};
 		cboUnitFrom.valueProperty().bindBidirectional(selectedUnitFromProp);
-		cboUnitFrom.setConverter(intConverter2);
 		cboUnitTo.valueProperty().bindBidirectional(selectedUnitToProp);
-		cboUnitTo.setConverter(intConverter2);
 		
 		StringConverter<Textbook> textbookConverter = new StringConverter<Textbook>() {
 			@Override
@@ -141,21 +127,21 @@ public class SettingsController extends SettingsViewModel implements Initializab
 		lblUnitsInAllFrom.textProperty().bindBidirectional(selectedTextbookProp, textbookConverter);
 		lblUnitsInAllTo.textProperty().bindBidirectional(selectedTextbookProp, textbookConverter);
 
-		StringConverter<Pair<Integer, String>> intConverter = new StringConverter<Pair<Integer, String>>() {
+		StringConverter<Integer> partConverter = new StringConverter<Integer>() {
             @Override
-            public String toString(Pair<Integer, String> part) {
-            	return part == null ? null : part.getValue();
+            public String toString(Integer part) {
+            	return part == null ? null : partNames[part - 1];
             }
 
 			@Override
-			public Pair<Integer, String> fromString(String part) {
+			public Integer fromString(String part) {
 				return null;
 			}
 		};
 		cboPartFrom.valueProperty().bindBidirectional(selectedPartFromProp);
-		cboPartFrom.setConverter(intConverter);
+		cboPartFrom.setConverter(partConverter);
 		cboPartTo.valueProperty().bindBidirectional(selectedPartToProp);
-		cboPartTo.setConverter(intConverter);
+		cboPartTo.setConverter(partConverter);
 
 		langList = FXCollections.observableArrayList(langList);
 		dictList = FXCollections.observableArrayList(dictList);
@@ -168,8 +154,8 @@ public class SettingsController extends SettingsViewModel implements Initializab
 		cboTextbook.setItems((ObservableList<Textbook>)textbookList);
 		cboUnitFrom.setItems((ObservableList<Integer>)unitList);
 		cboUnitTo.setItems((ObservableList<Integer>)unitList);
-		cboPartFrom.setItems((ObservableList<Pair<Integer, String>>)partList);
-		cboPartTo.setItems((ObservableList<Pair<Integer, String>>)partList);
+		cboPartFrom.setItems((ObservableList<Integer>)partList);
+		cboPartTo.setItems((ObservableList<Integer>)partList);
 		
 		init();
 	}
