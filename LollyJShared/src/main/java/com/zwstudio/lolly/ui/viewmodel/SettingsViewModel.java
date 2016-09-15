@@ -69,6 +69,8 @@ public class SettingsViewModel extends Model {
 	protected Integer selectedPartFrom;
 	@Getter
 	protected Integer selectedPartTo;
+	@Getter
+	protected Boolean unitPartToSet;
 
 	private Map<String, String> escapes = new HashMap<String, String>() {{
 		put("<delete>", ""); put("\\t", "\t");
@@ -128,22 +130,50 @@ public class SettingsViewModel extends Model {
 		setSelectedPartFrom(partList.get(selectedTextbook.getUspartfrom() - 1));
 		setSelectedPartTo(null);
 		setSelectedPartTo(partList.get(selectedTextbook.getUspartto() - 1));
+		
+		setUnitPartToSet(!(selectedTextbook.getUsunitfrom() == selectedTextbook.getUsunitto() &&
+				selectedTextbook.getUspartfrom() == selectedTextbook.getUspartto()));
 	}
 
 	public void setSelectedUnitFrom(Integer selectedUnitFrom) {
 		firePropertyChange("selectedUnitFrom", this.selectedUnitFrom, this.selectedUnitFrom = selectedUnitFrom);
+		if(!isValidUnitPartFromTo() || unitPartToSet != null && !unitPartToSet) updateUnitPartTo();
 	}
 
 	public void setSelectedUnitTo(Integer selectedUnitTo) {
 		firePropertyChange("selectedUnitTo", this.selectedUnitTo, this.selectedUnitTo = selectedUnitTo);
+		if(!isValidUnitPartFromTo()) updateUnitPartFrom();
 	}
 
 	public void setSelectedPartFrom(Integer selectedPartFrom) {
 		firePropertyChange("selectedPartFrom", this.selectedPartFrom, this.selectedPartFrom = selectedPartFrom);
+		if(!isValidUnitPartFromTo() || unitPartToSet != null && !unitPartToSet) updateUnitPartTo();
 	}
 
 	public void setSelectedPartTo(Integer selectedPartTo) {
 		firePropertyChange("selectedPartTo", this.selectedPartTo, this.selectedPartTo = selectedPartTo);
+		if(!isValidUnitPartFromTo()) updateUnitPartFrom();
+	}
+
+	public void setUnitPartToSet(Boolean unitPartToSet) {
+		firePropertyChange("unitPartToSet", this.unitPartToSet, this.unitPartToSet = unitPartToSet);
+		if(unitPartToSet != null && !unitPartToSet) updateUnitPartTo();
+	}
+	
+	private boolean isValidUnitPartFromTo() {
+		return selectedUnitFrom == null || selectedPartFrom == null ||
+				selectedUnitTo == null || selectedPartTo == null || 
+				selectedUnitFrom * 10 + selectedPartFrom <= selectedUnitTo * 10 + selectedPartTo;
+	}
+	
+	private void updateUnitPartFrom() {
+		setSelectedUnitFrom(selectedUnitTo);
+		setSelectedPartFrom(selectedPartTo);
+	}
+	
+	private void updateUnitPartTo() {
+		setSelectedUnitTo(selectedUnitFrom);
+		setSelectedPartTo(selectedPartFrom);
 	}
 
 	protected String getUrlByWord(String word) {

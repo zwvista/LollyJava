@@ -53,6 +53,7 @@ public class SettingsController extends SettingsViewModel implements Initializab
 	private JavaBeanObjectProperty<Integer> selectedUnitToProp;
 	private JavaBeanObjectProperty<Integer> selectedPartFromProp;
 	private JavaBeanObjectProperty<Integer> selectedPartToProp;
+	private JavaBeanObjectProperty<Boolean> unitPartToSetProp;
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -68,6 +69,7 @@ public class SettingsController extends SettingsViewModel implements Initializab
 			selectedUnitToProp = JavaBeanObjectPropertyBuilder.create().bean(this).name("selectedUnitTo").build();
 			selectedPartFromProp = JavaBeanObjectPropertyBuilder.create().bean(this).name("selectedPartFrom").build();
 			selectedPartToProp = JavaBeanObjectPropertyBuilder.create().bean(this).name("selectedPartTo").build();
+			unitPartToSetProp = JavaBeanObjectPropertyBuilder.create().bean(this).name("unitPartToSet").build();
 		} catch (NoSuchMethodException e) {
 			e.printStackTrace();
 		}
@@ -143,6 +145,8 @@ public class SettingsController extends SettingsViewModel implements Initializab
 		cboPartFrom.setConverter(partConverter);
 		cboPartTo.valueProperty().bindBidirectional(selectedPartToProp);
 		cboPartTo.setConverter(partConverter);
+		
+		chkTo.selectedProperty().bindBidirectional(unitPartToSetProp);
 
 		langList = FXCollections.observableArrayList(langList);
 		dictList = FXCollections.observableArrayList(dictList);
@@ -160,4 +164,11 @@ public class SettingsController extends SettingsViewModel implements Initializab
 
 		init();
 	}
+
+	public void setUnitPartToSet(Boolean unitPartToSet) {
+		super.setUnitPartToSet(unitPartToSet);
+		cboUnitTo.setDisable(!unitPartToSet);
+		cboPartTo.setDisable(!unitPartToSet);
+	}
+
 }
