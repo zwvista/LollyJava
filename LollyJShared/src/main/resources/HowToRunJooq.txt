@@ -1,0 +1,8 @@
+Run > Run configurations
+Create a new Maven Build configuration and configure it like the following:
+
+Name: Jooq
+Base Directory: ${project_loc:LollyJShared}
+Goals: clean generate-sources -Pgenerate
+
+Click Run and let it go!
