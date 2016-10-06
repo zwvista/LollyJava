@@ -14,13 +14,15 @@ import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.DispatcherServlet;
 
 import com.zwstudio.lolly.util.LollyConfigHibernate;
+import com.zwstudio.lolly.util.LollyConfigJooq;
 import com.zwstudio.lolly.util.LollyConfigMyBatis;
 import com.zwstudio.lolly.util.LollyConfigSpringDataJpa;
 
 public class WebInitializer implements WebApplicationInitializer {
 	public void onStartup(ServletContext servletContext) throws ServletException {     
         AnnotationConfigWebApplicationContext ctx = new AnnotationConfigWebApplicationContext();
-        ctx.register(LollyConfigHibernate.class, LollyConfigSpringDataJpa.class, LollyConfigMyBatis.class, LollyConfigSpring.class);
+        ctx.register(LollyConfigHibernate.class, LollyConfigSpringDataJpa.class, LollyConfigMyBatis.class,
+        		LollyConfigJooq.class, LollyConfigSpring.class);
         ctx.setServletContext(servletContext);
         
         Dynamic servlet = servletContext.addServlet("dispatcher", new DispatcherServlet(ctx));

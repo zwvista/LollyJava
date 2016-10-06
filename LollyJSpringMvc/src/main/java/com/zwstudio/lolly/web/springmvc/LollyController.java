@@ -50,11 +50,16 @@ public class LollyController {
 	private ILanguageService languageService;
 	@Autowired
 	private IDictionaryService dictionaryService;
+	@Autowired
+	private ILanguageService languageService2;
+	@Autowired
+	private IDictionaryService dictionaryService2;
 	
 	public ILanguageService getLangService(String orm) {
 		return "hibernate".equals(orm) ? languageDao :
 			"jpa".equals(orm) ? languageRepository :
 			"mybatis".equals(orm) ? languageService :
+			"jooq".equals(orm) ? languageService2 :
 			null;
 	}
 	
@@ -62,6 +67,7 @@ public class LollyController {
 		return "hibernate".equals(orm) ? dictionaryDao :
 			"jpa".equals(orm) ? dictionaryRepository :
 			"mybatis".equals(orm) ? dictionaryService :
+			"jooq".equals(orm) ? dictionaryService2 :
 			null;
 	}
 	

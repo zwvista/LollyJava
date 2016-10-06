@@ -9,7 +9,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.TransactionAwareDataSourceProxy;
 
-@ComponentScan("com.zwstudio.lolly.hibernate.dao")
+@ComponentScan("com.zwstudio.lolly.jooq.service")
 public class LollyConfigJooq extends LollyConfigBase {
 	@Bean
 	public DataSourceTransactionManager transactionManager() {
@@ -21,8 +21,9 @@ public class LollyConfigJooq extends LollyConfigBase {
 	}
 	@Bean
 	public DataSourceConnectionProvider connectionProvider() {
-		return new DataSourceConnectionProvider(dataSource());
+		return new DataSourceConnectionProvider(transactionAwareDataSource());
 	}
+	@SuppressWarnings("serial")
 	@Bean
 	public DefaultConfiguration config() {
 		return new DefaultConfiguration() {{

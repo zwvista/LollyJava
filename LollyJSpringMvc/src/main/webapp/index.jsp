@@ -29,6 +29,9 @@ $(function() {
     <label class="radio-inline">
         <input type="radio" name="orm" value="mybatis"> mybatis
     </label>
+    <label class="radio-inline">
+        <input type="radio" name="orm" value="jooq"> jooq
+    </label>
 </p>
 <a href="">lolly1</a><br/>
 <a href="">lolly2</a><br/>
