@@ -2,7 +2,6 @@ package com.zwstudio.lolly.util;
 
 import org.jooq.SQLDialect;
 import org.jooq.impl.DataSourceConnectionProvider;
-import org.jooq.impl.DefaultConfiguration;
 import org.jooq.impl.DefaultDSLContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -23,16 +22,8 @@ public class LollyConfigJooq extends LollyConfigBase {
 	public DataSourceConnectionProvider connectionProvider() {
 		return new DataSourceConnectionProvider(transactionAwareDataSource());
 	}
-	@SuppressWarnings("serial")
-	@Bean
-	public DefaultConfiguration config() {
-		return new DefaultConfiguration() {{
-			setSQLDialect(SQLDialect.SQLITE);
-			setConnectionProvider(connectionProvider());
-		}};
-	}
 	@Bean
 	public DefaultDSLContext dsl() {
-		return new DefaultDSLContext(config());
+		return new DefaultDSLContext(connectionProvider(), SQLDialect.SQLITE);
 	}
 }

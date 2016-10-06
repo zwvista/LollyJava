@@ -23,12 +23,14 @@ public class LanguageService2 implements ILanguageService {
 
 	@Override
 	public List<Language> getData() {
-		return create.selectFrom(VLANGUAGES).fetchInto(Language.class);
+		return create.selectFrom(VLANGUAGES)
+				.where(VLANGUAGES.ID.gt(0))
+				.fetchInto(Language.class);
 	}
 
 	@Override
 	public Map<String, String> getIdNameMap() {
-		return create.selectFrom(VLANGUAGES).fetchInto(Language.class).stream()
+		return getData().stream()
 				.collect(Collectors.toMap(
 					(Language r) -> Integer.toString(r.getId()),
 					Language::getLangname
