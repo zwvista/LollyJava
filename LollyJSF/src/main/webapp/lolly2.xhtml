@@ -16,6 +16,10 @@ $(function() {
 </script>
 </h:head>
 <h:body>
+<p:dataTable value="#{formBean.getLangList()}" var="lang">
+    <p:column headerText="id">#{lang.id}</p:column>
+    <p:column headerText="langname">#{lang.langname}</p:column>
+</p:dataTable>
 <h:form id="form">
 	<p:panelGrid columns="2">
 		<p:outputLabel for='lang' value="Language:" />

@@ -13,11 +13,15 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script>
 $(function() {
-	$('#form\\:lang').change();
+	$('#form\\:langInner').change();
 });
 </script>
 </h:head>
 <h:body>
+<b:dataTable value="#{formBean.getLangList()}" var="lang">
+    <b:dataTableColumn value="#{lang.id}" />
+    <b:dataTableColumn value="#{lang.langname}" />
+</b:dataTable>
 <b:container>
 <h:form id="form">
 	<b:row>

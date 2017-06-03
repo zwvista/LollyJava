@@ -17,6 +17,28 @@ $(function() {
 </script>
 </h:head>
 <h:body>
+<h:dataTable value="#{formBean.getLangList()}" var="lang">
+    <h:column>
+        <f:facet name="header">id</f:facet>
+        #{lang.id}
+    </h:column>
+    <h:column>
+        <f:facet name="header">langname</f:facet>
+        #{lang.langname}
+    </h:column>
+</h:dataTable>
+<table>
+<tr>
+<th>id</th>
+<th>language</th>
+</tr>
+<ui:repeat var="lang" value="#{formBean.getLangList()}" varStatus="status">
+<tr>
+<td>#{lang.id}</td>
+<td>#{lang.langname}</td>
+</tr>
+</ui:repeat>
+</table>
 <h:form id="form">
 	<h:panelGrid columns="4">
 		<h:outputLabel for='lang' value="Language:" />
