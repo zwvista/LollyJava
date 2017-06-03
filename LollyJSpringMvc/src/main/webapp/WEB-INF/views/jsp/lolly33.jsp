@@ -38,6 +38,10 @@ angular.module('app', []).controller("lollyCtrl", ["$scope", "$http", "$sce",
 	$scope.trustSrc = function(url) {
 		return $sce.trustAsResourceUrl(url);
 	};
+	$scope.langList = [];
+	<c:forEach items="${formBean.langList}" var="lang">
+	    $scope.langList.push([id: '${lang.id}', langname: '$(lang.langname)]');                                  
+	</c:forEach>
 	$scope.redirectSearch = false;
     $scope.searchClick = function() {$scope.redirectSearch = false;};
     $scope.redirectSearchClick = function() {$scope.redirectSearch = true;};
@@ -62,6 +66,16 @@ angular.module('app', []).controller("lollyCtrl", ["$scope", "$http", "$sce",
 </script>
 </head>
 <body ng-controller="lollyCtrl" id="lollyCtrl">
+<table class="table table-striped table-bordered">
+<tr>
+<th>id</th>
+<th>language</th>
+</tr>
+<tr ng-repeat="lang in langList">
+<td>{{lang.id}}</td>
+<td>{{lang.langname}}</td>
+</tr>
+</table>
 <form:form class="form-horizontal" modelAttribute="formBean" ng-submit="getDictUrl()" action='search'>
 	<div class="form-group">
 		<label class="col-sm-1 control-label" for='lang'>Language:</label>

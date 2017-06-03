@@ -46,6 +46,18 @@ $(function() {
 </script>
 </head>
 <body>
+<table class="table table-striped table-bordered">
+<tr>
+<th>id</th>
+<th>language</th>
+</tr>
+<s:iterator value="langList">
+<tr>
+<td><s:property value="id" /></td>
+<td><s:property value="langname" /></td>
+</tr>
+</s:iterator>
+</table>
 <s:form theme="bootstrap"  action='search'>
 	<s:select id="lang" name="selectedLangID" label="Language:" value="selectedLangID" list="langList" listKey="id" listValue="langname" />
 	<s:select id="dict" name="selectedDictName" label="Dictionary:" value="selectedDictName" list="langList" listKey="id" listValue="langname" />

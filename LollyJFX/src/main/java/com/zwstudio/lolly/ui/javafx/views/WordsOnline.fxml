@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.web.WebView?>
 
-<BorderPane fx:id="view" prefHeight="600.0" prefWidth="800.0" stylesheets="@Main.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.zwstudio.lolly.ui.javafx.controllers.WordsOnlineController">
+<BorderPane fx:id="view" prefHeight="600.0" prefWidth="800.0" stylesheets="@Main.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.zwstudio.lolly.ui.javafx.controllers.WordsOnlineController">
    <opaqueInsets>
       <Insets />
    </opaqueInsets>
@@ -25,7 +25,7 @@
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <BorderPane prefHeight="585.0" prefWidth="237.0">
+                  <BorderPane maxWidth="1.7976931348623157E308" prefHeight="588.0" prefWidth="231.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <center>
                         <TableView prefHeight="562.0" prefWidth="237.0">
                           <columns>
@@ -48,10 +48,10 @@
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="585.0" prefWidth="545.0">
                <children>
-                  <StackPane>
+                  <StackPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <WebView fx:id="wvDictOnline" prefHeight="565.0" prefWidth="546.0" BorderPane.alignment="CENTER" />
-                        <WebView fx:id="wvDictOffline" prefHeight="592.0" prefWidth="546.0" />
+                        <WebView fx:id="wvDictOnline" />
+                        <WebView fx:id="wvDictOffline" />
                      </children>
                   </StackPane>
                </children>

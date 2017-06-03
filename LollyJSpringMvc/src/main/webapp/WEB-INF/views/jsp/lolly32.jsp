@@ -57,6 +57,18 @@ $(function() {
 </script>
 </head>
 <body>
+<table class="table table-striped table-bordered">
+<tr>
+<th>id</th>
+<th>language</th>
+</tr>
+<c:forEach items="${formBean.langList}" var="lang">
+<tr>
+<td>${lang.id}</td>
+<td>${lang.langname}</td>
+</tr>
+</c:forEach>
+</table>
 <form:form class="form-horizontal" modelAttribute="formBean" action='search'>
 	<div class="form-group">
 		<label class="col-sm-1 control-label" for='lang'>Language:</label>

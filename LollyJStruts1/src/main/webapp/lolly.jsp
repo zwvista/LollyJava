@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@taglib uri="http://struts.apache.org/tags-html" prefix="html"%>
 <%@taglib uri="http://struts.apache.org/tags-bean" prefix="bean"%>
+<%@taglib uri="http://struts.apache.org/tags-logic" prefix="logic"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,12 +46,24 @@ $(function() {
 </script>
 </head>
 <body>
+<table class="table table-striped table-bordered">
+<tr>
+<th>id</th>
+<th>language</th>
+</tr>
+<logic:iterate id="row" name="lollyForm" property="langList">
+<tr>
+<td><bean:write name="row" property="id"/></td>
+<td><bean:write name="row" property="langname"/></td>
+</tr>
+</logic:iterate>
+</table>
 <html:form styleClass="form-horizontal" styleId="LollyForm" method="post" action='search'>
 	<div class="form-group">
 		<label class="col-sm-1 control-label" for='lang'>Language:</label>
     	<div class="col-sm-3">
 			<html:select styleClass="form-control" property="selectedLangID" styleId="lang">
-				<html:optionsCollection name="lollyForm" property="langList" label="langname" value="langid"/>
+				<html:optionsCollection name="lollyForm" property="langList" label="langname" value="id"/>
 			</html:select>
 		</div>
 		<label class="col-sm-1 control-label" for='dict'>Dictionary:</label>

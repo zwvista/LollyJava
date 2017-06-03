@@ -51,6 +51,16 @@ $(function() {
 </script>
 </head>
 <body>
+<table class="table table-striped table-bordered">
+<tr>
+<th>id</th>
+<th>language</th>
+</tr>
+<tr th:each="lang : ${formBean.langList}">
+<td th:text="${lang.id}"></td>
+<td th:text="${lang.langname}"></td>
+</tr>
+</table>
 <form class="form-horizontal" th:object="${formBean}" method="post" action='search'>
 	<div class="form-group">
 		<label class="col-sm-1 control-label" for='lang'>Language:</label>
