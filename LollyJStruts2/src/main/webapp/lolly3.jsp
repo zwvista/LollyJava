@@ -36,6 +36,18 @@ $(function() {
 </script>
 </head>
 <body>
+<table class="table table-striped table-bordered">
+<tr>
+<th>id</th>
+<th>language</th>
+</tr>
+<#list langList as lang>
+<tr>
+<td>${lang.id}</td>
+<td>${lang.langname}</td>
+</tr>
+</#list>
+</table>
 <@s.form theme="simple" cssClass="form-horizontal" action="search">
 	<div class="form-group">
 		<label class="col-sm-2 control-label" for='lang'>Language:</label>

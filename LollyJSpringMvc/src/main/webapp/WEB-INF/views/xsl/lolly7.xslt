@@ -62,6 +62,18 @@ $(function() {
 </html>
 </xsl:template>
 <xsl:template match="java/object">
+<table class="table table-striped table-bordered">
+<tr>
+<th>id</th>
+<th>language</th>
+</tr>
+<xsl:for-each select="void[3]/void/object/void">
+<tr>
+<td><xsl:value-of select="string"/></td>
+<td><xsl:value-of select="string[2]"/></td>
+</tr>
+</xsl:for-each>
+</table>
 <form class="form-horizontal" method="post" action='search'>
 	<div class="form-group">
 		<label class="col-sm-1 control-label" for='lang'>Language:</label>

@@ -39,6 +39,18 @@ $(function() {
 </script>]]#
 </head>
 <body>
+<table class="table table-striped table-bordered">
+<tr>
+<th>id</th>
+<th>language</th>
+</tr>
+#foreach($lang in $langList)
+<tr>
+<td>$lang.id</td>
+<td>$lang.langname</td>
+</tr>
+#end
+</table>
 #sform("theme=simple" "cssClass=form-horizontal" "action=search")
 	<div class="form-group">
 		<label class="col-sm-1 control-label" for='lang'>Language:</label>
