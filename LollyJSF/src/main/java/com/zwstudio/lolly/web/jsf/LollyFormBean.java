@@ -2,7 +2,6 @@ package com.zwstudio.lolly.web.jsf;
 
 import java.io.IOException;
 import java.io.Serializable;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -18,6 +17,7 @@ import org.springframework.web.jsf.FacesContextUtils;
 
 import com.zwstudio.lolly.domain.Language;
 
+import fj.data.Array;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -57,9 +57,10 @@ public class LollyFormBean implements Serializable {
 	}
 	
 	private String getParamValue(Map<String,String> params, String... paramNames) {
-		return Arrays.stream(paramNames).filter(name -> params.get(name) != null)
-				.findFirst().orElse(null);
-		// return Array.array(paramNames).find(name -> params.get(name) != null).toNull();
+//		return Arrays.stream(paramNames).map(name -> params.get(name))
+//				.filter(v -> v != null).findFirst().orElse(null);
+		return Array.array(paramNames).toStream().map(name -> params.get(name))
+				.find(v -> v != null).toNull();
 	}
 	
 	public void searchButtonClicked() {
