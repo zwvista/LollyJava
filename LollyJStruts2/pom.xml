@@ -168,6 +168,11 @@
       <artifactId>struts2-jquery-plugin</artifactId>
       <version>3.7.1</version>
     </dependency>
+        <dependency>
+            <groupId>org.functionaljava</groupId>
+            <artifactId>functionaljava</artifactId>
+            <version>4.7</version>
+        </dependency>
   </dependencies>
   <build>
     <plugins>

@@ -66,6 +66,11 @@
 		<artifactId>xalan</artifactId>
 		<version>2.7.2</version>
 	</dependency>
+        <dependency>
+            <groupId>org.functionaljava</groupId>
+            <artifactId>functionaljava</artifactId>
+            <version>4.7</version>
+        </dependency>
   </dependencies>
   <build>
     <plugins>

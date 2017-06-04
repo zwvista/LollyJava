@@ -2,6 +2,7 @@ package com.zwstudio.lolly.web.jsf;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -56,13 +57,9 @@ public class LollyFormBean implements Serializable {
 	}
 	
 	private String getParamValue(Map<String,String> params, String... paramNames) {
-		String v = null;
-		for(String name: paramNames) {
-			v = params.get(name);
-			if(v != null)
-				break;
-		}
-		return v;
+		return Arrays.stream(paramNames).filter(name -> params.get(name) != null)
+				.findFirst().orElse(null);
+		// return Array.array(paramNames).find(name -> params.get(name) != null).toNull();
 	}
 	
 	public void searchButtonClicked() {
