@@ -1,19 +1,16 @@
 package com.zwstudio.lolly.web.jsf;
 
 import java.io.IOException;
-import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
-import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.context.WebApplicationContext;
-import org.springframework.web.jsf.FacesContextUtils;
 
 import com.zwstudio.lolly.domain.Language;
 
@@ -21,11 +18,10 @@ import fj.data.Array;
 import lombok.Getter;
 import lombok.Setter;
 
-@SuppressWarnings("serial")
 @Controller
-@Scope("Request")
-@ManagedBean(name="formBean")
-public class LollyFormBean implements Serializable {
+@RequestScoped
+@Component("formBean")
+public class LollyFormBean {
 
 	@Autowired
 	protected LollyFormBo formBo;
@@ -40,11 +36,6 @@ public class LollyFormBean implements Serializable {
 	public String url;
 	
 	public LollyFormBean() {
-		// If LollyFormBo is a @Component other than a @Service,
-		// we would need the following code to initialize it
-		WebApplicationContext ctx =  FacesContextUtils.getWebApplicationContext(FacesContext.getCurrentInstance());
-		formBo = ctx.getBean(LollyFormBo.class);
-		
 	    word = "一人";
 	}
 

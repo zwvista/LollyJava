@@ -5,21 +5,10 @@
     xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
     version="2.2">
 
- 
 	<application>
     	<el-resolver>
     		org.springframework.web.jsf.el.SpringBeanFacesELResolver
     	</el-resolver>
   	</application>
- 	
-<!-- 	<managed-bean> -->
-<!-- 		<managed-bean-name>customer</managed-bean-name> -->
-<!-- 		<managed-bean-class>com.mkyong.CustomerBean</managed-bean-class> -->
-<!-- 		<managed-bean-scope>application</managed-bean-scope> -->
-<!-- 		<managed-property> -->
-<!-- 			<property-name>customerBo</property-name> -->
-<!-- 			<value>#{customerBo}</value> -->
-<!-- 		</managed-property> -->
-<!-- 	</managed-bean> -->
- 
+
 </faces-config>
