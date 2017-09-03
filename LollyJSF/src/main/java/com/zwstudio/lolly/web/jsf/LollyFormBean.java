@@ -65,9 +65,9 @@ public class LollyFormBean implements Serializable {
 	
 	public void searchButtonClicked() {
 		Map<String,String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
-		selectedLangID = Integer.parseInt(getParamValue(params, "form:lang", "form:lang_input"));
-		selectedDictName = getParamValue(params, "form:dict", "form:dict_input");
-		word = params.get("form:word");
+		selectedLangID = Integer.parseInt(getParamValue(params, "form:lang", "form:lang_input", "form:langInner"));
+		selectedDictName = getParamValue(params, "form:dict", "form:dict_input", "form:dictInner");
+		word = getParamValue(params, "form:word", "input_form:word");
 		url = formBo.getUrl(selectedLangID, selectedDictName, word);
 		System.out.println("url=" + url);
 	}

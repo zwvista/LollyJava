@@ -30,8 +30,8 @@ $(function() {
 		</b:column>
 		<b:column span="3">
 			<b:selectOneMenu value="#{formBean.selectedLangID}" id="lang"
-					ajax="true"	onchange="ajax:ajaxBean.onChange()"	update="dict">
-				<!-- toString(): workaround for itemValue bug -->
+					ajax="true" update="dict">
+                <!-- toString(): workaround for itemValue bug -->
 				<f:selectItems value="#{formBean.getLangList()}" var="lang"
 						itemValue="#{lang.id.toString()}" itemLabel="#{lang.langname}" />
 			</b:selectOneMenu>
