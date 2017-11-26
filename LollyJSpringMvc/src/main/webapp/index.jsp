@@ -39,8 +39,6 @@ $(function() {
 <a href="">lolly32</a><br/>
 <a href="">lolly33</a><br/>
 <a href="">lolly4</a><br/>
-<a href="">lolly5</a><br/>
-<a href="">lolly52</a><br/>
 <a href="">lolly6</a><br/>
 <a href="">lolly62</a><br/>
 <a href="">lolly7</a><br/>

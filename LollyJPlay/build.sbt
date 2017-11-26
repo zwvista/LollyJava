@@ -33,3 +33,6 @@ fork in run := false
 fork in Test := false
 
 ivyXML := <dependencies>{xml.XML.load("../LollyJShared/pom.xml") \\ "dependencies" \\ "dependency" filter (dep => (dep \\ "groupId").text != "org.scala-lang") map (dep => <dependency org={dep \\ "groupId" text} name={dep \\ "artifactId" text} rev={dep \\ "version" text} />)}</dependencies>
+
+
+fork in run := true

@@ -89,13 +89,13 @@ $(function() {
 	<div class="form-group">
 		<label class="col-sm-1 control-label" for='word'>Word:</label>
     	<div class="col-sm-3">
-			<form:input type="text" class="form-control" path="word" id="word" />
+			<form:input class="form-control" path="word" />
 		</div>
 	    <input type="submit" class="btn btn-primary" value='Search' id='search' />
 	    <input type="submit" class="btn btn-primary" value='Search(redirect)' id='redirectSearch' />
         <div class="col-sm-3 error vcenter" id='wordError'></div>
 	</div>
-	<input type="hidden" name="selectedDictName" id="selectedDictName" />
+	<form:hidden path="selectedDictName" />
 </form:form>
 <iframe id='dictframe'>
 </iframe>

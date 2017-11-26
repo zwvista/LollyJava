@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="LollyJSF:war">
+    <output-path>$PROJECT_DIR$/LollyJSF/target</output-path>
+    <root id="archive" name="LollyJSF-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="LollyJSF:war exploded" />
+    </root>
+  </artifact>
+</component>

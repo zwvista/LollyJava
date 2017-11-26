@@ -11,8 +11,6 @@ import org.springframework.web.servlet.view.JstlView;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver;
-import org.springframework.web.servlet.view.velocity.VelocityConfigurer;
-import org.springframework.web.servlet.view.velocity.VelocityViewResolver;
 import org.springframework.web.servlet.view.xslt.XsltView;
 import org.springframework.web.servlet.view.xslt.XsltViewResolver;
 import org.thymeleaf.spring4.SpringTemplateEngine;
@@ -65,23 +63,6 @@ public class LollyConfigSpring extends WebMvcConfigurerAdapter {
         viewResolver.setCharacterEncoding("UTF-8");
         viewResolver.setCache(false);
         return viewResolver;
-    }
-    
-    // velocity beans
-    @Bean
-    public VelocityConfigurer velocityConfig() {
-    	VelocityConfigurer config = new VelocityConfigurer();
-    	config.setResourceLoaderPath("/WEB-INF/views/");
-    	return config;
-    }
-    @Bean
-    public ViewResolver velocityViewResolver() {
-    	VelocityViewResolver viewResolver = new VelocityViewResolver();
-    	viewResolver.setCache(false);
-    	viewResolver.setViewNames("vm/*");
-    	viewResolver.setSuffix(".html");
-    	viewResolver.setContentType("text/html;charset=UTF-8");
-    	return viewResolver;
     }
     
     // freemarker beans
