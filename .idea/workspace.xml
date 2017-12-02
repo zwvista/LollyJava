@@ -6,151 +6,7 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8273e87e-8a77-409a-8821-29951fe0e303" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/artifacts/LollyJSpringMvc_war.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/artifacts/LollyJSpringMvc_war_exploded.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/LollyJSpringMvc/web/WEB-INF/web.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/LollyJSwing/src/main/resources/hibernate.cfg.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war/LollyJSpringMvc_war.war" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/CreateTableAsView.sql" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/HowToRunJooq.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/META-INF/MANIFEST.MF" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/META-INF/maven/com.zwstudio/LollyJShared/pom.properties" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/META-INF/maven/com.zwstudio/LollyJShared/pom.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/com/applerao/hibernatesqlite/dialect/SQLiteDialect.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/com/zwstudio/lolly/domain/Dictionary.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/com/zwstudio/lolly/domain/LangPhrase.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/com/zwstudio/lolly/domain/LangWord.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/com/zwstudio/lolly/domain/Language.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/com/zwstudio/lolly/domain/TBWord.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/com/zwstudio/lolly/domain/Textbook.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/com/zwstudio/lolly/domain/UnitPhrase.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/com/zwstudio/lolly/domain/UnitWord.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/com/zwstudio/lolly/domain/UserSetting.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/com/zwstudio/lolly/hibernate/dao/BaseDao.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/com/zwstudio/lolly/hibernate/dao/DictionaryDao.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/com/zwstudio/lolly/hibernate/dao/LanguageDao.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/com/zwstudio/lolly/hibernate/dao/TextbookDao.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/com/zwstudio/lolly/hibernate/dao/UserSettingDao.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/com/zwstudio/lolly/jooq/DefaultCatalog.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/com/zwstudio/lolly/jooq/DefaultSchema.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/com/zwstudio/lolly/jooq/Keys$ForeignKeys0.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/com/zwstudio/lolly/jooq/Keys$UniqueKeys0.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/com/zwstudio/lolly/jooq/Keys.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/com/zwstudio/lolly/jooq/Tables.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/com/zwstudio/lolly/jooq/service/DictionaryService2.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/com/zwstudio/lolly/jooq/service/LanguageService2.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/com/zwstudio/lolly/jooq/tables/Autocorrect.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/com/zwstudio/lolly/jooq/tables/Dictionaries.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/com/zwstudio/lolly/jooq/tables/Dicttypes.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/com/zwstudio/lolly/jooq/tables/Etextbooks.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/com/zwstudio/lolly/jooq/tables/Langphrases.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/com/zwstudio/lolly/jooq/tables/Languages.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/com/zwstudio/lolly/jooq/tables/Langwords.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/com/zwstudio/lolly/jooq/tables/Sites.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/com/zwstudio/lolly/jooq/tables/Textbooks.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/com/zwstudio/lolly/jooq/tables/Textsites.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/com/zwstudio/lolly/jooq/tables/Unitphrases.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/com/zwstudio/lolly/jooq/tables/Unitwords.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/com/zwstudio/lolly/jooq/tables/Users.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/com/zwstudio/lolly/jooq/tables/Usersettings.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/com/zwstudio/lolly/jooq/tables/Vdictionaries.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/com/zwstudio/lolly/jooq/tables/Vetextbooks.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/com/zwstudio/lolly/jooq/tables/Vlanguages.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/com/zwstudio/lolly/jooq/tables/Vtextbooks.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/com/zwstudio/lolly/jooq/tables/Vtextbookwords.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/com/zwstudio/lolly/jooq/tables/Vtextsites.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/com/zwstudio/lolly/jooq/tables/Vunitphrases.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/com/zwstudio/lolly/jooq/tables/Vusersettings.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/com/zwstudio/lolly/jooq/tables/records/AutocorrectRecord.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/com/zwstudio/lolly/jooq/tables/records/DictionariesRecord.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/com/zwstudio/lolly/jooq/tables/records/DicttypesRecord.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/com/zwstudio/lolly/jooq/tables/records/EtextbooksRecord.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/com/zwstudio/lolly/jooq/tables/records/LangphrasesRecord.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/com/zwstudio/lolly/jooq/tables/records/LanguagesRecord.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/com/zwstudio/lolly/jooq/tables/records/LangwordsRecord.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/com/zwstudio/lolly/jooq/tables/records/SitesRecord.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/com/zwstudio/lolly/jooq/tables/records/TextbooksRecord.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/com/zwstudio/lolly/jooq/tables/records/TextsitesRecord.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/com/zwstudio/lolly/jooq/tables/records/UnitphrasesRecord.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/com/zwstudio/lolly/jooq/tables/records/UnitwordsRecord.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/com/zwstudio/lolly/jooq/tables/records/UsersRecord.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/com/zwstudio/lolly/jooq/tables/records/UsersettingsRecord.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/com/zwstudio/lolly/jooq/tables/records/VdictionariesRecord.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/com/zwstudio/lolly/jooq/tables/records/VetextbooksRecord.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/com/zwstudio/lolly/jooq/tables/records/VlanguagesRecord.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/com/zwstudio/lolly/jooq/tables/records/VtextbooksRecord.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/com/zwstudio/lolly/jooq/tables/records/VtextbookwordsRecord.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/com/zwstudio/lolly/jooq/tables/records/VtextsitesRecord.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/com/zwstudio/lolly/jooq/tables/records/VunitphrasesRecord.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/com/zwstudio/lolly/jooq/tables/records/VusersettingsRecord.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/com/zwstudio/lolly/mybatis/mappers/DictionaryMapper.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/com/zwstudio/lolly/mybatis/mappers/LanguageMapper.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/com/zwstudio/lolly/mybatis/service/DictionaryService.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/com/zwstudio/lolly/mybatis/service/LanguageService.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/com/zwstudio/lolly/services/IDictionaryService.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/com/zwstudio/lolly/services/ILanguageService.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/com/zwstudio/lolly/services/ITextbookService.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/com/zwstudio/lolly/services/IUserSettingService.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/com/zwstudio/lolly/spring/data/jpa/DictionaryRepository.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/com/zwstudio/lolly/spring/data/jpa/LanguageRepository.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/com/zwstudio/lolly/spring/data/jpa/LanguageRepositoryCustom.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/com/zwstudio/lolly/spring/data/jpa/LanguageRepositoryImpl.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/com/zwstudio/lolly/ui/viewmodel/SettingsViewModel$1.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/com/zwstudio/lolly/ui/viewmodel/SettingsViewModel.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/com/zwstudio/lolly/util/LollyConfigBase$1.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/com/zwstudio/lolly/util/LollyConfigBase$2.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/com/zwstudio/lolly/util/LollyConfigBase.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/com/zwstudio/lolly/util/LollyConfigHibernate.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/com/zwstudio/lolly/util/LollyConfigJooq.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/com/zwstudio/lolly/util/LollyConfigMyBatis$1.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/com/zwstudio/lolly/util/LollyConfigMyBatis.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/com/zwstudio/lolly/util/LollyConfigSpringDataJpa$1.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/com/zwstudio/lolly/util/LollyConfigSpringDataJpa$2.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/com/zwstudio/lolly/util/LollyConfigSpringDataJpa.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/com/zwstudio/lolly/web/springmvc/LollyConfigSpring.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/com/zwstudio/lolly/web/springmvc/LollyController.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/com/zwstudio/lolly/web/springmvc/LollyFormBean.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/com/zwstudio/lolly/web/springmvc/WebInitializer.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/hibernate.cfg.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/hibernate.reveng.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/org/hibernate/dialect/SQLiteDialect$1.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/org/hibernate/dialect/SQLiteDialect$2.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/org/hibernate/dialect/SQLiteDialect$3.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/org/hibernate/dialect/SQLiteDialect$4.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/org/hibernate/dialect/SQLiteDialect$SQLiteUniqueDelegate.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/org/hibernate/dialect/SQLiteDialect.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/classes/org/hibernate/dialect/identity/SQLiteDialectIdentityColumnSupport.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/LollyJSpringMvc_war_exploded/WEB-INF/web.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/LollyJSF_war_exploded.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/LollyJSF_war_exploded.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/LollyJStruts1_war_exploded.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/LollyJStruts1_war_exploded.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/LollyJStruts2_war_exploded.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/LollyJStruts2_war_exploded.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__commons_logging_commons_logging_1_2.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_logging_commons_logging_1_1_1.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_aspectj_aspectjweaver_1_8_9.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_aspectj_aspectjweaver_1_8_12.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_aop_4_3_2_RELEASE.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_aspects_4_3_2_RELEASE.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_beans_4_3_2_RELEASE.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_context_4_3_2_RELEASE.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_aspects_5_0_1_RELEASE.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_context_support_4_3_2_RELEASE.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_core_4_3_2_RELEASE.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_expression_4_3_2_RELEASE.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_jdbc_4_3_2_RELEASE.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_orm_4_3_2_RELEASE.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_tx_4_3_2_RELEASE.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_web_4_3_2_RELEASE.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/LollyJFX/pom.xml" afterPath="$PROJECT_DIR$/LollyJFX/pom.xml" />
-      <change beforePath="$PROJECT_DIR$/LollyJSF/.classpath" afterPath="$PROJECT_DIR$/LollyJSF/.classpath" />
-      <change beforePath="$PROJECT_DIR$/LollyJSF/pom.xml" afterPath="$PROJECT_DIR$/LollyJSF/pom.xml" />
-      <change beforePath="$PROJECT_DIR$/LollyJShared/.factorypath" afterPath="$PROJECT_DIR$/LollyJShared/.factorypath" />
-      <change beforePath="$PROJECT_DIR$/LollyJSpringMvc/pom.xml" afterPath="$PROJECT_DIR$/LollyJSpringMvc/pom.xml" />
-      <change beforePath="$PROJECT_DIR$/LollyJStruts1/.classpath" afterPath="$PROJECT_DIR$/LollyJStruts1/.classpath" />
-      <change beforePath="$PROJECT_DIR$/LollyJStruts1/pom.xml" afterPath="$PROJECT_DIR$/LollyJStruts1/pom.xml" />
-      <change beforePath="$PROJECT_DIR$/LollyJStruts2/.classpath" afterPath="$PROJECT_DIR$/LollyJStruts2/.classpath" />
-      <change beforePath="$PROJECT_DIR$/LollyJStruts2/pom.xml" afterPath="$PROJECT_DIR$/LollyJStruts2/pom.xml" />
-      <change beforePath="$PROJECT_DIR$/LollyJSwing/.classpath" afterPath="$PROJECT_DIR$/LollyJSwing/.classpath" />
-      <change beforePath="$PROJECT_DIR$/LollyJSwing/pom.xml" afterPath="$PROJECT_DIR$/LollyJSwing/pom.xml" />
-    </list>
+    <list default="true" id="8273e87e-8a77-409a-8821-29951fe0e303" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/LollyJSpringMvc/target/" />
     <ignored path="$PROJECT_DIR$/LollyJSF/target/" />
     <ignored path="$PROJECT_DIR$/LollyJFX/target/" />
@@ -173,18 +29,7 @@
     <favorites_list name="LollyJava" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="LollyConfigHibernate.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/LollyJShared/src/main/java/com/zwstudio/lolly/util/LollyConfigHibernate.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="21" column="0" lean-forward="true" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FindInProjectRecents">
     <replaceStrings>
@@ -292,7 +137,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2632184" />
     <property name="settings.editor.selected.configurable" value="preferences.applicationServers" />
@@ -531,16 +376,15 @@
       <workItem from="1512213261806" duration="1229000" />
       <workItem from="1512228559617" duration="30000" />
       <workItem from="1512228622868" duration="3893000" />
-      <workItem from="1512234497375" duration="2855000" />
+      <workItem from="1512234497375" duration="3189000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="12506000" />
+    <option name="totallyTimeSpent" value="12840000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="40" y="69" width="1400" height="763" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cargo" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -562,12 +406,12 @@
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.37125748" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.37125748" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27540502" sideWeight="0.49401197" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27540502" sideWeight="0.49401197" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Problems" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -822,7 +666,7 @@
       </state>
       <state key="ModuleStructureConfigurable.UI">
         <settings>
-          <last-edited>LollyJSpringMvc</last-edited>
+          <last-edited>LollyJSwing</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
