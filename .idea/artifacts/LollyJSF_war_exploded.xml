@@ -5,7 +5,6 @@
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
           <element id="module-output" name="LollyJSF" />
-          <element id="module-output" name="LollyJShared" />
         </element>
         <element id="directory" name="lib">
           <element id="archive" name="LollyJShared-1.0-SNAPSHOT.jar">
