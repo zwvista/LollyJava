@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="LollyJFX" />
+        <module name="LollyJSF" />
+        <module name="LollyJShared" />
+        <module name="LollyJSpringMvc" />
+        <module name="LollyJStruts1" />
+        <module name="LollyJStruts2" />
+        <module name="LollyJSwing" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="LollyJFX" target="1.8" />
+      <module name="LollyJSF" target="1.8" />
+      <module name="LollyJShared" target="1.8" />
+      <module name="LollyJSpringMvc" target="1.8" />
+      <module name="LollyJStruts1" target="1.8" />
+      <module name="LollyJStruts2" target="1.8" />
+      <module name="LollyJSwing" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

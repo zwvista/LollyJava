@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/LollyJFX/LollyJFX.iml" filepath="$PROJECT_DIR$/LollyJFX/LollyJFX.iml" />
+      <module fileurl="file://$PROJECT_DIR$/LollyJSF/LollyJSF.iml" filepath="$PROJECT_DIR$/LollyJSF/LollyJSF.iml" />
+      <module fileurl="file://$PROJECT_DIR$/LollyJShared/LollyJShared.iml" filepath="$PROJECT_DIR$/LollyJShared/LollyJShared.iml" />
+      <module fileurl="file://$PROJECT_DIR$/LollyJSpringMvc/LollyJSpringMvc.iml" filepath="$PROJECT_DIR$/LollyJSpringMvc/LollyJSpringMvc.iml" />
+      <module fileurl="file://$PROJECT_DIR$/LollyJStruts1/LollyJStruts1.iml" filepath="$PROJECT_DIR$/LollyJStruts1/LollyJStruts1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/LollyJStruts2/LollyJStruts2.iml" filepath="$PROJECT_DIR$/LollyJStruts2/LollyJStruts2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/LollyJSwing/LollyJSwing.iml" filepath="$PROJECT_DIR$/LollyJSwing/LollyJSwing.iml" />
+    </modules>
+  </component>
+</project>
