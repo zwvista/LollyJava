@@ -9,14 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
-import javax.swing.DefaultListCellRenderer;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JList;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
 import org.eclipse.wb.swing.FocusTraversalOnArray;
@@ -155,7 +148,15 @@ public class LollyFrame extends JFrame {
 		});
 
 		controller.init(this);
-		initDataBindings();
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                try {
+                    initDataBindings();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
 	}
 	protected void initDataBindings() {
 		BeanProperty<LollyController, List<Language>> lollyControllerBeanProperty = BeanProperty.create("langList");

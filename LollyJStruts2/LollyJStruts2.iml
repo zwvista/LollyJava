@@ -34,6 +34,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" scope="PROVIDED" name="Tomcat 8.0" level="application_server_libraries" />
     <orderEntry type="module" module-name="LollyJShared" />
     <orderEntry type="library" name="Maven: org.hibernate:hibernate-entitymanager:5.1.0.Final" level="project" />
     <orderEntry type="library" name="Maven: org.mybatis:mybatis:3.4.1" level="project" />
@@ -102,6 +103,5 @@
     <orderEntry type="library" name="Maven: com.jgeppert.struts2.bootstrap:struts2-bootstrap-plugin:2.0.4" level="project" />
     <orderEntry type="library" name="Maven: com.jgeppert.struts2.jquery:struts2-jquery-plugin:3.7.1" level="project" />
     <orderEntry type="library" name="Maven: org.functionaljava:functionaljava:4.7" level="project" />
-    <orderEntry type="library" scope="PROVIDED" name="Tomcat 8.0" level="application_server_libraries" />
   </component>
 </module>

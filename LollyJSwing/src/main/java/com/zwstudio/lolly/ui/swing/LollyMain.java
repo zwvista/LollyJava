@@ -4,7 +4,7 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.util.Enumeration;
 
-import javax.swing.UIManager;
+import javax.swing.*;
 import javax.swing.plaf.FontUIResource;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -19,8 +19,8 @@ public class LollyMain {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-    	System.setProperty("http.proxyHost", "10.20.160.251");
-    	System.setProperty("http.proxyPort", "8080");
+    	//System.setProperty("http.proxyHost", "10.20.160.251");
+    	//System.setProperty("http.proxyPort", "8080");
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (Throwable e) {
@@ -28,7 +28,7 @@ public class LollyMain {
 		}
 		setUIFont(new FontUIResource("Dialog", Font.PLAIN, 15));
 		context = new AnnotationConfigApplicationContext(LollyConfigHibernate.class, LollyConfigSwing.class);
-		EventQueue.invokeLater(new Runnable() {
+        SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					LollyFrame frame = new LollyFrame(context.getBean(LollyController.class));
