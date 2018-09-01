@@ -16,7 +16,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
-import javafx.util.Callback;
 
 @Configuration
 @ComponentScan("com.zwstudio.lolly.ui.javafx.controllers")
@@ -24,8 +23,6 @@ public class LollyApp extends Application {
 	private static AnnotationConfigApplicationContext context;
 
 	public static void main(String[] args) {
-    	System.setProperty("http.proxyHost", "10.20.160.251");
-    	System.setProperty("http.proxyPort", "8080");
 		launch(args);
 	}
     
@@ -43,12 +40,7 @@ public class LollyApp extends Application {
 	
 	public static <T> T load(String url) throws IOException {
         FXMLLoader loader = new FXMLLoader(LollyApp.class.getResource(url));
-        loader.setControllerFactory(new Callback<Class<?>, Object>() {
-			@Override
-			public Object call(Class<?> param) {
-				return context.getBean(param);
-			}
-		});
+        loader.setControllerFactory(context::getBean);
         return loader.load();
     }
 

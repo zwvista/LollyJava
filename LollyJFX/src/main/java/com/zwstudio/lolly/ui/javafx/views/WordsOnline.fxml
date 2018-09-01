@@ -1,62 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.web.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.web.WebView?>
+<?import javafx.scene.layout.FlowPane?>
 
-<BorderPane fx:id="view" prefHeight="600.0" prefWidth="800.0" stylesheets="@Main.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.zwstudio.lolly.ui.javafx.controllers.WordsOnlineController">
+<BorderPane fx:id="view" prefHeight="600.0" prefWidth="800.0" stylesheets="@Main.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.zwstudio.lolly.ui.javafx.controllers.WordsOnlineController">
+   <center>
+      <StackPane>
+         <children>
+            <WebView fx:id="wvDictOnline" prefHeight="523.0" prefWidth="770.0" BorderPane.alignment="CENTER" />
+            <WebView fx:id="wvDictOffline" prefHeight="200.0" prefWidth="200.0" />
+         </children>
+      </StackPane>
+   </center>
+   <bottom>
+      <FlowPane hgap="3.0">
+         <children>
+            <Label layoutX="8.0" layoutY="3.0" text="Language:">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </Label>
+            <ComboBox fx:id="cboLang" layoutX="89.0" layoutY="1.0" prefWidth="150.0">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </ComboBox>
+            <Separator prefWidth="5.0" />
+            <Label layoutX="246.0" layoutY="3.0" text="Dictionary:">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </Label>
+            <ComboBox fx:id="cboDict" layoutX="333.0" prefWidth="150.0">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </ComboBox>
+         </children>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+      </FlowPane>
+   </bottom>
+   <top>
+      <HBox>
+         <children>
+            <TextField fx:id="tfWord" onAction="#btnSearch_tfWord_OnAction" prefHeight="0.0" prefWidth="745.0" HBox.hgrow="ALWAYS" />
+            <Separator prefWidth="5.0" />
+            <Button minWidth="-Infinity" mnemonicParsing="false" onAction="#btnSearch_tfWord_OnAction" prefHeight="23.0" text="Search" HBox.hgrow="NEVER" />
+         </children>
+      </HBox>
+   </top>
    <opaqueInsets>
       <Insets />
    </opaqueInsets>
    <padding>
       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
    </padding>
-   <center>
-      <SplitPane dividerPositions="0.29797979797979796" prefHeight="160.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-        <items>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-               <children>
-                  <BorderPane maxWidth="1.7976931348623157E308" prefHeight="588.0" prefWidth="231.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <center>
-                        <TableView prefHeight="562.0" prefWidth="237.0">
-                          <columns>
-                            <TableColumn prefWidth="75.0" text="C1" />
-                            <TableColumn prefWidth="75.0" text="C2" />
-                          </columns>
-                        </TableView>
-                     </center>
-                     <top>
-                        <HBox BorderPane.alignment="CENTER">
-                           <children>
-                              <TextField fx:id="tfWord" onAction="#btnSearch_tfWord_OnAction" prefHeight="29.0" prefWidth="0.0" HBox.hgrow="ALWAYS" />
-                              <Separator prefWidth="5.0" />
-                              <Button minWidth="-Infinity" mnemonicParsing="false" onAction="#btnSearch_tfWord_OnAction" prefHeight="23.0" text="Search" HBox.hgrow="NEVER" />
-                           </children>
-                        </HBox>
-                     </top>
-                  </BorderPane>
-               </children>
-            </AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="585.0" prefWidth="545.0">
-               <children>
-                  <StackPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <children>
-                        <WebView fx:id="wvDictOnline" />
-                        <WebView fx:id="wvDictOffline" />
-                     </children>
-                  </StackPane>
-               </children>
-            </AnchorPane>
-        </items>
-      </SplitPane>
-   </center>
 </BorderPane>

@@ -36,9 +36,9 @@ public class SettingsViewModel extends Model {
 	@Autowired
 	private IUserSettingService usersettingDao;
 	@Autowired @Qualifier("languageDao")
-	private ILanguageService langDao;
+	protected ILanguageService langDao;
 	@Autowired @Qualifier("dictionaryDao")
-	private IDictionaryService dictDao;
+	protected IDictionaryService dictDao;
 	@Autowired
 	private ITextbookService textbookDao;
 
