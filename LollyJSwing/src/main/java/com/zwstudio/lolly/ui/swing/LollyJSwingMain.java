@@ -1,17 +1,17 @@
 package com.zwstudio.lolly.ui.swing;
 
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.util.Enumeration;
 
-import javax.swing.*;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
 import javax.swing.plaf.FontUIResource;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import com.zwstudio.lolly.util.LollyConfigHibernate;
 
-public class LollyMain {
+public class LollyJSwingMain {
 	
 	static AnnotationConfigApplicationContext context;
 
@@ -19,8 +19,6 @@ public class LollyMain {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-    	//System.setProperty("http.proxyHost", "10.20.160.251");
-    	//System.setProperty("http.proxyPort", "8080");
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (Throwable e) {

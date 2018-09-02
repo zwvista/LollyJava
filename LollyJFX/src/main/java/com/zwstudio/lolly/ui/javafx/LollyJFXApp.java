@@ -19,7 +19,7 @@ import javafx.stage.WindowEvent;
 
 @Configuration
 @ComponentScan("com.zwstudio.lolly.ui.javafx.controllers")
-public class LollyApp extends Application {
+public class LollyJFXApp extends Application {
 	private static AnnotationConfigApplicationContext context;
 
 	public static void main(String[] args) {
@@ -29,7 +29,7 @@ public class LollyApp extends Application {
 	@Override
 	public void init() throws Exception {
 		super.init();
-		context = new AnnotationConfigApplicationContext(LollyConfigHibernate.class, LollyApp.class);
+		context = new AnnotationConfigApplicationContext(LollyConfigHibernate.class, LollyJFXApp.class);
 	}
 
 	@Override
@@ -39,7 +39,7 @@ public class LollyApp extends Application {
 	}
 	
 	public static <T> T load(String url) throws IOException {
-        FXMLLoader loader = new FXMLLoader(LollyApp.class.getResource(url));
+        FXMLLoader loader = new FXMLLoader(LollyJFXApp.class.getResource(url));
         loader.setControllerFactory(context::getBean);
         return loader.load();
     }

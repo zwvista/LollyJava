@@ -5,7 +5,7 @@ import java.util.ResourceBundle;
 
 import org.springframework.stereotype.Controller;
 
-import com.zwstudio.lolly.ui.javafx.LollyApp;
+import com.zwstudio.lolly.ui.javafx.LollyJFXApp;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -26,7 +26,7 @@ public class MainController implements Initializable {
     @FXML
     private void handleWordsOnline() {
     	try {
-			LollyApp.showWordsOnline();
+			LollyJFXApp.showWordsOnline();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -35,7 +35,7 @@ public class MainController implements Initializable {
     @FXML
     private void handleSelectUnits() {
     	try {
-			LollyApp.showSettings();
+			LollyJFXApp.showSettings();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
