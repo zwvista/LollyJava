@@ -38,24 +38,28 @@ import com.zwstudio.lolly.services.ILanguageService;
 @Controller
 @RequestMapping("/{orm}/")
 public class LollyController {
-	@Autowired
-	private ILanguageService languageDao;
-	@Autowired
-	private IDictionaryService dictionaryDao;
-	@Autowired
-	private ILanguageService languageRepository;
-	@Autowired
-	private IDictionaryService dictionaryRepository;
-	@Autowired
-	private ILanguageService languageService;
-	@Autowired
-	private IDictionaryService dictionaryService;
-	@Autowired
-	private ILanguageService languageService2;
-	@Autowired
-	private IDictionaryService dictionaryService2;
-	
-	public ILanguageService getLangService(String orm) {
+	private final ILanguageService languageDao;
+	private final IDictionaryService dictionaryDao;
+	private final ILanguageService languageRepository;
+	private final IDictionaryService dictionaryRepository;
+	private final ILanguageService languageService;
+	private final IDictionaryService dictionaryService;
+	private final ILanguageService languageService2;
+	private final IDictionaryService dictionaryService2;
+
+    @Autowired
+    public LollyController(ILanguageService languageDao, IDictionaryService dictionaryDao, ILanguageService languageRepository, IDictionaryService dictionaryRepository, ILanguageService languageService, IDictionaryService dictionaryService, ILanguageService languageService2, IDictionaryService dictionaryService2) {
+        this.languageDao = languageDao;
+        this.dictionaryDao = dictionaryDao;
+        this.languageRepository = languageRepository;
+        this.dictionaryRepository = dictionaryRepository;
+        this.languageService = languageService;
+        this.dictionaryService = dictionaryService;
+        this.languageService2 = languageService2;
+        this.dictionaryService2 = dictionaryService2;
+    }
+
+    public ILanguageService getLangService(String orm) {
 		return "hibernate".equals(orm) ? languageDao :
 			"jpa".equals(orm) ? languageRepository :
 			"mybatis".equals(orm) ? languageService :
