@@ -40,7 +40,7 @@ angular.module('app', []).controller("lollyCtrl", ["$scope", "$http", "$sce",
 	};
 	$scope.langList = [];
 	<c:forEach items="${formBean.langList}" var="lang">
-	    $scope.langList.push([id: '${lang.id}', langname: '$(lang.langname)]');                                  
+	    $scope.langList.push({id: ${lang.id}, langname: '${lang.langname}'});
 	</c:forEach>
 	$scope.redirectSearch = false;
     $scope.searchClick = function() {$scope.redirectSearch = false;};

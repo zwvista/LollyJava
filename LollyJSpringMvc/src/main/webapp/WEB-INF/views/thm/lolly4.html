@@ -68,7 +68,7 @@ $(function() {
 			<select class="form-control" th:field="*{selectedLangID}" id="lang">
 				<option th:each="lang : ${formBean.langList}"
 						th:value="${lang.id}"
-						th:text="${lang.langname}" />
+						th:text="${lang.langname}"></option>
 			</select>
 		</div>
 		<label class="col-sm-1 control-label" for='dict'>Dictionary:</label>

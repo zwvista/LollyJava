@@ -174,9 +174,17 @@ public class LollyController {
     public String lolly33() {
         return "jsp/lolly33";
     }
+    @RequestMapping("lolly34")
+    public String lolly34() {
+        return "jsp/lolly34";
+    }
     @RequestMapping("lolly4")
     public String lolly4() {
         return "thm/lolly4";
+    }
+    @RequestMapping("lolly42")
+    public String lolly42() {
+        return "thm/lolly42";
     }
     @RequestMapping("lolly5")
     public String lolly5() {
