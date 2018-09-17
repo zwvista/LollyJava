@@ -1,4 +1,4 @@
-<%@ page language="java" pageEncoding="UTF-8"%>
+	<%@ page language="java" pageEncoding="UTF-8"%>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="s" %>
@@ -63,49 +63,53 @@ var app = new Vue({
 	data: {
 		langList: [],
 	    dictList: [],
-	    word: "${formBean.word}",
+	    word: '${formBean.word}',
 	    redirectSearch: false,
 	    wordError: '',
 	    dictUrl: 'about:blank',
   	},
+  	mounted: function() {
+  		<c:forEach items="${formBean.langList}" var="lang">
+  		this.langList.push({id: ${lang.id}, langname: '${lang.langname}'});
+  		</c:forEach>
+  	},
  	methods: {
 	    langChange: function() {
+	    	var self = this;
 	        $.post("dictList3", $('form').serialize(), function(response) {
-	            app.dictList = response;
+	        	self.dictList = response;
 	        });
 	    },
 		formSubmit: function() {
-			if(app.redirectSearch) return;
+			if(this.redirectSearch) return;
 			event.preventDefault();
+	    	var self = this;
 	        $.ajax({
 	            type: "POST",
 	            url: "dictall3",
 	            data: $('form').serialize(),
 	            success: function(response) {
-	                app.wordError = '';
-	                var url = response.url.replace('{0}', encodeURIComponent(app.word));
-	                app.dictUrl = url;
+	            	self.wordError = '';
+	                var url = response.url.replace('{0}', encodeURIComponent(this.word));
+	                self.dictUrl = url;
 	            },
 	            error: function(response) {
 	                //alert(JSON.stringify(response));
 	                var err = response.responseJSON[0];
-	                app.wordError = err.field + ": " + err.defaultMessage;
-	                app.dictUrl = 'about:blank';
+	                self.wordError = err.field + ": " + err.defaultMessage;
+	                self.dictUrl = 'about:blank';
 	            }
 	        });
 	    },
 	    searchClick: function() {
-	    	app.redirectSearch = false;
-	    	app.formSubmit();
+	    	this.redirectSearch = false;
+	    	this.formSubmit();
 	    },
 	    redirectSearchClick: function() {
-	    	app.redirectSearch = true;
+	    	this.redirectSearch = true;
 	    },
 	}
 });
-<c:forEach items="${formBean.langList}" var="lang">
-app.langList.push({id: ${lang.id}, langname: '${lang.langname}'});
-</c:forEach>
 $(function() {
 	app.langChange();
 });

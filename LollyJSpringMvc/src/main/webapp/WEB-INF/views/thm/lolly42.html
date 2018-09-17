@@ -56,50 +56,53 @@ var app = new Vue({
 	data: {
 		langList: [],
 	    dictList: [],
-	    word: '',
+	    word: [[${formBean.word}]],
 	    redirectSearch: false,
 	    wordError: '',
 	    dictUrl: 'about:blank',
   	},
+  	mounted: function() {
+  		/*[# th:each="lang : ${formBean.langList}"]*/
+  		this.langList.push({id: [[${lang.id}]], langname: [[${lang.langname}]]});
+  		/*[/]*/
+  	},
  	methods: {
 	    langChange: function() {
+	    	var self = this;
 	        $.post("dictList3", $('form').serialize(), function(response) {
-	            app.dictList = response;
+	        	self.dictList = response;
 	        });
 	    },
 		formSubmit: function() {
-			if(app.redirectSearch) return;
+			if(this.redirectSearch) return;
 			event.preventDefault();
+	    	var self = this;
 	        $.ajax({
 	            type: "POST",
 	            url: "dictall3",
 	            data: $('form').serialize(),
 	            success: function(response) {
-	                app.wordError = '';
-	                var url = response.url.replace('{0}', encodeURIComponent(app.word));
-	                app.dictUrl = url;
+	            	self.wordError = '';
+	                var url = response.url.replace('{0}', encodeURIComponent(this.word));
+	                self.dictUrl = url;
 	            },
 	            error: function(response) {
 	                //alert(JSON.stringify(response));
 	                var err = response.responseJSON[0];
-	                app.wordError = err.field + ": " + err.defaultMessage;
-	                app.dictUrl = 'about:blank';
+	                self.wordError = err.field + ": " + err.defaultMessage;
+	                self.dictUrl = 'about:blank';
 	            }
 	        });
 	    },
 	    searchClick: function() {
-	    	app.redirectSearch = false;
-	    	app.formSubmit();
+	    	this.redirectSearch = false;
+	    	this.formSubmit();
 	    },
 	    redirectSearchClick: function() {
-	    	app.redirectSearch = true;
+	    	this.redirectSearch = true;
 	    },
 	}
 });
-/*[# th:each="lang : ${formBean.langList}"]*/
-app.langList.push({id: [[${lang.id}]], langname: [[${lang.langname}]]});
-/*[/]*/
-app.word = [[${formBean.word}]];
 $(function() {
 	app.langChange();
 });
