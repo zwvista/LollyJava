@@ -22,6 +22,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -126,6 +127,23 @@ public class LollyController {
 	public ResponseEntity<Object> dictall3(
 			@PathVariable String orm,
 			@Valid @ModelAttribute("formBean") LollyFormBean bean,
+			BindingResult result) {
+		return result.hasErrors() ?
+				new ResponseEntity<>(result.getAllErrors(), HttpStatus.BAD_REQUEST) :
+				new ResponseEntity<>(getDictService(orm).getDataByLangDict(bean.selectedLangID, bean.selectedDictName), HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="dictList4", method=RequestMethod.POST, consumes="application/json")
+	public @ResponseBody List<String> dictList4(
+			@PathVariable String orm,
+			@RequestBody LollyFormBean bean) {
+		return getDictService(orm).getNamesByLang(bean.selectedLangID);
+	}
+
+	@RequestMapping(value="dictall4", method=RequestMethod.POST, consumes="application/json")
+	public ResponseEntity<Object> dictall4(
+			@PathVariable String orm,
+			@Valid @RequestBody LollyFormBean bean,
 			BindingResult result) {
 		return result.hasErrors() ?
 				new ResponseEntity<>(result.getAllErrors(), HttpStatus.BAD_REQUEST) :

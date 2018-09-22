@@ -10,7 +10,8 @@
 <link rel="stylesheet" href="../resources/css/lolly.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
 </head>
 <body>
 <div id="app">
@@ -27,13 +28,13 @@
 	<div class="form-group">
 		<label class="col-sm-1 control-label" for='lang'>Language:</label>
     	<div class="col-sm-3">
-			<select class="form-control" @change="langChange()" name="selectedLangID" id='lang'>
+			<select class="form-control" @change="langChange()" v-model="selectedLangID" id='lang'>
 				<option v-for="lang in langList" :value="lang.id">{{lang.langname}}</option>
 			</select>
 		</div>
  		<label class="col-sm-1 control-label" for='dict'>Dictionary:</label>
     	<div class="col-sm-3">
-			<select class="form-control" name="selectedDictName" id='dict'>
+			<select class="form-control" v-model="selectedDictName" id='dict'>
 				<option v-for="o in dictList" :value="o">{{o}}</option>
 			</select>
 		</div>
@@ -41,7 +42,7 @@
  	<div class="form-group">
 		<label class="col-sm-1 control-label" for='word'>Word:</label>
     	<div class="col-sm-3">
-			<input class="form-control" v-model="word" name="word" id="word" />
+			<input class="form-control" v-model="word" id="word" />
 		</div>
 	    <input type="submit" class="btn btn-primary" value='Search' id='search' @click="searchClick()" />
 	    <input type="submit" class="btn btn-primary" value='Search(redirect)' id='redirectSearch' @click="redirectSearchClick()" />
@@ -55,7 +56,9 @@ var app = new Vue({
 	el: '#app',
 	data: {
 		langList: [],
+		selectedLangID: 1,
 	    dictList: [],
+	    selectedDictName: '',
 	    word: [[${formBean.word}]],
 	    redirectSearch: false,
 	    wordError: '',
@@ -69,29 +72,30 @@ var app = new Vue({
  	methods: {
 	    langChange: function() {
 	    	var self = this;
-	        $.post("dictList3", $('form').serialize(), function(response) {
-	        	self.dictList = response;
+	        axios.post("dictList4", {
+	        	selectedLangID: this.selectedLangID,
+	        }).then(function(response) {
+	        	self.dictList = response.data;
+	        	self.selectedDictName = self.dictList[0];
 	        });
 	    },
 		formSubmit: function() {
 			if(this.redirectSearch) return;
 			event.preventDefault();
 	    	var self = this;
-	        $.ajax({
-	            type: "POST",
-	            url: "dictall3",
-	            data: $('form').serialize(),
-	            success: function(response) {
-	            	self.wordError = '';
-	                var url = response.url.replace('{0}', encodeURIComponent(this.word));
-	                self.dictUrl = url;
-	            },
-	            error: function(response) {
-	                //alert(JSON.stringify(response));
-	                var err = response.responseJSON[0];
-	                self.wordError = err.field + ": " + err.defaultMessage;
-	                self.dictUrl = 'about:blank';
-	            }
+	    	axios.post("dictall4", {
+            	selectedLangID: this.selectedLangID,
+            	selectedDictName: this.selectedDictName,
+            	word: this.word,
+	    	}).then(function(response) {
+            	self.wordError = '';
+                var url = response.data.url.replace('{0}', encodeURIComponent(self.word));
+                self.dictUrl = url;
+            }).catch(function(response) {
+                console.log(response);
+                var err = response.response.data[0];
+                self.wordError = err.field + ": " + err.defaultMessage;
+                self.dictUrl = 'about:blank';
 	        });
 	    },
 	    searchClick: function() {

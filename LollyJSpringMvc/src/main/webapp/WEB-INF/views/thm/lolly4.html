@@ -15,11 +15,19 @@ $(function() {
     var $lang = $('#lang');
     var $dict = $('#dict');
     $lang.change(function() {
-        $.post("dictList3", $('form').serialize(), function(response) {
-            $dict.empty();
-            $.each(response, function(index, dict) {
-                $dict.append($('<option/>', {text: dict}));
-            });
+    	$.ajax({
+            type: "POST",
+            url: "dictList4",
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify({
+            	selectedLangID: $lang.val(),
+            }),
+            success: function(response) {
+	            $dict.empty();
+	            $.each(response, function(index, dict) {
+	                $dict.append($('<option/>', {text: dict}));
+	            });
+            },
         });
     });
     $lang.change();
@@ -29,13 +37,18 @@ $(function() {
 	$('form').submit(function() {
 		if(redirectSearch) return;
         event.preventDefault();
+        var word = $('#word').val();
         $.ajax({
             type: "POST",
-            url: "dictall3",
-            data: $('form').serialize(),
+            url: "dictall4",
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify({
+            	selectedLangID: $lang.val(),
+            	selectedDictName: $dict.val(),
+            	word: word,
+            }),
             success: function(response) {
-                $('#wordError').empty();
-                var word = $('#word').val();
+                $('#wordError').empty();          
                 var url = response.url.replace('{0}', encodeURIComponent(word));
                 $('#dictframe').attr('src', url);
             },
