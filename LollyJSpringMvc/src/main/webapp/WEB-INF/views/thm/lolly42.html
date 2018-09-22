@@ -24,7 +24,7 @@
 <td>{{lang.langname}}</td>
 </tr>
 </table>
-<form class="form-horizontal" action="search" method="post">
+<form class="form-horizontal" @submit.prevent="formSubmit" action="search" method="post">
 	<div class="form-group">
 		<label class="col-sm-1 control-label" for='lang'>Language:</label>
     	<div class="col-sm-3">
@@ -71,36 +71,34 @@ var app = new Vue({
   	},
  	methods: {
 	    langChange: function() {
-	    	var self = this;
 	        axios.post("dictList4", {
 	        	selectedLangID: this.selectedLangID,
-	        }).then(function(response) {
-	        	self.dictList = response.data;
-	        	self.selectedDictName = self.dictList[0];
+	        }).then(response => {
+	        	this.dictList = response.data;
+	        	this.selectedDictName = this.dictList[0];
 	        });
 	    },
 		formSubmit: function() {
-			if(this.redirectSearch) return;
-			event.preventDefault();
-	    	var self = this;
 	    	axios.post("dictall4", {
             	selectedLangID: this.selectedLangID,
             	selectedDictName: this.selectedDictName,
             	word: this.word,
-	    	}).then(function(response) {
-            	self.wordError = '';
-                var url = response.data.url.replace('{0}', encodeURIComponent(self.word));
-                self.dictUrl = url;
-            }).catch(function(response) {
+	    	}).then(response => {
+	    		this.wordError = '';
+                var url = response.data.url.replace('{0}', encodeURIComponent(this.word));
+                if(this.redirectSearch)
+                    window.location = url;
+                else
+					this.dictUrl = url;
+            }).catch(response => {
                 console.log(response);
                 var err = response.response.data[0];
-                self.wordError = err.field + ": " + err.defaultMessage;
-                self.dictUrl = 'about:blank';
+                this.wordError = err.field + ": " + err.defaultMessage;
+                this.dictUrl = 'about:blank';
 	        });
 	    },
 	    searchClick: function() {
 	    	this.redirectSearch = false;
-	    	this.formSubmit();
 	    },
 	    redirectSearchClick: function() {
 	    	this.redirectSearch = true;

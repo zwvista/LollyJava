@@ -31,7 +31,6 @@ $(function() {
     $('#search').click(function() {redirectSearch = false;});
     $('#redirectSearch').click(function() {redirectSearch = true;});
 	$('form').submit(function() {
-		if(redirectSearch) return;
         event.preventDefault();
         $.ajax({
             type: "POST",
@@ -41,7 +40,10 @@ $(function() {
                 $('#wordError').empty();
                 var word = $('#word').val();
                 var url = response.url.replace('{0}', encodeURIComponent(word));
-                $('#dictframe').attr('src', url);
+                if(redirectSearch)
+                    window.location = url;
+                else
+                    $('#dictframe').attr('src', url);
             },
             error: function(response) {
                 //alert(JSON.stringify(response));

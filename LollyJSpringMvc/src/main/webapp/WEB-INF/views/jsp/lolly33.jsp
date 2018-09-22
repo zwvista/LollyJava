@@ -46,7 +46,6 @@ angular.module('app', []).controller("lollyCtrl", ["$scope", "$http", "$sce",
     $scope.searchClick = function() {$scope.redirectSearch = false;};
     $scope.redirectSearchClick = function() {$scope.redirectSearch = true;};
 	$scope.getDictUrl = function() {
-		if($scope.redirectSearch) return;
 		event.preventDefault();
         $http.post('dictall3', $('form').serialize(), {
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
@@ -54,7 +53,10 @@ angular.module('app', []).controller("lollyCtrl", ["$scope", "$http", "$sce",
             $scope.wordError = null;
             var word = $('#word').val();
             var url = response.url.replace('{0}', encodeURIComponent(word));
-            $scope.dictUrl = url;
+            if($scope.redirectSearch)
+                window.location = url;
+            else
+                $scope.dictUrl = url;
         }).error(function(response) {
             //alert(JSON.stringify(response));
             var err = response[0];

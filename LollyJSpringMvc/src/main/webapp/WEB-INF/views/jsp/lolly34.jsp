@@ -30,7 +30,7 @@
 <td>{{lang.langname}}</td>
 </tr>
 </table>
-<form class="form-horizontal" action="search" method="post">
+<form class="form-horizontal" @submit.prevent="formSubmit" action="search" method="post">
 	<div class="form-group">
 		<label class="col-sm-1 control-label" for='lang'>Language:</label>
     	<div class="col-sm-3">
@@ -75,35 +75,33 @@ var app = new Vue({
   	},
  	methods: {
 	    langChange: function() {
-	    	var self = this;
-	        $.post("dictList3", $('form').serialize(), function(response) {
-	        	self.dictList = response;
+	        $.post("dictList3", $('form').serialize(), response => {
+	        	this.dictList = response;
 	        });
 	    },
 		formSubmit: function() {
-			if(this.redirectSearch) return;
-			event.preventDefault();
-	    	var self = this;
 	        $.ajax({
 	            type: "POST",
 	            url: "dictall3",
 	            data: $('form').serialize(),
-	            success: function(response) {
-	            	self.wordError = '';
+	            success: response => {
+	            	this.wordError = '';
 	                var url = response.url.replace('{0}', encodeURIComponent(this.word));
-	                self.dictUrl = url;
+	                if(this.redirectSearch)
+	                    window.location = url;
+	                else
+						this.dictUrl = url;
 	            },
-	            error: function(response) {
+	            error:  response => {
 	                //alert(JSON.stringify(response));
 	                var err = response.responseJSON[0];
-	                self.wordError = err.field + ": " + err.defaultMessage;
-	                self.dictUrl = 'about:blank';
+	                this.wordError = err.field + ": " + err.defaultMessage;
+	                this.dictUrl = 'about:blank';
 	            }
 	        });
 	    },
 	    searchClick: function() {
 	    	this.redirectSearch = false;
-	    	this.formSubmit();
 	    },
 	    redirectSearchClick: function() {
 	    	this.redirectSearch = true;
